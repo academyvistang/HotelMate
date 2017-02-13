@@ -1,0 +1,52 @@
+﻿@model HotelMateWebV1.Models.SearchViewModel
+<link href="~/css/CoolTable.css" rel="stylesheet" />
+
+
+<div class="eight columns">
+
+    <h1 class="page-title ci-title" style="margin-bottom:10px;"><span>Hotel Company</span></h1>
+
+ 
+
+    <div>
+        <table class="striped fixedlayout">
+            <thead>
+                <tr>
+                    <th width="20%"></th>
+                    <th width="20%">Name</th>
+                    <th width="20%">Address</th>
+                    <th width="10%">Telephone</th>
+                    <th width="15%">Contact Name </th>
+                    <th width="15%">Contact Number </th>
+                </tr>
+            </thead>
+            <tbody id="CasesTableBody1">
+                @foreach (var rm in Model.CompanyList)
+                {
+                    <tr id="@rm.Id">
+                        <td class="tth2">
+                            <a class="erbEditorOpener buttonDevFirst" href="@Url.Action("TransferBill", "CompanyAccount", new { id = rm.Id })">Transfer Bill Here</a>
+                        </td>
+                        <td class="tth2">@rm.Name</td>
+                        <td class="tth2">@rm.Address</td>
+                        <td class="tth2">@rm.Telephone</td>
+                        <td class="tth2">@rm.ContactName</td>
+                        <td class="tth2">@rm.ContactNumber</td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+

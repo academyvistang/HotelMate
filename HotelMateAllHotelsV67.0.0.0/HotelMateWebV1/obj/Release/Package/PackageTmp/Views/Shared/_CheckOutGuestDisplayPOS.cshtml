@@ -1,0 +1,418 @@
+﻿@using System.Globalization
+@using HotelMateWebV1.Helpers
+@model HotelMateWebV1.Models.GuestRoomAccountViewModel
+
+<link href="~/css/CoolTable.css" rel="stylesheet" />
+
+<style>
+    .hilighted 
+    {
+        background-color:red;
+        color: white; 
+    }
+
+    .hilightedGreen 
+    {
+        background-color:palegreen;
+        color: white; 
+    }
+
+    
+   
+</style>
+
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+
+<script>
+    $(function ()
+    {
+        total_changeNew();
+        
+        $("#PaymentMade").click(function ()
+        {
+            var guestId = $("#GuestId").val();
+
+            var guestRoomId = $("#GuestRoomId").val();
+
+            var paid = $("#Paid").val();
+            var total = $("#total").text();
+
+            var canSubmit = $("#tdTotal").attr('class').indexOf("hilightedGreen") != -1;
+
+            if (total > 0 && paid != total && !canSubmit)
+            {
+                alert("Money paid must be equal to the outstanding bill!");
+                return false;
+            }
+
+            $(this).attr('disabled', 'disabled');
+            $(this).text("Submitting...");
+
+            var amount = 0;
+            var subtotExpenses = 0;
+            var subtotRooms = 0;
+            var subtotCredit = 0;
+            var doRefund = false;
+            
+            
+            var subtotal = total;
+            var tax = $('#TAX').val();
+            var taxamount = 0;
+            var discount = $('#Remise').val();
+            var discountamount = 0;
+
+            var url = "@Url.Action("Payment","GuestAccount")";
+
+            $.ajax({
+                type: "GET",
+                url: url,
+                data:
+                {
+                    guestId: guestId,
+                    guestRoomId : guestRoomId,
+                    tax: tax,
+                    discount: discount
+                },
+                dataType: "json",
+                success: function (data)
+                {
+                    alert("Guest has now been checked out");
+                    location.href = data.UrlReturn;
+                }
+            });
+
+            return false;
+
+        });
+        
+        $("#TAX").change(function()
+        {
+            total_changeNew();
+        });
+
+        $("#Remise").change(function ()
+        {
+            total_changeNew();
+        });
+    });
+
+    function total_changeNew()
+    {
+        var tot;
+
+        if (($('.TAX').val().indexOf('%') != -1) && ($('.Remise').val().indexOf('%') != -1))
+        {
+            var tax = $('.TAX').val();
+            var discount = $('.Remise').val();
+            var roomTotal = "@Model.Guest.GuestRooms.Summation()";
+            var payments = "@Model.Guest.GuestRooms.PaymentsSummation()";
+            var expenses = "@Model.Guest.GuestRooms.ExpensesSummation()";
+            var total = CalculateTotal(expenses, roomTotal, payments, discount.replace("%", ""), tax.replace("%", "")).toFixed(2);
+
+            if (total < 0)
+            {
+                total = parseFloat(total * -1);
+                $('#tdTotal').removeClass("hilightedGreen");
+                $('#tdTotal').addClass("hilighted");
+                $('#total').text(total);
+                $('#Paid').text(total);
+                $('#PaidRow').show();
+            }
+            else
+            {
+                $('#tdTotal').removeClass("hilighted");
+                $('#tdTotal').addClass("hilightedGreen");
+                $('#total').text(total);
+                $('#PaidRow').hide();
+                $('#Paid').text(total);
+            }
+        }
+    }
+
+    function percentage(val1, val2)
+    {
+        return parseFloat((val2/100) * val1);
+    }
+
+    function CalculateTotal(expenses, roomTotal, payments, discount, tax)
+    {
+        var roomTotalTaxPercentage = percentage(roomTotal, tax);
+
+        var tot = parseFloat(roomTotal) + parseFloat(roomTotalTaxPercentage);
+
+        var roomTotalDiscountPercentage = percentage(roomTotal, discount);
+
+        var dis = parseFloat(roomTotal) +parseFloat(roomTotalDiscountPercentage);
+
+        tot = parseFloat(tot) - parseFloat(dis);
+
+        var allExpenses = parseFloat(roomTotal) + parseFloat(expenses);
+
+        var returnVal = parseFloat(payments - (allExpenses + tot));
+
+        return parseFloat(returnVal);
+    }
+
+
+</script>
+
+<div class="eight columns">
+    <h1 class="page-title ci-title"><span>Guest Check Out</span></h1>
+
+    @*@Html.Partial("_CheckOutWithTaxation")*@
+
+    @Html.Hidden("GuestId", Model.Guest.Id)
+
+    @if (!Model.GroupCheckout)
+    {
+        @Html.Hidden("GuestRoomId", Model.GuestRoomId)
+    }
+    
+
+    @if (Model.Guest.RoomTransferHistories.Any())
+    {
+        <h3><span style="color: #24D07C">Room Transfer History</span></h3>
+        <div>
+                <table class="striped fixedlayout">
+                    <thead>
+                        <tr>
+                            <th width="20%">Room No.</th>
+                            <th width="20%">Previous Guest</th>
+                            <th width="60%">Notes</th>
+                            <th width="20%">Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="CasesTableBody1">
+                        @foreach (var rth in Model.Guest.RoomTransferHistories.OrderByDescending(x => x.TransferDate))
+                        {
+                            <tr id="@rth.Id">
+                                <td class="tth2">@rth.OldRoomNumber</td>
+                                <td class="tth2">@rth.OldGuestName</td>
+                                <td class="tth2" title="@rth.Notes">@rth.Notes</td>
+                                <td class="tth2" title="@rth.TransferDate">@rth.TransferDate </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+    }
+
+    <h3><span style="color: #24D07C">Expenses</span></h3>
+    <div>
+        <table class="striped fixedlayout">
+            <thead>
+                <tr>
+                    <th width="15%">Room No.</th>
+                    <th width="20%">Room Type</th>
+                    <th width="20%">Type</th>
+                    <th width="15%">Reference</th>
+                    <th width="15%">Date</th>
+                    <th width="15%">Status</th>
+                    <th width="17%">Amount</th>
+
+                </tr>
+            </thead>
+            <tbody id="CasesTableBody1">
+                @foreach (var rm in Model.Guest.GuestRooms.Where(x => x.GuestRoomAccounts.Where(z => z.PaymentMethodId == (int)HotelMateWebV1.Helpers.Enums.PaymentMethodEnum.POSTBILL).Sum(y => y.Amount) >= 0))
+                {
+                    foreach (var ac in rm.GuestRoomAccounts.Where(x => (x.PaymentMethodId == 
+                    (int)HotelMateWebV1.Helpers.Enums.PaymentMethodEnum.POSTBILL)).OrderByDescending(x => x.TransactionDate))
+                    {
+                        <tr id="@ac.Id">
+                            <td class="tth2">@rm.Room.RoomNumber</td>
+                            <td class="tth2">@rm.Room.RoomType1.Name</td>
+                            <td class="tth2">@ac.RoomPaymentType.Name </td>
+                            <td class="tth2">@ac.TransactionId</td>
+                            <td class="tth2">@ac.TransactionDate.ToShortDateString()</td>
+                            <td class="tth2"></td>
+                            <td class="tth2">@ac.Amount.ToString("N", CultureInfo.InvariantCulture)</td>
+                        </tr>
+                    }
+
+                    if (rm.GuestRoomAccounts.Where(x => (x.PaymentMethodId == (int)HotelMateWebV1.Helpers.Enums.PaymentMethodEnum.POSTBILL)).Any())
+                    {
+                        <tr><td></td><td></td><td></td><td></td><td></td><td>@rm.Room.RoomNumber Debit</td><td>@rm.GuestRoomAccounts.ExpensesSummation().ToString("N", CultureInfo.InvariantCulture)</td></tr>
+                    }
+                }
+            </tbody>
+        </table>
+
+    </div>
+
+    <br />
+    <br />
+
+    <h3><span style="color: #24D07C">Payments</span></h3>
+    <div>
+        <table class="striped fixedlayout">
+            <thead>
+                <tr>
+                    <th width="15%">Room No.</th>
+                    <th width="20%">Room Type</th>
+                    <th width="20%">Type</th>
+                    <th width="15%">Reference</th>
+                    <th width="15%">Date</th>
+                    <th width="15%">Status</th>
+                    <th width="17%">Amount</th>
+
+                </tr>
+            </thead>
+            <tbody id="CasesTableBody1">
+                @foreach (var rm in Model.Guest.GuestRooms.Where(
+                x => x.GuestRoomAccounts.Where(z => z.PaymentTypeId ==
+                (int)HotelMateWebV1.Helpers.Enums.RoomPaymentTypeEnum.CashDeposit
+                || z.PaymentTypeId ==
+                (int)HotelMateWebV1.Helpers.Enums.RoomPaymentTypeEnum.InitialDeposit
+                || z.PaymentTypeId !=
+                (int)HotelMateWebV1.Helpers.Enums.RoomPaymentTypeEnum.ReservationDeposit).Sum(y => y.Amount) >= 0))
+                {
+                    foreach (var ac in rm.GuestRoomAccounts.Where(x => (x.PaymentTypeId ==
+                    (int)HotelMateWebV1.Helpers.Enums.RoomPaymentTypeEnum.InitialDeposit)
+                    || (x.PaymentTypeId ==
+                    (int)HotelMateWebV1.Helpers.Enums.RoomPaymentTypeEnum.ReservationDeposit)
+                    || (x.PaymentTypeId ==
+                    (int)HotelMateWebV1.Helpers.Enums.RoomPaymentTypeEnum.CashDeposit)
+                   ).OrderByDescending(x => x.TransactionDate))
+                    {
+                        <tr id="@ac.Id">
+                            <td class="tth2">@rm.Room.RoomNumber</td>
+                            <td class="tth2">@rm.Room.RoomType1.Name</td>
+                            <td class="tth2">@ac.RoomPaymentType.Name </td>
+                            <td class="tth2">@ac.TransactionId</td>
+                            <td class="tth2">@ac.TransactionDate.ToShortDateString()</td>
+                            <td class="tth2"></td>
+                            <td class="tth2">@ac.Amount.ToString("N", CultureInfo.InvariantCulture)</td>
+                        </tr>
+                    }
+
+                    if (rm.GuestRoomAccounts.Where(x => (x.PaymentTypeId ==
+                    (int)HotelMateWebV1.Helpers.Enums.RoomPaymentTypeEnum.InitialDeposit)
+                    || (x.PaymentTypeId ==
+                    (int)HotelMateWebV1.Helpers.Enums.RoomPaymentTypeEnum.ReservationDeposit)
+                    || (x.PaymentTypeId ==
+                    (int)HotelMateWebV1.Helpers.Enums.RoomPaymentTypeEnum.CashDeposit)).Any())
+                    {
+                        <tr><td></td><td></td><td></td><td></td><td></td><td>@rm.Room.RoomNumber Debit</td><td>@rm.GuestRoomAccounts.PaymentsSummation().ToString("N", CultureInfo.InvariantCulture)</td></tr>
+                    }
+                }
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <br />
+    <h3><span style="color:#FF2AB5;">Room(s) Cost</span></h3>
+    <div>
+        <table class="striped fixedlayout">
+            <thead>
+                <tr>
+                    <th width="15%">Room No.</th>
+                    <th width="20%">Room Type</th>
+                    <th width="25%">Checkin</th>
+                    <th width="20%">Checkout</th>
+                    <th width="15%">Nights</th>
+                    <th width="20%">Rate </th>
+                    <th width="20%">Total </th>
+                </tr>
+            </thead>
+            <tbody id="CasesTableBody1">
+                @foreach (var rm in Model.Guest.GuestRooms)
+                {
+                    <tr id="@rm.Id">
+                        <td class="tth2">@rm.Room.RoomNumber</td>
+                        <td class="tth2">@rm.Room.RoomType1.Name</td>
+                        <td class="tth2">@rm.CheckinDate.ToShortDateString()</td>
+                        <td class="tth2">@(rm.CheckinDate > rm.CheckoutDate ? DateTime.Now.ToShortDateString() : rm.CheckoutDate.ToShortDateString())</td>
+                        <td class="tth2">@rm.GetNumberOfNights()</td>
+                        <td class="tth2">@rm.RoomRate.ToString("N", CultureInfo.InvariantCulture)</td>
+                        <td class="tth2">@rm.RoomCharge().ToString("N", CultureInfo.InvariantCulture)</td>
+                    </tr>
+                }
+
+                <tr><td colspan="7"></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td>Total</td><td>@Model.Guest.GuestRooms.Summation().ToString("N", CultureInfo.InvariantCulture)</td></tr>
+
+            </tbody>
+        </table>
+        <br />
+    </div>
+
+
+    <br />
+    <br />
+
+
+    <div class="table-responsive col-sm-12 totalTab">
+        <table class="table">
+            <tr>
+                <td class="active" width="30%">Credit</td>
+                <td class="whiteBg" width="70%">
+                    NGN <span id="SubtotCredit">@Model.Guest.GuestRooms.PaymentsSummation().ToString("N", CultureInfo.InvariantCulture)</span><span class="float-right"><b id="ItemsNumExpenses"><span></span></b></span>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="active" width="30%">Total (Expenses)</td>
+                <td class="whiteBg" width="70%">
+                    NGN <span id="SubtotExpenses">@Model.Guest.GuestRooms.ExpensesSummation().ToString("N", CultureInfo.InvariantCulture)</span><span class="float-right"><b id="ItemsNumExpenses"><span></span></b></span>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="active" width="30%">SubTotal (Rooms)</td>
+                <td class="whiteBg" width="70%">
+                    NGN <span id="Subtot">@Model.Guest.GuestRooms.Summation().ToString("N", CultureInfo.InvariantCulture)</span><span class="float-right"><b id="ItemsNum"><span></span></b></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="active">Rooms TAX (%)</td>
+                <td class="whiteBg">
+
+                    <input type="text" value="10%" id="TAX" name="TAX" class="total-input TAX" placeholder="N/A" maxlength="5">
+                    <span class="float-right"><b id="taxValue"></b></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="active">Rooms Discount (%)</td>
+                <td class="whiteBg">
+                    <input type="text" value="0%" id="Remise" name="Remise" class="total-input Remise" placeholder="N/A" maxlength="5">
+                    <span class="float-right"><b id="RemiseValue"></b></span>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="active">Total</td>
+                <td id="tdTotal" class="whiteBg light-blue text-bold">NGN <span id="total"></span></td>
+            </tr>
+
+            <tr id="PaidRow">
+                <td class="active">Paid</td>
+                <td class="whiteBg">
+                    <input type="text" value="@decimal.Zero" id="Paid" name="Paid" class="total-input Paid" placeholder="" maxlength="25">
+                </td>
+            </tr>
+        </table>
+    </div>
+    <br />
+
+    <div class="row">
+        <div class="col-md-12">
+            @if (!Model.GroupCheckout)
+            {
+               <button type="button"  id="PaymentMade" name="PaymentMade" class="btn btn-success">CHECKOUT GUEST(S)</button>
+            }
+            else
+            {
+                <button type="button"  id="PaymentMade" name="PaymentMade" class="btn btn-success">CHECKOUT GUEST(S)</button>
+            }
+        </div>
+    </div>
+    <br />
+
+</div>
+
+
+
+

@@ -1,0 +1,28 @@
+﻿@model HotelMateWebV1.Models.PersonViewModel
+
+<section id="content" class=" twelve columns">
+
+    @if (Model.ItemSaved.HasValue && Model.ItemSaved.Value)
+    {
+        @Html.Partial("_EntityUpdated", "Person details updated.")
+    }
+
+    <h1 class="page-title ci-title"><span>User</span></h1>
+
+    <article id="post-16" class="post-16 page type-page status-publish hentry entry group">
+
+        <div class="booking-form-wrap bs bg">
+
+            @using (Html.BeginForm("NewPerson", "Account", FormMethod.Post, new { enctype = "multipart/form-data", @class = "booking-form b-form row" }))
+            {
+                @Html.ValidationSummary()
+                @Html.Partial("_PersonFullQuick")
+            }
+
+        </div>
+
+    </article>
+
+</section>
+
+

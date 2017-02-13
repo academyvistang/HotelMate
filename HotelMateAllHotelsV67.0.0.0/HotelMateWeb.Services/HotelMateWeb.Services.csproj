@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{356180D5-064B-4F5E-9C90-780B7EC93AF4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HotelMateWeb.Services</RootNamespace>
+    <AssemblyName>HotelMateWeb.Services</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\IAdventureService.cs" />
+    <Compile Include="Core\IBusinessAccountCorporateService.cs" />
+    <Compile Include="Core\IDamagedBatchItemService.cs" />
+    <Compile Include="Core\IBatchService.cs" />
+    <Compile Include="Core\IBusinessAccountService.cs" />
+    <Compile Include="Core\IDistributionPointItemService.cs" />
+    <Compile Include="Core\IDistributionPointService.cs" />
+    <Compile Include="Core\IEmployeeShiftService.cs" />
+    <Compile Include="Core\IEscortService.cs" />
+    <Compile Include="Core\IExpenseService.cs" />
+    <Compile Include="Core\IGuestLedger.cs" />
+    <Compile Include="Core\IGuestPlaylistService.cs" />
+    <Compile Include="Core\IGuestReservationService.cs" />
+    <Compile Include="Core\IGuestRoomAccount.cs" />
+    <Compile Include="Core\IGuestRoomService.cs" />
+    <Compile Include="Core\IGuestService.cs" />
+    <Compile Include="Core\IInvoiceService.cs" />
+    <Compile Include="Core\IInvoiceStatusTypeService.cs.cs" />
+    <Compile Include="Core\IItemService.cs" />
+    <Compile Include="Core\IMovieCategoryService.cs" />
+    <Compile Include="Core\IMovieService.cs" />
+    <Compile Include="Core\IPaymentMethodService.cs" />
+    <Compile Include="Core\IPaymentService.cs" />
+    <Compile Include="Core\IPersonService.cs" />
+    <Compile Include="Core\IPersonTypeService.cs" />
+    <Compile Include="Core\IPOSItemService.cs" />
+    <Compile Include="Core\IPurchaseOrderItemService.cs" />
+    <Compile Include="Core\IPurchaseOrderService.cs" />
+    <Compile Include="Core\IRoomService.cs" />
+    <Compile Include="Core\IRoomStatuService.cs" />
+    <Compile Include="Core\IRoomTypeService.cs" />
+    <Compile Include="Core\ISoldItemService.cs" />
+    <Compile Include="Core\IStockItemService.cs" />
+    <Compile Include="Core\IStoreItemService.cs" />
+    <Compile Include="Core\IStoreService.cs" />
+    <Compile Include="Core\ISupplierService.cs" />
+    <Compile Include="Core\ITableItemService.cs" />
+    <Compile Include="Core\ITaxiService.cs" />
+    <Compile Include="Core\ITransactionService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceApi\AdventureService.cs" />
+    <Compile Include="ServiceApi\BatchService.cs" />
+    <Compile Include="ServiceApi\BusinessAccountCorporateService.cs" />
+    <Compile Include="ServiceApi\BusinessAccountService.cs" />
+    <Compile Include="ServiceApi\DamagedBatchItemService.cs" />
+    <Compile Include="ServiceApi\DistributionPointItemService.cs" />
+    <Compile Include="ServiceApi\DistributionPointService.cs" />
+    <Compile Include="ServiceApi\EmployeeShiftService.cs" />
+    <Compile Include="ServiceApi\EscortService.cs" />
+    <Compile Include="ServiceApi\ExpenseService.cs" />
+    <Compile Include="ServiceApi\GuestLedgerService.cs" />
+    <Compile Include="ServiceApi\GuestPlaylistService.cs" />
+    <Compile Include="ServiceApi\GuestReservationService.cs" />
+    <Compile Include="ServiceApi\GuestRoomAccountService.cs" />
+    <Compile Include="ServiceApi\GuestRoomService.cs" />
+    <Compile Include="ServiceApi\GuestService.cs" />
+    <Compile Include="ServiceApi\InvoiceService.cs" />
+    <Compile Include="ServiceApi\InvoiceStatusTypeService.cs.cs" />
+    <Compile Include="ServiceApi\MovieCategoryService.cs" />
+    <Compile Include="ServiceApi\MovieService.cs" />
+    <Compile Include="ServiceApi\PaymentService.cs" />
+    <Compile Include="ServiceApi\POSItemService.cs" />
+    <Compile Include="ServiceApi\PurchaseOrderItemService.cs" />
+    <Compile Include="ServiceApi\PurchaseOrderService.cs" />
+    <Compile Include="ServiceApi\SoldItemService.cs" />
+    <Compile Include="ServiceApi\StockActualItemService.cs" />
+    <Compile Include="ServiceApi\StoreItemService.cs" />
+    <Compile Include="ServiceApi\StoreService.cs" />
+    <Compile Include="ServiceApi\ItemService.cs" />
+    <Compile Include="ServiceApi\PaymentMethodService.cs" />
+    <Compile Include="ServiceApi\PersonService.cs" />
+    <Compile Include="ServiceApi\PersonTypeService.cs" />
+    <Compile Include="ServiceApi\RoomService.cs" />
+    <Compile Include="ServiceApi\RoomStatuService.cs" />
+    <Compile Include="ServiceApi\RoomTypeService.cs" />
+    <Compile Include="ServiceApi\SupplierService.cs" />
+    <Compile Include="ServiceApi\TableItemService.cs" />
+    <Compile Include="ServiceApi\TaxiService.cs" />
+    <Compile Include="ServiceApi\TransactionService.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\HotelMateWeb.Dal\HotelMateWeb.Dal.csproj">
+      <Project>{67752c1d-eaf8-42d5-8eb7-879de5cd59fd}</Project>
+      <Name>HotelMateWeb.Dal</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

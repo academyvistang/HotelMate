@@ -1,0 +1,69 @@
+﻿@using HotelMateWebV1.Helpers
+@model HotelMateWebV1.Models.PersonViewModel
+
+<style>
+    .dropdownDiv {
+        height: 100px;
+        width: 100%;
+        overflow: auto;
+        padding: 2px;
+    }
+</style>
+
+@Html.HiddenFor(model => model.Password)
+@Html.HiddenFor(model => model.UserName)
+@Html.HiddenFor(model => model.TotalBarRecievable)
+@Html.HiddenFor(model => model.TotalHotelRecievable)
+@Html.HiddenFor(model => model.TotalSales)
+@Html.HiddenFor(model => model.CanCloseTill)
+
+
+<div id="gmail_loading" style="display: none;">
+    <div class="blackbg"></div>
+    <div class="gmailLoader"> <img src="~/sma2/assets/pos/css/images/gmail-loader.gif" alt="Loading ..." /> Loading... </div>
+</div>
+
+
+<div class="six columns">
+    <label for="email">Bar Total*</label>
+    @Html.TextBoxFor(model => model.TotalBarRecievable, new { @disabled = "disabled" })
+</div>
+
+<div class="six columns">
+    <label for="FullName">Front Office Total*</label>
+    @Html.TextBoxFor(model => model.TotalHotelRecievable, new { @disabled = "disabled" })
+</div>
+
+<div class="twelve columns">
+    <label for="email">Total*</label>
+    @Html.TextBoxFor(model => model.TotalSales, new { @disabled = "disabled" })
+ </div>
+
+<div class="six columns">
+    <input id="submitLogOff" type="submit" name="CloseShift" value="Log Off" class="btn btn-primary">
+</div>
+
+@if(Model.CanCloseTill)
+{
+    
+<div class="six columns">
+    <input id="submitClose" type="submit" name="CloseShift" value="Close Shift" class="btn btn-danger">
+</div>
+    
+}
+else
+{
+    <p>You can not close your shift as you have pending items. Close your till if you may.</p>
+}
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,65 @@
+﻿@using HotelMateWebV1.Helpers
+@model HotelMateWebV1.Models.CompanyViewModel
+
+<style>
+    .dropdownDiv
+     {
+        height: 100px;
+        width: 100%;
+        overflow: auto;
+        padding: 2px;
+    }
+</style>
+
+@Html.HiddenFor(model => model.Id)
+
+<div class="six columns">
+    <label for="FullName">Company Name*</label>
+    @Html.TextBoxFor(model => model.Name)
+</div>
+
+<div class="six columns">
+    <label for="FullName">Contact Name*</label>
+    @Html.TextBoxFor(model => model.ContactName)
+</div>
+
+<div class="six columns">
+    <label for="email">Telephone*</label>
+    @Html.TextBoxFor(model => model.Telephone)
+    @Html.ValidationMessageFor(model => model.Telephone)
+</div>
+
+<div class="six columns">
+    <label for="email">E-Mail*</label>
+    @Html.TextBoxFor(model => model.Email)
+    @Html.ValidationMessageFor(model => model.Email)
+</div>
+
+<div class="six columns">
+    <label for="email">Mobile*</label>
+    @Html.TextBoxFor(model => model.Mobile)
+    @Html.ValidationMessageFor(model => model.Mobile)
+</div>
+
+<div class="six columns">
+    <label for="email">Contact Number*</label>
+    @Html.TextBoxFor(model => model.ContactNumber)
+    @Html.ValidationMessageFor(model => model.ContactNumber)
+</div>
+
+<div class="six columns">
+    <label for="email">Address*</label>
+    @Html.TextBoxFor(model => model.Address)
+    @Html.ValidationMessageFor(model => model.Address)
+</div>
+
+<div class="six columns">
+    <label for="email">Nature Of Business</label>
+    @Html.TextBoxFor(model => model.NatureOfBusiness)
+    @Html.ValidationMessageFor(model => model.NatureOfBusiness)
+</div>
+
+<div class="twelve columns">
+    <input id="submit" type="submit" value="Save" name="send_booking">
+</div>
+

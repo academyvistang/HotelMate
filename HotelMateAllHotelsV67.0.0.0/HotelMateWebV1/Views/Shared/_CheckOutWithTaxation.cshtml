@@ -1,0 +1,32 @@
+﻿@using System.Globalization
+@using HotelMateWebV1.Helpers
+@model HotelMateWebV1.Models.GuestRoomAccountViewModel
+
+
+<h3><span style="color:#FF2AB5;">Overall Balance With Tax</span></h3>
+
+
+<div>
+    <table class="striped fixedlayout">
+        <thead>
+        </thead>
+        <tbody id="CasesTableBody1">
+
+            @{ var balance = Model.Guest.GetGuestBalanceWithFullTax();}
+
+            @if (balance > 0)
+            {
+                <tr border="1" bgcolor="#ff4980"><td></td><td></td><td></td><td></td><td>Refund</td><td bgcolor="@Model.Guest.GetGuestBalanceWithTaxColour()">@balance</td></tr>
+            }
+            else
+            {
+                <tr border="1" bgcolor="#ff4980"><td></td><td></td><td></td><td></td><td>Balance</td><td bgcolor="@Model.Guest.GetGuestBalanceWithTaxColour()">@balance</td></tr>
+            }
+
+        </tbody>
+    </table>
+    <br />
+
+
+</div>
+<br />

@@ -1,0 +1,262 @@
+﻿@using HotelMateWebV1.Helpers
+@model HotelMateWebV1.Models.GuestRoomAccountViewModel
+
+<style>
+    table {
+        border: solid 1px #e8eef4;
+        border-collapse: collapse;
+    }
+
+        table td {
+            padding: 5px;
+            border: solid 1px #e8eef4;
+        }
+
+        table th {
+            padding: 6px 5px;
+            text-align: left;
+            background-color: #e8eef4;
+            border: solid 1px #e8eef4;
+        }
+
+        /* tables */
+        table.tablesorter {
+            font-family: arial;
+            background-color: #97a5b0;
+            margin: 10px 0pt 15px;
+            /*  font-size: 8pt; */
+            width: 100%;
+            text-align: left;
+        }
+
+            table.tablesorter thead tr th, table.tablesorter thead tr td, table.tablesorter tfoot tr th {
+                background-color: #eeeeee;
+                border: 1px solid #FFF;
+                /*  font-size: 8pt; */
+                text-align: left;
+                padding: 4px 20px 4px 4px;
+                font-weight: normal;
+            }
+
+            table.tablesorter thead tr .header {
+                background-image: url(bg.gif);
+                background-repeat: no-repeat;
+                background-position: center right;
+                cursor: pointer;
+            }
+
+            table.tablesorter tbody td {
+                color: #3D3D3D;
+                padding: 4px;
+                background-color: #FFF;
+                vertical-align: top;
+            }
+
+            table.tablesorter tbody tr.odd td {
+                background-color: #F8F8F8;
+            }
+
+            table.tablesorter thead tr .headerSortUp {
+                background-image: url(asc.gif);
+            }
+
+            table.tablesorter thead tr .headerSortDown {
+                background-image: url(desc.gif);
+            }
+
+            table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
+                background-color: #eeeeee;
+            }
+
+            table.tablesorter tfoot tr th {
+                border-top: solid 1px #d3d3d3 !important;
+            }
+
+            table.tablesorter thead tr th {
+                border-bottom: solid 1px #d3d3d3 !important;
+            }
+
+
+    .fixedlayout {
+        table-layout: fixed;
+    }
+
+        .fixedlayout td {
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+
+
+    /* Table striping & hover */
+    .striped {
+        width: 100%;
+        border: thin solid #AAAAAA;
+    }
+
+        .striped th {
+            border-bottom-style: double;
+            border-bottom-width: medium;
+            border-color: #7D983F;
+            background-color: #803F98;
+            color: #DDDDDD;
+        }
+
+    tr.alt td {
+        background-color: #FF99FF;
+    }
+
+    tr.over td {
+        color: #DDDDDD;
+        background-color: #3D184B;
+    }
+   
+</style>
+
+
+<br />
+<img src="@Model.ImageUrl" width="64" height="64" alt="" />
+
+<div id="hero" class="row">
+    <div class="eight columns">
+
+        <h3>Payments & Expenses</h3>
+        <div>
+            <table class="striped fixedlayout">
+                <thead>
+                    <tr>
+                       
+                        <th width="15%">Room No.</th>
+                        <th width="20%">Room Type</th>
+                        <th width="20%">Type</th>
+                        <th width="20%">Reference</th>
+                        <th width="15%">Date</th>
+                        <th width="17%">Amount</th>
+                    </tr>
+                </thead>
+                <tbody id="CasesTableBody1">
+                    @foreach (var rm in Model.Guest.GuestRooms.Where(x => x.GuestRoomAccounts.Sum(y => y.Amount) >= 0))
+                    {
+                        foreach (var ac in rm.GuestRoomAccounts.OrderByDescending(x => x.TransactionDate))
+                        {
+                            <tr id="@ac.Id">
+                                <td class="tth2">@rm.Room.RoomNumber</td>
+                                <td class="tth2">@rm.Room.RoomType1.Name</td>
+                                <td class="tth2">@ac.RoomPaymentType.Name </td>
+                                <td class="tth2"></td>
+                                <td class="tth2">@ac.TransactionId</td>
+                                <td class="tth2">@ac.TransactionDate.ToShortDateString()</td>
+                                <td class="tth2">@ac.Amount</td>
+                            </tr>
+                        }
+                        <tr><td colspan="100">@rm.GuestRoomAccounts.Summation().ToString()</td></tr>
+                    }
+
+                </tbody>
+            </table>
+
+        </div>
+
+        <br />
+        <h3>Room(s) Cost</h3>
+        <div>
+            <table class="striped fixedlayout">
+                <thead>
+                    <tr>
+                        <th width="15%">Room No.</th>
+                        <th width="20%">Room Type</th>
+                        <th width="25%">Checkin</th>
+                        <th width="20%">Checkout</th>
+                        <th width="15%">Nights</th>
+                        <th width="20%">Rate </th>
+                        <th width="20%">Total </th>
+
+                    </tr>
+                </thead>
+                <tbody id="CasesTableBody1">
+                    @foreach (var rm in Model.Guest.GuestRooms)
+                    {
+                        <tr id="@rm.Id">
+                            <td class="tth2">@rm.Room.RoomNumber</td>
+                            <td class="tth2">@rm.Room.RoomType1.Name</td>
+                            <td class="tth2">@rm.CheckinDate.ToShortDateString()</td>
+                            <td class="tth2">@DateTime.Now.ToShortDateString()</td>
+                            <td class="tth2">@(DateTime.Now.Subtract(rm.CheckinDate).Days + 1)</td>
+                            <td class="tth2">@rm.RoomRate</td>
+                            <td class="tth2">@rm.RoomCharge()</td>
+
+                        </tr>
+                    }
+
+                    <tr><td colspan="8">@Model.Guest.GuestRooms.Summation().ToString()</td></tr>
+
+                </tbody>
+            </table>
+
+            <br />
+            <br />
+
+
+            <div class="twelve columns">
+                <input type="submit" value="@Model.Guest.GetBalance()" name="send_booking" disabled="disabled" readonly="readonly">
+            </div>
+
+        </div>
+
+
+    </div>
+    
+</div> <!-- #hero -->
+
+
+
+
+
+@*<table cellpadding="3" cellspacing="3">
+    <tr border="1" bgcolor="#99cccc" color="#ffffff">
+        <td width="50%" align="center">
+            Project
+        </td>
+        <td width="20%" align="center">
+            Date
+        </td>
+        <td width="20%" align="center">
+            Amount Piad 
+        </td>
+    </tr>
+    @{
+        var OddColor = "#FFFFFF";
+        var evenColor = "#EAF3FF";
+        var Odd = OddColor;
+    }
+    
+
+    @foreach (var customer in Model.PassTemplateList)
+    {
+        <tr border="1" bgcolor="@Odd">
+            <td>
+                @customer.Event.Name
+        </td>
+        <td>
+            @customer.CreatedDateTime.ToString("MMM yyyy")
+    </td>
+    <td>
+        @Decimal.Round(customer.Amount, 2)
+</td>
+</tr>
+        if (Odd == OddColor)
+        {
+            Odd = evenColor;
+        }
+        else
+        {
+            Odd = OddColor;
+        }
+
+    }
+</table>
+
+
+<br />
+<p>	The Total is : NGN @Model.PassTemplateList.Sum(x => x.Amount).ToString()</p>
+<br />*@

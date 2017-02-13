@@ -1,0 +1,38 @@
+﻿@model HotelMateWebV1.Models.RoomBookingViewModel
+
+    <section id="content" class=" eight columns">
+        <h1 class="page-title ci-title"><span>Booking</span></h1>
+
+        @if (Model.AddToRoomCompleted.HasValue && Model.AddToRoomCompleted.Value)
+        {
+            @Html.Partial("_EntityUpdated", "Guest rooms have been added to guest account.")
+        }
+        
+        @if (Model.ItemSaved.HasValue && Model.ItemSaved.Value)
+        {
+            @Html.Partial("_EntityUpdated", "Group booking details have been updated.")
+        }
+
+        <article id="post-16" class="post-16 page type-page status-publish hentry entry group">
+
+            <div class="booking-form-wrap bs bg">
+                @*<form class="booking-form b-form row" action="http://www.academyvista.com/preview/hotelmotel/booking/" method="post">*@
+                @using (Html.BeginForm("EditGroupBooking", "Booking", FormMethod.Post, new { enctype = "multipart/form-data", @class = "booking-form b-form row" }))
+                {
+                    @Html.HiddenFor(model => model.selectedRoomIds)
+                    @Html.HiddenFor(model => model.GuestId)                    
+                    
+                    @Html.Partial("_RoomGroup")
+                }
+            </div>
+
+        </article>
+
+
+    </section>
+
+
+@section SideBarBox
+    {
+    @Html.Partial("_ElokasSidebar")
+}

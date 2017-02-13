@@ -1,0 +1,79 @@
+﻿<div id="paymentModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="paymentModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="paymentModalLabel">Finalize Collection</h3>
+    </div>
+    <div class="modal-body">
+        <div id="paymentdiv"></div>
+        <div class="well form-horizontal" style="margin-bottom:0;">
+            <div class="control-group" style="font-weight:bold;">
+                <div class="control-group">
+                    <label class="control-label" id="warehouse_l">Station</label>
+                    <div class="controls">
+                        <select name="s_warehouse" id="s_warehouse" data-placeholder="Select Station" required="required" data-error="Station is required or need attention.">
+                            <option value="">Select Teminal</option>                            
+                            <option value="5">House Keeping </option>
+
+                            @*<option value="3">Con</option>
+                                <option value="4">Moskau1</option>
+                                <option value="5">Supplier</option>
+                                <option value="6">Warehouse C1 - Goods in Area</option>
+                                <option value="7">Almacen NL</option>
+                                <option value="8">TestWH LH HQ</option>
+                                <option value="9">My Warehouse</option>
+                                <option value="10">Hampstead Road</option>
+                                <option value="11">OVIEDO</option>
+                                <option value="12">KALEXA FASHION</option>
+                                <option value="13">Keep it Secret Warehouse</option>
+                                <option value="14">Kawaii Boutique (Plymouth)</option>
+                                <option value="15">Test</option>
+                                <option value="16">First Floor Faizan Center</option>
+                                <option value="17">pharmacy</option>
+                                <option value="18">London</option>
+                                <option value="19">Timber Store</option>
+                                <option value="20">anchor</option>*@
+                        </select>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" id="s_biller">Biller</label>
+                    <div class="controls">
+                        <select name="s_biller" id="s_biller" data-placeholder="Select Biller" required="required" data-error="Sales Assistant is required or need attention.">
+                            <option value="">@User.Identity.Name</option>
+                            @* <option value="1">Omon Ohiro</option>
+                                <option value="2">james kang</option>
+                                <option value="3">admin</option>
+                                <option value="4" selected="selected">My Biller 1</option>
+                                <option value="5">mohit</option>
+                                <option value="6">Jarek rayman</option>
+                                <option value="7">sujon</option>
+                                <option value="8">Binod Maharjan</option>
+                                <option value="9">talbi</option>*@
+                        </select>
+                    </div>
+                </div>
+                <div class="control-label" style="padding-top:0;font-weight:bold;">Total Payable:</div><div class="controls"><span style="background: #FFFF99; border-radius:5px; padding: 5px 10px; color: #000;"><span id="twt"></span></span></div>
+            </div> <div class="control-group" style="font-weight:bold;"><div class="control-label" style="padding-top:0;font-weight:bold;">Total Items:</div><div class="controls"><span style="background: #FFFF99; border-radius:5px; padding: 5px 10px; color: #000;"><span id="item_count"></span></span></div></div> <div class="control-group">
+                <label class="control-label" for="paid_by">Paid by</label><div class="controls">
+                    <select name="paid_by" id="paid_by">
+                        <option value="cash">IN HOUSE COLLECTION</option>
+                    </select>
+                </div>
+            </div> <div class="pcash"><div class="control-group"><label class="control-label" for="paid-amount">Paid</label><div class="controls"><input type="text" id="paid-amount" class="pa" /></div></div> <div class="control-group" style="font-weight:bold;"><div class="control-label" style="padding-top:0;font-weight:bold;">Change:</div><div class="controls"><span style="background: #FFFF99; border-radius:5px; padding: 5px 10px; color: #000;" id="balance"></span></div></div></div>
+            <div class="pcc" style="display:none;">
+                <div class="control-group"><label class="control-label" for="paid-amount">Credit Card No</label><div class="controls"><input type="text" id="pcc" /></div></div>
+                <div class="control-group"><label class="control-label" for="paid-amount">Holder Name</label><div class="controls"><input type="text" id="pcc_holder" /></div></div>
+            </div>
+
+
+            <div class="pcheque" style="display:none;">
+                <div class="control-group"><label class="control-label" for="paid-amount">Cheque No</label><div class="controls"><input type="text" id="cheque_no" /></div></div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        <button class="btn btn-primary" id="submit-sale">Submit</button>
+    </div>
+</div>
+

@@ -1,0 +1,83 @@
+﻿@*<div id="openTillModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="openTillModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="openTillModalLabel">Open Till</h3>
+    </div>
+@using (Html.BeginForm("CreateOpenTill", "Item", FormMethod.Post, new { enctype = "multipart/form-data", @id="target", @class = "booking-form b-form row" }))
+                {
+    <div class="modal-body">
+        <div id="openTilldiv"></div>
+
+
+        <div class="well form-horizontal" style="margin-bottom:0;">
+ 
+            <div class="control-group" style="font-weight:bold;">
+            <div class="controls">
+            <span style="background: #FFFF99; border-radius:5px; padding: 5px 10px; color: #000;"><span id="item_count"></span>
+            </span>
+                
+                </div>
+            </div>
+             <div class="control-group">
+                <label class="control-label" for="paid_by">Name</label><div class="controls">
+                <input type="text" name="itemname" id="itemname" class="pa" />
+                </div>
+            </div>
+            
+             <div class="pcash"><div class="control-group"><label class="control-label" for="paid-amount">Amount</label><div class="controls">
+             <input min="1" type="number" name="itemamount" id="itemamount" class="pa" /></div></div> <div class="control-group" style="font-weight:bold;">
+                 
+                 <div class="controls">
+                 </div></div></div>
+          
+
+
+           
+        </div>
+
+
+
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        <button type="submit" class="btn btn-primary" id="submit-sale">Submit</button>
+    </div>
+}
+    </div>*@
+
+
+
+
+
+@using (Html.BeginForm("CreateOpenTill", "Item", FormMethod.Post, new { enctype = "multipart/form-data", @id="target", @class = "booking-form b-form row" }))
+                {
+<div id="openTillModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="openTillModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="openTillModalLabel">Open Till</h3>
+    </div>
+    <div class="modal-body">
+        <div id="openTilldiv"></div>
+        <div class="well form-horizontal" style="margin-bottom:0;">
+
+            <div class="control-group">
+                <label class="control-label" for="paid_by">Name</label><div class="controls">
+                    <input type="text" name="itemname" id="itemname" class="pa" />
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" for="paid_by">Amount</label><div class="controls">
+                <input  min="1" type="number" name="itemamount" id="itemamount" class="pa" />
+                </div>
+            </div>
+          
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        <button class="btn btn-primary" id="submit-sale">Submit</button>
+    </div>
+</div>
+}
+

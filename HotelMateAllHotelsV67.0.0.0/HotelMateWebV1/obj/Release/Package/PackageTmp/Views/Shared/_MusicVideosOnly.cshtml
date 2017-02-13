@@ -1,0 +1,33 @@
+﻿@model HotelMateWebV1.Models.GuestRoomAccountViewModel
+
+<link href="~/css/CategoryLong.css" rel="stylesheet" />
+
+
+<div id="gallery-black">
+    <div class="imageContainer">
+
+        @foreach (var m in Model.CinemaList)
+        {
+
+            <div class="image-block">
+
+                @{var val = m.Id.ToString() + ".jpg";}
+
+                <a href="@Url.Action("ShowFilm", "Guest", new { id = m.Id })">
+                    <img src="~/Videos/Films/@val" title="@m.MovieName" height="155" width="155" />
+                </a>
+
+                <div class="reflection">
+                    <img src='~/Videos/Films/@val' title="@m.MovieName" height="155" width="155" alt="" />
+                    <div class="overlay"></div>
+                </div>
+
+
+
+            </div>
+
+        }
+    </div>
+</div>
+
+

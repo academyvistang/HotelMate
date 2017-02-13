@@ -1,0 +1,153 @@
+﻿
+
+<!DOCTYPE html>
+<!--[if IE 8]> <html class="no-js lt-ie9" lang="en-US"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en-US">
+<!--<![endif]-->
+<head>
+
+    <meta charset="utf-8">
+    <title>HotelMate | LAUREN Inc.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="alternate" type="application/rss+xml" title="HotelMotel &raquo; Feed" href="" />
+    <link rel="alternate" type="application/rss+xml" title="HotelMotel &raquo; Comments Feed" href="" />
+    <link rel="alternate" type="application/rss+xml" title="HotelMotel &raquo; Homepage Comments Feed" href="" />
+
+    <link rel='stylesheet' id='contact-form-7-css' href="~/css/Include/style.css" type='text/css' media='all' />
+    <link rel='stylesheet' id='google-font-css' href="~/css/sans.css" type='text/css' media='all' />
+    <link rel='stylesheet' id='foundation-css' href="~/css/foundation.css" type='text/css' media='all' />
+    <link rel='stylesheet' id='jquery-ui-css' href="~/css/redmond/jquery-ui-1.10.3.custom.min.css" type='text/css' media='all' />
+    <link rel='stylesheet' id='flexslider-css' href="~/css/flexslider.css" type='text/css' media='all' />
+    <link rel='stylesheet' id='prettyPhoto-css' href="~/css/prettyPhoto.css?ver=3.5.1' type='text/css" media='all' />
+    <link rel='stylesheet' id='ci-style-css' href="~/css/style.css" type='text/css' media='screen' />
+    <link rel='stylesheet' id='ci-mediaqueries-css' href="~/css/mediaqueries.css" type='text/css' media='all' />
+    <link rel='stylesheet' id='ci-color-scheme-css' href="~/colors/default.css" type='text/css' media='all' />
+    <link rel='stylesheet' id='wp-pagenavi-css' href="~/css/pagenavi-css.css" type='text/css' media='all' />
+
+    <script></script>
+    <script type='text/javascript' src="~/js/jquery.1.8.3.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script type='text/javascript' src='~/js/comment-reply.min.js'></script>
+    <link rel='next' title='Rooms' href='' />
+    <link rel="shortcut icon" type="image/x-icon" href="~/images/favicon.ico" />
+    <link rel="apple-touch-icon" href="~/images/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="~/images/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="~/images/apple-touch-icon-72x72.png" />
+    <link href="../../Content/templatemo_style.css" rel="stylesheet" type="text/css" />
+    <link href="../../Content/Table.css" rel="stylesheet" type="text/css" />
+   
+
+    <style type="text/css">
+        .recentcomments a {
+            display: inline !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+    </style>
+    <style type="text/css">
+        .row {
+            width: 1280px;
+        }
+    </style>
+
+</head>
+
+<body class="home page page-id-6 page-template page-template-template-home-php ci-hotelmotel ci-hotelmotel-1-0">
+
+
+    <div id="mobile-bar">
+        <a class="menu-trigger" href="#"></a>
+        <h1 class="mob-title">
+            <span style="color:red;">HotelMate &#8482;</span> | A HOTEL MANAGEMENT SOLUTION.
+        </h1>
+    </div>
+    <div id="page">
+        <header id="header">
+            <div id="top-head" class="row">
+                <div class="four columns">
+                    <aside id="ci_socials_ignited-2" class="widget widget_ci_socials_ignited group">
+                        <div class="ci-socials-ignited ci-socials-ignited-32">
+                            <a href="http://www.dribbble.com/"><img align="middle" src="~/images/dribbble.png" /></a>
+                            <a href="http://www.facebook.com/"><img align="middle" src="~/images/facebook.png" /></a>
+                            <a href="http://www.twitter.com/"><img align="middle" src="~/images/twitter.png" /></a>
+                        </div>
+                    </aside>
+                </div>
+                <div class="eight columns">
+                    <div class="top-info">
+                        <a class="resort-mail" href="mailto:info@academyvista.com">academyvista.com</a>
+                        <a class="resort-contact" href="">07851444599</a>
+                    </div>
+                </div>
+
+                <div class="twelve columns">
+                    <hr class="separator">
+                </div>
+            </div> <!-- .top-head -->
+
+            <div id="main-head" class="row">
+                <div class="five columns">
+                    <div id="logo">
+                        @*<h1><a href="/preview/hotelmotel"><img src="~/images/logo.png" alt="HotelMate" /></a></h1>*@
+                        <br />
+                        
+                        <h2>A HOTEL MANAGEMENT SOLUTION.</h2>
+                    </div>
+                </div>
+
+                <nav id="nav">
+                    @{Html.RenderAction("TopMenu", "Home");}
+                </nav> <!-- #nav -->
+            </div>
+        </header>
+
+        <div class="row">
+            <div class="twelve columns">
+                <div class="twelve columns main-separator"></div>
+            </div>
+        </div>
+
+
+        <div id="main" role="main">
+            <div id="hero" class="row">
+                @RenderBody()
+                @RenderSection("SideBarBox", required: false)
+                @RenderSection("PaginationBox", required: false)
+            </div> <!-- #hero -->
+        </div> <!-- #main -->
+        @*<div class="row">
+                <div class="twelve columns">
+                    <div class="twelve columns main-separator"></div>
+                </div>
+            </div>*@
+
+
+    </div>
+
+    <script type='text/javascript' src='~/js/jquery.form.js'></script>
+    <script type='text/javascript' src='~/js/include/scripts.js'></script>
+    <script type='text/javascript' src='~/panel/scripts/jquery.hoverIntent.r7.min.js'></script>
+    <script type='text/javascript' src='~/panel/scripts/superfish-1.7.2.js'></script>
+    <script type='text/javascript' src='~/js/ui/jquery.ui.core.min.js'></script>
+    <script type='text/javascript' src='~/js/ui/jquery.ui.datepicker.min.js'></script>
+    <script type='text/javascript' src='~/panel/scripts/jquery.flexslider-2.1-min.js'></script>
+    <script type='text/javascript' src='~/js/jquery.prettyPhoto.js'></script>
+    <script type='text/javascript' src='~/js/dropkick.js'></script>
+    <script type='text/javascript' src='~/js/jquery.equalHeights.js'></script>
+    <script type='text/javascript' src='~/js/jRespond.min.js'></script>
+    <script type='text/javascript' src='~/js/jquery.jpanelmenu.min.js'></script>
+    <script type='text/javascript'>
+        /* <![CDATA[ */
+        var ThemeOption = { "map_zoom_level": "6", "map_coords_lat": "33.59", "map_coords_long": "-80", "map_tooltip": "Pointblank Str. 14, 54321, California", "slider_autoslide": "1", "slider_effect": "fade", "slider_direction": "horizontal", "slider_duration": "600", "slider_speed": "3000" };
+        /* ]]> */
+    </script>
+    <script type='text/javascript' src='~/js/scripts.js'></script>
+    <script type='text/javascript' src="~/js/RoomBooking.js"></script>
+    <!--[if (gte IE 6)&(lte IE 8)]>
+        <script type="text/javascript" src="~/panel/scripts/selectivizr-min.js"></script>
+    <![endif]-->
+</body>
+</html>

@@ -1,0 +1,51 @@
+﻿@using HotelMateWebV1.Helpers
+@model HotelMateWebV1.Models.RoomBookingViewModel
+
+<script src="~/DragnDrop/jquery-1.6.2.min.js"></script>
+
+<style>
+    .dropdownDiv {
+        height: 100px;
+        width: 100%;
+        overflow: auto;
+        padding: 2px;
+    }
+</style>
+
+
+
+
+@Html.HiddenFor(model => model.Guest.IsActive)
+@Html.HiddenFor(model => model.Guest.Status)
+@Html.HiddenFor(model => model.GuestRoom.RoomId)
+@Html.HiddenFor(model => model.Guest.Id)
+
+
+<div class="six columns">
+    <label for="FullName">Name*</label>
+    @Html.TextBoxFor(model => model.Guest.FullName)
+    @Html.ValidationMessageFor(model => model.Guest.FullName)
+</div>
+
+<div class="six columns">
+    <label for="email">E-Mail*</label>
+    @Html.TextBoxFor(model => model.Guest.Email)
+    @Html.ValidationMessageFor(model => model.Guest.Email)
+</div>
+
+<div class="six columns">
+    <label for="email">Telephone*</label>
+    @Html.TextBoxFor(model => model.Guest.Telephone)
+    @Html.ValidationMessageFor(model => model.Guest.Telephone)
+</div>
+
+<div class="six columns">
+    <label for="discountedRate">Refund (If Any)</label>
+    <input type="number" min="0" max="@Model.MaxRefund" id="GuestRefund" name="GuestRefund" value="@Model.MaxRefund">
+    @Html.ValidationMessageFor(model => model.MaxRefund)
+</div>
+
+
+<div class="twelve columns">
+    <input type="submit" value="Delete Booking" name="send_booking">
+</div>

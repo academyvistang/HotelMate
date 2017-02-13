@@ -1,0 +1,94 @@
+﻿@model HotelMateWebV1.Models.GroupBookingViewModel
+
+
+<script type="text/javascript">
+    jQuery(document).ready(function ($)
+    {
+        function CallOmonsMagicMethod(departedDate, minDate,depart) {
+            if (departedDate <= minDate) {
+                $(depart).datepicker('setDate', minDate);
+            }
+            else {
+                $(depart).datepicker('setDate', departedDate);
+            }
+        }
+
+
+        @foreach (var item in Model.GuestRooms)
+        {
+         <text>
+        var arrive = '#arrive_' + '@(item.Id)';
+        var depart = '#depart_' + '@(item.Id)';
+
+
+             $(arrive).datepicker({
+                 dateFormat: 'yy/mm/dd', minDate: 1,
+                 onSelect: function (dateText, dateObj)
+                 {
+                     var departedDate = $(depart).datepicker("getDate");
+                    var minDate = new Date(dateObj.selectedYear, dateObj.selectedMonth, dateObj.selectedDay);
+                    minDate.setDate(minDate.getDate() + 1);
+                    $(depart).datepicker("option", "minDate", minDate);
+
+                    CallOmonsMagicMethod(departedDate, minDate,depart);
+                    
+                    
+                }
+            });
+
+            $(depart).datepicker({
+                dateFormat: 'yy/mm/dd', minDate: 2,
+                onSelect: function (dateText, dateObj) {
+                    //var maxDate = new Date(dateText);
+                    var arrivedDate = $(arrive).datepicker("getDate");
+
+                    var maxDate = new Date(dateObj.selectedYear, dateObj.selectedMonth, dateObj.selectedDay);
+                    maxDate.setDate(maxDate.getDate() - 1);
+                    $(arrive).datepicker("option", "maxDate", maxDate);
+                    $(arrive).datepicker('setDate', arrivedDate);
+                }
+            });
+
+            </text>
+        }
+    });
+
+
+</script>
+
+<link href="~/css/CoolTable.css" rel="stylesheet" />
+<div style="width:98%;padding-left:10px;">
+    <table class="striped fixedlayout">
+        <thead>
+            <tr>
+                <th width="25%"></th>
+                <th width="25%">Room Type</th>
+                <th width="25%">Rate </th>
+                <th width="25%">Check In</th>
+                <th width="25%">Check Out</th>
+            </tr>
+        </thead>
+        <tbody id="CasesTableBody1">
+            @foreach (var rm in Model.GuestRooms)
+            {
+                string arrive = "arrive_" + rm.Id;
+                string depart = "depart_" + rm.Id;
+
+                <tr id="@rm.Id">
+                    <td class="tth2">
+                        <a class="erbEditorOpener buttonDevFirst" href="@Url.Action("RemoveBookingFromNewGroupBooking", "Booking", new { id = rm.Id, selectedRoomIds = Model.selectedRoomIds, Model.CheckinDate, Model.CheckoutDate })">Remove  @rm.RoomNumber</a>
+                    </td>
+
+                    <td class="tth2">@rm.RoomType1.Name</td>
+                    <td class="tth2">@rm.Price</td>
+                    <td class="tth2"><input id="@arrive" class="datepicker" type="text" name="@arrive" value="@Model.CheckinDate.Value.ToShortDateString()"></td>
+                    <td class="tth2"><input id="@depart" class="datepicker" type="text" name="@depart" value="@Model.CheckoutDate.Value.ToShortDateString()"></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+
+@Html.Partial("_RoomsFuture", Model.RoomBookingViewModel)
+

@@ -1,0 +1,179 @@
+﻿
+@model HotelMateWebV1.Models.IndexViewModel
+
+
+<div id="wrapper">
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner" style="padding-left:10px;">
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+            <button type="button" class="btn btn-navbar menu-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+            <a class="brand" href="#"><img src="~/sma2/assets/img/header_logo.png" alt="EPOS Manager" /></a>
+            <div class="nav-collapse collapse">
+                <ul class="nav pull-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Hi, @User.Identity.Name! <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="@Url.Action("CloseTill","Pos")">Close Till</a></li>
+                            <li class="divider"></li>
+                            <li><a href="@Url.Action("LogOff", "Account")">Log Out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav pull-right">
+                    <li><a class="hdate"><span id="theTime"></span></a></li>
+                    <li class="visible-desktop"><a href="#">Home</a></li>
+                    @*<li class="visible-desktop"><a href="#">Terminal</a></li>*@
+                    <li class="dropdown">
+                        <a id="terminalStation" href="#" class="dropdown-toggle" data-toggle="dropdown"> <span id="terminal-setting">House Keeping</span><b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            @*<li><a class="terminal" id="Restaurant" href="#">Restaurant</a></li>
+                            <li><a class="terminal" id="Bar" href="#">Bar</a></li>*@
+                            <li><a class="terminal" id="Laundry" href="#">House Keeping && Laundry</a></li>
+                            @*<li><a class="terminal" id="Internet" href="#">Internet</a></li>*@
+                        </ul>
+                    </li>
+                    @*<li class="visible-desktop"><a href="#">POS Settings</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sales <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Sales</a></li>
+                                <li><a href="#">Suspended Sales</a></li>
+                            </ul>
+                        </li>*@
+                    <li><a class="btn btn-primary hbtn" href="@Url.Action("Index","Home")" id="GoBack">Go Back</a></li>
+
+                    @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                    {
+                        <li><a class="btn btn-success hbtn" href="#" id="todaySale">Today's Distribution</a></li>
+
+                        if (Model.ProductsAlerts > 0)
+                        {
+                            <li class="visible-desktop"><a class="btn btn-warning hbtn" href="#">@Model.ProductsAlerts Product Alerts</a></li>
+                        }
+                        else
+                        {
+                            <li class="visible-desktop"><a class="btn btn-warning hbtn" href="#">0 Product Alerts</a></li>
+                        }
+                    }
+
+
+
+                    <li class="divider-vertical"></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="content">
+        <div class="c1">
+            <div class="pos">
+                <div id="pos">
+                    <form action="@Url.Action("CheckIn", "InventoryPos")" method="post" accept-charset="utf-8">
+                        <div style="display:none">
+                            <input type="hidden" name="csrf_sma" value="6aa7582733bc25866cbced3dc5d2c309" />
+                        </div>
+                        <div id="leftdiv">
+                            <div id="printhead">
+                                <h4 style="text-transform:uppercase;">EPOS Manager</h4>
+                                <h5 style="text-transform:uppercase;">Order List</h5>Date 08-01-2014
+                            </div>
+                            <div id="lefttop">
+                                <div style="clear:left;"></div>
+                                <input type="hidden" id="HotelGuestId" name="HotelGuestId" value="0" />
+                                <input type="hidden" id="GuestRoomId" name="GuestRoomId" value="0" />
+
+                                <input value="Hotel Office" id="customer" name="customer" class="customer" style="width:330px;float: left;" placeholder="Guest.." onclick="this.select();">
+                                <a href="#" id="showCustomerModal" role="button" data-toggle="modal" style="float: right;width:22px;height:22px; margin-top:-1px; border: 0;"><img src="~/sma2/assets/pos/images/plus-icon.png" alt="+"></a>
+
+                                <div style="clear:left;"></div>
+                                <input id="scancode" name="code" class="scancode" style="width:370px; border: 1px solid #00ACED; color: #00ACED;" placeholder="Barcode Scanner" autocomplete="off">
+                                <div style="clear:both;"></div>
+                            </div>
+
+                            <div id="print">
+                                <div id="prodiv">
+                                    <div style="background-color:#333;">
+                                        <table id="title_table" border="0" cellpadding="0" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <th style="width: 30px; color:#FFF;padding:5px 0; font-weight:normal;"><i class="icon-trash icon-white"></i></th>
+                                                    <th style="width: 200px; color:#FFF;padding:5px 0; font-weight:normal;">Product</th>
+                                                    <th style="width: 42px; color:#FFF;padding:5px 0; font-weight:normal;">Qty</th>
+                                                    <th style="width: 82px; color:#FFF; padding:5px 0; font-weight:normal;">Price</th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                    <div id="protbldiv">
+                                        <table border="0" cellpadding="0" cellspacing="0" class="protable" id="saletbl">
+                                            <tbody></tbody>
+                                        </table>
+                                        <div style="clear:both;"></div>
+                                    </div>
+                                </div>
+                                <div style="clear:both;"></div>
+                                <table id="totalTable" style="width:100%; float:right; border: 1px solid #666; padding:5px; font-size: 14px; color:#000; background: #FFF;">
+                                    <tr>
+                                        <td style="padding-left:10px; text-align:left; font-weight:normal;">Total Items</td>
+                                        <td style="text-align:right; padding-right:10px; font-size: 14px; font-weight:bold;"><span id="count">0</span></td>
+                                        <td style="padding-left:10px; text-align:left;">Total</td>
+                                        <td style="text-align:right; padding-right:10px; font-size: 14px; font-weight:bold;"><span id="total">0.00</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-left:10px; text-align:left; font-weight:normal;">Tax 1</td>
+                                        <td style="text-align:right; padding-right:10px; font-size: 14px; font-weight:bold;"><span id="tax">0.00</span></td>
+                                        <td style="padding-left:10px; text-align:left; font-weight:normal;">GST</td>
+                                        <td style="text-align:right; padding-right:10px; font-size: 14px; font-weight:bold;"><span id="tax2">0.00</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-left:10px; text-align:left; " colspan="2">Discount</td>
+                                        <td style="text-align:right; padding-right:10px; font-weight:bold;" colspan="2"><span id="ds">0.00</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 5px 0px 5px 10px; text-align:left; border-top: 1px solid #666; font-weight:bold; background:#333; color:#FFF;" colspan="2">Total Payable</td>
+                                        <td style="text-align:right; padding:5px 10px 5px 0px; font-size: 14px;border-top: 1px solid #666; font-weight:bold; background:#333; color:#FFF;" colspan="2"><span id="total-payable">0.00</span></td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <!--<div id="printfooter">  </div>-->
+                            <div id="botbuttons" style="text-align:center;">
+                                <input type="hidden" name="biller" id="biller" value="4" />
+                                <input type="hidden" name="warehouse" id="warehouse" value="1" />
+                                <input type="hidden" name="paid_val" id="paid_val" value="" />
+                                <input type="hidden" name="cc_no_val" id="cc_no_val" value="" />
+                                <input type="hidden" name="cc_holder_val" id="cc_holder_val" value="" />
+                                <input type="hidden" name="cheque_no_val" id="cheque_no_val" value="" />
+                                <button type="button" class="red bot" id="cancel">Cancel</button>
+                                <button type="button" class="cyan bot" id="print" onclick="window.print(); return false;">Print</button>
+                                <button type="button" disabled="disabled" class="yellow bot" id="suspend" style="margin-right: 0;">Suspend</button>
+                                @if (Model.Terminal != "Terminal")
+                                {
+                                    <button type="button" class="pg" id="payment" style="margin-left: auto; margin-right: auto; width:100%;">Distribute</button>
+                                }
+                                else
+                                {
+                                    <button type="button" class="pg" id="payment" style="display: none; margin-left: auto; margin-right: auto; width: 100%;">Distribute</button>
+                                }
+
+                            </div>
+                            <div style="clear:both; height:5px;"></div>
+                            <div id="num">
+                                <div id="icon"></div>
+                            </div>
+                            <span id="hidesuspend"></span>
+                            <input type="hidden" name="rpaidby" id="rpaidby" value="cash" style="display: none;" />
+                            <input type="hidden" name="count" id="total_item" value="0" style="display: none;" />
+                            <input type="submit" id="submit" value="Submit Sale" style="display: none;" />
+                        </div>
+                    </form>
+
+                    @Html.Partial("_Categories")
+
+                </div>
+            </div>
+            <div style="clear:both;"></div>
+        </div>
+        <div style="clear:both;"></div>
+    </div>
+    <div style="clear:both;"></div>
+</div>

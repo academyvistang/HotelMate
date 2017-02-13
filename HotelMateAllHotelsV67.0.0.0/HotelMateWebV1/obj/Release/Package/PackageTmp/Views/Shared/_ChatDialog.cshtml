@@ -1,0 +1,108 @@
+﻿<style>
+
+.chat_box {
+    display:inline-block;
+    border:1px solid Red;
+    width:208px;
+    margin-left: 5px;
+}
+.user_box {
+    display:block;
+    padding:4px;
+    background-color:#5e75a7;
+    color:#fff;
+    bottom:0;
+}
+.user_box:hover {
+    cursor:pointer;
+}
+.left {
+    float:left;
+}
+.right {
+    float:right;
+}
+.clear {
+    clear:both;
+}
+.message_post {
+    border-top:1px solid #EFEFEF;
+    display:block;
+    padding:5px 3px;
+}
+.message_text {
+    margin-left:5px;
+}
+.message_content {
+    border:1px solid #ddd;
+    height:225px;
+    overflow-y:scroll;
+}
+.box_reply {
+    border:1px solid #ddd;
+}
+.text_reply {
+    display:block;
+    width:99%;
+}
+.user_img {
+}
+.hide_wrap_box {
+    height:22px;
+    bottom:0;
+}
+.name {
+    display: block;
+    width: 80%;
+}
+.index_reload {
+    border: 1px solid #ddd;
+    position: absolute;
+    bottom: 1px;
+    left: 1px;
+    width: 15.4%;
+}
+#chat_area {
+    float:right;
+}
+
+</style>
+
+<div class="index_reload">
+    <!--index_reload-->
+    <div id="chat_area">
+    <div class="chat_box main_chat1" id="chat_id1">
+        <!--chat_box-->
+        <div class="user_box">
+            <div class="name open_chat1 left"> BSide21&trade; Messaging</div>            
+            <div class="closed1 right"><img src="../../Images/list-remove.png" alt="close" /> &nbsp;</div>
+            <div class="clear"></div>
+        </div>
+        <div class="wrap_box1">
+            <!--wrap_box-->
+            <div class="message_content">
+                <!--message_content-->               
+                <div id="reply_output">
+                    <div class="message_post">
+                        <img src="../../Images/user_anonymous.png" width="35" class="left user_img" alt= "" />
+                        <div class="message_text left" style=" width:140px; color:Red;">Welcome!! Type a message & Click Send</div>
+                        <div class="clear"></div>
+                    </div>                   
+                </div>
+
+            </div>
+            <!--message_content-->
+            <div class="box_reply">                
+             <input type="hidden" name="user_id" value="84" />
+             <input type="text" name="text_reply" class="text_reply" id="search_field" placeholder="Enter Message & Click Send" style="width:98%;" />             
+             <div style=" cursor:pointer;" class="rc_btn_01 fl">  <a class="clickmessage">Send</a></div>               
+            </div>
+        </div>
+        <!--wrap_box-->
+    </div>
+    <!--chat_box-->
+    
+    <!--chat_box-->
+</div>
+</div>
+<!--index_reload-->

@@ -1,0 +1,27 @@
+﻿@model HotelMateWebV1.Models.BaseViewModel
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+@section TopBox
+{
+   @if (Model.LoginFailed.HasValue && Model.LoginFailed.Value)
+   {
+    <div style="padding-left:40px;"><p style="color:Red;">Login Credentials are incorrect. Username or password are incorrect.</p></div>
+   }
+    
+    @Html.Partial("_HeroImages")
+}
+
+@section MiddleBox
+{
+    @Html.Partial("_Widgets")
+}
+
+@section BottomBox
+{
+    @Html.Partial("_BottomDisplay")
+}
+

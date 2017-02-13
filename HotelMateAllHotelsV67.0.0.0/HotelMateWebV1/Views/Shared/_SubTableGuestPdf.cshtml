@@ -1,0 +1,49 @@
+﻿@model HotelMateWeb.Dal.DataCore.GuestRoom
+
+
+
+  <table cellpadding="3" cellspacing="3">
+
+      @{
+          var OddColor = "#FFFFFF";
+          var evenColor = "#EAF3FF";
+          var Odd = OddColor;
+      }
+
+    <tbody class="no-border-y">
+        @foreach (var item in Model.GuestRoomAccounts.Where(x => x.PaymentMethodId == (int)HotelMateWebV1.Helpers.Enums.PaymentMethodEnum.POSTBILL).ToList())
+            {
+            <tr border="1" bgcolor="@Odd">
+                <td style="width:20%;">@item.RoomPaymentType.Name</td>
+                <td style="width:20%;">@item.TransactionDate.ToShortDateString()</td>
+                <td style="width:20%;">@item.Person.DisplayName</td>
+                <td style="width:20%;">@item.Amount</td>
+            </tr>
+            }
+
+
+        <tr>
+            <td style="width:20%;">@Model.Room.RoomNumber</td>
+            <td style="width:20%;">@Model.GetNumberOfNights() Nights</td>
+            <td style="width:20%;">@Model.RoomRate</td>
+            <td style="width:20%;">@Model.RoomCharge()</td>
+        </tr>
+
+        @{var total = Model.GuestRoomAccounts.Where(x => x.PaymentMethodId == (int)HotelMateWebV1.Helpers.Enums.PaymentMethodEnum.POSTBILL).Sum(x => x.Amount) + Model.RoomCharge();}
+        <tr>
+            <td colspan="3">Total</td>
+            <td colspan="3">@total</td>
+        </tr>
+
+        @if (Odd == OddColor)
+        {
+        Odd = evenColor;
+        }
+        else
+        {
+        Odd = OddColor;
+        }
+    </tbody>
+</table>
+
+

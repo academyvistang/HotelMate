@@ -1,0 +1,39 @@
+﻿@model HotelMateWebV1.Models.PurchaseOrderModel
+
+
+<div class="cl-mcont">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="block-flat">
+                <div class="header">
+                </div>
+                <div class="content">
+                    <div class="table-responsive">
+                        <table class="table no-border hover">
+                            <thead class="no-border">
+                                <tr>
+
+                                    <th style="width:15%;"><strong>Name</strong></th>
+                                    <th style="width:15%;"><strong>Qty</strong></th>
+                            </thead>
+                            <tbody class="no-border-y">
+                                @foreach (var item in Model.DamagedGoods.OrderBy(x => x.StockItemName))
+                                {
+                                    <tr>
+                                        <td>@item.StockItemName</td>
+                                        <td>@Html.TextBox("POItem_" + item.Id.ToString(), item.Quantity, new { @type = "number", @disabled = "disabled", @readonly = "readonly" })</td>
+                                        <td>@Html.TextBox("DamagedItem_" + item.Id.ToString(), item.Quantity, new { @type = "number", @min = 1, @max = 50000 })</td>
+
+                                    </tr>
+                                }
+                               
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

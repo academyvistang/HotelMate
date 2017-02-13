@@ -1,0 +1,2763 @@
+﻿
+<div id="divMain">
+    <div id="divContent">
+        <table id="tblMainContentHome" cellpadding="0" cellspacing="0">
+            <tbody>
+                <tr><td colspan="3"><div class="spacer10"></div></td></tr>
+                <tr>
+                    <td class="tdSX" rowspan="2">
+
+                        <script type="text/javascript">
+                            $(document).ready(function () {
+                                $('#h_w_PC_oddsSearch_txtSearch').val('Search');
+
+
+                                $('#h_w_PC_oddsSearch_txtSearch').focus(function () { $(this).val('') });
+                                $('#h_w_PC_oddsSearch_txtSearch').blur(function () { if ($(this).val() == '') $(this).val('Search') });
+
+
+                            });
+                        </script>
+                        <div id="h_w_PC_oddsSearch_panelSearch" class="SXCercaContent" onkeypress="javascript:return WebForm_FireDefaultButton(event, 'h_w_PC_oddsSearch_btnCerca')">
+
+
+
+                            <div class="TitleCerca"><span id="h_w_PC_oddsSearch_lblTitle">Search</span></div>
+
+
+                            <div><input name="h$w$PC$oddsSearch$txtSearch" maxlength="50" id="h_w_PC_oddsSearch_txtSearch" class="TxtCerca" type="text" /></div>
+                            <div><a id="h_w_PC_oddsSearch_btnCerca" title="Start search" class="BtnCerca" href="javascript:__doPostBack('h$w$PC$oddsSearch$btnCerca','')"></a></div>
+
+
+                        </div>
+
+
+
+                        <div id="h_w_PC_cSport_pnlSelectors" class="SportSelector">
+
+                            <script type="text/javascript">
+                                var sTimeValuesSteps = ["2", "10", "30", "240", "720", "1"]
+                                var sTimeHdrSteps = ["Today", "1<br />hr", "3<br />hrs", "24<br />hrs", "72<br />hrs", "ALL"]
+
+                                function initSportTimeSlider() {
+                                    //init header slider tempo
+                                    $.each(sTimeHdrSteps, function (index, value) {
+                                        $('#sportTimeSliderHdr').append('<div class="s' + index + '">' + value + '</div>');
+                                    });
+
+                                    var index = sTimeValuesSteps.indexOf('1');
+                                    $('#sportTimeSliderHdr DIV').removeClass("sel");
+                                    $('#sportTimeSliderHdr .s' + index).addClass("sel");
+
+                                    //init slider tempo
+                                    $("#sportTimeSlider").slider({
+                                        max: sTimeValuesSteps.length - 1,
+                                        min: 0,
+                                        value: $.inArray('1', sTimeValuesSteps),
+                                        range: "min",
+                                        animate: true,
+                                        orientation: "horizontal",
+                                        step: 1,
+                                        stop: function (event, ui) {
+                                            $("#sportTimeSlider").mouseup();
+                                            $.event.trigger("oddsTimeSliderChanged", sTimeValuesSteps[ui.value]);
+
+                                            var index = sTimeValuesSteps.indexOf(sTimeValuesSteps[ui.value]);
+
+                                            $('#sportTimeSliderHdr DIV').removeClass("sel");
+                                            $('#sportTimeSliderHdr .s' + index).addClass("sel");
+                                        }
+                                    });
+                                }
+
+                                $(document).ready(function () {
+                                    initSportTimeSlider();
+
+                                    $('#divMenuSportGSX').bind("oddsTimeSliderChanged", function (e, timeValue) {
+                                        $("#h_w_PC_cSport_hidSportTime").val(timeValue);
+                                        $("#h_w_PC_cSport_btnChangeTime").click();
+                                    });
+                                });
+
+                            </script>
+                            <div class="Title">Upcoming in next:</div>
+                            <div aria-disabled="false" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" id="sportTimeSlider"><div style="width: 100%;" class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-min"></div><a style="left: 100%;" class="ui-slider-handle ui-state-default ui-corner-all" href="#"></a></div>
+                            <div id="sportTimeSliderHdr"><div class="s0">Today</div><div class="s1">1<br />hr</div><div class="s2">3<br />hrs</div><div class="s3">24<br />hrs</div><div class="s4">72<br />hrs</div><div class="s5 sel">ALL</div></div>
+
+                        </div>
+
+                        <div id="h_w_PC_cSport_ctl01">
+
+
+                            <input name="h$w$PC$cSport$hidSportTime" id="h_w_PC_cSport_hidSportTime" type="hidden" />
+                            <input name="h$w$PC$cSport$btnChangeTime" value="" onclick="javascript:__doPostBack('h$w$PC$cSport$btnChangeTime','')" id="h_w_PC_cSport_btnChangeTime" style="display:none" type="button" />
+
+                            <div id="divMenuSportGSX">
+
+
+                                <div class="Top"><h3>Select Sport</h3></div>
+
+
+                                <div class="Cnt">
+
+
+
+
+                                    <div class="divSportList">
+
+
+
+                                        <div class="VociMenuFisseSportG"><a id="h_w_PC_cSport_lnkTutti" class="VMFSTutti" href="Groups.aspx?TipoVis=1">All</a></div>
+                                        <div class="VociMenuFisseSportG">
+                                            <a id="h_w_PC_cSport_lnkOggi" class="VMFSOggi" href="Groups.aspx?TipoVis=2">Today's Events</a>
+                                            <div class="ico" style="display:none">15</div>
+                                        </div>
+
+
+
+
+                                        <div id="h_w_PC_cSport_trLiveBetting">
+                                            <div class="VociMenuFisseSportG"><a class="VMFSLive" href="../Live/DefaultLive.aspx">LiveBetting</a></div>
+                                        </div>
+
+
+
+
+
+
+
+
+
+
+                                        <div id="divMenuSportGSXSports">
+
+
+
+
+
+                                            <div class="VociMenuSportG">
+
+                                                <div class="ImgSport" style="background-image:url(../ImgSport.ashx?IDBook=75&amp;IDSport=510&amp;Antepost=0&amp;Tema=Bet9ja)"><img src="../App_Themes/Bet9ja/images/sports/buttons_void.png" /></div>
+
+                                                <div class="NomeSport"><a id="h_w_PC_cSport_repSport_ctl00_lnkSport" href="/Sport/Groups.aspx?IDSport=510&amp;Antepost=0"><span title="Soccer">Soccer</span></a></div>
+
+                                            </div>
+
+
+
+                                            <div class="VociMenuSportG">
+
+                                                <div class="ImgSport" style="background-image:url(../ImgSport.ashx?IDBook=75&amp;IDSport=542&amp;Antepost=0&amp;Tema=Bet9ja)"><img src="../App_Themes/Bet9ja/images/sports/buttons_void.png" /></div>
+
+                                                <div class="NomeSport"><a id="h_w_PC_cSport_repSport_ctl01_lnkSport" href="/Sport/Groups.aspx?IDSport=542&amp;Antepost=0"><span title="Soccer Specials">Soccer Specials</span></a></div>
+
+                                            </div>
+
+
+
+                                            <div class="VociMenuSportG">
+
+                                                <div class="ImgSport" style="background-image:url(../ImgSport.ashx?IDBook=75&amp;IDSport=540&amp;Antepost=0&amp;Tema=Bet9ja)"><img src="../App_Themes/Bet9ja/images/sports/buttons_void.png" /></div>
+
+                                                <div class="NomeSport"><a id="h_w_PC_cSport_repSport_ctl02_lnkSport" href="/Sport/Groups.aspx?IDSport=540&amp;Antepost=0"><span title="Goalscorer">Goalscorer</span></a></div>
+
+                                            </div>
+
+
+
+                                            <div class="VociMenuSportG">
+
+                                                <div class="ImgSport" style="background-image:url(../ImgSport.ashx?IDBook=75&amp;IDSport=538&amp;Antepost=0&amp;Tema=Bet9ja)"><img src="../App_Themes/Bet9ja/images/sports/buttons_void.png" /></div>
+
+                                                <div class="NomeSport"><a id="h_w_PC_cSport_repSport_ctl03_lnkSport" href="/Sport/Groups.aspx?IDSport=538&amp;Antepost=0"><span title="Antepost Soccer">Antepost Soccer</span></a></div>
+
+                                            </div>
+
+
+
+                                            <div class="VociMenuSportG">
+
+                                                <div class="ImgSport" style="background-image:url(../ImgSport.ashx?IDBook=75&amp;IDSport=512&amp;Antepost=0&amp;Tema=Bet9ja)"><img src="../App_Themes/Bet9ja/images/sports/buttons_void.png" /></div>
+
+                                                <div class="NomeSport"><a id="h_w_PC_cSport_repSport_ctl04_lnkSport" href="/Sport/Groups.aspx?IDSport=512&amp;Antepost=0"><span title="Tennis">Tennis</span></a></div>
+
+                                            </div>
+
+
+
+                                            <div class="VociMenuSportG">
+
+                                                <div class="ImgSport" style="background-image:url(../ImgSport.ashx?IDBook=75&amp;IDSport=513&amp;Antepost=0&amp;Tema=Bet9ja)"><img src="../App_Themes/Bet9ja/images/sports/buttons_void.png" /></div>
+
+                                                <div class="NomeSport"><a id="h_w_PC_cSport_repSport_ctl05_lnkSport" href="/Sport/Groups.aspx?IDSport=513&amp;Antepost=0"><span title="Basketball">Basketball</span></a></div>
+
+                                            </div>
+
+
+
+                                            <div class="VociMenuSportG">
+
+                                                <div class="ImgSport" style="background-image:url(../ImgSport.ashx?IDBook=75&amp;IDSport=519&amp;Antepost=0&amp;Tema=Bet9ja)"><img src="../App_Themes/Bet9ja/images/sports/buttons_void.png" /></div>
+
+                                                <div class="NomeSport"><a id="h_w_PC_cSport_repSport_ctl06_lnkSport" href="/Sport/Groups.aspx?IDSport=519&amp;Antepost=0"><span title="Motor Sport">Motor Sport</span></a></div>
+
+                                            </div>
+
+
+
+                                            <div class="VociMenuSportG">
+
+                                                <div class="ImgSport" style="background-image:url(../ImgSport.ashx?IDBook=75&amp;IDSport=516&amp;Antepost=0&amp;Tema=Bet9ja)"><img src="../App_Themes/Bet9ja/images/sports/buttons_void.png" /></div>
+
+                                                <div class="NomeSport"><a id="h_w_PC_cSport_repSport_ctl07_lnkSport" href="/Sport/Groups.aspx?IDSport=516&amp;Antepost=0"><span title="Baseball">Baseball</span></a></div>
+
+                                            </div>
+
+
+
+                                            <div class="VociMenuSportG">
+
+                                                <div class="ImgSport" style="background-image:url(../ImgSport.ashx?IDBook=75&amp;IDSport=514&amp;Antepost=0&amp;Tema=Bet9ja)"><img src="../App_Themes/Bet9ja/images/sports/buttons_void.png" /></div>
+
+                                                <div class="NomeSport"><a id="h_w_PC_cSport_repSport_ctl08_lnkSport" href="/Sport/Groups.aspx?IDSport=514&amp;Antepost=0"><span title="Handball">Handball</span></a></div>
+
+                                            </div>
+
+
+
+                                            <div class="VociMenuSportG">
+
+                                                <div class="ImgSport" style="background-image:url(../ImgSport.ashx?IDBook=75&amp;IDSport=558&amp;Antepost=0&amp;Tema=Bet9ja)"><img src="../App_Themes/Bet9ja/images/sports/buttons_void.png" /></div>
+
+                                                <div class="NomeSport"><a id="h_w_PC_cSport_repSport_ctl09_lnkSport" href="/Sport/Groups.aspx?IDSport=558&amp;Antepost=0"><span title="Royal Family">Royal Family</span></a></div>
+
+                                            </div>
+
+
+
+                                            <div class="VociMenuSportG">
+
+                                                <div class="ImgSport" style="background-image:url(../ImgSport.ashx?IDBook=75&amp;IDSport=515&amp;Antepost=0&amp;Tema=Bet9ja)"><img src="../App_Themes/Bet9ja/images/sports/buttons_void.png" /></div>
+
+                                                <div class="NomeSport"><a id="h_w_PC_cSport_repSport_ctl10_lnkSport" href="/Sport/Groups.aspx?IDSport=515&amp;Antepost=0"><span title="Rugby">Rugby</span></a></div>
+
+                                            </div>
+
+
+
+                                            <div class="VociMenuSportG">
+
+                                                <div class="ImgSport" style="background-image:url(../ImgSport.ashx?IDBook=75&amp;IDSport=526&amp;Antepost=0&amp;Tema=Bet9ja)"><img src="../App_Themes/Bet9ja/images/sports/buttons_void.png" /></div>
+
+                                                <div class="NomeSport"><a id="h_w_PC_cSport_repSport_ctl11_lnkSport" href="/Sport/Groups.aspx?IDSport=526&amp;Antepost=0"><span title="Volleyball">Volleyball</span></a></div>
+
+                                            </div>
+
+
+
+                                            <div class="VociMenuSportG">
+
+                                                <div class="ImgSport" style="background-image:url(../ImgSport.ashx?IDBook=75&amp;IDSport=511&amp;Antepost=0&amp;Tema=Bet9ja)"><img src="../App_Themes/Bet9ja/images/sports/buttons_void.png" /></div>
+
+                                                <div class="NomeSport"><a id="h_w_PC_cSport_repSport_ctl12_lnkSport" href="/Sport/Groups.aspx?IDSport=511&amp;Antepost=0"><span title="Ice Hockey">Ice Hockey</span></a></div>
+
+                                            </div>
+
+
+
+                                            <div class="VociMenuSportG">
+
+                                                <div class="ImgSport" style="background-image:url(../ImgSport.ashx?IDBook=75&amp;IDSport=517&amp;Antepost=0&amp;Tema=Bet9ja)"><img src="../App_Themes/Bet9ja/images/sports/buttons_void.png" /></div>
+
+                                                <div class="NomeSport"><a id="h_w_PC_cSport_repSport_ctl13_lnkSport" href="/Sport/Groups.aspx?IDSport=517&amp;Antepost=0"><span title="Cycling">Cycling</span></a></div>
+
+                                            </div>
+
+
+
+                                            <div class="VociMenuSportG">
+
+                                                <div class="ImgSport" style="background-image:url(../ImgSport.ashx?IDBook=75&amp;IDSport=518&amp;Antepost=0&amp;Tema=Bet9ja)"><img src="../App_Themes/Bet9ja/images/sports/buttons_void.png" /></div>
+
+                                                <div class="NomeSport"><a id="h_w_PC_cSport_repSport_ctl14_lnkSport" href="/Sport/Groups.aspx?IDSport=518&amp;Antepost=0"><span title="Golf">Golf</span></a></div>
+
+                                            </div>
+
+
+
+                                            <div class="VociMenuSportG">
+
+                                                <div class="ImgSport" style="background-image:url(../ImgSport.ashx?IDBook=75&amp;IDSport=544&amp;Antepost=0&amp;Tema=Bet9ja)"><img src="../App_Themes/Bet9ja/images/sports/buttons_void.png" /></div>
+
+                                                <div class="NomeSport"><a id="h_w_PC_cSport_repSport_ctl15_lnkSport" href="/Sport/Groups.aspx?IDSport=544&amp;Antepost=0"><span title="Boxing">Boxing</span></a></div>
+
+                                            </div>
+
+
+
+                                            <div class="VociMenuSportG">
+
+                                                <div class="ImgSport" style="background-image:url(../ImgSport.ashx?IDBook=75&amp;IDSport=560&amp;Antepost=0&amp;Tema=Bet9ja)"><img src="../App_Themes/Bet9ja/images/sports/buttons_void.png" /></div>
+
+                                                <div class="NomeSport"><a id="h_w_PC_cSport_repSport_ctl16_lnkSport" href="/Sport/Groups.aspx?IDSport=560&amp;Antepost=0"><span title="Bandy">Bandy</span></a></div>
+
+                                            </div>
+
+
+
+                                            <div class="VociMenuSportG">
+
+                                                <div class="ImgSport" style="background-image:url(../ImgSport.ashx?IDBook=75&amp;IDSport=557&amp;Antepost=0&amp;Tema=Bet9ja)"><img src="../App_Themes/Bet9ja/images/sports/buttons_void.png" /></div>
+
+                                                <div class="NomeSport"><a id="h_w_PC_cSport_repSport_ctl17_lnkSport" href="/Sport/Groups.aspx?IDSport=557&amp;Antepost=0"><span title="Cricket">Cricket</span></a></div>
+
+                                            </div>
+
+
+
+                                            <div class="VociMenuSportG">
+
+                                                <div class="ImgSport" style="background-image:url(../ImgSport.ashx?IDBook=75&amp;IDSport=561&amp;Antepost=0&amp;Tema=Bet9ja)"><img src="../App_Themes/Bet9ja/images/sports/buttons_void.png" /></div>
+
+                                                <div class="NomeSport"><a id="h_w_PC_cSport_repSport_ctl18_lnkSport" href="/Sport/Groups.aspx?IDSport=561&amp;Antepost=0"><span title="Curling">Curling</span></a></div>
+
+                                            </div>
+
+
+
+                                            <div class="VociMenuSportG">
+
+                                                <div class="ImgSport" style="background-image:url(../ImgSport.ashx?IDBook=75&amp;IDSport=525&amp;Antepost=0&amp;Tema=Bet9ja)"><img src="../App_Themes/Bet9ja/images/sports/buttons_void.png" /></div>
+
+                                                <div class="NomeSport"><a id="h_w_PC_cSport_repSport_ctl19_lnkSport" href="/Sport/Groups.aspx?IDSport=525&amp;Antepost=0"><span title="Darts">Darts</span></a></div>
+
+                                            </div>
+
+
+
+                                            <div class="VociMenuSportG">
+
+                                                <div class="ImgSport" style="background-image:url(../ImgSport.ashx?IDBook=75&amp;IDSport=559&amp;Antepost=0&amp;Tema=Bet9ja)"><img src="../App_Themes/Bet9ja/images/sports/buttons_void.png" /></div>
+
+                                                <div class="NomeSport"><a id="h_w_PC_cSport_repSport_ctl20_lnkSport" href="/Sport/Groups.aspx?IDSport=559&amp;Antepost=0"><span title="Floorball">Floorball</span></a></div>
+
+                                            </div>
+
+
+
+                                            <div class="VociMenuSportG">
+
+                                                <div class="ImgSport" style="background-image:url(../ImgSport.ashx?IDBook=75&amp;IDSport=528&amp;Antepost=0&amp;Tema=Bet9ja)"><img src="../App_Themes/Bet9ja/images/sports/buttons_void.png" /></div>
+
+                                                <div class="NomeSport"><a id="h_w_PC_cSport_repSport_ctl21_lnkSport" href="/Sport/Groups.aspx?IDSport=528&amp;Antepost=0"><span title="Snooker">Snooker</span></a></div>
+
+                                            </div>
+
+
+
+
+
+                                        </div>
+                                        <div id="divMenuSportGSXAntepost">
+
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="Btm"></div>
+                            </div>
+
+                        </div>
+
+                    </td>
+                    <td class="tdCN">
+                        <div class="midMenu">
+
+                            <script type="text/javascript">
+
+                                function GetUrlScriptname() {
+                                    var rex = new RegExp("\\/[^\\/]+\\.\\w+($|\\?)");
+                                    var match = null;
+                                    match = rex.exec(location.pathname);
+
+                                    //se nn trovo la pagina diretta cerco l'url costruito per le pagine contenuto
+                                    if (match == null) {
+                                        var str = location.pathname;
+                                        var n = str.indexOf("/Pages/");
+                                        if (n != -1) { return str.substring(n, str.length) }
+                                    } else {
+                                        return match[0].substring(1);
+                                    }
+                                }
+
+                                $(document).ready(function () {
+
+                                    var objMenu = '.' + 'tblMenu';
+
+
+                                    $(objMenu + ' a').filter(function () { if (typeof ($(this).attr('href')) == 'undefined') return (false); var contains = $(this).attr('href').toLowerCase().indexOf(location.pathname.toLowerCase()); return (contains != -1); }).addClass("sel");
+                                    $(objMenu + ' a').filter(function () { if (typeof ($(this).attr('href')) == 'undefined') return (false); var contains = $(this).attr('href').toLowerCase().indexOf(location.pathname.toLowerCase()); return (contains != -1); }).parent().parent().parent().addClass("sel");
+
+
+                                });
+                            </script>
+
+
+
+                            <div class="clear"></div>
+                        </div>
+                        <div class="HomeTop">
+                            <div class="HomeNewsBig">
+                                <style type="text/css">
+                                    .SXTitleLastRes {
+                                        display: none !important;
+                                    }
+                                </style>
+                                <link href="/ImgCMS/slideshow/hero.css" rel="stylesheet" type="text/css" />
+                                <script type="text/javascript" src="/ImgCMS/slideshow/jquery.carouFredSel-6.2.1-packed.js"></script>
+                                <script type="text/javascript">
+                                    $(document).ready(function () {
+                                        if ($('.main-promotion').length > 0) {
+                                            $('.main-promotion .slides').carouFredSel({
+                                                onCreate: function (data) {
+                                                    var current = data.items[0];
+                                                    $(current).find('.slide-content').addClass('in');
+                                                },
+                                                scroll: {
+                                                    items: 1,
+                                                    fx: 'crossfade',
+                                                    duration: 400,
+                                                    keys: true,
+                                                    pauseOnHover: true,
+                                                    onBefore: function (data) {
+                                                        scrollTabs();
+                                                        var current = data.items.visible;
+                                                        var old = data.items.old;
+                                                        old.find('.slide-content').removeClass('in')
+                                                        current.find('.slide-content').addClass('in');
+                                                    },
+                                                },
+                                                swipe: {
+                                                    onTouch: true,
+                                                },
+                                                items: {
+                                                    visible: 1,
+                                                    height: "auto"
+                                                },
+                                                pagination: {
+                                                    container: '.main-promotion .thumbs',
+                                                    keys: true,
+                                                    anchorBuilder: function (nr) {
+                                                        var src = $(this).find("img").attr('src');
+                                                        var slideTitle = $(this).attr('title');
+                                                        return '<li><img src="' + src + '" /><h2>' + slideTitle + '</h2></li>';
+                                                    },
+                                                },
+                                                responsive: false,
+                                                auto: {
+                                                    play: true,
+                                                    timeoutDuration: 5000,
+                                                }
+                                            });
+                                        }
+                                        scrollTabs = function () {
+                                            var position = 0;
+                                            if ($('.main-promotion .thumbs li').length > 4) {
+                                                var total = $('.main-promotion .thumbs li').length;
+                                                $(".main-promotion .slides").trigger("currentPage", function (o) {
+                                                    position = (o * 52);
+                                                    if (o >= 4) {
+                                                        position = (o - 4) * 52 + 52;
+                                                        if (o == (total - 1)) {
+                                                            position = (o - 4) * 52;
+                                                            console.log(o);
+                                                        }
+                                                    } else if (o == 4) {
+                                                        position = 52;
+                                                    } else {
+                                                        position = 0;
+                                                    }
+                                                    $('.main-promotion .thumbs').animate({
+                                                        'top': '-' + position + 'px'
+                                                    }, 400);
+                                                });
+                                            }
+                                        }
+                                    });
+                                </script><!-- Start Hero -->
+                                <div class="main-promotion">
+                                    <div style="display: block; text-align: start; float: none; position: relative; top: auto; right: auto; bottom: auto; left: auto; z-index: auto; width: 603px; height: 263px; margin: 0px; overflow: hidden;" class="caroufredsel_wrapper">
+                                        <div style="text-align: left; float: none; position: absolute; top: 0px; right: auto; bottom: auto; left: 0px; margin: 0px; width: 6633px; height: 263px; z-index: auto; opacity: 1;" class="slides">
+                                            <!-- Slide -->
+                                            <!-- Slide -->
+                                            <!-- Slide -->
+                                            <!-- Slide -->
+                                            <!-- Slide -->
+
+
+                                            <div class="slide" title="BONUS UP TO 170%">
+                                                <a href="https://www.bet9ja.com/Pages/Tutorial_multiplebets170/Guest" target="_blank"><img alt="slide" src="/ImgCMS/slideshow/banners/170cashbonus.jpg" /></a>
+
+                                                <div class="slide-content in">
+                                                    <div class="slide-description">
+                                                        <h2>BONUS UP TO 170%</h2>
+
+                                                        <p>Up to 170% Bonus on multiple bets! Only on Bet9ja</p>
+                                                        <a class="btn btn-play" href="https://www.bet9ja.com/Pages/Tutorial_multiplebets170/Guest" target="_blank">Bet now</a>
+                                                    </div>
+                                                </div>
+                                            </div><div class="slide" title="TOP EUROPEAN LEAGUES">
+                                                <a href="https://www.bet9ja.com/Sport/OddsAsync.aspx?EventID=40473&amp;EventID=41554&amp;EventID=40874&amp;EventID=41283" target="_parent"><img alt="slide" src="/ImgCMS/slideshow/banners/top-european-leagues.jpg" /></a>
+                                                <div class="slide-content">
+                                                    <div class="slide-description">
+                                                        <h2>TOP EUROPEAN LEAGUES</h2>
+
+                                                        <p>Bet on the Top European Leagues! English Premier League, Italian Serie A, Spanish Primera Division, and more. Enjoy our special bets! Only on Bet9ja!</p>
+                                                        <a class="btn btn-play" href="https://www.bet9ja.com/Sport/OddsAsync.aspx?EventID=40473&amp;EventID=41554&amp;EventID=40874&amp;EventID=41283" target="_parent">Bet now</a>
+                                                    </div>
+                                                </div>
+                                            </div><div class="slide" title="CASINO">
+                                                <a href="https://casino.bet9ja.com/en/favourites" target="_blank"><img alt="slide" src="/ImgCMS/slideshow/banners/roulette.jpg" /></a>
+
+                                                <div class="slide-content">
+                                                    <div class="slide-description">
+                                                        <h2>CASINO</h2>
+
+                                                        <p>Win Big with Bet9ja Casino! Play and enjoy our games.</p>
+                                                        <a class="btn btn-play" href="https://casino.bet9ja.com/en/favourites" target="_blank">Play here</a>
+                                                    </div>
+                                                </div>
+                                            </div><div class="slide" title="BET9JA RACING">
+                                                <a href="http://n.virtual-races.com/computers/videobet/" target="_blank"><img alt="slide" src="/ImgCMS/slideshow/banners/racing.jpg" /></a>
+
+                                                <div class="slide-content">
+                                                    <div class="slide-description">
+                                                        <h2>BET9JA RACING</h2>
+
+                                                        <p>Play with Bet9ja Racing! Win big with our jackpots!</p>
+                                                        <a class="btn btn-play" href="http://n.virtual-races.com/computers/videobet/" target="_blank">Play now</a>&nbsp; &nbsp;<a class="btn btn-play" href="http://admin.mybet9ja.com/ImgCMS/slideshow/poster/Bet9ja Poster - Racing Jackpots12.pdf" target="_blank">Check Jackpots </a>
+                                                    </div>
+                                                </div>
+                                            </div><div class="slide" title="DEPOSITS &amp; WITHDRAWALS">
+                                                <a href="https://www.bet9ja.com/Pages/Sport_header_Menu_Methods/Guest" target="_blank"><img alt="slide" src="/ImgCMS/slideshow/banners/payments2.jpg" /></a>
+
+                                                <div class="slide-content">
+                                                    <div class="slide-description">
+                                                        <h2>DEPOSITS &amp; WITHDRAWALS</h2>
+
+                                                        <p>Deposit instantly into your Bet9ja account with our many payment methods. Withdraw your winnings fast, securely and for FREE!!!</p>
+                                                        <a class="btn btn-play" href="https://www.bet9ja.com/Pages/Sport_header_Menu_Methods/Guest" target="_blank">More Info</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <ul style="display: block; top: 0px;" class="thumbs">
+                                        <li class=""><img src="/ImgCMS/slideshow/banners/top-european-leagues.jpg" /><h2>TOP EUROPEAN LEAGUES</h2></li>
+                                        <li class=""><img src="/ImgCMS/slideshow/banners/roulette.jpg" /><h2>CASINO</h2></li>
+                                        <li class=""><img src="/ImgCMS/slideshow/banners/racing.jpg" /><h2>BET9JA RACING</h2></li>
+                                        <li class=""><img src="/ImgCMS/slideshow/banners/payments2.jpg" /><h2>DEPOSITS &amp; WITHDRAWALS</h2></li>
+                                        <li class="selected"><img src="/ImgCMS/slideshow/banners/170cashbonus.jpg" /><h2>BONUS UP TO 170%</h2></li>
+                                    </ul>
+                                    <!-- End Hero -->
+                                </div>
+
+                            </div>
+                        </div>
+                        <div id="h_w_PC_ctl01_ctl00">
+
+                            <div id="h_w_PC_ctl01_pnlNoFlash" class="LiveBettingSportMain">
+
+
+                                <div class="lastUpdate"><span id="h_w_PC_ctl01_lblNow"></span></div>
+
+                                <div class="title">
+                                    <a href="../Live/DefaultLive.aspx" id="h_w_PC_ctl01_lnkTitle" style="display:block;" title="Go to Live betting">LIVE BETTING</a>
+                                </div>
+
+                                <ul class="s4">
+                                    <li class="ts1">
+                                        <a id="h_w_PC_ctl01_rS_ctl01_lnk" class="sel" href="javascript:__doPostBack('h$w$PC$ctl01$rS$ctl01$lnk','')">
+                                            <span>Soccer</span>
+                                            <div class="icon" style="background-image:url(https://livesvc.bet9ja.com/handler/ImgLiveHtml.ashx?IdTipoSport=1&amp;IDBook=75&amp;IDTipoImm=3&amp;code=BannerLive&amp;LiveType=2)"></div>
+                                        </a>
+                                    </li>
+
+                                    <li class="ts2">
+                                        <a id="h_w_PC_ctl01_rS_ctl02_lnk" class="" href="javascript:__doPostBack('h$w$PC$ctl01$rS$ctl02$lnk','')">
+                                            <span>Basket</span>
+                                            <div class="icon" style="background-image:url(https://livesvc.bet9ja.com/handler/ImgLiveHtml.ashx?IdTipoSport=2&amp;IDBook=75&amp;IDTipoImm=3&amp;code=BannerLive&amp;LiveType=2)"></div>
+                                        </a>
+                                    </li>
+
+                                    <li class="ts4">
+                                        <a id="h_w_PC_ctl01_rS_ctl03_lnk" class="" href="javascript:__doPostBack('h$w$PC$ctl01$rS$ctl03$lnk','')">
+                                            <span>Tennis</span>
+                                            <div class="icon" style="background-image:url(https://livesvc.bet9ja.com/handler/ImgLiveHtml.ashx?IdTipoSport=4&amp;IDBook=75&amp;IDTipoImm=3&amp;code=BannerLive&amp;LiveType=2)"></div>
+                                        </a>
+                                    </li>
+
+                                    <li class="ts5">
+                                        <a id="h_w_PC_ctl01_rS_ctl04_lnk" class="" href="javascript:__doPostBack('h$w$PC$ctl01$rS$ctl04$lnk','')">
+                                            <span>Volley</span>
+                                            <div class="icon" style="background-image:url(https://livesvc.bet9ja.com/handler/ImgLiveHtml.ashx?IdTipoSport=5&amp;IDBook=75&amp;IDTipoImm=3&amp;code=BannerLive&amp;LiveType=2)"></div>
+                                        </a>
+                                    </li>
+
+                                </ul>
+
+                                <a href="../Live/DefaultLive.aspx" id="h_w_PC_ctl01_lnkTutti" class="LBTutti"></a>
+
+
+                                <div class="LiveBettingSportCnt">
+
+
+
+                                    <div class="item s1 t2 a noOdds">
+
+                                        <div class="dataInizio">
+                                            <span class="dataI">15 March 2015</span>
+                                            <span class="oraI">18:30</span>
+                                        </div>
+
+                                        <div class="nomeGruppo">Ukraine - Premier League</div>
+                                        <a id="h_w_PC_ctl01_rE_ctl01_lnkEvento1" title="Dynamo Kiev" class="evento1" href="../Live/DefaultLive.aspx?IDEvento=69359">Dynamo Kiev</a>
+                                        <a id="h_w_PC_ctl01_rE_ctl01_lnkEvento2" title="FC Illichivec Mariupol" class="evento2" href="../Live/DefaultLive.aspx?IDEvento=69359">FC Illichivec Mariupol</a>
+
+                                        <div class="StreamIcon v0" id="lnkStream"></div>
+                                        <span id="h_w_PC_ctl01_rE_ctl01_lblMinuto" class="ora">'85</span>
+                                        <div class="LBFase">Second Half</div><div class="LBImg"></div><div class="LBRisultato"><span>5</span><span>0</span></div>
+                                        <img id="h_w_PC_ctl01_rE_ctl01_imgSport" class="icon" src="https://livesvc.bet9ja.com/handler/ImgLiveHtml.ashx?IdTipoSport=1&amp;IDBook=75&amp;IDTipoImm=3&amp;code=BannerLive&amp;LiveType=2" style="border-width:0px;" />
+                                        <div class="oddsType"></div>
+
+                                        <div class="odds"></div>
+
+
+                                    </div>
+
+
+                                    <div class="item s1 t2  noOdds">
+
+                                        <div class="dataInizio">
+                                            <span class="dataI">15 March 2015</span>
+                                            <span class="oraI">18:30</span>
+                                        </div>
+
+                                        <div class="nomeGruppo">Greece - Super League</div>
+                                        <a id="h_w_PC_ctl01_rE_ctl02_lnkEvento1" title="Olympiakos" class="evento1" href="../Live/DefaultLive.aspx?IDEvento=69486">Olympiakos</a>
+                                        <a id="h_w_PC_ctl01_rE_ctl02_lnkEvento2" title="Skoda Xanthi FC" class="evento2" href="../Live/DefaultLive.aspx?IDEvento=69486">Skoda Xanthi FC</a>
+
+                                        <div class="StreamIcon v0" id="lnkStream"></div>
+                                        <span id="h_w_PC_ctl01_rE_ctl02_lblMinuto" class="ora">'82</span>
+                                        <div class="LBFase">Second Half</div><div class="LBImg"></div><div class="LBRisultato"><span>2</span><span>0</span></div>
+                                        <img id="h_w_PC_ctl01_rE_ctl02_imgSport" class="icon" src="https://livesvc.bet9ja.com/handler/ImgLiveHtml.ashx?IdTipoSport=1&amp;IDBook=75&amp;IDTipoImm=3&amp;code=BannerLive&amp;LiveType=2" style="border-width:0px;" />
+                                        <div class="oddsType"></div>
+
+                                        <div class="odds"></div>
+
+
+                                    </div>
+
+
+                                    <div class="item s1 t2 a ">
+
+                                        <div class="dataInizio">
+                                            <span class="dataI">15 March 2015</span>
+                                            <span class="oraI">19:00</span>
+                                        </div>
+
+                                        <div class="nomeGruppo">Denmark - Superligaen</div>
+                                        <a id="h_w_PC_ctl01_rE_ctl03_lnkEvento1" title="Brondby" class="evento1" href="../Live/DefaultLive.aspx?IDEvento=69535">Brondby</a>
+                                        <a id="h_w_PC_ctl01_rE_ctl03_lnkEvento2" title="Odense" class="evento2" href="../Live/DefaultLive.aspx?IDEvento=69535">Odense</a>
+
+                                        <div class="StreamIcon v0" id="lnkStream"></div>
+                                        <span id="h_w_PC_ctl01_rE_ctl03_lblMinuto" class="ora">'53</span>
+                                        <div class="LBFase">Second Half</div><div class="LBImg"></div><div class="LBRisultato"><span>1</span><span>0</span></div>
+                                        <img id="h_w_PC_ctl01_rE_ctl03_imgSport" class="icon" src="https://livesvc.bet9ja.com/handler/ImgLiveHtml.ashx?IdTipoSport=1&amp;IDBook=75&amp;IDTipoImm=3&amp;code=BannerLive&amp;LiveType=2" style="border-width:0px;" />
+                                        <div class="oddsType">
+                                            <div class="oddType c3 o1 ">1</div>
+
+                                            <div class="oddType c3 o2 ">X</div>
+
+                                            <div class="oddType c3 o3 ">2</div>
+                                        </div>
+
+                                        <div class="odds">
+                                            <a href="../Live/DefaultLive.aspx?IDEvento=69535" id="h_w_PC_ctl01_rE_ctl03_rQ_ctl01_A2" class="odd a4 c3 o1 ">1.20</a>
+
+                                            <a href="../Live/DefaultLive.aspx?IDEvento=69535" id="h_w_PC_ctl01_rE_ctl03_rQ_ctl02_A2" class="odd a2 c3 o2 ">4.35</a>
+
+                                            <a href="../Live/DefaultLive.aspx?IDEvento=69535" id="h_w_PC_ctl01_rE_ctl03_rQ_ctl03_A2" class="odd a2 c3 o3 ">16.75</a>
+                                        </div>
+
+
+                                    </div>
+
+
+                                    <div class="item s1 t2  ">
+
+                                        <div class="dataInizio">
+                                            <span class="dataI">15 March 2015</span>
+                                            <span class="oraI">19:00</span>
+                                        </div>
+
+                                        <div class="nomeGruppo">Turkey - Super Lig</div>
+                                        <a id="h_w_PC_ctl01_rE_ctl04_lnkEvento1" title="Genclerbirligi" class="evento1" href="../Live/DefaultLive.aspx?IDEvento=69536">Genclerbirligi</a>
+                                        <a id="h_w_PC_ctl01_rE_ctl04_lnkEvento2" title="Fenerbahce" class="evento2" href="../Live/DefaultLive.aspx?IDEvento=69536">Fenerbahce</a>
+
+                                        <div class="StreamIcon v0" id="lnkStream"></div>
+                                        <span id="h_w_PC_ctl01_rE_ctl04_lblMinuto" class="ora">'54</span>
+                                        <div class="LBFase">Second Half</div><div class="LBImg"></div><div class="LBRisultato"><span>1</span><span>0</span></div>
+                                        <img id="h_w_PC_ctl01_rE_ctl04_imgSport" class="icon" src="https://livesvc.bet9ja.com/handler/ImgLiveHtml.ashx?IdTipoSport=1&amp;IDBook=75&amp;IDTipoImm=3&amp;code=BannerLive&amp;LiveType=2" style="border-width:0px;" />
+                                        <div class="oddsType">
+                                            <div class="oddType c3 o1 ">1</div>
+
+                                            <div class="oddType c3 o2 ">X</div>
+
+                                            <div class="oddType c3 o3 ">2</div>
+                                        </div>
+
+                                        <div class="odds">
+                                            <a href="../Live/DefaultLive.aspx?IDEvento=69536" id="h_w_PC_ctl01_rE_ctl04_rQ_ctl01_A2" class="odd a4 c3 o1 ">1.80</a>
+
+                                            <a href="../Live/DefaultLive.aspx?IDEvento=69536" id="h_w_PC_ctl01_rE_ctl04_rQ_ctl02_A2" class="odd a4 c3 o2 ">2.90</a>
+
+                                            <a href="../Live/DefaultLive.aspx?IDEvento=69536" id="h_w_PC_ctl01_rE_ctl04_rQ_ctl03_A2" class="odd a2 c3 o3 ">4.35</a>
+                                        </div>
+
+
+                                    </div>
+
+
+                                    <div class="item s1 t2 a noOdds">
+
+                                        <div class="dataInizio">
+                                            <span class="dataI">15 March 2015</span>
+                                            <span class="oraI">19:00</span>
+                                        </div>
+
+                                        <div class="nomeGruppo">Spain - Primera Division</div>
+                                        <a id="h_w_PC_ctl01_rE_ctl05_lnkEvento1" title="Sevilla" class="evento1" href="../Live/DefaultLive.aspx?IDEvento=69537">Sevilla</a>
+                                        <a id="h_w_PC_ctl01_rE_ctl05_lnkEvento2" title="Elche" class="evento2" href="../Live/DefaultLive.aspx?IDEvento=69537">Elche</a>
+
+                                        <div class="StreamIcon v0" id="lnkStream"></div>
+                                        <span id="h_w_PC_ctl01_rE_ctl05_lblMinuto" class="ora">'58</span>
+                                        <div class="LBFase">Second Half</div><div class="LBImg"></div><div class="LBRisultato"><span>2</span><span>0</span></div>
+                                        <img id="h_w_PC_ctl01_rE_ctl05_imgSport" class="icon" src="https://livesvc.bet9ja.com/handler/ImgLiveHtml.ashx?IdTipoSport=1&amp;IDBook=75&amp;IDTipoImm=3&amp;code=BannerLive&amp;LiveType=2" style="border-width:0px;" />
+                                        <div class="oddsType"></div>
+
+                                        <div class="odds"></div>
+
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <span id="h_w_PC_ctl01_tmrUpdateLive" style="visibility:hidden;display:none;"></span>
+
+                        </div>
+
+
+
+
+                        <!--<iframe src="https://lsdev.betradar.com/ls/livescore/?/bet9ja/en/page/los_wide" class="iframeStyle"></iframe>-->
+
+
+
+                        <script type="text/javascript">
+                            $(document).ready(function () {
+                                initializePopup("popupContactDettClose", "popupContactDett", "backgroundPopupDett");
+                            });
+
+                            function showPopUpDett(IDSE) {
+                                $("#iframeDett").attr("src", '/Sport/SubEventPopup.aspx?SubEventID=' + IDSE + '&btnID=' + sCouponButtonClientID + '&txtID=' + sCouponQuotaClientID + '&sHidIDQuote=' + sHidIDQuote + '&parentPopupContainerID=popupContactDett');
+                                centerPopup("popupContactDett", "backgroundPopupDett");
+                                loadPopup("popupContactDett", "backgroundPopupDett");
+                            }
+                        </script>
+
+
+
+                        <script type="text/javascript">
+                            function TS_AddCoupon(idQuota) { AddCoupon(sCouponButtonClientID, sCouponQuotaClientID, idQuota); }
+
+                            function TS_refreshOdds() {
+                                var objHidQuote = document.getElementById(sHidIDQuote);
+                                if (objHidQuote == null) return;
+                                var quote = objHidQuote.value.split("|");
+                                $("#panelOdds_TS [idTS]").removeClass("sel");
+                                for (var i = 0; i < quote.length; i++) {
+                                    var IDQuota = quote[i].split("&")[0];
+                                    $('#panelOdds_TS [idTS="' + IDQuota + '"]').addClass("sel")
+                                }
+                            }
+
+                            $(document).bind("couponSelectOdds", function (e) { TS_refreshOdds(); });
+                        </script>
+
+
+                        <div id="h_w_PC_ctl02_Up">
+
+                            <div class="PGIMSportCnt">
+                                <div class="headSection">
+                                    <div class="PGIMSportTitle">Top Bets</div>
+
+                                    <ul>
+                                        <li class="s1">
+                                            <a id="h_w_PC_ctl02_rS_ctl01_lnk" title="Soccer" class="sel" href="javascript:__doPostBack('h$w$PC$ctl02$rS$ctl01$lnk','')">
+                                                <span>Soccer</span>
+                                                <div class="icon ts1"></div>
+                                                <div class="numQuote">1753767</div>
+                                            </a>
+                                        </li>
+
+                                        <li class="s2">
+                                            <a id="h_w_PC_ctl02_rS_ctl02_lnk" title="Basket" class="" href="javascript:__doPostBack('h$w$PC$ctl02$rS$ctl02$lnk','')">
+                                                <span>Basket</span>
+                                                <div class="icon ts2"></div>
+                                                <div class="numQuote">3984</div>
+                                            </a>
+                                        </li>
+
+                                        <li class="s4">
+                                            <a id="h_w_PC_ctl02_rS_ctl03_lnk" title="Tennis" class="" href="javascript:__doPostBack('h$w$PC$ctl02$rS$ctl03$lnk','')">
+                                                <span>Tennis</span>
+                                                <div class="icon ts4"></div>
+                                                <div class="numQuote">14682</div>
+                                            </a>
+                                        </li>
+
+                                    </ul>
+
+                                </div>
+                                <div class="homeContent" id="panelOdds_TS">
+
+                                    <div class="header">
+                                        <div id="h_w_PC_ctl02_rE_ctl00_cq">
+                                            <div>
+                                                <span>1X2</span><div>
+                                                    <span class="tq">1</span><span class="tq">X</span><span class="tq">2</span>
+                                                </div>
+                                            </div><div>
+                                                <span>Double Chance</span><div>
+                                                    <span class="tq">1X</span><span class="tq">12</span><span class="tq">X2</span>
+                                                </div>
+                                            </div><div>
+                                                <span>O/U 2.5 </span><div>
+                                                    <span class="tq">Over</span><span class="tq">Under</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="itemRow">
+                                        <div class="headRow">
+                                            <div class="group">Spain</div>
+                                            <div class="event">Real Madrid - Levante</div>
+                                            <div class="time">15/03/2015 21:00</div>
+                                        </div>
+                                        <div class="odds">
+
+
+                                            <div id="odds_310863547">
+                                                <div class="tq">1</div>
+                                                <a id="h_w_PC_ctl02_rE_ctl01_rpQuote_ctl00_lnkQuota" class="oddItem" idts="310863547" href="javascript:TS_AddCoupon(310863547);">1.07</a>
+                                            </div>
+
+
+                                            <div id="odds_310863549">
+                                                <div class="tq">X</div>
+                                                <a id="h_w_PC_ctl02_rE_ctl01_rpQuote_ctl01_lnkQuota" class="oddItem" idts="310863549" href="javascript:TS_AddCoupon(310863549);">11.50</a>
+                                            </div>
+
+
+                                            <div id="odds_308858680">
+                                                <div class="tq">2</div>
+                                                <a id="h_w_PC_ctl02_rE_ctl01_rpQuote_ctl02_lnkQuota" class="oddItem" idts="308858680" href="javascript:TS_AddCoupon(308858680);">25.00</a>
+                                            </div>
+
+
+                                            <div id="odds_307590827">
+                                                <div class="tq">1X</div>
+                                                <a id="h_w_PC_ctl02_rE_ctl01_rpQuote_ctl03_lnkQuota" class="oddItem" idts="307590827" href="javascript:TS_AddCoupon(307590827);">1.01</a>
+                                            </div>
+
+
+                                            <div id="odds_308854284">
+                                                <div class="tq">12</div>
+                                                <a id="h_w_PC_ctl02_rE_ctl01_rpQuote_ctl04_lnkQuota" class="oddItem" idts="308854284" href="javascript:TS_AddCoupon(308854284);">1.03</a>
+                                            </div>
+
+
+                                            <div id="odds_311594495">
+                                                <div class="tq">X2</div>
+                                                <a id="h_w_PC_ctl02_rE_ctl01_rpQuote_ctl05_lnkQuota" class="oddItem" idts="311594495" href="javascript:TS_AddCoupon(311594495);">5.47</a>
+                                            </div>
+
+
+                                            <div id="odds_308071776">
+                                                <div class="tq">Over</div>
+                                                <a id="h_w_PC_ctl02_rE_ctl01_rpQuote_ctl06_lnkQuota" class="oddItem" idts="308071776" href="javascript:TS_AddCoupon(308071776);">1.21</a>
+                                            </div>
+
+
+                                            <div id="odds_308071777">
+                                                <div class="tq">Under</div>
+                                                <a id="h_w_PC_ctl02_rE_ctl01_rpQuote_ctl07_lnkQuota" class="oddItem" idts="308071777" href="javascript:TS_AddCoupon(308071777);">3.97</a>
+                                            </div>
+
+                                        </div>
+                                        <div class="percOdds">
+
+                                            <div class="itemPerc">
+                                                <div class="tq">1</div>
+                                                <input id="PGIM_2327513_1" value="165849" type="hidden" />
+                                            </div>
+
+                                            <div class="itemPerc">
+                                                <div class="tq">X</div>
+                                                <input id="PGIM_2327513_2" value="222" type="hidden" />
+                                            </div>
+
+                                            <div class="itemPerc">
+                                                <div class="tq">2</div>
+                                                <input id="PGIM_2327513_3" value="3723" type="hidden" />
+                                            </div>
+
+                                            <div class="itemPerc">
+                                                <div class="tq">1X</div>
+                                                <input id="PGIM_2327513_5" value="31053" type="hidden" />
+                                            </div>
+
+                                            <div class="itemPerc">
+                                                <div class="tq">12</div>
+                                                <input id="PGIM_2327513_4" value="10671" type="hidden" />
+                                            </div>
+
+                                            <div class="itemPerc">
+                                                <div class="tq">X2</div>
+                                                <input id="PGIM_2327513_6" value="60" type="hidden" />
+                                            </div>
+
+                                            <div class="itemPerc">
+                                                <div class="tq">Over</div>
+                                                <input id="PGIM_2327513_286" value="38949" type="hidden" />
+                                            </div>
+
+                                            <div class="itemPerc">
+                                                <div class="tq">Under</div>
+                                                <input id="PGIM_2327513_287" value="372" type="hidden" />
+                                            </div>
+
+                                        </div>
+                                        <a id="h_w_PC_ctl02_rE_ctl01_lnkAllQuote" class="numQuote" href="OddsAsync.aspx?EventID=41283"></a>
+                                        <a id="h_w_PC_ctl02_rE_ctl01_lnkPopupQuote" class="numQuote" href="javascript:showPopUpDett(41283)"></a>
+                                    </div>
+
+
+                                    <div class="itemRow">
+                                        <div class="headRow">
+                                            <div class="group">Portugal</div>
+                                            <div class="event">Porto - FC Arouca</div>
+                                            <div class="time">15/03/2015 20:15</div>
+                                        </div>
+                                        <div class="odds">
+
+
+                                            <div id="odds_311825766">
+                                                <div class="tq">1</div>
+                                                <a id="h_w_PC_ctl02_rE_ctl02_rpQuote_ctl00_lnkQuota" class="oddItem" idts="311825766" href="javascript:TS_AddCoupon(311825766);">1.08</a>
+                                            </div>
+
+
+                                            <div id="odds_311825767">
+                                                <div class="tq">X</div>
+                                                <a id="h_w_PC_ctl02_rE_ctl02_rpQuote_ctl01_lnkQuota" class="oddItem" idts="311825767" href="javascript:TS_AddCoupon(311825767);">8.00</a>
+                                            </div>
+
+
+                                            <div id="odds_311825768">
+                                                <div class="tq">2</div>
+                                                <a id="h_w_PC_ctl02_rE_ctl02_rpQuote_ctl02_lnkQuota" class="oddItem" idts="311825768" href="javascript:TS_AddCoupon(311825768);">25.00</a>
+                                            </div>
+
+
+                                            <div id="odds_310947349">
+                                                <div class="tq">1X</div>
+                                                <a id="h_w_PC_ctl02_rE_ctl02_rpQuote_ctl03_lnkQuota" class="oddItem" idts="310947349" href="javascript:TS_AddCoupon(310947349);">1.01</a>
+                                            </div>
+
+
+                                            <div id="odds_311834263">
+                                                <div class="tq">12</div>
+                                                <a id="h_w_PC_ctl02_rE_ctl02_rpQuote_ctl04_lnkQuota" class="oddItem" idts="311834263" href="javascript:TS_AddCoupon(311834263);">1.04</a>
+                                            </div>
+
+
+                                            <div id="odds_311840611">
+                                                <div class="tq">X2</div>
+                                                <a id="h_w_PC_ctl02_rE_ctl02_rpQuote_ctl05_lnkQuota" class="oddItem" idts="311840611" href="javascript:TS_AddCoupon(311840611);">4.01</a>
+                                            </div>
+
+
+                                            <div id="odds_311822387">
+                                                <div class="tq">Over</div>
+                                                <a id="h_w_PC_ctl02_rE_ctl02_rpQuote_ctl06_lnkQuota" class="oddItem" idts="311822387" href="javascript:TS_AddCoupon(311822387);">1.43</a>
+                                            </div>
+
+
+                                            <div id="odds_311822388">
+                                                <div class="tq">Under</div>
+                                                <a id="h_w_PC_ctl02_rE_ctl02_rpQuote_ctl07_lnkQuota" class="oddItem" idts="311822388" href="javascript:TS_AddCoupon(311822388);">2.50</a>
+                                            </div>
+
+                                        </div>
+                                        <div class="percOdds">
+
+                                            <div class="itemPerc">
+                                                <div class="tq">1</div>
+                                                <input id="PGIM_2358707_1" value="0" type="hidden" />
+                                            </div>
+
+                                            <div class="itemPerc">
+                                                <div class="tq">X</div>
+                                                <input id="PGIM_2358707_2" value="0" type="hidden" />
+                                            </div>
+
+                                            <div class="itemPerc">
+                                                <div class="tq">2</div>
+                                                <input id="PGIM_2358707_3" value="0" type="hidden" />
+                                            </div>
+
+                                            <div class="itemPerc">
+                                                <div class="tq">1X</div>
+                                                <input id="PGIM_2358707_5" value="5754" type="hidden" />
+                                            </div>
+
+                                            <div class="itemPerc">
+                                                <div class="tq">12</div>
+                                                <input id="PGIM_2358707_4" value="0" type="hidden" />
+                                            </div>
+
+                                            <div class="itemPerc">
+                                                <div class="tq">X2</div>
+                                                <input id="PGIM_2358707_6" value="0" type="hidden" />
+                                            </div>
+
+                                            <div class="itemPerc">
+                                                <div class="tq">Over</div>
+                                                <input id="PGIM_2358707_286" value="24" type="hidden" />
+                                            </div>
+
+                                            <div class="itemPerc">
+                                                <div class="tq">Under</div>
+                                                <input id="PGIM_2358707_287" value="0" type="hidden" />
+                                            </div>
+
+                                        </div>
+                                        <a id="h_w_PC_ctl02_rE_ctl02_lnkAllQuote" class="numQuote" href="OddsAsync.aspx?EventID=40474"></a>
+                                        <a id="h_w_PC_ctl02_rE_ctl02_lnkPopupQuote" class="numQuote" href="javascript:showPopUpDett(40474)"></a>
+                                    </div>
+
+
+                                    <div class="itemRow">
+                                        <div class="headRow">
+                                            <div class="group">Italy</div>
+                                            <div class="event">Roma - Sampdoria</div>
+                                            <div class="time">16/03/2015 21:00</div>
+                                        </div>
+                                        <div class="odds">
+
+
+                                            <div id="odds_304748398">
+                                                <div class="tq">1</div>
+                                                <a id="h_w_PC_ctl02_rE_ctl03_rpQuote_ctl00_lnkQuota" class="oddItem" idts="304748398" href="javascript:TS_AddCoupon(304748398);">1.63</a>
+                                            </div>
+
+
+                                            <div id="odds_304748399">
+                                                <div class="tq">X</div>
+                                                <a id="h_w_PC_ctl02_rE_ctl03_rpQuote_ctl01_lnkQuota" class="oddItem" idts="304748399" href="javascript:TS_AddCoupon(304748399);">3.75</a>
+                                            </div>
+
+
+                                            <div id="odds_304748400">
+                                                <div class="tq">2</div>
+                                                <a id="h_w_PC_ctl02_rE_ctl03_rpQuote_ctl02_lnkQuota" class="oddItem" idts="304748400" href="javascript:TS_AddCoupon(304748400);">5.55</a>
+                                            </div>
+
+
+                                            <div id="odds_308868272">
+                                                <div class="tq">1X</div>
+                                                <a id="h_w_PC_ctl02_rE_ctl03_rpQuote_ctl03_lnkQuota" class="oddItem" idts="308868272" href="javascript:TS_AddCoupon(308868272);">1.16</a>
+                                            </div>
+
+
+                                            <div id="odds_304748401">
+                                                <div class="tq">12</div>
+                                                <a id="h_w_PC_ctl02_rE_ctl03_rpQuote_ctl04_lnkQuota" class="oddItem" idts="304748401" href="javascript:TS_AddCoupon(304748401);">1.25</a>
+                                            </div>
+
+
+                                            <div id="odds_308868271">
+                                                <div class="tq">X2</div>
+                                                <a id="h_w_PC_ctl02_rE_ctl03_rpQuote_ctl05_lnkQuota" class="oddItem" idts="308868271" href="javascript:TS_AddCoupon(308868271);">2.11</a>
+                                            </div>
+
+
+                                            <div id="odds_304689156">
+                                                <div class="tq">Over</div>
+                                                <a id="h_w_PC_ctl02_rE_ctl03_rpQuote_ctl06_lnkQuota" class="oddItem" idts="304689156" href="javascript:TS_AddCoupon(304689156);">1.96</a>
+                                            </div>
+
+
+                                            <div id="odds_304689157">
+                                                <div class="tq">Under</div>
+                                                <a id="h_w_PC_ctl02_rE_ctl03_rpQuote_ctl07_lnkQuota" class="oddItem" idts="304689157" href="javascript:TS_AddCoupon(304689157);">1.75</a>
+                                            </div>
+
+                                        </div>
+                                        <div class="percOdds">
+
+                                            <div class="itemPerc">
+                                                <div class="tq">1</div>
+                                                <input id="PGIM_2292176_1" value="69255" type="hidden" />
+                                            </div>
+
+                                            <div class="itemPerc">
+                                                <div class="tq">X</div>
+                                                <input id="PGIM_2292176_2" value="537" type="hidden" />
+                                            </div>
+
+                                            <div class="itemPerc">
+                                                <div class="tq">2</div>
+                                                <input id="PGIM_2292176_3" value="285" type="hidden" />
+                                            </div>
+
+                                            <div class="itemPerc">
+                                                <div class="tq">1X</div>
+                                                <input id="PGIM_2292176_5" value="36693" type="hidden" />
+                                            </div>
+
+                                            <div class="itemPerc">
+                                                <div class="tq">12</div>
+                                                <input id="PGIM_2292176_4" value="4692" type="hidden" />
+                                            </div>
+
+                                            <div class="itemPerc">
+                                                <div class="tq">X2</div>
+                                                <input id="PGIM_2292176_6" value="495" type="hidden" />
+                                            </div>
+
+                                            <div class="itemPerc">
+                                                <div class="tq">Over</div>
+                                                <input id="PGIM_2292176_286" value="330" type="hidden" />
+                                            </div>
+
+                                            <div class="itemPerc">
+                                                <div class="tq">Under</div>
+                                                <input id="PGIM_2292176_287" value="204" type="hidden" />
+                                            </div>
+
+                                        </div>
+                                        <a id="h_w_PC_ctl02_rE_ctl03_lnkAllQuote" class="numQuote" href="OddsAsync.aspx?EventID=41554"></a>
+                                        <a id="h_w_PC_ctl02_rE_ctl03_lnkPopupQuote" class="numQuote" href="javascript:showPopUpDett(41554)"></a>
+                                    </div>
+
+
+                                    <div class="itemRow">
+                                        <div class="headRow">
+                                            <div class="group">England</div>
+                                            <div class="event">Tottenham - Leicester City</div>
+                                            <div class="time">21/03/2015 16:00</div>
+                                        </div>
+                                        <div class="odds">
+
+
+                                            <div id="odds_299928157">
+                                                <div class="tq">1</div>
+                                                <a id="h_w_PC_ctl02_rE_ctl04_rpQuote_ctl00_lnkQuota" class="oddItem" idts="299928157" href="javascript:TS_AddCoupon(299928157);">1.56</a>
+                                            </div>
+
+
+                                            <div id="odds_299928158">
+                                                <div class="tq">X</div>
+                                                <a id="h_w_PC_ctl02_rE_ctl04_rpQuote_ctl01_lnkQuota" class="oddItem" idts="299928158" href="javascript:TS_AddCoupon(299928158);">4.12</a>
+                                            </div>
+
+
+                                            <div id="odds_299928159">
+                                                <div class="tq">2</div>
+                                                <a id="h_w_PC_ctl02_rE_ctl04_rpQuote_ctl02_lnkQuota" class="oddItem" idts="299928159" href="javascript:TS_AddCoupon(299928159);">5.61</a>
+                                            </div>
+
+
+                                            <div id="odds_308848137">
+                                                <div class="tq">1X</div>
+                                                <a id="h_w_PC_ctl02_rE_ctl04_rpQuote_ctl03_lnkQuota" class="oddItem" idts="308848137" href="javascript:TS_AddCoupon(308848137);">1.15</a>
+                                            </div>
+
+
+                                            <div id="odds_299929518">
+                                                <div class="tq">12</div>
+                                                <a id="h_w_PC_ctl02_rE_ctl04_rpQuote_ctl04_lnkQuota" class="oddItem" idts="299929518" href="javascript:TS_AddCoupon(299929518);">1.22</a>
+                                            </div>
+
+
+                                            <div id="odds_308848136">
+                                                <div class="tq">X2</div>
+                                                <a id="h_w_PC_ctl02_rE_ctl04_rpQuote_ctl05_lnkQuota" class="oddItem" idts="308848136" href="javascript:TS_AddCoupon(308848136);">2.23</a>
+                                            </div>
+
+
+                                            <div id="odds_304329936">
+                                                <div class="tq">Over</div>
+                                                <a id="h_w_PC_ctl02_rE_ctl04_rpQuote_ctl06_lnkQuota" class="oddItem" idts="304329936" href="javascript:TS_AddCoupon(304329936);">1.69</a>
+                                            </div>
+
+
+                                            <div id="odds_304329937">
+                                                <div class="tq">Under</div>
+                                                <a id="h_w_PC_ctl02_rE_ctl04_rpQuote_ctl07_lnkQuota" class="oddItem" idts="304329937" href="javascript:TS_AddCoupon(304329937);">2.05</a>
+                                            </div>
+
+                                        </div>
+                                        <div class="percOdds">
+
+                                            <div class="itemPerc">
+                                                <div class="tq">1</div>
+                                                <input id="PGIM_2332397_1" value="65829" type="hidden" />
+                                            </div>
+
+                                            <div class="itemPerc">
+                                                <div class="tq">X</div>
+                                                <input id="PGIM_2332397_2" value="42" type="hidden" />
+                                            </div>
+
+                                            <div class="itemPerc">
+                                                <div class="tq">2</div>
+                                                <input id="PGIM_2332397_3" value="69" type="hidden" />
+                                            </div>
+
+                                            <div class="itemPerc">
+                                                <div class="tq">1X</div>
+                                                <input id="PGIM_2332397_5" value="8487" type="hidden" />
+                                            </div>
+
+                                            <div class="itemPerc">
+                                                <div class="tq">12</div>
+                                                <input id="PGIM_2332397_4" value="2295" type="hidden" />
+                                            </div>
+
+                                            <div class="itemPerc">
+                                                <div class="tq">X2</div>
+                                                <input id="PGIM_2332397_6" value="36" type="hidden" />
+                                            </div>
+
+                                            <div class="itemPerc">
+                                                <div class="tq">Over</div>
+                                                <input id="PGIM_2332397_286" value="411" type="hidden" />
+                                            </div>
+
+                                            <div class="itemPerc">
+                                                <div class="tq">Under</div>
+                                                <input id="PGIM_2332397_287" value="15" type="hidden" />
+                                            </div>
+
+                                        </div>
+                                        <a id="h_w_PC_ctl02_rE_ctl04_lnkAllQuote" class="numQuote" href="OddsAsync.aspx?EventID=40473"></a>
+                                        <a id="h_w_PC_ctl02_rE_ctl04_lnkPopupQuote" class="numQuote" href="javascript:showPopUpDett(40473)"></a>
+                                    </div>
+
+
+                                    <div class="itemRow">
+                                        <div class="headRow">
+                                            <div class="group">International Clubs</div>
+                                            <div class="event">Borussia Dortmund - Juventus</div>
+                                            <div class="time">18/03/2015 20:45</div>
+                                        </div>
+                                        <div class="odds">
+
+
+                                            <div id="odds_294358573">
+                                                <div class="tq">1</div>
+                                                <a id="h_w_PC_ctl02_rE_ctl05_rpQuote_ctl00_lnkQuota" class="oddItem" idts="294358573" href="javascript:TS_AddCoupon(294358573);">2.18</a>
+                                            </div>
+
+
+                                            <div id="odds_294358574">
+                                                <div class="tq">X</div>
+                                                <a id="h_w_PC_ctl02_rE_ctl05_rpQuote_ctl01_lnkQuota" class="oddItem" idts="294358574" href="javascript:TS_AddCoupon(294358574);">3.33</a>
+                                            </div>
+
+
+                                            <div id="odds_294358575">
+                                                <div class="tq">2</div>
+                                                <a id="h_w_PC_ctl02_rE_ctl05_rpQuote_ctl02_lnkQuota" class="oddItem" idts="294358575" href="javascript:TS_AddCoupon(294358575);">3.32</a>
+                                            </div>
+
+
+                                            <div id="odds_305275566">
+                                                <div class="tq">1X</div>
+                                                <a id="h_w_PC_ctl02_rE_ctl05_rpQuote_ctl03_lnkQuota" class="oddItem" idts="305275566" href="javascript:TS_AddCoupon(305275566);">1.29</a>
+                                            </div>
+
+
+                                            <div id="odds_305275564">
+                                                <div class="tq">12</div>
+                                                <a id="h_w_PC_ctl02_rE_ctl05_rpQuote_ctl04_lnkQuota" class="oddItem" idts="305275564" href="javascript:TS_AddCoupon(305275564);">1.29</a>
+                                            </div>
+
+
+                                            <div id="odds_305275565">
+                                                <div class="tq">X2</div>
+                                                <a id="h_w_PC_ctl02_rE_ctl05_rpQuote_ctl05_lnkQuota" class="oddItem" idts="305275565" href="javascript:TS_AddCoupon(305275565);">1.58</a>
+                                            </div>
+
+
+                                            <div id="odds_291031436">
+                                                <div class="tq">Over</div>
+                                                <a id="h_w_PC_ctl02_rE_ctl05_rpQuote_ctl06_lnkQuota" class="oddItem" idts="291031436" href="javascript:TS_AddCoupon(291031436);">1.94</a>
+                                            </div>
+
+
+                                            <div id="odds_291031442">
+                                                <div class="tq">Under</div>
+                                                <a id="h_w_PC_ctl02_rE_ctl05_rpQuote_ctl07_lnkQuota" class="oddItem" idts="291031442" href="javascript:TS_AddCoupon(291031442);">1.77</a>
+                                            </div>
+
+                                        </div>
+                                        <div class="percOdds">
+
+                                            <div class="itemPerc">
+                                                <div class="tq">1</div>
+                                                <input id="PGIM_2287192_1" value="11061" type="hidden" />
+                                            </div>
+
+                                            <div class="itemPerc">
+                                                <div class="tq">X</div>
+                                                <input id="PGIM_2287192_2" value="996" type="hidden" />
+                                            </div>
+
+                                            <div class="itemPerc">
+                                                <div class="tq">2</div>
+                                                <input id="PGIM_2287192_3" value="15231" type="hidden" />
+                                            </div>
+
+                                            <div class="itemPerc">
+                                                <div class="tq">1X</div>
+                                                <input id="PGIM_2287192_5" value="10410" type="hidden" />
+                                            </div>
+
+                                            <div class="itemPerc">
+                                                <div class="tq">12</div>
+                                                <input id="PGIM_2287192_4" value="7728" type="hidden" />
+                                            </div>
+
+                                            <div class="itemPerc">
+                                                <div class="tq">X2</div>
+                                                <input id="PGIM_2287192_6" value="16779" type="hidden" />
+                                            </div>
+
+                                            <div class="itemPerc">
+                                                <div class="tq">Over</div>
+                                                <input id="PGIM_2287192_286" value="1869" type="hidden" />
+                                            </div>
+
+                                            <div class="itemPerc">
+                                                <div class="tq">Under</div>
+                                                <input id="PGIM_2287192_287" value="303" type="hidden" />
+                                            </div>
+
+                                        </div>
+                                        <a id="h_w_PC_ctl02_rE_ctl05_lnkAllQuote" class="numQuote" href="OddsAsync.aspx?EventID=58865"></a>
+                                        <a id="h_w_PC_ctl02_rE_ctl05_lnkPopupQuote" class="numQuote" href="javascript:showPopUpDett(58865)"></a>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+                        <div id="popupContactDett">
+                            <div class="RiquadroPopDettSE">
+                                <div class="TopSX"><div class="TopDX"></div></div><div class="Cnt">
+                                    <div>
+
+                                        <div class="divTitle" id="PCDTitle"><div class="divTitleDX"><span id="spanDataSE"></span><span id="spanDescSE"></span><a id="popupContactDettClose"><img src="../App_Themes/Bet9ja/images/icons/close_black_ico.gif" id="h_w_PC_ctl02_imgClose" /></a></div></div>
+                                        <div id="divBody">
+                                            <iframe style=" width:100%" id="iframeDett" scrolling="no" border="0" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+                                        </div>
+
+                                    </div>
+                                </div><div class="BtmSX"><div class="BtmDX"></div></div>
+                            </div>
+                            <div style="padding-bottom:10px"></div>
+                        </div>
+                        <div id="backgroundPopupDett"></div>
+
+
+
+
+                        <script type="text/javascript">
+                            $(document).ready(function () {
+                                initializePopup("popupContactDettClose", "popupContactDett", "backgroundPopupDett");
+                            });
+
+                            function showPopUpDett(IDSE) {
+                                $("#iframeDett").attr("src", '/Sport/SubEventPopup.aspx?SubEventID=' + IDSE + '&btnID=' + sCouponButtonClientID + '&txtID=' + sCouponQuotaClientID + '&sHidIDQuote=' + sHidIDQuote + '&parentPopupContainerID=popupContactDett');
+                                centerPopup("popupContactDett", "backgroundPopupDett");
+                                loadPopup("popupContactDett", "backgroundPopupDett");
+                            }
+                        </script>
+
+
+
+                        <script type="text/javascript">
+                            function NE_AddCoupon(idQuota) { AddCoupon(sCouponButtonClientID, sCouponQuotaClientID, idQuota); }
+
+                            function NE_refreshOdds() {
+                                var objHidQuote = document.getElementById(sHidIDQuote);
+                                if (objHidQuote == null) return;
+                                var quote = objHidQuote.value.split("|");
+                                $("#panelOdds_NE [idNe]").removeClass("sel");
+                                for (var i = 0; i < quote.length; i++) {
+                                    var IDQuota = quote[i].split("&")[0];
+                                    $('#panelOdds_NE [idNe="' + IDQuota + '"]').addClass("sel")
+                                }
+                            }
+
+                            $(document).bind("couponSelectOdds", function (e) { NE_refreshOdds(); });
+                        </script>
+
+
+                        <div id="h_w_PC_ctl03_Up">
+
+                            <div class="NESIMportCnt">
+                                <div class="headSection">
+                                    <div class="NESIMportTitle">Upcoming Events</div>
+
+                                    <ul>
+                                        <li class="s1">
+                                            <a id="h_w_PC_ctl03_rS_ctl01_lnk" title="Soccer" class="sel" href="javascript:__doPostBack('h$w$PC$ctl03$rS$ctl01$lnk','')">
+                                                <span>Soccer</span>
+                                                <div class="icon ts1"></div>
+                                                <div class="numQuote">110741</div>
+                                            </a>
+                                        </li>
+
+                                        <li class="s2">
+                                            <a id="h_w_PC_ctl03_rS_ctl02_lnk" title="Basket" class="" href="javascript:__doPostBack('h$w$PC$ctl03$rS$ctl02$lnk','')">
+                                                <span>Basket</span>
+                                                <div class="icon ts2"></div>
+                                                <div class="numQuote">436</div>
+                                            </a>
+                                        </li>
+
+                                        <li class="s4">
+                                            <a id="h_w_PC_ctl03_rS_ctl03_lnk" title="Tennis" class="" href="javascript:__doPostBack('h$w$PC$ctl03$rS$ctl03$lnk','')">
+                                                <span>Tennis</span>
+                                                <div class="icon ts4"></div>
+                                                <div class="numQuote">766</div>
+                                            </a>
+                                        </li>
+
+                                    </ul>
+
+                                </div>
+                                <div class="homeContent" id="panelOdds_NE">
+
+                                    <div class="header">
+                                        <div id="h_w_PC_ctl03_rE_ctl00_cq">
+                                            <div>
+                                                <span>1X2</span><div>
+                                                    <span class="tq">1</span><span class="tq">X</span><span class="tq">2</span>
+                                                </div>
+                                            </div><div>
+                                                <span>Double Chance</span><div>
+                                                    <span class="tq">1X</span><span class="tq">12</span><span class="tq">X2</span>
+                                                </div>
+                                            </div><div>
+                                                <span>O/U 2.5 </span><div>
+                                                    <span class="tq">Over</span><span class="tq">Under</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="itemRow">
+                                        <div class="headRow">
+                                            <div class="group">Portugal</div>
+                                            <div class="event">Porto - FC Arouca</div>
+                                            <div class="time">15/03/2015 20:15</div>
+                                        </div>
+                                        <div class="odds">
+
+
+                                            <div id="odds_311825766">
+                                                <div class="tq">1</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl01_rpQuote_ctl00_lnkQuota" class="oddItem" idne="311825766" href="javascript:NE_AddCoupon(311825766);">1.08</a>
+                                            </div>
+
+
+                                            <div id="odds_311825767">
+                                                <div class="tq">X</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl01_rpQuote_ctl01_lnkQuota" class="oddItem" idne="311825767" href="javascript:NE_AddCoupon(311825767);">8.00</a>
+                                            </div>
+
+
+                                            <div id="odds_311825768">
+                                                <div class="tq">2</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl01_rpQuote_ctl02_lnkQuota" class="oddItem" idne="311825768" href="javascript:NE_AddCoupon(311825768);">25.00</a>
+                                            </div>
+
+
+                                            <div id="odds_310947349">
+                                                <div class="tq">1X</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl01_rpQuote_ctl03_lnkQuota" class="oddItem" idne="310947349" href="javascript:NE_AddCoupon(310947349);">1.01</a>
+                                            </div>
+
+
+                                            <div id="odds_311834263">
+                                                <div class="tq">12</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl01_rpQuote_ctl04_lnkQuota" class="oddItem" idne="311834263" href="javascript:NE_AddCoupon(311834263);">1.04</a>
+                                            </div>
+
+
+                                            <div id="odds_311840611">
+                                                <div class="tq">X2</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl01_rpQuote_ctl05_lnkQuota" class="oddItem" idne="311840611" href="javascript:NE_AddCoupon(311840611);">4.01</a>
+                                            </div>
+
+
+                                            <div id="odds_311822387">
+                                                <div class="tq">Over</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl01_rpQuote_ctl06_lnkQuota" class="oddItem" idne="311822387" href="javascript:NE_AddCoupon(311822387);">1.43</a>
+                                            </div>
+
+
+                                            <div id="odds_311822388">
+                                                <div class="tq">Under</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl01_rpQuote_ctl07_lnkQuota" class="oddItem" idne="311822388" href="javascript:NE_AddCoupon(311822388);">2.50</a>
+                                            </div>
+
+                                        </div>
+                                        <a id="h_w_PC_ctl03_rE_ctl01_lnkAllQuote" class="numQuote" href="OddsAsync.aspx?EventID=40474"></a>
+                                        <a id="h_w_PC_ctl03_rE_ctl01_lnkPopupQuote" class="numQuote" href="javascript:showPopUpDett(40474)"></a>
+                                    </div>
+
+
+                                    <div class="itemRow">
+                                        <div class="headRow">
+                                            <div class="group">Venezuela</div>
+                                            <div class="event">Portuguesa FC - Metropolitanos FC</div>
+                                            <div class="time">15/03/2015 20:30</div>
+                                        </div>
+                                        <div class="odds">
+
+
+                                            <div id="odds_311807881">
+                                                <div class="tq">1</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl02_rpQuote_ctl00_lnkQuota" class="oddItem" idne="311807881" href="javascript:NE_AddCoupon(311807881);">1.91</a>
+                                            </div>
+
+
+                                            <div id="odds_311807882">
+                                                <div class="tq">X</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl02_rpQuote_ctl01_lnkQuota" class="oddItem" idne="311807882" href="javascript:NE_AddCoupon(311807882);">3.06</a>
+                                            </div>
+
+
+                                            <div id="odds_311807883">
+                                                <div class="tq">2</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl02_rpQuote_ctl02_lnkQuota" class="oddItem" idne="311807883" href="javascript:NE_AddCoupon(311807883);">3.69</a>
+                                            </div>
+
+
+                                            <div id="odds_311807885">
+                                                <div class="tq">1X</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl02_rpQuote_ctl03_lnkQuota" class="oddItem" idne="311807885" href="javascript:NE_AddCoupon(311807885);">1.20</a>
+                                            </div>
+
+
+                                            <div id="odds_311807884">
+                                                <div class="tq">12</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl02_rpQuote_ctl04_lnkQuota" class="oddItem" idne="311807884" href="javascript:NE_AddCoupon(311807884);">1.26</a>
+                                            </div>
+
+
+                                            <div id="odds_311807886">
+                                                <div class="tq">X2</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl02_rpQuote_ctl05_lnkQuota" class="oddItem" idne="311807886" href="javascript:NE_AddCoupon(311807886);">1.58</a>
+                                            </div>
+
+
+                                            <div id="odds_311647100">
+                                                <div class="tq">Over</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl02_rpQuote_ctl06_lnkQuota" class="oddItem" idne="311647100" href="javascript:NE_AddCoupon(311647100);">2.07</a>
+                                            </div>
+
+
+                                            <div id="odds_311647101">
+                                                <div class="tq">Under</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl02_rpQuote_ctl07_lnkQuota" class="oddItem" idne="311647101" href="javascript:NE_AddCoupon(311647101);">1.57</a>
+                                            </div>
+
+                                        </div>
+                                        <a id="h_w_PC_ctl03_rE_ctl02_lnkAllQuote" class="numQuote" href="OddsAsync.aspx?EventID=60766"></a>
+                                        <a id="h_w_PC_ctl03_rE_ctl02_lnkPopupQuote" class="numQuote" href="javascript:showPopUpDett(60766)"></a>
+                                    </div>
+
+
+                                    <div class="itemRow">
+                                        <div class="headRow">
+                                            <div class="group">Venezuela</div>
+                                            <div class="event">Llaneros FC - Trujillanos FC</div>
+                                            <div class="time">15/03/2015 20:30</div>
+                                        </div>
+                                        <div class="odds">
+
+
+                                            <div id="odds_311349293">
+                                                <div class="tq">1</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl03_rpQuote_ctl00_lnkQuota" class="oddItem" idne="311349293" href="javascript:NE_AddCoupon(311349293);">2.85</a>
+                                            </div>
+
+
+                                            <div id="odds_311349294">
+                                                <div class="tq">X</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl03_rpQuote_ctl01_lnkQuota" class="oddItem" idne="311349294" href="javascript:NE_AddCoupon(311349294);">2.96</a>
+                                            </div>
+
+
+                                            <div id="odds_311349295">
+                                                <div class="tq">2</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl03_rpQuote_ctl02_lnkQuota" class="oddItem" idne="311349295" href="javascript:NE_AddCoupon(311349295);">2.32</a>
+                                            </div>
+
+
+                                            <div id="odds_311362712">
+                                                <div class="tq">1X</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl03_rpQuote_ctl03_lnkQuota" class="oddItem" idne="311362712" href="javascript:NE_AddCoupon(311362712);">1.41</a>
+                                            </div>
+
+
+                                            <div id="odds_307540203">
+                                                <div class="tq">12</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl03_rpQuote_ctl04_lnkQuota" class="oddItem" idne="307540203" href="javascript:NE_AddCoupon(307540203);">1.28</a>
+                                            </div>
+
+
+                                            <div id="odds_311362714">
+                                                <div class="tq">X2</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl03_rpQuote_ctl05_lnkQuota" class="oddItem" idne="311362714" href="javascript:NE_AddCoupon(311362714);">1.30</a>
+                                            </div>
+
+
+                                            <div id="odds_311014315">
+                                                <div class="tq">Over</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl03_rpQuote_ctl06_lnkQuota" class="oddItem" idne="311014315" href="javascript:NE_AddCoupon(311014315);">2.11</a>
+                                            </div>
+
+
+                                            <div id="odds_311014316">
+                                                <div class="tq">Under</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl03_rpQuote_ctl07_lnkQuota" class="oddItem" idne="311014316" href="javascript:NE_AddCoupon(311014316);">1.55</a>
+                                            </div>
+
+                                        </div>
+                                        <a id="h_w_PC_ctl03_rE_ctl03_lnkAllQuote" class="numQuote" href="OddsAsync.aspx?EventID=60766"></a>
+                                        <a id="h_w_PC_ctl03_rE_ctl03_lnkPopupQuote" class="numQuote" href="javascript:showPopUpDett(60766)"></a>
+                                    </div>
+
+
+                                    <div class="itemRow">
+                                        <div class="headRow">
+                                            <div class="group">Venezuela</div>
+                                            <div class="event">Tucanes FC - Caracas FC</div>
+                                            <div class="time">15/03/2015 20:30</div>
+                                        </div>
+                                        <div class="odds">
+
+
+                                            <div id="odds_311595014">
+                                                <div class="tq">1</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl04_rpQuote_ctl00_lnkQuota" class="oddItem" idne="311595014" href="javascript:NE_AddCoupon(311595014);">3.72</a>
+                                            </div>
+
+
+                                            <div id="odds_311595015">
+                                                <div class="tq">X</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl04_rpQuote_ctl01_lnkQuota" class="oddItem" idne="311595015" href="javascript:NE_AddCoupon(311595015);">3.02</a>
+                                            </div>
+
+
+                                            <div id="odds_311595016">
+                                                <div class="tq">2</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl04_rpQuote_ctl02_lnkQuota" class="oddItem" idne="311595016" href="javascript:NE_AddCoupon(311595016);">1.92</a>
+                                            </div>
+
+
+                                            <div id="odds_311595018">
+                                                <div class="tq">1X</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl04_rpQuote_ctl03_lnkQuota" class="oddItem" idne="311595018" href="javascript:NE_AddCoupon(311595018);">1.57</a>
+                                            </div>
+
+
+                                            <div id="odds_311595017">
+                                                <div class="tq">12</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl04_rpQuote_ctl04_lnkQuota" class="oddItem" idne="311595017" href="javascript:NE_AddCoupon(311595017);">1.27</a>
+                                            </div>
+
+
+                                            <div id="odds_311595019">
+                                                <div class="tq">X2</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl04_rpQuote_ctl05_lnkQuota" class="oddItem" idne="311595019" href="javascript:NE_AddCoupon(311595019);">1.20</a>
+                                            </div>
+
+
+                                            <div id="odds_311134513">
+                                                <div class="tq">Over</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl04_rpQuote_ctl06_lnkQuota" class="oddItem" idne="311134513" href="javascript:NE_AddCoupon(311134513);">2.16</a>
+                                            </div>
+
+
+                                            <div id="odds_311134514">
+                                                <div class="tq">Under</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl04_rpQuote_ctl07_lnkQuota" class="oddItem" idne="311134514" href="javascript:NE_AddCoupon(311134514);">1.52</a>
+                                            </div>
+
+                                        </div>
+                                        <a id="h_w_PC_ctl03_rE_ctl04_lnkAllQuote" class="numQuote" href="OddsAsync.aspx?EventID=60766"></a>
+                                        <a id="h_w_PC_ctl03_rE_ctl04_lnkPopupQuote" class="numQuote" href="javascript:showPopUpDett(60766)"></a>
+                                    </div>
+
+
+                                    <div class="itemRow">
+                                        <div class="headRow">
+                                            <div class="group">Italy</div>
+                                            <div class="event">Inter - Cesena</div>
+                                            <div class="time">15/03/2015 20:45</div>
+                                        </div>
+                                        <div class="odds">
+
+
+                                            <div id="odds_311812343">
+                                                <div class="tq">1</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl05_rpQuote_ctl00_lnkQuota" class="oddItem" idne="311812343" href="javascript:NE_AddCoupon(311812343);">1.31</a>
+                                            </div>
+
+
+                                            <div id="odds_310646954">
+                                                <div class="tq">X</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl05_rpQuote_ctl01_lnkQuota" class="oddItem" idne="310646954" href="javascript:NE_AddCoupon(310646954);">5.00</a>
+                                            </div>
+
+
+                                            <div id="odds_311812346">
+                                                <div class="tq">2</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl05_rpQuote_ctl02_lnkQuota" class="oddItem" idne="311812346" href="javascript:NE_AddCoupon(311812346);">10.00</a>
+                                            </div>
+
+
+                                            <div id="odds_311812347">
+                                                <div class="tq">1X</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl05_rpQuote_ctl03_lnkQuota" class="oddItem" idne="311812347" href="javascript:NE_AddCoupon(311812347);">1.05</a>
+                                            </div>
+
+
+                                            <div id="odds_311812348">
+                                                <div class="tq">12</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl05_rpQuote_ctl04_lnkQuota" class="oddItem" idne="311812348" href="javascript:NE_AddCoupon(311812348);">1.17</a>
+                                            </div>
+
+
+                                            <div id="odds_309686746">
+                                                <div class="tq">X2</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl05_rpQuote_ctl05_lnkQuota" class="oddItem" idne="309686746" href="javascript:NE_AddCoupon(309686746);">3.00</a>
+                                            </div>
+
+
+                                            <div id="odds_309686747">
+                                                <div class="tq">Over</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl05_rpQuote_ctl06_lnkQuota" class="oddItem" idne="309686747" href="javascript:NE_AddCoupon(309686747);">1.76</a>
+                                            </div>
+
+
+                                            <div id="odds_309686748">
+                                                <div class="tq">Under</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl05_rpQuote_ctl07_lnkQuota" class="oddItem" idne="309686748" href="javascript:NE_AddCoupon(309686748);">1.96</a>
+                                            </div>
+
+                                        </div>
+                                        <a id="h_w_PC_ctl03_rE_ctl05_lnkAllQuote" class="numQuote" href="OddsAsync.aspx?EventID=41554"></a>
+                                        <a id="h_w_PC_ctl03_rE_ctl05_lnkPopupQuote" class="numQuote" href="javascript:showPopUpDett(41554)"></a>
+                                    </div>
+
+
+                                    <div class="itemRow">
+                                        <div class="headRow">
+                                            <div class="group">Spain</div>
+                                            <div class="event">Real Madrid - Levante</div>
+                                            <div class="time">15/03/2015 21:00</div>
+                                        </div>
+                                        <div class="odds">
+
+
+                                            <div id="odds_310863547">
+                                                <div class="tq">1</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl06_rpQuote_ctl00_lnkQuota" class="oddItem" idne="310863547" href="javascript:NE_AddCoupon(310863547);">1.07</a>
+                                            </div>
+
+
+                                            <div id="odds_310863549">
+                                                <div class="tq">X</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl06_rpQuote_ctl01_lnkQuota" class="oddItem" idne="310863549" href="javascript:NE_AddCoupon(310863549);">11.50</a>
+                                            </div>
+
+
+                                            <div id="odds_308858680">
+                                                <div class="tq">2</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl06_rpQuote_ctl02_lnkQuota" class="oddItem" idne="308858680" href="javascript:NE_AddCoupon(308858680);">25.00</a>
+                                            </div>
+
+
+                                            <div id="odds_307590827">
+                                                <div class="tq">1X</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl06_rpQuote_ctl03_lnkQuota" class="oddItem" idne="307590827" href="javascript:NE_AddCoupon(307590827);">1.01</a>
+                                            </div>
+
+
+                                            <div id="odds_308854284">
+                                                <div class="tq">12</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl06_rpQuote_ctl04_lnkQuota" class="oddItem" idne="308854284" href="javascript:NE_AddCoupon(308854284);">1.03</a>
+                                            </div>
+
+
+                                            <div id="odds_311594495">
+                                                <div class="tq">X2</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl06_rpQuote_ctl05_lnkQuota" class="oddItem" idne="311594495" href="javascript:NE_AddCoupon(311594495);">5.47</a>
+                                            </div>
+
+
+                                            <div id="odds_308071776">
+                                                <div class="tq">Over</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl06_rpQuote_ctl06_lnkQuota" class="oddItem" idne="308071776" href="javascript:NE_AddCoupon(308071776);">1.21</a>
+                                            </div>
+
+
+                                            <div id="odds_308071777">
+                                                <div class="tq">Under</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl06_rpQuote_ctl07_lnkQuota" class="oddItem" idne="308071777" href="javascript:NE_AddCoupon(308071777);">3.97</a>
+                                            </div>
+
+                                        </div>
+                                        <a id="h_w_PC_ctl03_rE_ctl06_lnkAllQuote" class="numQuote" href="OddsAsync.aspx?EventID=41283"></a>
+                                        <a id="h_w_PC_ctl03_rE_ctl06_lnkPopupQuote" class="numQuote" href="javascript:showPopUpDett(41283)"></a>
+                                    </div>
+
+
+                                    <div class="itemRow">
+                                        <div class="headRow">
+                                            <div class="group">France</div>
+                                            <div class="event">Marseille - Lyon</div>
+                                            <div class="time">15/03/2015 21:00</div>
+                                        </div>
+                                        <div class="odds">
+
+
+                                            <div id="odds_311840226">
+                                                <div class="tq">1</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl07_rpQuote_ctl00_lnkQuota" class="oddItem" idne="311840226" href="javascript:NE_AddCoupon(311840226);">2.15</a>
+                                            </div>
+
+
+                                            <div id="odds_311840227">
+                                                <div class="tq">X</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl07_rpQuote_ctl01_lnkQuota" class="oddItem" idne="311840227" href="javascript:NE_AddCoupon(311840227);">3.44</a>
+                                            </div>
+
+
+                                            <div id="odds_311840228">
+                                                <div class="tq">2</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl07_rpQuote_ctl02_lnkQuota" class="oddItem" idne="311840228" href="javascript:NE_AddCoupon(311840228);">3.27</a>
+                                            </div>
+
+
+                                            <div id="odds_311840229">
+                                                <div class="tq">1X</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl07_rpQuote_ctl03_lnkQuota" class="oddItem" idne="311840229" href="javascript:NE_AddCoupon(311840229);">1.32</a>
+                                            </div>
+
+
+                                            <div id="odds_311723217">
+                                                <div class="tq">12</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl07_rpQuote_ctl04_lnkQuota" class="oddItem" idne="311723217" href="javascript:NE_AddCoupon(311723217);">1.30</a>
+                                            </div>
+
+
+                                            <div id="odds_311840230">
+                                                <div class="tq">X2</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl07_rpQuote_ctl05_lnkQuota" class="oddItem" idne="311840230" href="javascript:NE_AddCoupon(311840230);">1.63</a>
+                                            </div>
+
+
+                                            <div id="odds_310527594">
+                                                <div class="tq">Over</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl07_rpQuote_ctl06_lnkQuota" class="oddItem" idne="310527594" href="javascript:NE_AddCoupon(310527594);">1.72</a>
+                                            </div>
+
+
+                                            <div id="odds_310527595">
+                                                <div class="tq">Under</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl07_rpQuote_ctl07_lnkQuota" class="oddItem" idne="310527595" href="javascript:NE_AddCoupon(310527595);">2.01</a>
+                                            </div>
+
+                                        </div>
+                                        <a id="h_w_PC_ctl03_rE_ctl07_lnkAllQuote" class="numQuote" href="OddsAsync.aspx?EventID=39730"></a>
+                                        <a id="h_w_PC_ctl03_rE_ctl07_lnkPopupQuote" class="numQuote" href="javascript:showPopUpDett(39730)"></a>
+                                    </div>
+
+
+                                    <div class="itemRow">
+                                        <div class="headRow">
+                                            <div class="group">Argentina</div>
+                                            <div class="event">Quilmes Atletico - Velez Sarsfield</div>
+                                            <div class="time">15/03/2015 21:00</div>
+                                        </div>
+                                        <div class="odds">
+
+
+                                            <div id="odds_305697083">
+                                                <div class="tq">1</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl08_rpQuote_ctl00_lnkQuota" class="oddItem" idne="305697083" href="javascript:NE_AddCoupon(305697083);">2.96</a>
+                                            </div>
+
+
+                                            <div id="odds_305697084">
+                                                <div class="tq">X</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl08_rpQuote_ctl01_lnkQuota" class="oddItem" idne="305697084" href="javascript:NE_AddCoupon(305697084);">2.90</a>
+                                            </div>
+
+
+                                            <div id="odds_305697085">
+                                                <div class="tq">2</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl08_rpQuote_ctl02_lnkQuota" class="oddItem" idne="305697085" href="javascript:NE_AddCoupon(305697085);">2.40</a>
+                                            </div>
+
+
+                                            <div id="odds_305697087">
+                                                <div class="tq">1X</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl08_rpQuote_ctl03_lnkQuota" class="oddItem" idne="305697087" href="javascript:NE_AddCoupon(305697087);">1.44</a>
+                                            </div>
+
+
+                                            <div id="odds_305697086">
+                                                <div class="tq">12</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl08_rpQuote_ctl04_lnkQuota" class="oddItem" idne="305697086" href="javascript:NE_AddCoupon(305697086);">1.32</a>
+                                            </div>
+
+
+                                            <div id="odds_305208167">
+                                                <div class="tq">X2</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl08_rpQuote_ctl05_lnkQuota" class="oddItem" idne="305208167" href="javascript:NE_AddCoupon(305208167);">1.31</a>
+                                            </div>
+
+
+                                            <div id="odds_305516195">
+                                                <div class="tq">Over</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl08_rpQuote_ctl06_lnkQuota" class="oddItem" idne="305516195" href="javascript:NE_AddCoupon(305516195);">2.39</a>
+                                            </div>
+
+
+                                            <div id="odds_305516199">
+                                                <div class="tq">Under</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl08_rpQuote_ctl07_lnkQuota" class="oddItem" idne="305516199" href="javascript:NE_AddCoupon(305516199);">1.43</a>
+                                            </div>
+
+                                        </div>
+                                        <a id="h_w_PC_ctl03_rE_ctl08_lnkAllQuote" class="numQuote" href="OddsAsync.aspx?EventID=65809"></a>
+                                        <a id="h_w_PC_ctl03_rE_ctl08_lnkPopupQuote" class="numQuote" href="javascript:showPopUpDett(65809)"></a>
+                                    </div>
+
+
+                                    <div class="itemRow">
+                                        <div class="headRow">
+                                            <div class="group">Venezuela</div>
+                                            <div class="event">Zulia FC - Aragua FC</div>
+                                            <div class="time">15/03/2015 21:00</div>
+                                        </div>
+                                        <div class="odds">
+
+
+                                            <div id="odds_311621810">
+                                                <div class="tq">1</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl09_rpQuote_ctl00_lnkQuota" class="oddItem" idne="311621810" href="javascript:NE_AddCoupon(311621810);">2.29</a>
+                                            </div>
+
+
+                                            <div id="odds_311505114">
+                                                <div class="tq">X</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl09_rpQuote_ctl01_lnkQuota" class="oddItem" idne="311505114" href="javascript:NE_AddCoupon(311505114);">2.99</a>
+                                            </div>
+
+
+                                            <div id="odds_311621812">
+                                                <div class="tq">2</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl09_rpQuote_ctl02_lnkQuota" class="oddItem" idne="311621812" href="javascript:NE_AddCoupon(311621812);">2.87</a>
+                                            </div>
+
+
+                                            <div id="odds_311621814">
+                                                <div class="tq">1X</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl09_rpQuote_ctl03_lnkQuota" class="oddItem" idne="311621814" href="javascript:NE_AddCoupon(311621814);">1.29</a>
+                                            </div>
+
+
+                                            <div id="odds_311051601">
+                                                <div class="tq">12</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl09_rpQuote_ctl04_lnkQuota" class="oddItem" idne="311051601" href="javascript:NE_AddCoupon(311051601);">1.28</a>
+                                            </div>
+
+
+                                            <div id="odds_311621817">
+                                                <div class="tq">X2</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl09_rpQuote_ctl05_lnkQuota" class="oddItem" idne="311621817" href="javascript:NE_AddCoupon(311621817);">1.43</a>
+                                            </div>
+
+
+                                            <div id="odds_311051642">
+                                                <div class="tq">Over</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl09_rpQuote_ctl06_lnkQuota" class="oddItem" idne="311051642" href="javascript:NE_AddCoupon(311051642);">2.09</a>
+                                            </div>
+
+
+                                            <div id="odds_311051643">
+                                                <div class="tq">Under</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl09_rpQuote_ctl07_lnkQuota" class="oddItem" idne="311051643" href="javascript:NE_AddCoupon(311051643);">1.56</a>
+                                            </div>
+
+                                        </div>
+                                        <a id="h_w_PC_ctl03_rE_ctl09_lnkAllQuote" class="numQuote" href="OddsAsync.aspx?EventID=60766"></a>
+                                        <a id="h_w_PC_ctl03_rE_ctl09_lnkPopupQuote" class="numQuote" href="javascript:showPopUpDett(60766)"></a>
+                                    </div>
+
+
+                                    <div class="itemRow">
+                                        <div class="headRow">
+                                            <div class="group">Brazil</div>
+                                            <div class="event">Novo Hamburgo - Sao Paulo RS</div>
+                                            <div class="time">15/03/2015 21:00</div>
+                                        </div>
+                                        <div class="odds">
+
+
+                                            <div id="odds_309879397">
+                                                <div class="tq">1</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl10_rpQuote_ctl00_lnkQuota" class="oddItem" idne="309879397" href="javascript:NE_AddCoupon(309879397);">2.01</a>
+                                            </div>
+
+
+                                            <div id="odds_309879398">
+                                                <div class="tq">X</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl10_rpQuote_ctl01_lnkQuota" class="oddItem" idne="309879398" href="javascript:NE_AddCoupon(309879398);">3.04</a>
+                                            </div>
+
+
+                                            <div id="odds_309879399">
+                                                <div class="tq">2</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl10_rpQuote_ctl02_lnkQuota" class="oddItem" idne="309879399" href="javascript:NE_AddCoupon(309879399);">3.40</a>
+                                            </div>
+
+
+                                            <div id="odds_309879400">
+                                                <div class="tq">1X</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl10_rpQuote_ctl03_lnkQuota" class="oddItem" idne="309879400" href="javascript:NE_AddCoupon(309879400);">1.24</a>
+                                            </div>
+
+
+                                            <div id="odds_308762009">
+                                                <div class="tq">12</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl10_rpQuote_ctl04_lnkQuota" class="oddItem" idne="308762009" href="javascript:NE_AddCoupon(308762009);">1.29</a>
+                                            </div>
+
+
+                                            <div id="odds_309879401">
+                                                <div class="tq">X2</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl10_rpQuote_ctl05_lnkQuota" class="oddItem" idne="309879401" href="javascript:NE_AddCoupon(309879401);">1.57</a>
+                                            </div>
+
+
+                                            <div id="odds_308079825">
+                                                <div class="tq">Over</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl10_rpQuote_ctl06_lnkQuota" class="oddItem" idne="308079825" href="javascript:NE_AddCoupon(308079825);">2.15</a>
+                                            </div>
+
+
+                                            <div id="odds_308079826">
+                                                <div class="tq">Under</div>
+                                                <a id="h_w_PC_ctl03_rE_ctl10_rpQuote_ctl07_lnkQuota" class="oddItem" idne="308079826" href="javascript:NE_AddCoupon(308079826);">1.53</a>
+                                            </div>
+
+                                        </div>
+                                        <a id="h_w_PC_ctl03_rE_ctl10_lnkAllQuote" class="numQuote" href="OddsAsync.aspx?EventID=64024"></a>
+                                        <a id="h_w_PC_ctl03_rE_ctl10_lnkPopupQuote" class="numQuote" href="javascript:showPopUpDett(64024)"></a>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+                        <div id="popupContactDett">
+                            <div class="RiquadroPopDettSE">
+                                <div class="TopSX"><div class="TopDX"></div></div><div class="Cnt">
+                                    <div>
+
+                                        <div class="divTitle" id="PCDTitle"><div class="divTitleDX"><span id="spanDataSE"></span><span id="spanDescSE"></span><a id="popupContactDettClose"><img src="../App_Themes/Bet9ja/images/icons/close_black_ico.gif" id="h_w_PC_ctl03_imgClose" /></a></div></div>
+                                        <div id="divBody">
+                                            <iframe style=" width:100%" id="iframeDett" scrolling="no" border="0" marginwidth="0" marginheight="0" frameborder="0"></iframe>
+                                        </div>
+
+                                    </div>
+                                </div><div class="BtmSX"><div class="BtmDX"></div></div>
+                            </div>
+                            <div style="padding-bottom:10px"></div>
+                        </div>
+                        <div id="backgroundPopupDett"></div>
+
+                    </td>
+                    <td class="tdDX">
+
+                        <div id="divCoupon" class="divCouponHome">
+                            <a class="RegisterNow" href="/Content/NewUser.aspx">Register Now!</a>
+
+                            <script type="text/javascript">
+
+
+                                var bTakeClickBetCode = false;
+
+                                function openClickPopup() {
+                                    var indirizzo = '/sport/ClickPopup.aspx'
+                                    window.open(indirizzo, 'BetCode', 'width=575,height=490,scrollbars=1');
+                                    void (0);
+                                }
+
+
+                            </script>
+
+                            <div class="divFastSport">
+                                <div class="FSSX">
+                                    <div class="FSDX">
+                                        <div class="FSHelp"><a id="h_w_PC_FastBet_linkFastBetHelp" title="Game code list" href="javascript:openClickPopup();"></a></div>
+                                        <div class="FSdesc">Fast Sport</div>
+                                        <div class="FSTxt"><span id="spanCodPub"><input id="txtCodPub" maxlength="4" size="4" class="TxtBox" type="text" /></span></div>
+
+                                        <div class="FSdescResult">Result:</div>
+
+                                        <div class="FSDdl"><select class="DropDown" id="cboTQ"></select></div>
+                                        <div class="FSSE" id="FSdivSE"></div>
+                                        <div class="FSBtn"><a href="javascript: void(0);" onclick="SendToCoupon();" title="Add to betslip"></a></div>
+                                    </div>
+                                </div>
+                                <input id="hCodConf" value="Default" type="hidden" />
+                                <input id="hLengthMax" value="3" type="hidden" />
+                            </div>
+
+
+                            <script language="javascript" type="text/javascript">
+                                //Numero massimo di raggruppamenti, usato nel coupon.js
+                                var maxNumRaggruppamenti = 40.000;
+
+                                //ClientID degli oggetti usati in coupon.js
+                                var nDecCoupon = '2'
+                                var sHidModificatoQuote = 'h_w_PC_cCoupon_hidModificatoQuote';
+                                var sHidAttesa = 'h_w_PC_cCoupon_hidAttesa';
+                                var sHidCouponAsincrono = 'h_w_PC_cCoupon_hidCouponAsincrono'
+                                var sHidRiserva = 'h_w_PC_cCoupon_hidRiserva';
+                                var sHidIDQuote = 'h_w_PC_cCoupon_hidIDQuote';
+                                var sHidStatoCoupon = 'h_w_PC_cCoupon_hidStatoCoupon';
+                                var sLnkConferma = 'h_w_PC_cCoupon_lnkConferma';
+                                var sBtnFakeAvanti = 'h_w_PC_cCoupon_btnFakeAvanti'
+                                var sBtnFakeCancella = 'h_w_PC_cCoupon_btnFakeCancella'
+                                var sBtnScoAncora = 'h_w_PC_cCoupon_btnScoAncora';
+                                var sBtnStampaAnagrafica = 'h_w_PC_cCoupon_btnStampaAnagrafica';
+                                var sCboUtente = 'h_w_PC_cCoupon_cboUtente';
+                                var sTxtUtente = 'h_w_PC_cCoupon_txtUtente';
+                                var sHidTipoCoupon = 'h_w_PC_cCoupon_hidTipoCoupon';
+                                var sHidQuotaTotale = 'h_w_PC_cCoupon_hidQuotaTotale';
+                                var sHidQuotaMinDI = 'h_w_PC_cCoupon_hidQuotaTotaleDIMin';
+                                var sHidIDCoupon = 'h_w_PC_cCoupon_hidIDCoupon'
+                                var sTxtImporto = 'h_w_PC_cCoupon_txtImporto';
+                                var sTxtImportoSis = 'h_w_PC_cCoupon_txtImportoSis';
+                                var sTxtImportoDI = 'h_w_PC_cCoupon_txtImportoDI';
+                                var sTxtTotaleDIValuta = 'h_w_PC_cCoupon_txtTotaleDIValuta';
+                                var sTxtImporto = 'h_w_PC_cCoupon_txtImporto';
+                                var sLblOnlySaldo = 'h_w_PC_cCoupon_lblOnlySaldo';
+                                var sLblSaldo = 'h_w_PC_cCoupon_lblSaldo';
+                                var sLblRicAutoSaldo = 'h_w_PC_cCoupon_lblRicAutoSaldo';
+                                var sAsyncQBButtonAddClientID = 'h_w_PC_cCoupon_btnAddCouponQB';
+                                var sAsyncQBButtonAddByCodiceClientID = 'h_w_PC_cCoupon_btnAddCouponQBByCodice';
+                                var sAsyncQBTextClientID = 'h_w_PC_cCoupon_txtQB';
+                                var sTxtRicarica = 'h_w_PC_cCoupon_txtRicarica';
+                                var sChkRicarica = 'h_w_PC_cCoupon_chkRicAuto'
+                                var sCouponButtonClientID = 'h_w_PC_cCoupon_btnAddCoupon';
+                                var sCouponQuotaClientID = 'h_w_PC_cCoupon_txtIDQuota';
+                                var sCPqt = sCouponQuotaClientID;
+                                var sCPbtn = sCouponButtonClientID;
+                                var sCouponImportoClientID = 'h_w_PC_cCoupon_txtAddImporto';
+                                var sTxtTotaleDI = 'h_w_PC_cCoupon_txtTotaleDI';
+                                var sHidBonusNumScommesse = 'h_w_PC_cCoupon_hidBonusNumScommesse';
+                                var sHidBonusQuotaMinimaAttivo = 'h_w_PC_cCoupon_hidBonusQuotaMinimaAttivo';
+                                var sHidBonusRaggruppamentoMinimo = 'h_w_PC_cCoupon_hidBonusRaggruppamentoMinimo'
+                                var sHidNumItemCoupon = 'h_w_PC_cCoupon_hidNumItemCoupon'
+                                var sCouponPrecompilatoButtonClientID = 'h_w_PC_cCoupon_btnAddCouponPrecompilato';
+                                var sCouponPrecompilatoIDClientID = 'h_w_PC_cCoupon_txtIDCouponPrecompilato';
+                                var sCouponPrecompilatoIDClientImporto = 'h_w_PC_cCoupon_txtImportoCouponPrecompilato';
+                                var sDivRicMan = 'h_w_PC_cCoupon_divRicMan';
+                                var sDivRicAuto = 'h_w_PC_cCoupon_divRicAuto';
+                                var sReloadCouponButtonClientID = 'h_w_PC_cCoupon_btnReloadCoupon';
+                                var sReloadCouponIDClientID = 'h_w_PC_cCoupon_txtIDCouponReload';
+
+
+                                var sTxtImportoValuta = 'h_w_PC_cCoupon_txtImportoValuta';
+                                var sTxtImportoCassaDI = 'h_w_PC_cCoupon_txtImportoDIValuta';
+                                var sDdlValuta = 'h_w_PC_cCoupon_ddlValuta';
+                                var sDdlValutaDI = 'h_w_PC_cCoupon_ddlValutaDI';
+                                var sDdlValutaSis = 'h_w_PC_cCoupon_ddlValutaSis';
+                                var sLblImportoDICombinazioni = 'h_w_PC_cCoupon_lblImportoDICombinazioni'
+                                var sImgOpen = '/App_Themes/Bet9ja/images/couponbtn_open.png'
+                                var sImgClose = '/App_Themes/Bet9ja/images/couponbtn_close.png'
+
+                                var sTooltipSblocca = 'Unlock Betslip'
+                                var sTooltipBlocca = 'Lock Betslip'
+                                var sCmbSpecials = 'Specials'
+                                var sLnkBlocca = 'h_w_PC_cCoupon_lnkBlocca'
+                                var sUrlPrintCoupon = 'PrintCouponExt.aspx?IDCoupon='
+                                var sBtnRefreshAttesa = 'h_w_PC_cCoupon_btnRefreshAttesa'
+                                var sBtnRefreshAsincrono = 'h_w_PC_cCoupon_btnRefreshAsincrono'
+                                var sHidPrintAsincrono = 'h_w_PC_cCoupon_hidPrintAsincronoDisabled'
+
+                                var loginPopup;
+
+                                Sys.WebForms.PageRequestManager.getInstance().add_endRequest(CouponEndRequestHandler);
+                                Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(selezionaQuote);
+
+                                /************COUPON DRAGGABILE E RICHIUDIBILE SCROLLABILE **********************/
+                                /****************************************************************************/
+                                var numItemVis = 0;
+                                var numItemVisConf = 0;
+                                var varResize = 0;
+                                var numItemOrig = 0;
+                                /****************************************************************************/
+                                /************ FINE COUPON DRAGGABILE E RICHIUDIBILE SCROLLABILE *****************/
+
+                                var heightItems = 0
+                                var heightItemsMax = 0
+                                var couponExpanded = 0
+                                var tooltipExpanded = 0
+
+                                $(document).ready(function () {
+                                    //Aggiungo lo script per il sistema importo cassa
+                                    importoCassa();
+
+                                    $(".CouponUserData .dropdown").mouseover(function () {
+                                        $(this).addClass("Expanded");
+                                    })
+                                    $(".CouponUserData .dropdown").change(function () {
+                                        $(this).removeClass("Expanded");
+                                    })
+                                    .blur(function () {
+                                        $(this).removeClass("Expanded");
+                                    });
+                                    replaceSepTxt();
+
+                                    //Script per visualizzare solo N quote inserite
+                                    //tramite scrollbar o pulsanti espandi/collassa
+
+                                    initializeModalPopup(sBtnCloseId, "popupPrenotatoreSco", "backgroundPrenotatoreSco");
+
+
+                                });
+
+
+                                function openPrenotatoreSco() {
+                                    //alert("prenotatoresco");
+                                    $("#iframePrenotatoreSco").attr("src", "PrenotatoreScommesse.aspx");
+
+                                    centerPopup("popupPrenotatoreSco", "backgroundPrenotatoreSco");
+                                    loadPopup("popupPrenotatoreSco", "backgroundPrenotatoreSco");
+                                }
+                                function LoadPrenotazione(lnkAvantiClientID, evt) {
+                                    var keyCode = null;
+
+                                    if (evt.which) {
+                                        keyCode = evt.which;
+                                    } else if (evt.keyCode) {
+                                        keyCode = evt.keyCode;
+                                    }
+
+
+                                    if (keyCode == 13) {
+                                        evt.returnValue = false;
+                                        evt.cancel = true;
+
+                                        var btn = $get(lnkAvantiClientID);
+                                        btn.click();
+                                    }
+                                }
+
+
+                                //Script per visualizzare la tooltuip con il cambio
+                                function showCambio() {
+                                    $(".spanCambio").attr("title", "1 N = " + arrotonda(getCambio(), 4).toString().replace(".", sepDec) + getSimboloValSel());
+                                }
+
+                                function mainRefreshCoupon() {
+                                    if ($('#h_w_PC_cCoupon_lnkMainRefresh').length > 0) { $('#h_w_PC_cCoupon_lnkMainRefresh')[0].click(); }
+                                }
+
+
+                            </script>
+
+
+
+
+
+                            <div id="h_w_PC_cCoupon_atlasCoupon">
+
+
+                                <script language="javascript" type="text/javascript">
+                                    /* Variabili aggiornate durante postback */
+                                    //Valuta dell'utente, può essere la default o la sua
+                                    var IDValutaUtente = '11';
+                                    //Parametro che indica se è abilitata la valuta cassa
+                                    var valCassa = 0;
+
+                                </script>
+
+                                <div class="Top">
+                                    <h3>Betslip</h3>
+                                    <span></span>
+
+
+
+                                </div>
+
+
+                                <div class="Cnt" id="divContentCoupon">
+                                    <input name="h$w$PC$cCoupon$hidRiserva" id="h_w_PC_cCoupon_hidRiserva" value="0" type="hidden" />
+                                    <input name="h$w$PC$cCoupon$hidAttesa" id="h_w_PC_cCoupon_hidAttesa" value="0" type="hidden" />
+                                    <input name="h$w$PC$cCoupon$hidCouponAsincrono" id="h_w_PC_cCoupon_hidCouponAsincrono" value="0" type="hidden" />
+                                    <input name="h$w$PC$cCoupon$hidTipoCoupon" id="h_w_PC_cCoupon_hidTipoCoupon" type="hidden" />
+                                    <input name="h$w$PC$cCoupon$hidStatoCoupon" id="h_w_PC_cCoupon_hidStatoCoupon" value="0" type="hidden" />
+                                    <input name="h$w$PC$cCoupon$hidBonusNumScommesse" id="h_w_PC_cCoupon_hidBonusNumScommesse" type="hidden" />
+                                    <input name="h$w$PC$cCoupon$hidQuotaTotaleDIMax" id="h_w_PC_cCoupon_hidQuotaTotaleDIMax" type="hidden" />
+                                    <input name="h$w$PC$cCoupon$hidQuotaTotaleDIMin" id="h_w_PC_cCoupon_hidQuotaTotaleDIMin" type="hidden" />
+                                    <input name="h$w$PC$cCoupon$hidQuotaTotale" id="h_w_PC_cCoupon_hidQuotaTotale" type="hidden" />
+                                    <input name="h$w$PC$cCoupon$hidIDQuote" id="h_w_PC_cCoupon_hidIDQuote" type="hidden" />
+                                    <input name="h$w$PC$cCoupon$hidModificatoQuote" id="h_w_PC_cCoupon_hidModificatoQuote" value="1" type="hidden" />
+                                    <input name="h$w$PC$cCoupon$hidBonusQuotaMinimaAttivo" id="h_w_PC_cCoupon_hidBonusQuotaMinimaAttivo" value="0" type="hidden" />
+                                    <input name="h$w$PC$cCoupon$hidBonusRaggruppamentoMinimo" id="h_w_PC_cCoupon_hidBonusRaggruppamentoMinimo" value="0" type="hidden" />
+                                    <input name="h$w$PC$cCoupon$hidNumItemCoupon" id="h_w_PC_cCoupon_hidNumItemCoupon" value="0" type="hidden" />
+                                    <input name="h$w$PC$cCoupon$hidIDCoupon" id="h_w_PC_cCoupon_hidIDCoupon" type="hidden" />
+                                    <input name="h$w$PC$cCoupon$hidPrintAsincronoDisabled" id="h_w_PC_cCoupon_hidPrintAsincronoDisabled" value="0" type="hidden" />
+
+                                    <div id="divAttesa" style="display:none" class="cpnDivAttesa">
+
+                                        <div class="divAnimazioneLiveHTML"><span>Wait to bet yet</span></div>
+
+                                    </div>
+
+                                    <div id="divCouponAsync" style="display:none;" class="divCouponAsync">
+                                        Bet is pending acceptance. please see bet list to check status
+                                        <div><input name="h$w$PC$cCoupon$btnScoAncoraAsync" value="Bet Again (+)" onclick="NewBet();" id="h_w_PC_cCoupon_btnScoAncoraAsync" class="button" onkeyup="trapNextBet(event, 'h_w_PC_cCoupon_btnScoAncoraAsync');return false;" style="width:150px;" type="submit" /></div>
+                                    </div>
+
+                                    <div id="divInserimentoScommesse">
+                                        <!-- **0** COUPON VUOTO-->
+                                        <div id="h_w_PC_cCoupon_divCouponVuoto" class="couponempty">
+
+                                            Click on the odds to add to your betslip
+
+                                        </div>
+
+                                        <!--SEZIONE ERRORE GENERICO-->
+                                        <!-- **1** INSERIMENTO -->
+                                        <!-- **2** CONFERMA -->
+                                        <!-- **3** ACCETTATA --->
+                                        <!-- Inserimento asincrono di una quota -->
+                                        <input name="h$w$PC$cCoupon$btnAddCoupon" value="Add" onclick="javascript:__doPostBack('h$w$PC$cCoupon$btnAddCoupon','')" id="h_w_PC_cCoupon_btnAddCoupon" style="display:none;" type="button" />
+                                        <input name="h$w$PC$cCoupon$txtIDQuota" id="h_w_PC_cCoupon_txtIDQuota" type="hidden" />
+                                        <input name="h$w$PC$cCoupon$btnAddCouponQB" value="AddQB" onclick="javascript:__doPostBack('h$w$PC$cCoupon$btnAddCouponQB','')" id="h_w_PC_cCoupon_btnAddCouponQB" style="display:none" type="button" />
+                                        <input name="h$w$PC$cCoupon$btnAddCouponQBByCodice" value="" onclick="javascript:__doPostBack('h$w$PC$cCoupon$btnAddCouponQBByCodice','')" id="h_w_PC_cCoupon_btnAddCouponQBByCodice" style="display:none" type="button" />
+                                        <input name="h$w$PC$cCoupon$btnRefreshAttesa" value="" onclick="javascript:__doPostBack('h$w$PC$cCoupon$btnRefreshAttesa','')" id="h_w_PC_cCoupon_btnRefreshAttesa" style="display:none" type="button" />
+                                        <input name="h$w$PC$cCoupon$btnRefreshAsincrono" value="" onclick="javascript:__doPostBack('h$w$PC$cCoupon$btnRefreshAsincrono','')" id="h_w_PC_cCoupon_btnRefreshAsincrono" style="display:none" type="button" />
+                                        <input name="h$w$PC$cCoupon$txtQB" id="h_w_PC_cCoupon_txtQB" type="hidden" />
+                                        <input name="h$w$PC$cCoupon$txtAddImporto" id="h_w_PC_cCoupon_txtAddImporto" type="hidden" />
+
+                                        <!-- Inserimento asincrono di un Coupon precompilato -->
+                                        <input name="h$w$PC$cCoupon$btnAddCouponPrecompilato" value="ADDCouponPre" onclick="javascript:__doPostBack('h$w$PC$cCoupon$btnAddCouponPrecompilato','')" id="h_w_PC_cCoupon_btnAddCouponPrecompilato" style="display:none" type="button" />
+                                        <input name="h$w$PC$cCoupon$txtIDCouponPrecompilato" id="h_w_PC_cCoupon_txtIDCouponPrecompilato" type="hidden" />
+                                        <input name="h$w$PC$cCoupon$txtImportoCouponPrecompilato" id="h_w_PC_cCoupon_txtImportoCouponPrecompilato" type="hidden" />
+
+                                        <!-- Ricarica coupon da codice -->
+                                        <input name="h$w$PC$cCoupon$btnReloadCoupon" value="ReloadCoupon" onclick="javascript:__doPostBack('h$w$PC$cCoupon$btnReloadCoupon','')" id="h_w_PC_cCoupon_btnReloadCoupon" style="display:none" type="button" />
+                                        <input name="h$w$PC$cCoupon$txtIDCouponReload" id="h_w_PC_cCoupon_txtIDCouponReload" type="hidden" />
+                                    </div>
+                                    <!--RICARICA COUPON-->
+
+                                </div>
+                                <div class="Btm"></div>
+
+                            </div>
+
+
+
+                            <script language="javascript" type="text/javascript">
+                                var numScoRiserva = 0;
+                                var jsRiservaLogged = 'True'
+
+                                function checkScoRiserva() {
+                                    //Chiamata al webservice che popola i dettagli del saldo
+                                    ISBets.WebPages.Controls.ScoRiservaWS.GetScoRiserva(0, OnScoRiservaRequestComplete);
+                                }
+
+                                //Viene chiamata al termine della chiamata asincrona al webservice che restituisce i dati
+                                function OnScoRiservaRequestComplete(results) {
+                                    if (results != null) {
+                                        if (numScoRiserva != results) {
+                                            numScoRiserva = results;
+                                            document.getElementById('h_w_PC_ScoRis_btnRefresh').click();
+                                        } else {
+                                            numScoRiserva = results;
+                                        }
+                                    }
+                                }
+
+                                if (jsRiservaLogged != 'True') { setInterval("checkScoRiserva()", '15000'); }
+
+
+
+                                //CONTROLLING EVENTS IN jQuery
+                                $(document).ready(function () {
+                                    initializePopup("popupContactDettCloseS", "popupContactSR", "backgroundPopupSR");
+                                });
+
+                                function showPopupSR(IDCoupon, IDCouponAsincrono, IDRisultatoSalvataggioCoupon) {
+                                    centerPopup("popupContactSR", "backgroundPopupSR");
+                                    loadPopup("popupContactSR", "backgroundPopupSR");
+
+                                    if (IDCouponAsincrono != -1 && IDRisultatoSalvataggioCoupon != 0) {
+                                        document.getElementById("iframeSR").src = '/Sport/BetDetailAsyncPopup.aspx?IDCoupon=' + IDCouponAsincrono;
+                                    } else {
+                                        document.getElementById("iframeSR").src = '/Sport/BetDetailPopup.aspx?IDCoupon=' + IDCoupon;
+                                    }
+
+                                    /*  if(IDCouponAsincrono != -1){
+                                          $('.RiquadroPopRiserva .divTitle H3').html('');
+                                      }else{
+                                          $('.RiquadroPopRiserva .divTitle H3').html('THIS BET IS CURRENTLY PENDING ACCEPTANCE');
+                                      }*/
+                                }
+
+
+                            </script>
+
+
+
+
+                            <span id="h_w_PC_ScoRis_pnlScoRiserva">
+
+                            </span>
+                            <div id="popupContactSR">
+                                <div class="RiquadroPopRiserva">
+                                    <div class="TopSX"><div class="TopDX"></div></div><div class="Cnt">
+                                        <div>
+
+                                            <div class="divTitle"><h3>THIS BET IS CURRENTLY PENDING ACCEPTANCE</h3><a id="popupContactDettCloseS"><img src="../App_Themes/Bet9ja/images/icons/close_black_ico.gif" id="h_w_PC_ScoRis_imgClose" /></a></div>
+                                            <iframe style=" width:100%" id="iframeSR" scrolling="auto" border="0" marginwidth="0" marginheight="0" frameborder="0" height="420"></iframe>
+
+                                        </div>
+                                    </div><div class="BtmSX"><div class="BtmDX"></div></div>
+                                </div>
+                            </div>
+                            <div id="backgroundPopupSR"></div>
+                            <input name="h$w$PC$ScoRis$btnRefresh" value="" id="h_w_PC_ScoRis_btnRefresh" style="visibility: hidden; display: none;" type="submit" />
+
+
+
+                            <div class="divBannerDX">
+                                <p><a href="/Pages/Tutorial_book/Guest" target="_blank"><img alt="" src="/App_Themes/Bet9ja/Images/book.png" style="width: 216px; height: 179px;" /></a></p>
+
+                                <p><a href="http://franchise.bet9ja.com" target="_blank"><img alt="" src="https://www.bet9ja.com/ImgCMS/BannerHtml_DX1/agent_number.png" style="width: 216px; height: 179px;" /></a></p>
+
+                                <div onclick="javascript:window.open('/TPAutologin.aspx?Destinazione=Casino','', 'width=1000,height=700,scrollbars=1')" style="width:216px;height:344px;background-image:url(https://www.bet9ja.com/ImgCMS/BannerHtml_DX1//bet9jaracing.jpg);cursor:pointer;">
+                                    <div id="grand_jackpot" style="width:108px;height:20px;background-color:#228942;font-family:Arial;font-size:18px;color:#F5E075;position:relative;top:225px;left:44px;text-align:center;font-weight:bold;left:94px;border:2px;border-size:2px;border-style:solid;border-color:#69C489;">₦ 334,453</div>
+
+                                    <div id="jackpot" style="width:108px;height:20px;background-color:#228942;font-family:Arial;font-size:18px;color:#F5E075;position:relative;top:245px;left:94px;border:2px;border-size:2px;border-style:solid;border-color:#69C489;font-weight:bold;text-align:center;">₦ 27,237</div>
+                                </div>
+                                <script language="JavaScript" type="text/javascript">
+
+                                    Number.prototype.formatMoney = function (c, d, t) {
+                                        var n = this,
+                                            c = isNaN(c = Math.abs(c)) ? 2 : c,
+                                            d = d == undefined ? "." : d,
+                                            t = t == undefined ? "," : t,
+                                            s = n < 0 ? "-" : "",
+                                            i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "",
+                                            j = (j = i.length) > 3 ? j % 3 : 0;
+                                        return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+                                    };
+
+
+                                    /*var req = new Request.JSON({
+                                        //url: "http://goldbet.casinodesign.org/computers/videobet/feedJackpot.php",
+                                        url: "https://franchise.bet9ja.com/Handler.ashx",
+                                        timeout: 10000,
+                                        method: 'get',
+                                        onFailure: function() {
+                                            //console.error("request failed");
+                                        },
+                                        onTimeout: function() {
+                                            this.onFailure();
+                                        },
+                                        onSuccess: function(retval) {
+
+
+                                            if (retval.grand_jackpot) {
+                                                var a = Math.floor(retval.grand_jackpot);
+                                                var a_jackpot = a.formatMoney(0, '.', ',');
+                                                $('#grand_jackpot').html("₦ ".concat(a_jackpot));
+                                            }
+                                            if (retval.jackpot) {
+
+                                                var b = Math.floor(retval.jackpot);
+                                               var b_jackpot= b.formatMoney(0, '.', ',');
+
+                                                $('#jackpot').html("₦ ".concat(b_jackpot));
+
+
+                                            }
+                                        }
+                                    });
+
+                                $( document ).ready(function() {
+
+                                    req.send.periodical(10000, req);
+                                     req.send();
+
+                                }); */
+                                    $(document).ready(function () {
+
+                                        setInterval(function () {
+                                            jackpot_feed();
+                                        }, 8000); //5 seconds
+
+                                    });
+
+                                    function jackpot_feed() {
+                                        $.ajax({
+                                            type: "GET",
+                                            url: "https://franchise.bet9ja.com/Handler.ashx",
+                                            dataType: "json",
+                                            timeout: 30000,
+                                            success: function (retval) {
+                                                //alert(response.jackpot);
+                                                if (retval.grand_jackpot) {
+                                                    var a = Math.floor(retval.grand_jackpot);
+                                                    var a_jackpot = a.formatMoney(0, '.', ',');
+                                                    $('#grand_jackpot').html("₦ ".concat(a_jackpot));
+                                                }
+                                                if (retval.jackpot) {
+
+                                                    var b = Math.floor(retval.jackpot);
+                                                    var b_jackpot = b.formatMoney(0, '.', ',');
+
+                                                    $('#jackpot').html("₦ ".concat(b_jackpot));
+                                                }
+                                            }
+                                        });
+                                    }
+
+                                </script>
+                            </div>
+
+
+                            <script language="javascript" type="text/javascript">
+                                function checkQuotaDaRaggiungere(oSrc, args) {
+                                    var oTxtVincita = $get("h_w_PC_ctl06_txtVincita");
+                                    if (oTxtVincita == null) return;
+                                    var oTxtGiocata = $get("h_w_PC_ctl06_txtGiocata");
+                                    if (oTxtGiocata == null) return;
+                                    var vincita = parseFloat(oTxtVincita.value.replace(",", "."));
+                                    var giocato = parseFloat(oTxtGiocata.value.replace(",", "."));
+                                    if ((!isNaN(parseFloat(oTxtGiocata.value.replace(",", ".")))) && (!isNaN(parseFloat(oTxtVincita.value.replace(",", "."))))) {
+                                        if (((vincita / giocato) >= 10) && ((vincita / giocato) <= 20000))
+                                            args.IsValid = true;
+                                        else
+                                            args.IsValid = false;
+                                    }
+                                }
+                            </script>
+
+                            <div class="SXTitleHotWin">Lotto Win</div>
+                            <div class="SXContentHotWin">
+                                <div id="h_w_PC_ctl06_vgHotWin" class="ValidationSummary" style="color:Red;display:none;">
+
+                                </div>
+                                <div id="h_w_PC_ctl06_pnlHotWin">
+
+                                    <div class="HWLblWin">To Win</div>
+                                    <div class="HWTxtWin">
+                                        <input name="h$w$PC$ctl06$txtVincita" id="h_w_PC_ctl06_txtVincita" type="text" />
+                                        <span id="h_w_PC_ctl06_reqVincita" title="Error in win selection!" style="color:Red;display:none;"><img src="../App_Themes/Bet9ja/Images/Error_Small.png" class="imgError" border="0" /></span>
+                                        <span id="h_w_PC_ctl06_checkQuotaDaRaggiungere" title="The HOT Win multiplier can only be between 10 and 20,000." style="color:Red;display:none;"><img src="../App_Themes/Bet9ja/Images/Error_Small.png" class="imgError" border="0" /></span>
+                                        <span id="h_w_PC_ctl06_cmpVincita" title="Error in win selection!" style="color:Red;display:none;"><img src="../App_Themes/Bet9ja/Images/Error_Small.png" class="imgError" border="0" /></span>
+                                    </div>
+                                    <div class="HWLblPlay">Your Stake</div>
+                                    <div class="HWTxtPlay">
+                                        <input name="h$w$PC$ctl06$txtGiocata" id="h_w_PC_ctl06_txtGiocata" type="text" />
+                                        <span id="h_w_PC_ctl06_reqGiocata" title="Error in bet selection!" style="color:Red;display:none;"><img src="../App_Themes/Bet9ja/Images/Error_Small.png" class="imgError" border="0" /></span>
+                                        <span id="h_w_PC_ctl06_cmpGiocata" title="Error in bet selection!" style="color:Red;display:none;"><img src="../App_Themes/Bet9ja/Images/Error_Small.png" class="imgError" border="0" /></span>
+                                    </div>
+
+                                </div>
+                                <div class="HWBtn"><a id="h_w_PC_ctl06_lbtnVai" title="Place Bet!" href="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;h$w$PC$ctl06$lbtnVai&quot;, &quot;&quot;, true, &quot;vHotWin&quot;, &quot;&quot;, false, true))">GENERATE BET</a></div>
+                            </div>
+
+
+
+
+                            <script language="javascript" type="text/javascript">
+                                $(document).ready(function () {
+                                    GiocaCouponPrecompilato(-1);
+                                });
+                            </script>
+
+                            <!-- LAST WINNINGS -->
+                            <!--
+
+                            <script type="text/javascript">
+                                function showPopupLastWinnings(IDCoupon) {
+
+                                    centerPopup("popupLW", "backgroundPopupLW");
+                                    loadPopup("popupLW", "backgroundPopupLW");
+                                    document.getElementById("iframeLW").src = '/Sport/LastWinningsDetailsPopUp.aspx?IDCoupon=' + IDCoupon;
+
+                                }
+
+                            //CONTROLLING EVENTS IN jQuery
+                                $(document).ready(function () {
+                                initializePopup("popupLWClose", "popupLW", "backgroundPopupLW");
+                            });
+
+
+                            </script>
+
+
+
+                            <div id="h_w_PC_ctl08_pnlUpdate">
+
+                            <div class="LWTitle">Latest Winners</div>
+                            <div id="LWMainItems" class="LWContent">
+
+                                <ul id="h_w_PC_ctl08_lnkList">
+                                    <li class="sel"><a href="javascript:__doPostBack(&#39;h$w$PC$ctl08$lnkList&#39;,&#39;0&#39;)">24 hour</a></li><li><a href="javascript:__doPostBack(&#39;h$w$PC$ctl08$lnkList&#39;,&#39;1&#39;)">7 days</a></li><li><a href="javascript:__doPostBack(&#39;h$w$PC$ctl08$lnkList&#39;,&#39;2&#39;)">14 days</a></li>
+                                </ul>
+
+                                        <div class="LWHead">
+                                            <div class="LWHUser"></div>
+                                            <div class="LWHPlay"></div>
+                                            <div class="LWHData"></div>
+                                            <div class="LWHImporto"></div>
+                                        </div>
+
+
+
+
+
+                                        <div class="LWItem country160">
+                                            <div class="LWUser"><a title="Show bet detail" href="javascript: void(0)" onclick="showPopupLastWinnings(124027789);">n.d.</a></div>
+                                            <div class="LWPlay"><span class="LWPlayTxt">play:</span>100.00 &#8358;</div>
+                                            <div class="LWData"><a title="Show bet detail" href="javascript: void(0)" onclick="showPopupLastWinnings(124027789);">15/03/2015</a></div>
+                                            <div class="LWImporto"><a title="Show bet detail" href="javascript: void(0)" onclick="showPopupLastWinnings(124027789);"><span class="LWImportoTxt">wins:</span>28,967.85 &#8358;</a></div>
+                                        </div>
+
+
+                                        <div class="LWAItem country160">
+                                            <div class="LWUser"><a title="Show bet detail" href="javascript: void(0)" onclick="showPopupLastWinnings(124155869);">n.d.</a></div>
+                                            <div class="LWPlay"><span class="LWPlayTxt">play:</span>200.00 &#8358;</div>
+                                            <div class="LWData"><a title="Show bet detail" href="javascript: void(0)" onclick="showPopupLastWinnings(124155869);">15/03/2015</a></div>
+                                            <div class="LWImporto"><a title="Show bet detail" href="javascript: void(0)" onclick="showPopupLastWinnings(124155869);"><span class="LWImportoTxt">wins:</span>19,676.00 &#8358;</a></div>
+                                        </div>
+
+
+                                        <div class="LWItem country160">
+                                            <div class="LWUser"><a title="Show bet detail" href="javascript: void(0)" onclick="showPopupLastWinnings(123907431);">T. D.</a></div>
+                                            <div class="LWPlay"><span class="LWPlayTxt">play:</span>100.00 &#8358;</div>
+                                            <div class="LWData"><a title="Show bet detail" href="javascript: void(0)" onclick="showPopupLastWinnings(123907431);">15/03/2015</a></div>
+                                            <div class="LWImporto"><a title="Show bet detail" href="javascript: void(0)" onclick="showPopupLastWinnings(123907431);"><span class="LWImportoTxt">wins:</span>12,884.17 &#8358;</a></div>
+                                        </div>
+
+
+                                        <div class="LWAItem country160">
+                                            <div class="LWUser"><a title="Show bet detail" href="javascript: void(0)" onclick="showPopupLastWinnings(123896946);">A. A.</a></div>
+                                            <div class="LWPlay"><span class="LWPlayTxt">play:</span>100.00 &#8358;</div>
+                                            <div class="LWData"><a title="Show bet detail" href="javascript: void(0)" onclick="showPopupLastWinnings(123896946);">15/03/2015</a></div>
+                                            <div class="LWImporto"><a title="Show bet detail" href="javascript: void(0)" onclick="showPopupLastWinnings(123896946);"><span class="LWImportoTxt">wins:</span>11,873.65 &#8358;</a></div>
+                                        </div>
+
+
+                                        <div class="LWItem country160">
+                                            <div class="LWUser"><a title="Show bet detail" href="javascript: void(0)" onclick="showPopupLastWinnings(124097916);">n.d.</a></div>
+                                            <div class="LWPlay"><span class="LWPlayTxt">play:</span>200.00 &#8358;</div>
+                                            <div class="LWData"><a title="Show bet detail" href="javascript: void(0)" onclick="showPopupLastWinnings(124097916);">15/03/2015</a></div>
+                                            <div class="LWImporto"><a title="Show bet detail" href="javascript: void(0)" onclick="showPopupLastWinnings(124097916);"><span class="LWImportoTxt">wins:</span>11,768.16 &#8358;</a></div>
+                                        </div>
+
+
+
+
+
+                                    </div>
+
+                            </div>
+
+                            <div id="popupLW">
+                                <div class="RiquadroPopRiserva"><div class="TopSX"><div class="TopDX"></div></div><div class="Cnt"><div id="h_w_PC_ctl08_pnl">
+
+                                    <div class="divTitle"><h3>Latest Winners</h3><a id="popupLWClose"><img src="../App_Themes/Bet9ja/images/icons/close_black_ico.gif" id="h_w_PC_ctl08_imgClose" /></a></div>
+                                    <div class="img"></div>
+                                    <iframe style=" width:100%" height="340" id="iframeLW" scrolling="auto" frameborder="0" border="0" marginwidth="0" marginheight="0" allowtransparency="true"></iframe>
+
+                            </div></div><div class="BtmSX"><div class="BtmDX"></div></div></div>
+                            </div>
+                            <div id="backgroundPopupLW"></div>
+                            -->
+
+                            <div>
+                                <div class="SXTitleLastRes">News</div>
+
+                            </div>
+                        </div>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="spacer30"></div>
+    </div>
+</div>

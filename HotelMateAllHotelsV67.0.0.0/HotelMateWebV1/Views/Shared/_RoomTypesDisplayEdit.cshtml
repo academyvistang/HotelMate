@@ -1,0 +1,35 @@
+﻿@model HotelMateWebV1.Models.RoomBookingViewModel
+<link href="~/css/CoolTable.css" rel="stylesheet" />
+
+
+<div class="eight columns">
+
+    <h1 class="page-title ci-title" style="margin-bottom:10px;"><span>Room Types</span></h1>
+
+    <div>
+        <table class="striped fixedlayout">
+            <thead>
+                <tr>
+                    <th width="20%"></th>
+                    <th width="20%">Name</th>
+                    <th width="60%">Description</th>
+                </tr>
+            </thead>
+            <tbody id="CasesTableBody1">
+                @foreach (var rm in Model.RoomTypesList)
+                {
+                    <tr id="@rm.Id">
+                        <td class="tth2"> <a class="erbEditorOpener buttonDevFirst" href="@Url.Action("EditRoomTypes", "Booking", new { id = rm.Id })">@rm.Name</a></td>
+                        <td class="tth2">@rm.Name</td>
+                        <td class="tth2">@rm.Description</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+
+
+

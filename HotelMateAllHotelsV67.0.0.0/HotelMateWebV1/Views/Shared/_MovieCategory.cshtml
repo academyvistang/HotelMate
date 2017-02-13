@@ -1,0 +1,34 @@
+﻿@model HotelMateWebV1.Models.GuestRoomAccountViewModel
+<link href="~/css/Category.css" rel="stylesheet" />
+
+
+<div id="gallery-black" > 
+ <div class="imageContainer" > 
+
+@for (int i = 1; i < 10; i++)
+{
+
+     <div class="image-block" > 
+        
+             @{ var val = i.ToString() + ".png"; }
+              
+         <a href="@Url.Action("ShowFilms", "Guest", new { id = i })">
+             <img src="~/Videos/Category/@val" height="155" width="155" />
+         </a>
+             
+
+
+         <div class="reflection">
+             <img src='~/images/Category/@val' title="Category" height="155" width="155" alt="" />
+             <div class="overlay"></div>
+         </div>  
+             
+         
+        
+    </div >
+        
+
+}
+ </div > 
+ </div >
+

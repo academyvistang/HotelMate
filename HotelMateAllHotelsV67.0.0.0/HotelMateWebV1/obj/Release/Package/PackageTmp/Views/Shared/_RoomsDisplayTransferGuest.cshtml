@@ -1,0 +1,49 @@
+﻿@using HotelMateWebV1.Helpers
+@model HotelMateWebV1.Models.RoomBookingViewModel
+
+<link href="~/css/CoolTable.css" rel="stylesheet" />
+
+
+<div class="eight columns">
+    <h1 class="page-title ci-title" style="margin-bottom:10px;"><span>GUEST/BILL TRANSFERS</span></h1>
+    
+        <div>
+            <table class="striped fixedlayout">
+                <thead>
+                    <tr>
+                        <th width="15%"></th>
+                        <th width="25%">Guest</th>
+                        <th width="20%">Room Number</th>
+                        <th width="20%">Room Type</th>
+                        <th width="20%">Rate </th>
+                        <th width="25%">Business Rate </th>
+                    </tr>
+                </thead>
+                <tbody id="CasesTableBody1">
+                    @foreach (var rm in Model.RoomsList)
+                    {
+                        <tr id="@rm.Id">
+                            <td class="tth2">
+                            <a class="erbEditorOpener buttonDevFirst" href="@Url.Action("TransferGuestToRoom", "GuestAccount", new
+                                                                       {
+                                                                           id = rm.Id,
+                                                                           previousRoomId = Model.RoomId,
+                                                                           guestId = Model.GuestId,
+                                                                           Model.CheckinDate,
+                                                                           Model.CheckoutDate
+                                                                       })">To @rm.RoomNumber</a>
+                            </td>
+                            <td class="tth2">@rm.GetRoomGuest()</td>
+                            <td class="tth2">@rm.RoomNumber</td>
+                            <td class="tth2">@rm.RoomType1.Name</td>
+                            <td class="tth2">@rm.Price</td>
+                            <td class="tth2">@rm.Price</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+   
+

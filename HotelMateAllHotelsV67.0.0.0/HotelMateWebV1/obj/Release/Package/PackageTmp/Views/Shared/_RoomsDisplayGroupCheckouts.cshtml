@@ -1,0 +1,38 @@
+﻿@model HotelMateWebV1.Models.GroupBookingViewModel
+<link href="~/css/CoolTable.css" rel="stylesheet" />
+
+
+<div class="eight columns">
+        <h1 class="page-title ci-title"> <span>@Model.PageTitle</span> </h1>
+        <div>
+            <table class="striped fixedlayout">
+                <thead>
+                    <tr>
+                        <th width="20%"></th>
+                        <th width="20%">Room Number</th>
+                        <th width="20%">Room Type</th>
+                        <th width="20%">Rate </th>
+                        <th width="20%">Checking</th>
+                        <th width="30%">Guest</th>
+                    </tr>
+                </thead>
+                <tbody id="CasesTableBody1">
+                    @foreach (var rm in Model.GuestRoomsCheckedIn)
+                    {
+                        string arrive = "arrive_"+rm.Id;
+                        <tr id="@rm.Id">
+                            <td class="tth2"><a class="erbEditorOpener buttonDevFirst" href="@Url.Action("CheckOutIndividualGuest", "GuestAccount", new { id = Model.GuestId, guestRoomId = rm.Id })">Checkout  @rm.Room.RoomNumber</a></td>
+                            <td class="tth2">@rm.Room.RoomNumber</td>
+                            <td class="tth2">@rm.Room.RoomType1.Name</td>
+                            <td class="tth2">@rm.RoomRate</td>
+                            <td class="tth2"><input id="@arrive" class="datepicker" type="text" name="@arrive" value="@rm.CheckinDate.ToShortDateString()"></td>
+                            <td class="tth2">@rm.Guest.FullName</td>
+                        </tr>
+                    }
+                    <tr><td colspan="6" class="tth2"><a class="erbEditorOpener buttonDevFirst" href="@Url.Action("CheckOutEntireGroup", "GuestAccount", new { id = Model.GuestId, guestRoomId = Model.GuestRoomId})">Checkout Entire Group</a></td></tr>
+                </tbody>
+            </table>
+        </div>
+        <br/>
+    </div>
+

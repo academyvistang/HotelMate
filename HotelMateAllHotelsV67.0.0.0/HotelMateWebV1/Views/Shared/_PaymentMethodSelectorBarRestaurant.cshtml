@@ -1,0 +1,35 @@
+﻿@model HotelMateWebV1.Models.RoomBookingViewModel
+
+
+
+
+@{string strDisplayIniDep = "display:none;"; if (Model.ShowDialog) { strDisplayIniDep = ""; } }
+<div class="twelve columns"></div>
+
+<div style="@strDisplayIniDep" id="ShowPaymentMethod">
+
+    <div class="six columns">
+        <label for="comments">Payment Method</label>
+        <br />
+        @if (Model.ShowDialog)
+            {
+            @Html.DropDownListFor(model => model.PaymentMethodId, Model.PaymentMethodsBarRestaurant)
+        }
+        else
+        {
+            @Html.DropDownListFor(model => model.PaymentMethodId, Model.PaymentMethodsBarRestaurant)
+        }
+
+        @Html.ValidationMessageFor(model => model.PaymentMethodId)
+
+    </div>
+    <div class="six columns">
+        <label for="comments">(if Cheque) Cheque No.</label>
+        <br />
+        @Html.TextBoxFor(model => model.PaymentMethodNote)
+    </div>
+
+</div>
+
+
+

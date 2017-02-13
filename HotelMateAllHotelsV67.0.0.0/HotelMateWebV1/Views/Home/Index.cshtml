@@ -1,0 +1,80 @@
+﻿@model HotelMateWebV1.Models.BaseViewModel
+@{
+    ViewBag.Title = "Home Page";
+}
+
+   
+    <div class="eight columns">
+
+        @if(Model.LoginFailed.HasValue && Model.LoginFailed.Value)
+        {
+            <h1 class="page-title ci-title"><span>Login Credentials not recognised.</span></h1>
+            <p style="Color:Red;">Incorrect credentials. Username or password not recognised.</p>
+        }
+        
+        @if(!User.IsInRole("Guest"))
+        {
+          <p style="Color:Red;">This version will expire on @Model.ExpiryDate. Please contact your supplier a month before this date.</p>
+        }
+        
+        @if(User.IsInRole("Guest"))
+        {
+            <p style="Color:white;">Thank you and welcome to @Model.HotelName . This is our interactive guest page. Here you can view and pay your bills using our intuitive express checkout.</p>
+            <p style="Color:white;">You can also watch movies with our innovative Joromi Cinemas. We sincerely do hope you enjoy your stay.</p>
+            <p style="Color:white;">Please do not hesitate to use our feedback form if you choose to leave a feedback.</p>            
+        }
+        
+        <br />
+        <div id="home-slider" class="bs flexslider">
+            <ul class="slides">
+                <li>
+                    <a href="#">
+                        <img width="830" height="420" src="~/images/slide0-830x420.jpg" class="attachment-slider_half wp-post-image" alt="Island view" />							<h3>Island view</h3>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img width="830" height="420" src="~/images/slide1-830x420.jpg" class="attachment-slider_half wp-post-image" alt="Room balcony view" />							<h3>Room balcony view</h3>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img width="830" height="420" src="~/images/slide2-830x420.jpg" class="attachment-slider_half wp-post-image" alt="Beautiful Sunset" />							<h3>Beautiful Sunset</h3>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img width="830" height="420" src="~/images/slide3-830x420.jpg" class="attachment-slider_half wp-post-image" alt="Amazing view" />							<h3>Amazing View</h3>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+@section SideBarBox
+{
+    @if(User.Identity.IsAuthenticated)
+    {
+       if(User.IsInRole("Guest"))
+       {
+           @Html.Partial("_CheckAvailabilityGuestDisplay")
+       } 
+       else
+       {
+           @Html.Partial("_CheckAvailabilityNew")
+       }
+    }
+    else
+    { 
+      @Html.Partial("_CheckAvailabilityNew")
+    }
+}
+
+@section PaginationBox
+{
+    @Html.Partial("_Pagination")    
+}
+
+
+
+

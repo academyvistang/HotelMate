@@ -1,0 +1,84 @@
+﻿@using System.Globalization
+@using HotelMateWebV1.Helpers
+@model HotelMateWebV1.Models.GuestRoomAccountViewModel
+
+
+<br />
+
+<img src="@Model.ImageUrl" width="400" alt="" />
+
+<br />
+
+
+
+<table class="striped fixedlayout">
+
+    <tbody id="CasesTableBody2">
+
+        <tr border="1">
+            <td class="tth2" bgcolor="#ff4980">@Html.LabelFor(model => model.GuestRoomNumber)</td>
+            <td class="tth2">@Html.DisplayFor(model => model.GuestRoomNumber)</td>
+            <td class="tth2" bgcolor="#ff4980">@Html.LabelFor(model => model.GuestName)</td>
+            <td class="tth2">@Html.DisplayFor(model => model.GuestName)</td>
+        </tr>
+        <tr border="1">
+            <td class="tth2" bgcolor="#ff4980">@Html.LabelFor(model => model.ArrivalDate)</td>
+            <td class="tth2">@Html.DisplayFor(model => model.ArrivalDate)</td>
+            <td class="tth2" bgcolor="#ff4980">@Html.LabelFor(model => model.DepartureDate)</td>
+            <td class="tth2">@Html.DisplayFor(model => model.DepartureDate)</td>
+        </tr>
+        <tr border="1">
+            <td class="tth2" bgcolor="#ff4980">@Html.LabelFor(model => model.NoOfNight)</td>
+            <td class="tth2">@Html.DisplayFor(model => model.NoOfNight)</td>
+            <td class="tth2" bgcolor="#ff4980">@Html.LabelFor(model => model.BillNo)</td>
+            <td class="tth2">@Html.DisplayFor(model => model.BillNo)</td>
+        </tr>
+
+    </tbody>
+
+</table>
+
+<br />
+
+
+
+
+<h3><span style="color:#FF2AB5;">Paid</span></h3>
+
+<div>
+    <table class="striped fixedlayout">
+        <thead>
+        </thead>
+        <tbody id="CasesTableBody1">
+
+            @{ var balance = Model.GuestRoomAccount.Amount;}
+
+            @if (balance > 0)
+            {
+                <tr border="1" bgcolor="#ff4980"><td></td><td></td><td></td><td></td><td>Paid</td><td>@balance</td></tr>
+            }
+            else
+            {
+                <tr border="1" bgcolor="#ff4980"><td></td><td></td><td></td><td></td><td>Paid</td><td>@balance</td></tr>
+            }
+
+        </tbody>
+    </table>
+    <br />
+
+
+</div>
+<br />
+
+<br />
+
+@Html.LabelFor(model => model.GuestSign)
+<br />
+<br />
+@Html.LabelFor(model => model.ReceptionSign)
+
+
+
+
+
+

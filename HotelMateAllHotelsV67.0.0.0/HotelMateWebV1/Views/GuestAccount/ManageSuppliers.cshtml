@@ -1,0 +1,19 @@
+﻿@model HotelMateWebV1.Models.SearchViewModel
+
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@Html.Partial("_SearchViewSuppliers")
+
+@section SideBarBox
+{
+    @Html.Partial("_SearchFilter")
+}
+
+@section PaginationBox
+{
+    @Html.Partial("_Pagination")
+}
+

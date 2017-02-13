@@ -1,0 +1,92 @@
+﻿@model HotelMateWebV1.Models.CreditAccountViewModel
+           
+<script src="~/DragnDrop/jquery-1.6.2.min.js"></script>
+           
+<style>
+    .dropdownDiv {
+        height: 100px;
+        width: 100%;
+        overflow: auto;
+        padding: 2px;
+    }
+</style>
+
+@Html.HiddenFor(model => model.Id)
+@Html.HiddenFor(model => model.Status)
+
+<div class="six columns">
+    <label for="RoomNumber">Name*</label>
+    @Html.TextBoxFor(model => model.Name)
+    @Html.ValidationMessageFor(model => model.Name)
+</div>
+
+<div class="six columns">
+    <label for="RoomNumber">Contact Name*</label>
+    @Html.TextBoxFor(model => model.ContactName)
+    @Html.ValidationMessageFor(model => model.ContactName)
+</div>
+
+<div class="six columns">
+    <label for="RoomNumber">Telephone*</label>
+    @Html.TextBoxFor(model => model.Telephone)
+    @Html.ValidationMessageFor(model => model.Telephone)
+</div>
+
+<div class="six columns">
+    <label for="RoomNumber">Mobile*</label>
+    @Html.TextBoxFor(model => model.Mobile)
+    @Html.ValidationMessageFor(model => model.Mobile)
+</div>
+
+<div class="six columns">
+    <label for="RoomNumber">Contact Number</label>
+    @Html.TextBoxFor(model => model.ContactNumber)
+</div>
+
+<div class="six columns">
+    <label for="RoomNumber">Company Name*</label>
+    @Html.TextBoxFor(model => model.CompanyName)
+    @Html.ValidationMessageFor(model => model.CompanyName)
+</div>
+
+<div class="twelve columns">
+<label for="comments">Address</label>
+@Html.TextAreaFor(model => model.Address, new {@cols="30", @rows="1"})
+@Html.ValidationMessageFor(model => model.Address)
+</div>
+
+<div class="six columns">
+    <label for="RoomNumber">Company Address*</label>
+    @Html.TextBoxFor(model => model.CompanyAddress)
+    @Html.ValidationMessageFor(model => model.CompanyAddress)
+</div>
+
+<div class="six columns">
+    <label for="RoomNumber">Company Telephone*</label>
+    @Html.TextBoxFor(model => model.CompanyTelephone)
+    @Html.ValidationMessageFor(model => model.CompanyTelephone)
+</div>
+
+<div class="six columns">
+    <label for="RoomNumber">Nature Of Business</label>
+    @Html.TextBoxFor(model => model.NatureOfBusiness)
+    @Html.ValidationMessageFor(model => model.NatureOfBusiness)
+</div>
+
+<div class="six columns">
+    <label for="RoomNumber">Email</label>
+    @Html.TextBoxFor(model => model.Email)
+    @Html.ValidationMessageFor(model => model.Email)
+</div>
+
+
+<div class="twelve columns">
+ <input type="submit" value="Save" name="send_booking">
+ </div>
+    
+         
+
+
+    
+
+

@@ -1,0 +1,37 @@
+﻿@model HotelMateWebV1.Models.GuestRoomAccountViewModel
+
+
+
+@Html.HiddenFor(x => x.PaymentTypeId)
+@Html.HiddenFor(x => x.gId)
+
+
+
+<div class="six columns">
+    <label for="FullName">Name*</label>
+    @Html.TextBoxFor(model => model.Guest.FullName)
+    @Html.ValidationMessageFor(model => model.Guest.FullName)
+</div>
+
+
+
+<div class="twelve columns">
+    <label for="comments">Reference No.</label>
+    @Html.TextBoxFor(model => model.Notes)
+</div>
+
+
+    <div class="twelve columns">
+        <label for="comments">Switch To</label><br />
+        @Html.DropDownListFor(model => model.NewGuestRoomId, Model.RoomAccounts, new { @name = "room_select", @id = "b-company", @style = "width:310px;" })
+    </div>
+  
+
+
+
+<div class="twelve columns">
+    <input type="submit" value="Switch @Model.Guest.FullName Bill" name="send_booking">
+</div>
+
+
+

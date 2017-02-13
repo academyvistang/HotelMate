@@ -1,0 +1,21 @@
+﻿@model List<HotelMateWebV1.Models.CardOwner>
+
+@foreach (var gu in Model)
+{
+  @Html.Partial("ShareForEachPlayer",gu)
+}
+
+
+       
+<h3><span style=" color:White;">Playing Now : </span><span style=" color:Red;">@Model.FirstOrDefault().WhoIsPlayingMessage</span>
+<span style=" color:Green; padding-left:55px;">Stake : </span><span style=" color:Red;">NGN @Model.FirstOrDefault().GameStake</span>
+</h3>
+
+
+
+
+
+
+
+
+     

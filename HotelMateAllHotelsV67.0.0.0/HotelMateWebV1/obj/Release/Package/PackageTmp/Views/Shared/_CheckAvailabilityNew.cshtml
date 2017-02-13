@@ -1,0 +1,90 @@
+﻿@model HotelMateWebV1.Models.BaseViewModel
+
+@{
+    if (!Model.CheckinDate.HasValue) { Model.CheckinDate = DateTime.Now; }
+    if (!Model.CheckoutDate.HasValue) { Model.CheckoutDate = DateTime.Now.AddDays(1); }
+}
+
+<div class="four columns">
+    <div class="b-form widget bg bs">
+        @using (Html.BeginForm("CheckAvailability", "Home", FormMethod.Post, new { enctype = "multipart/form-data", @class = "booking-form" }))
+        {
+            <h3>NEW RESERVATION</h3>
+
+            <fieldset class="group">
+                <p>
+                    <label for="arrive">Check In</label>
+                    <input readonly type="text" id="arrived" class="datepicker" name="arrived" value="@Model.CheckinDate.Value.ToShortDateString()">
+                </p>
+
+                <p>
+                    <label for="depart">Check Out</label>
+                    <input readonly id="departed" class="datepicker" type="text" name="departed" value="@Model.CheckoutDate.Value.ToShortDateString()">
+                </p>
+            </fieldset>
+
+            <fieldset class="group">
+                <p>
+                    <label for="adults">Guests</label>
+                    <input type="number" min="1" max="6" id="adults" name="guests" value="1">
+                </p>
+
+                <p>
+                    <label for="b-room">Room</label>
+                    @Html.DropDownListFor(model => model.room_select, Model.GlobalRoomTypeList, new { @name = "room_select", id = "b-room" })
+                </p>
+
+
+            </fieldset>
+
+            <fieldset>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <button class="btn b-book" type="submit">Check Availability</button>
+                }
+                <small class="booking-note">%40 Discount on all bookings</small>
+            </fieldset>
+
+            <fieldset>
+                <div style="width:100%;">
+                    <div style="float:left;padding-top:5px;">
+                        <div style="float:left;padding-top:5px;">
+                            <label>VAC</label>
+                        </div>  <div style="float: left; margin-left: 10px; height: 30px; width: 30px; background-color: #24D07C; padding: 7px;"><span style="color:white;">@Model.VacantRooms</span></div>
+                    </div>
+                    <div style="float:left;padding-top:5px; margin-left:20px;">
+                        <div style="float:left;padding-top:5px;">
+                            <label>OCC</label>
+                        </div>  <div style="float: left; margin-left: 10px; height: 30px; width: 30px; background-color: #FF2AB5; padding: 7px;"><span style="color:white;">@Model.OccupiedRooms</span></div>
+                    </div>
+                    <div style="float:left;padding-top:5px; margin-left:20px;">
+                        <div style="float:left;padding-top:5px;">
+                            <label>RES</label>
+                        </div>  <div style="float: left;margin-left:10px;height: 30px; width: 30px; background-color: Brown; padding: 7px;"><span style="color:white;">@Model.ReservedRooms</span></div>
+                    </div>
+                </div>
+            </fieldset>
+        }
+    </div>
+
+    <br />
+
+
+    @if (Model.ReservedRooms > 0)
+    {
+
+        <div class="b-form widget bg bs">
+@if (User.Identity.IsAuthenticated)
+{ 
+            <fieldset><a href="@Url.Action("FutureBooking","Home")" title="You have pending reservations for this week. Click to view reservations." style="padding-left:15%;"><img src="~/images/Reserved_3D-256.png" title="You have pending reservations for this week. Click to view reservations." /></a></fieldset>
+}
+else
+{
+            <fieldset><a href="#" title="You have pending reservations for this week. Please log in to view reservations." style="padding-left:15%;"><img src="~/images/Reserved_3D-256.png" title="You have pending reservations for this week. Please log in to view reservations" /></a></fieldset>
+}
+        </div>
+
+    }
+
+</div>
+

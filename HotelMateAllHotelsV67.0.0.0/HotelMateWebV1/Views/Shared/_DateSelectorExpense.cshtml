@@ -1,0 +1,74 @@
+﻿@model string
+
+<link href="~/datepicker/css/jquery-ui-1.10.4.custom.css" rel="stylesheet" />
+<script src="~/datepicker/js/jquery-ui-1.10.4.custom.js"></script>
+
+<script>
+    $(function () {
+
+        //alert("JKU");
+
+        $(".datepicker").datepicker({
+            dateFormat: 'dd/mm/yy'
+        });
+
+
+        var dateFormat = "dd/mm/yy"; // en-gb date format, substitute your own
+        jQuery.validator.addMethod(
+            'date',
+            function (value, element, params) {
+
+                if (this.optional(element)) {
+                    return true;
+                };
+                var result = false;
+                try {
+                    $.datepicker.parseDate(dateFormat, value);
+                    result = true;
+                } catch (err) {
+                    result = false;
+                }
+                return result;
+            },
+            ''
+        );
+
+    });
+</script>
+
+
+<div class="row">
+
+    @using (Html.BeginForm(@Model, "Expense", FormMethod.Post, new { enctype = "multipart/form-data", @id = "target", @class = "booking-form b-form row" }))
+    {
+
+        <div class="col-md-2">
+            <div class="form-group">
+                @Html.Label("Start Date", new { @class = "col-sm-6 control-label" })
+                <div class="col-sm-7">
+                    @Html.TextBox("StartDate", DateTime.Today.ToShortDateString(), new { @class = "form-control datepicker", @id = "StartDate" })
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <div class="form-group">
+                @Html.Label("End Date", new { @class = "col-sm-6 control-label" })
+                <div class="col-sm-7">
+                    @Html.TextBox("EndDate", DateTime.Today.AddMonths(1).ToShortDateString(), new { @class = "form-control datepicker", @id = "EndDate" })
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <br />
+            <br />
+
+            <input type="submit" value="Submit" name="ClickedButton" class="btn btn-primary" />
+
+        </div>
+    }
+
+
+</div>
+

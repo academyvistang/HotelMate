@@ -1,0 +1,47 @@
+﻿@model HotelMateWebV1.Models.GroupBookingViewModel
+
+@{
+    ViewBag.Title = "GroupBooking";
+    Layout = "~/Views/Shared/_LayoutDragnDrop.cshtml";
+}
+
+
+
+<div id="item_container">
+    @foreach (var item in Model.GuestRooms)
+    {
+        <div class="item" id="i@item.Id">
+            <img src="@Url.Content("~/images/bed_sleep_hotel_motel_lodging-24.png")" />
+            <label class="title">@item.RoomNumber</label>
+            <label class="price">@item.Price</label>
+        </div>
+    }
+    <div class="clear"></div>
+</div>
+<div id="cart_container">
+    <div id="cart_title">
+        <span>Shopping Cart</span>
+        <div class="clear"></div>
+    </div>
+    <div id="cart_toolbar">
+        <div id="cart_items" class="back"></div>
+    </div>
+    <div id="navigate">
+        <div id="nav_left">
+            <a href="" id="btn_prev"><</a>
+            <a href="" id="btn_next">></a>
+            <a href="" id="btn_clear">Clear Cart</a>
+        </div>
+        <div id="nav_right">
+            <span class="sptext">
+                <label>Items </label><label class="count" id="citem">0</label>
+            </span>
+            <span class="sptext">
+                <label>Price </label><label class="count" id="cprice">$ 0</label>
+            </span>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+
+

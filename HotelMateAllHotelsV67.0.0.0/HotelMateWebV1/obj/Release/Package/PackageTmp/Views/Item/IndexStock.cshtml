@@ -1,0 +1,60 @@
+﻿@model HotelMateWebV1.Models.ItemIndexModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="page-head">
+    <h2>Items</h2>
+    <ol class="breadcrumb">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Store</a></li>
+        <li class="active">Store Stock Taking</li>
+    </ol>
+</div>
+<div class="cl-mcont">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="block-flat">
+                <div class="header">
+                    <a class="label label-primary" href="@Url.Action("Distribute", "Item", new { storeId = Model.StoreId })"><i class="fa fa-puzzle-piece"></i>Distribute</a>
+                </div>
+                <div class="content">
+                    <div class="table-responsive">
+                        <table class="table no-border hover">
+                            <thead class="no-border">
+                                <tr>
+                                    <th style="width:15%;"><strong>Item</strong></th>
+                                    <th style="width:15%;"><strong>Quatity</strong></th>
+                                    <th style="width:15%;"><strong>Remaining</strong></th>
+                                    <th style="width:10%;"><strong>Date Recieved</strong></th>
+                                    <th style="width:15%;"><strong>Received By</strong></th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody class="no-border-y">
+                            @foreach (var store in Model.allStores)
+                            {
+                               foreach (var item in store.StoreItems)
+                                {
+                                    <tr>
+                                        <td>@item.StockItem.StockItemName</td>
+                                        <td>@item.Quantity</td>
+                                        <td>@item.Remaining</td>
+                                        <td>@item.DateAdded</td>
+                                        <td>@item.Person.DisplayName</td>                                       
+                                    </tr>
+                                }
+                            }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,109 @@
+﻿@model HotelMateWebV1.Models.ReportViewModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+
+<script type="text/javascript">
+
+    $(function () {
+
+        $("#Expander").click(function () {
+            $(".ACCSUBTABLE").toggle();
+        });
+
+    });
+
+
+
+</script>
+
+<div class="page-head">
+    <h2>BarMate</h2>
+    <a style="float:right;" class="btn btn-success hbtn" href="@Url.Action("Index","Home")" id="todaySale">Go Back</a>
+    <ol class="breadcrumb">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Reports</a></li>
+        <li class="active">Restaurant/Bar/Laundry Only Reports</li>
+    </ol>
+</div>
+<div class="cl-mcont">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="block-flat">
+                <div class="header">
+                    <h3>Restaurant/Bar/Laundry Only Reports</h3>
+                    <a style="float:right;" class="btn btn-danger" href="#" id="Expander">Expand +</a>
+                    @Html.Partial("_DateSelector", "TotalSalesBarRestaraurantOnly")
+                </div>
+                <div class="content">
+                    <div class="table-responsive">
+                        <table class="table no-border hover">
+                            <thead class="no-border">
+                                <tr>
+                                    <th style="width:10%;"><strong>Date</strong></th>
+                                    <th style="width:15%;"><strong>Cashier</strong></th>
+                                    <th style="width:10%;"><strong>Paid In</strong></th>
+                                    <th style="width:10%;"><strong>Cash</strong></th>
+                                    <th style="width:10%;"><strong>Cheque</strong></th>
+                                    <th style="width:10%;"><strong>Pos</strong></th>
+                                    <th style="width:10%;"><strong>Paid Out</strong></th>
+                                    <th style="width:20%;"><strong>Guest</strong></th>
+                                    <th style="width:10%;" align="right"><strong>Total</strong></th>
+                                </tr>
+                            </thead>
+                            <tbody class="no-border-y">
+
+                                @foreach (var item in Model.ModelGroupByAccomodation.ToList())
+                                {
+                                    <tr>
+                                        <td>@item.DateSold</td>
+                                        <td colspan="9"></td>
+                                    </tr>
+
+                                    foreach (var lst in item.ItemLst.OrderBy(x => x.Person.PersonID))
+                                    {
+
+                                        <tr>
+                                            <td></td>
+                                            <td>@lst.Person.DisplayName</td>
+                                            <td>@lst.TotalPaidByGuest</td>
+                                            <td>@lst.Cash</td>
+                                            <td>@lst.Cheque</td>
+                                            <td>@lst.CreditCard</td>
+                                            <td>@lst.TotalPaidToGuest</td>
+                                            <td>@lst.GuestRoom.Guest.FullName (@lst.GuestRoom.Room.RoomNumber)</td>
+                                            <td align="right">@lst.GuestTotal</td>
+                                        </tr>
+                                        <tr class="ACCSUBTABLE" style="display:none;">
+                                            <td colspan="8"></td>
+                                            <td>
+                                                @Html.Partial("_SubTable", lst.Terminal)
+                                            </td>
+                                        </tr>
+
+                                    }
+
+                                    <tr>
+                                        <td colspan="8">Total</td>
+                                        <td align="right">@item.ItemLst.Sum(x => x.GuestTotal)</td>
+                                    </tr>
+
+                                }
+
+                                <tr>
+                                    <td colspan="8">Sales Total</td>
+                                    <td align="right">@Model.ModelGroupByAccomodation.Sum(x => x.TotalAmount)</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

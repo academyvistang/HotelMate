@@ -1,0 +1,24 @@
+﻿@model HotelMateWebV1.Models.CinemaModel
+
+@{
+    ViewBag.Title = "Booking";
+    Layout = "~/Views/Shared/_LayoutMusic.cshtml";
+}
+
+<section id="content" class=" twelve columns">
+    <h1 class="page-title ci-title">
+        <span>@Model.PlaylistName</span>
+    </h1>
+
+    <article id="post-16" class="post-16 page type-page status-publish hentry entry group">
+
+        <div class="booking-form-wrap bs bg">
+
+            @Html.Partial("_VideoPlayerCinemaHtml5")
+
+        </div>
+
+    </article>
+
+
+</section> <!-- #content -->

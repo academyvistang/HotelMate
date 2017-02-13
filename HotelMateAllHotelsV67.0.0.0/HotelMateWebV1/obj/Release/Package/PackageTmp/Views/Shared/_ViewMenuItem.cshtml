@@ -1,0 +1,32 @@
+﻿@model HotelMateWebV1.Models.HotelMenuModel
+<link href="~/css/CoolTable.css" rel="stylesheet" />
+
+<div class="twelve columns">
+
+   
+
+    <div>
+        <table class="striped fixedlayout">
+            <thead>
+                <tr>
+                    <th width="50%">Go Back</th>
+                    <th width="50%">Order</th>
+                </tr>
+            </thead>
+            <tbody id="CasesTableBody1">
+                <tr>
+                    <td class="tth2"><a class="erbEditorDirty buttonDevFirst" href="@Url.Action("Menu", "Guest")">Go Back</a></td>
+                    <td class="tth2"><a class="erbEditorDirty buttonDevFirst" href="@Url.Action("Menu", "Guest")">Place Order</a></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+
+
+
+<p>@Model.MenuItem.StockItem.StockItemName</p>
+<img src="~/Products/@Model.MenuItem.StockItem.PicturePath" alt="@Model.MenuItem.StockItem.StockItemName"/>
+

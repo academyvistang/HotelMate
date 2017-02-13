@@ -1,0 +1,64 @@
+﻿@model HotelMateWebV1.Models.CinemaModel
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/list-handler.js"></script>
+
+
+
+@using (Html.BeginForm("AddRemoveChildren", "Guest", FormMethod.Post, new { enctype = "multipart/form-data", @class = "bottom-margin" }))
+{
+    
+    @Html.HiddenFor(m => m.GuestId)
+    @Html.HiddenFor(m => m.PlayListId )   
+    @Html.ValidationSummary()
+    
+    
+      <div class="six columns">
+      <label for="email">Name*</label>
+      @Html.TextBoxFor(model => model.PlaylistName)
+      @*@Html.ValidationMessageFor(model => model.PlaylistName)*@
+      </div>   
+    
+      <div class="six columns">
+      <label for="email">Description</label>
+      @Html.TextBoxFor(model => model.PlaylistDescription)
+      </div>   
+    
+    <div class="five columns">
+
+         <div class="form-group has-iconed">
+             <label>All Music Videos</label>
+             <div class="iconed-input">
+                 @Html.DropDownListFor(model => model.AllBuildingIds, Model.AllBuildings, new { @class = "form-control", id = "all", multiple = "single", size = "35" })
+             </div>
+         </div>
+                    </div>
+    
+    <div class="two columns">
+
+        <div class="form-group has-iconed">
+           
+            <div class="iconed-input">
+                @*<label>Selection</label>*@
+                <div style="float:left; padding-top: 30px; margin:0px 25px 0px 65px;">
+                    
+                    <img id="add" alt="Add" title="Add" src="~/Images/right_arrow.png" style=" display:block;  padding-bottom: 10px;" />
+                    <img id="remove" alt="Remove" title="Remove" src="~/Images/left_arrow.png" />
+                </div>
+            </div>
+        </div>
+                    </div>
+
+    <div class="five columns">
+
+                       <div class="form-group has-iconed">
+                           <label>Current Selection</label>
+                           @Html.DropDownListFor(model => model.CurrentBuildingIds, Model.CurrentBuildings, new { @class = "form-control", id = "current", multiple = "multiple", size = "35" })
+                       </div>
+                    </div>
+   
+    <div class="form-group">
+            <button style="float:right;" id="edit" type="submit" class="btn btn-primary"><i class="fa fa-ok"></i>Submit</button>
+        </div>
+
+}

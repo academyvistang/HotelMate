@@ -1,0 +1,41 @@
+﻿@model HotelMateWebV1.Models.HotelMenuModel
+<link href="~/css/CoolTable.css" rel="stylesheet" />
+
+<div class="twelve columns">
+
+
+
+    <div>
+        <table class="striped fixedlayout">
+            <thead>
+                <tr>
+                    <th width="50%">Go Back</th>
+                    <th width="50%">Order</th>
+                </tr>
+            </thead>
+            <tbody id="CasesTableBody1">
+                <tr>
+                    <td class="tth2"><a class="erbEditorDirty buttonDevFirst" href="@Url.Action("FlightServices", "Guest")">Go Back</a></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    <div>
+        <p>A text message has been sent to this booking agent about your flight booking. Please expect a call from the agent</p>
+        <p>Should you wish to contact the driver, the contact numbers are @Model.BookingAgentNumber , @Model.BookingAgentNumber</p>
+    </div>
+   
+
+</div>
+
+
+
+
+
+
+
+
+
+

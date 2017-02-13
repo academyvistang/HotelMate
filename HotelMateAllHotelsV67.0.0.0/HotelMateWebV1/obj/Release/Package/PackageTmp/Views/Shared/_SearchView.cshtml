@@ -1,0 +1,45 @@
+﻿@model HotelMateWebV1.Models.SearchViewModel
+<link href="~/css/CoolTable.css" rel="stylesheet" />
+
+
+<div class="eight columns">
+    <h1 class="page-title ci-title" style="margin-bottom:10px;"><span>Occupied Guest Rooms</span></h1>
+
+
+        <div>
+            <table class="striped fixedlayout">
+                <thead>
+                    <tr>
+                        <th width="25%"></th>
+                        <th width="20%">Guest</th>
+                        <th width="15%">Checkin</th>
+                        <th width="15%">Room Number</th>
+                        <th width="15%">Room Type</th>
+                        <th width="10%">Rate </th>
+                    </tr>
+                </thead>
+                <tbody id="CasesTableBody1">
+                    @foreach (var rm in Model.GuestRoomsList)
+                    {
+                        <tr id="@rm.Id">
+                            <td class="tth2">
+                                <a class="erbEditorOpener buttonDevFirst" href="@Url.Action("EditBooking", "Booking", new { id = rm.Room.Id })">View Details</a>
+                                <a class="erbEditorOpener buttonDevFirst" href="@Url.Action("AddRooms", "Booking", new { id = rm.GuestId })">Add Rooms</a>
+                            </td>
+                            <td class="tth2">@rm.Guest.FullName</td>
+                            <td class="tth2">@rm.CheckinDate.ToShortDateString()</td>
+                            <td class="tth2">@rm.Room.RoomNumber</td>
+                            <td class="tth2">@rm.Room.RoomType1.Name</td>
+                            <td class="tth2">@rm.RoomRate</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+   
+
+
+
+

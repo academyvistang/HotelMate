@@ -1,0 +1,80 @@
+﻿@model HotelMateWebV1.Models.CardOwner
+
+  <div class="content_section">
+
+  @if (Model.Owner.UserName == "AGBO FLOOR")
+  {    
+     @* <div style="@Model.PlayingNow" class="image_wrapper_01"><div class="imageOverlayFloor"><img src="../../Images/Arrow_Right.png" width="100px;" height="70px;" alt="" />
+      <h2><span>@Model.Owner.UserName.Replace("AGBO","")</span></h2></div></div>*@
+  }
+  else
+  {    
+    <div style="@Model.PlayingNow" class="image_wrapper_01"><div class="imageOverlay"><img src="../../Images/@Model.Owner.UserPictureName" width="100px;" height="70px;" alt="" />
+    <h2><span>@Model.Owner.UserName</span></h2></div></div>
+  }
+  
+  
+  @if (Model.CardModelsPlayingStack != null)
+  { 
+    <div style="@StyleBox(Model.CardModelsPlayingStack.Count)">@Html.Partial("GameCards", Model.CardModelsPlayingStack) </div> 
+  }
+
+  @if (Model.Owner.UserName != "AGBO FLOOR")
+  {
+      if (Model.CanShowFlashMessage)
+      {
+      <div class="messageBoxDissapearing"><span style="color:Red;">@Model.CanShowFlashMessageMessage</span></div>      
+      }
+  }
+
+  
+
+  @if (Model.CardModelsPlayedStack.Any())
+  {
+    <div style="@StyleBox1(Model.CardModelsPlayedStack.Count)">@Html.Partial("GameCardsNonClickable", Model.CardModelsPlayedStack) </div> 
+  } 
+  
+ <div style="float:right;"> 
+
+  @if (!string.IsNullOrEmpty(Model.CanClickFinish))
+  {
+      if (Model.GameIsOver)
+      {
+          if (string.IsNullOrEmpty(Model.CanClickContestText))
+          {
+          <div class="rc_btn_01 fl" style="float:right; margin-top:10px;">  <a class="clickablecardStartAgain" href="@Model.CanClickFinish">@Model.CanClickFinishText</a></div>
+          }
+
+          if (!string.IsNullOrEmpty(Model.CanClickContestText))
+          {
+            <div class="rc_btn_01 fl">  <a class="clickablecardStartAgain" href="@Model.CanClickFinish">@Model.CanClickFinishText</a></div>
+            <div style=" margin-top:0px; background-color:Red;" class="rc_btn_01 fl">  <a class="clickablecard" href="@Model.CanClickContest">@Model.CanClickContestText</a></div>   
+          }
+      }
+      else
+      {
+        <div class="rc_btn_01 fl">  <a class="clickablecard" href="@Model.CanClickFinish">@Model.CanClickFinishText</a></div>
+      }
+  } 
+
+  </div>
+              
+  <div class="cleaner"></div>
+  </div>            
+  <div class="margin_bottom_20 horizontal_divider"></div> 
+  <div class="margin_bottom_5"></div>
+
+
+ @helper StyleBox(int i)
+     {
+     string str = @"float:left;width:{0}px; height:100px;";
+     @String.Format(str, i * 80);
+ }
+
+  @helper StyleBox1(int i)
+      {
+     string str = @"margin-left:55px; float:left; padding:5px; border: 1px Solid Red; width:{0}px; height:100px;";
+     @String.Format(str, i * 80);
+ }
+
+

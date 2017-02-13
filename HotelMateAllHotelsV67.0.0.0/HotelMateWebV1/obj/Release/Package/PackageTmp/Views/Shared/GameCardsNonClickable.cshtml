@@ -1,0 +1,19 @@
+﻿@model List<HotelMateWebV1.Models.CardModel>           
+
+@foreach (var cardModel in Model)
+{
+    string name = cardModel.Card.Suit.Name + cardModel.Card.Rank.Name + ".gif";
+    if (cardModel.IsStarCard)
+    {
+        <img style="border:3px Solid Blue;" alt="" src="../../Images/PlayingCards/@name" id="@cardModel.Card.Id" />
+    }
+    else
+    {
+        <img alt="" src="../../Images/PlayingCards/@name" id="@cardModel.Card.Id" />
+    }
+    
+}
+           
+
+
+

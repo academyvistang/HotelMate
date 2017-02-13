@@ -1,0 +1,40 @@
+﻿@model HotelMateWebV1.Models.ItemIndexModel
+           
+
+<div class="cl-mcont">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="block-flat">
+                <div class="header">
+                </div>
+                <div class="content">
+                    <div class="table-responsive">
+                        <table class="table no-border hover">
+                            <thead class="no-border">
+                                <tr>
+
+                                    <th style="width:15%;"><strong>Name</strong></th>
+                                    <th style="width:15%;"><strong>Qty</strong></th>
+                                    <th style="width:15%;"><strong>Qty To Distribute</strong></th>
+
+                            </thead>
+                            <tbody class="no-border-y">
+                                @foreach (var item in Model.Store.StoreItems.Where(x => x.Quantity > 0).OrderBy(x => x.StockItem.StockItemName))
+                                {
+                                    <tr>
+                                        <td>@item.StockItem.StockItemName</td>
+                                        <td>@Html.TextBox("POItem_" + item.ItemId.ToString(), item.Quantity, new { @type = "number", @disabled = "disabled", @readonly = "readonly"})</td>
+                                        <td>@Html.TextBox("StoreItem_" + item.ItemId.ToString(), item.Quantity, new { @type = "number", @min = 1, @max = item.Quantity })</td>                                    
+                                    </tr>
+                                }
+                               
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,2732 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HotelMateWebModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="HotelMateWebEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="GuestReservations" EntityType="HotelMateWebModel.GuestReservation" />
+    <EntitySet Name="GuestRooms" EntityType="HotelMateWebModel.GuestRoom" />
+    <EntitySet Name="GuestRoomAccounts" EntityType="HotelMateWebModel.GuestRoomAccount" />
+    <EntitySet Name="Hotels" EntityType="HotelMateWebModel.Hotel" />
+    <EntitySet Name="Items" EntityType="HotelMateWebModel.Item" />
+    <EntitySet Name="PersonTypes" EntityType="HotelMateWebModel.PersonType" />
+    <EntitySet Name="Picturals" EntityType="HotelMateWebModel.Pictural" />
+    <EntitySet Name="Rooms" EntityType="HotelMateWebModel.Room" />
+    <EntitySet Name="RoomPaymentTypeStatus" EntityType="HotelMateWebModel.RoomPaymentTypeStatu" />
+    <EntitySet Name="RoomStatus" EntityType="HotelMateWebModel.RoomStatu" />
+    <EntitySet Name="RoomTransferHistories" EntityType="HotelMateWebModel.RoomTransferHistory" />
+    <EntitySet Name="RoomTypes" EntityType="HotelMateWebModel.RoomType" />
+    <EntitySet Name="Transactions" EntityType="HotelMateWebModel.Transaction" />
+    <AssociationSet Name="FK_GuestReservation_GuestReservationRoom" Association="HotelMateWebModel.FK_GuestReservation_GuestReservationRoom">
+      <End Role="Room" EntitySet="Rooms" />
+      <End Role="GuestReservation" EntitySet="GuestReservations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GuesRoomAccount_GuestRoom" Association="HotelMateWebModel.FK_GuesRoomAccount_GuestRoom">
+      <End Role="GuestRoom" EntitySet="GuestRooms" />
+      <End Role="GuestRoomAccount" EntitySet="GuestRoomAccounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GuestRoom_GuestRoomRoom" Association="HotelMateWebModel.FK_GuestRoom_GuestRoomRoom">
+      <End Role="Room" EntitySet="Rooms" />
+      <End Role="GuestRoom" EntitySet="GuestRooms" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Item_ItemHotel" Association="HotelMateWebModel.FK_Item_ItemHotel">
+      <End Role="Hotel" EntitySet="Hotels" />
+      <End Role="Item" EntitySet="Items" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PersonType_PersonTypeHotel" Association="HotelMateWebModel.FK_PersonType_PersonTypeHotel">
+      <End Role="Hotel" EntitySet="Hotels" />
+      <End Role="PersonType" EntitySet="PersonTypes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Room_RoomHotel" Association="HotelMateWebModel.FK_Room_RoomHotel">
+      <End Role="Hotel" EntitySet="Hotels" />
+      <End Role="Room" EntitySet="Rooms" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Item_ItemTransaction" Association="HotelMateWebModel.FK_Item_ItemTransaction">
+      <End Role="Item" EntitySet="Items" />
+      <End Role="Item1" EntitySet="Items" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Room_RoomStatus" Association="HotelMateWebModel.FK_Room_RoomStatus">
+      <End Role="RoomStatu" EntitySet="RoomStatus" />
+      <End Role="Room" EntitySet="Rooms" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Room_RoomType" Association="HotelMateWebModel.FK_Room_RoomType">
+      <End Role="RoomType" EntitySet="RoomTypes" />
+      <End Role="Room" EntitySet="Rooms" />
+    </AssociationSet>
+    <AssociationSet Name="RoomPictures" Association="HotelMateWebModel.RoomPictures">
+      <End Role="Room" EntitySet="Rooms" />
+      <End Role="Pictural" EntitySet="Picturals" />
+    </AssociationSet>
+    <AssociationSet Name="TransactionItem" Association="HotelMateWebModel.TransactionItem">
+      <End Role="Item" EntitySet="Items" />
+      <End Role="Transaction" EntitySet="Transactions" />
+    </AssociationSet>
+    <EntitySet Name="Expenses" EntityType="HotelMateWebModel.Expense" />
+    <EntitySet Name="ExpensesTypes" EntityType="HotelMateWebModel.ExpensesType" />
+    <AssociationSet Name="FK_Expense_ExpensesType" Association="HotelMateWebModel.FK_Expense_ExpensesType">
+      <End Role="ExpensesType" EntitySet="ExpensesTypes" />
+      <End Role="Expense" EntitySet="Expenses" />
+    </AssociationSet>
+    <EntitySet Name="PaymentMethods" EntityType="HotelMateWebModel.PaymentMethod" />
+    <AssociationSet Name="FK_GuestRoomAccount_GuestRoomAccountPaymentMethod" Association="HotelMateWebModel.FK_GuestRoomAccount_GuestRoomAccountPaymentMethod">
+      <End Role="PaymentMethod" EntitySet="PaymentMethods" />
+      <End Role="GuestRoomAccount" EntitySet="GuestRoomAccounts" />
+    </AssociationSet>
+    <EntitySet Name="EmployeeShifts" EntityType="HotelMateWebModel.EmployeeShift" />
+    <EntitySet Name="InvoiceStatusTypes" EntityType="HotelMateWebModel.InvoiceStatusType" />
+    <EntitySet Name="Suppliers" EntityType="HotelMateWebModel.Supplier" />
+    <EntitySet Name="Invoices" EntityType="HotelMateWebModel.Invoice" />
+    <AssociationSet Name="FK_Invoice_InvoiceStatus" Association="HotelMateWebModel.FK_Invoice_InvoiceStatus">
+      <End Role="InvoiceStatusType" EntitySet="InvoiceStatusTypes" />
+      <End Role="Invoice" EntitySet="Invoices" />
+    </AssociationSet>
+    <EntitySet Name="Stores" EntityType="HotelMateWebModel.Store" />
+    <EntitySet Name="PurchaseOrderItems" EntityType="HotelMateWebModel.PurchaseOrderItem" />
+    <EntitySet Name="StockItems" EntityType="HotelMateWebModel.StockItem" />
+    <AssociationSet Name="FK_StockItem_StockItemHotel" Association="HotelMateWebModel.FK_StockItem_StockItemHotel">
+      <End Role="Hotel" EntitySet="Hotels" />
+      <End Role="StockItem" EntitySet="StockItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PurchaseOrderItem_PurchaseOrderItemStockItem" Association="HotelMateWebModel.FK_PurchaseOrderItem_PurchaseOrderItemStockItem">
+      <End Role="StockItem" EntitySet="StockItems" />
+      <End Role="PurchaseOrderItem" EntitySet="PurchaseOrderItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StockItem_StockItemTransaction" Association="HotelMateWebModel.FK_StockItem_StockItemTransaction">
+      <End Role="StockItem" EntitySet="StockItems" />
+      <End Role="StockItem1" EntitySet="StockItems" />
+    </AssociationSet>
+    <EntitySet Name="StoreItems" EntityType="HotelMateWebModel.StoreItem" />
+    <AssociationSet Name="FK_StoteItems_StoteItemsItem" Association="HotelMateWebModel.FK_StoteItems_StoteItemsItem">
+      <End Role="StockItem" EntitySet="StockItems" />
+      <End Role="StoreItem" EntitySet="StoreItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StoteItems_StoteItemsStore" Association="HotelMateWebModel.FK_StoteItems_StoteItemsStore">
+      <End Role="Store" EntitySet="Stores" />
+      <End Role="StoreItem" EntitySet="StoreItems" />
+    </AssociationSet>
+    <EntitySet Name="DistributionPointItems" EntityType="HotelMateWebModel.DistributionPointItem" />
+    <AssociationSet Name="FK_DistributionItems_DistributionItemsItem" Association="HotelMateWebModel.FK_DistributionItems_DistributionItemsItem">
+      <End Role="StockItem" EntitySet="StockItems" />
+      <End Role="DistributionPointItem" EntitySet="DistributionPointItems" />
+    </AssociationSet>
+    <EntitySet Name="POSItems" EntityType="HotelMateWebModel.POSItem" />
+    <AssociationSet Name="FK_POSItems_POSItemsStockItem" Association="HotelMateWebModel.FK_POSItems_POSItemsStockItem">
+      <End Role="StockItem" EntitySet="StockItems" />
+      <End Role="POSItem" EntitySet="POSItems" />
+    </AssociationSet>
+    <EntitySet Name="DamagedBatchItems" EntityType="HotelMateWebModel.DamagedBatchItem" />
+    <AssociationSet Name="FK_DamagedBatchItem_DamagedBatchItemItem" Association="HotelMateWebModel.FK_DamagedBatchItem_DamagedBatchItemItem">
+      <End Role="StockItem" EntitySet="StockItems" />
+      <End Role="DamagedBatchItem" EntitySet="DamagedBatchItems" />
+    </AssociationSet>
+    <EntitySet Name="TableItems" EntityType="HotelMateWebModel.TableItem" />
+    <EntitySet Name="MovieCategories" EntityType="HotelMateWebModel.MovieCategory" />
+    <EntitySet Name="Taxis" EntityType="HotelMateWebModel.Taxi" />
+    <EntitySet Name="Adventures" EntityType="HotelMateWebModel.Adventure" />
+    <EntitySet Name="Movies" EntityType="HotelMateWebModel.Movie" />
+    <AssociationSet Name="FK_Movie_MovieCategory" Association="HotelMateWebModel.FK_Movie_MovieCategory">
+      <End Role="MovieCategory" EntitySet="MovieCategories" />
+      <End Role="Movie" EntitySet="Movies" />
+    </AssociationSet>
+    <EntitySet Name="GuestPlaylists" EntityType="HotelMateWebModel.GuestPlaylist" />
+    <AssociationSet Name="GuestMovie" Association="HotelMateWebModel.GuestMovie">
+      <End Role="GuestPlaylist" EntitySet="GuestPlaylists" />
+      <End Role="Movie" EntitySet="Movies" />
+    </AssociationSet>
+    <EntitySet Name="Escorts" EntityType="HotelMateWebModel.Escort" />
+    <EntitySet Name="GuestOrders" EntityType="HotelMateWebModel.GuestOrder" />
+    <EntitySet Name="GuestOrderItems" EntityType="HotelMateWebModel.GuestOrderItem" />
+    <AssociationSet Name="FK_GuestOrderItem_GuestOrder" Association="HotelMateWebModel.FK_GuestOrderItem_GuestOrder">
+      <End Role="GuestOrder" EntitySet="GuestOrders" />
+      <End Role="GuestOrderItem" EntitySet="GuestOrderItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GuestOrderItem_GuestOrderItemItem" Association="HotelMateWebModel.FK_GuestOrderItem_GuestOrderItemItem">
+      <End Role="StockItem" EntitySet="StockItems" />
+      <End Role="GuestOrderItem" EntitySet="GuestOrderItems" />
+    </AssociationSet>
+    <EntitySet Name="Guests" EntityType="HotelMateWebModel.Guest" />
+    <EntitySet Name="SoldItemsAlls" EntityType="HotelMateWebModel.SoldItemsAll" />
+    <AssociationSet Name="FK_Guest_GuestHotel" Association="HotelMateWebModel.FK_Guest_GuestHotel">
+      <End Role="Hotel" EntitySet="Hotels" />
+      <End Role="Guest" EntitySet="Guests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GuestOrder_GuestOrderGuest" Association="HotelMateWebModel.FK_GuestOrder_GuestOrderGuest">
+      <End Role="Guest" EntitySet="Guests" />
+      <End Role="GuestOrder" EntitySet="GuestOrders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GuestReservation_GuestReservationGuest" Association="HotelMateWebModel.FK_GuestReservation_GuestReservationGuest">
+      <End Role="Guest" EntitySet="Guests" />
+      <End Role="GuestReservation" EntitySet="GuestReservations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GuestRoom_GuestRoomGuest" Association="HotelMateWebModel.FK_GuestRoom_GuestRoomGuest">
+      <End Role="Guest" EntitySet="Guests" />
+      <End Role="GuestRoom" EntitySet="GuestRooms" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Playlist_PlaylistGuest" Association="HotelMateWebModel.FK_Playlist_PlaylistGuest">
+      <End Role="Guest" EntitySet="Guests" />
+      <End Role="GuestPlaylist" EntitySet="GuestPlaylists" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RoomTransferHistory_NewGuest" Association="HotelMateWebModel.FK_RoomTransferHistory_NewGuest">
+      <End Role="Guest" EntitySet="Guests" />
+      <End Role="RoomTransferHistory" EntitySet="RoomTransferHistories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SoldItemsAll_SoldItemsAllGuest" Association="HotelMateWebModel.FK_SoldItemsAll_SoldItemsAllGuest">
+      <End Role="Guest" EntitySet="Guests" />
+      <End Role="SoldItemsAll" EntitySet="SoldItemsAlls" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transaction_TransactionGuest" Association="HotelMateWebModel.FK_Transaction_TransactionGuest">
+      <End Role="Guest" EntitySet="Guests" />
+      <End Role="Transaction" EntitySet="Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SoldItemsAll_SoldItemsAllPaymentMethod" Association="HotelMateWebModel.FK_SoldItemsAll_SoldItemsAllPaymentMethod">
+      <End Role="PaymentMethod" EntitySet="PaymentMethods" />
+      <End Role="SoldItemsAll" EntitySet="SoldItemsAlls" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SoldItemsAll_SoldItemsAllItem" Association="HotelMateWebModel.FK_SoldItemsAll_SoldItemsAllItem">
+      <End Role="StockItem" EntitySet="StockItems" />
+      <End Role="SoldItemsAll" EntitySet="SoldItemsAlls" />
+    </AssociationSet>
+    <EntitySet Name="GuestLedgers" EntityType="HotelMateWebModel.GuestLedger" />
+    <AssociationSet Name="FK_GuestLedger_GuestLedgerGuest" Association="HotelMateWebModel.FK_GuestLedger_GuestLedgerGuest">
+      <End Role="Guest" EntitySet="Guests" />
+      <End Role="GuestLedger" EntitySet="GuestLedgers" />
+    </AssociationSet>
+    <EntitySet Name="GuestBillItems" EntityType="HotelMateWebModel.GuestBillItem" />
+    <EntitySet Name="GuestPaidItems" EntityType="HotelMateWebModel.GuestPaidItem" />
+    <EntitySet Name="GuestRequestItems" EntityType="HotelMateWebModel.GuestRequestItem" />
+    <AssociationSet Name="FK_GuestTemporalItem_GuestOrder" Association="HotelMateWebModel.FK_GuestTemporalItem_GuestOrder">
+      <End Role="GuestOrder" EntitySet="GuestOrders" />
+      <End Role="GuestBillItem" EntitySet="GuestBillItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GuestTemporalItem_GuestTemporalItemItem" Association="HotelMateWebModel.FK_GuestTemporalItem_GuestTemporalItemItem">
+      <End Role="StockItem" EntitySet="StockItems" />
+      <End Role="GuestBillItem" EntitySet="GuestBillItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GuestRequestItem_GuestRequest" Association="HotelMateWebModel.FK_GuestRequestItem_GuestRequest">
+      <End Role="GuestOrder" EntitySet="GuestOrders" />
+      <End Role="GuestRequestItem" EntitySet="GuestRequestItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GuestRequestItem_GuestRequestItemItem" Association="HotelMateWebModel.FK_GuestRequestItem_GuestRequestItemItem">
+      <End Role="StockItem" EntitySet="StockItems" />
+      <End Role="GuestRequestItem" EntitySet="GuestRequestItems" />
+    </AssociationSet>
+    <EntitySet Name="EscortPictures" EntityType="HotelMateWebModel.EscortPicture" />
+    <EntitySet Name="GuestChats" EntityType="HotelMateWebModel.GuestChat" />
+    <EntitySet Name="GuestChatMessages" EntityType="HotelMateWebModel.GuestChatMessage" />
+    <EntitySet Name="GuestFeedBacks" EntityType="HotelMateWebModel.GuestFeedBack" />
+    <AssociationSet Name="FK_EscortPicture_Escort" Association="HotelMateWebModel.FK_EscortPicture_Escort">
+      <End Role="Escort" EntitySet="Escorts" />
+      <End Role="EscortPicture" EntitySet="EscortPictures" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GuestChat_GuestChatGuest" Association="HotelMateWebModel.FK_GuestChat_GuestChatGuest">
+      <End Role="Guest" EntitySet="Guests" />
+      <End Role="GuestChat" EntitySet="GuestChats" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GuestChatMessages_GuestChatMessagesOwner" Association="HotelMateWebModel.FK_GuestChatMessages_GuestChatMessagesOwner">
+      <End Role="Guest" EntitySet="Guests" />
+      <End Role="GuestChatMessage" EntitySet="GuestChatMessages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GuestChatMessages_GuestChatMessagesStranger" Association="HotelMateWebModel.FK_GuestChatMessages_GuestChatMessagesStranger">
+      <End Role="Guest" EntitySet="Guests" />
+      <End Role="GuestChatMessage" EntitySet="GuestChatMessages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GuestFeedBack_Guest" Association="HotelMateWebModel.FK_GuestFeedBack_Guest">
+      <End Role="Guest" EntitySet="Guests" />
+      <End Role="GuestFeedBack" EntitySet="GuestFeedBacks" />
+    </AssociationSet>
+    <EntitySet Name="GuestCredentials" EntityType="HotelMateWebModel.GuestCredential" />
+    <AssociationSet Name="FK_TableItem_TableItemStockItem" Association="HotelMateWebModel.FK_TableItem_TableItemStockItem">
+      <End Role="StockItem" EntitySet="StockItems" />
+      <End Role="TableItem" EntitySet="TableItems" />
+    </AssociationSet>
+    <EntitySet Name="PurchaseOrderStoreTypes" EntityType="HotelMateWebModel.PurchaseOrderStoreType" />
+    <EntitySet Name="PurchaseOrders" EntityType="HotelMateWebModel.PurchaseOrder" />
+    <AssociationSet Name="FK_Invoice_InvoicePO" Association="HotelMateWebModel.FK_Invoice_InvoicePO">
+      <End Role="PurchaseOrder" EntitySet="PurchaseOrders" />
+      <End Role="Invoice" EntitySet="Invoices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PurchaseOrderItem_PurchaseOrderItemPO" Association="HotelMateWebModel.FK_PurchaseOrderItem_PurchaseOrderItemPO">
+      <End Role="PurchaseOrder" EntitySet="PurchaseOrders" />
+      <End Role="PurchaseOrderItem" EntitySet="PurchaseOrderItems" />
+    </AssociationSet>
+    <EntitySet Name="FoodMatrices" EntityType="HotelMateWebModel.FoodMatrix" />
+    <EntitySet Name="PaymentOrders" EntityType="HotelMateWebModel.PaymentOrder" />
+    <EntitySet Name="SalesDiscounts" EntityType="HotelMateWebModel.SalesDiscount" />
+    <EntitySet Name="SchoolPictures" EntityType="HotelMateWebModel.SchoolPicture" />
+    <AssociationSet Name="FK_FoodMatrix_FoodMatrixCookedFood" Association="HotelMateWebModel.FK_FoodMatrix_FoodMatrixCookedFood">
+      <End Role="StockItem" EntitySet="StockItems" />
+      <End Role="FoodMatrix" EntitySet="FoodMatrices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FoodMatrix_FoodMatrixRawItem" Association="HotelMateWebModel.FK_FoodMatrix_FoodMatrixRawItem">
+      <End Role="StockItem" EntitySet="StockItems" />
+      <End Role="FoodMatrix" EntitySet="FoodMatrices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PaymentOrder_PaymentOrderGuest" Association="HotelMateWebModel.FK_PaymentOrder_PaymentOrderGuest">
+      <End Role="Guest" EntitySet="Guests" />
+      <End Role="PaymentOrder" EntitySet="PaymentOrders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PaymentOrder_PaymentOrderGuestOrder" Association="HotelMateWebModel.FK_PaymentOrder_PaymentOrderGuestOrder">
+      <End Role="GuestOrder" EntitySet="GuestOrders" />
+      <End Role="PaymentOrder" EntitySet="PaymentOrders" />
+    </AssociationSet>
+    <EntitySet Name="GuestMessages" EntityType="HotelMateWebModel.GuestMessage" />
+    <EntitySet Name="BarTables" EntityType="HotelMateWebModel.BarTable" />
+    <EntitySet Name="Batches" EntityType="HotelMateWebModel.Batch" />
+    <EntitySet Name="BusinessAccounts" EntityType="HotelMateWebModel.BusinessAccount" />
+    <EntitySet Name="BusinessCorporateAccounts" EntityType="HotelMateWebModel.BusinessCorporateAccount" />
+    <EntitySet Name="DistributionPoints" EntityType="HotelMateWebModel.DistributionPoint" />
+    <EntitySet Name="People" EntityType="HotelMateWebModel.Person" />
+    <EntitySet Name="PrinterTables" EntityType="HotelMateWebModel.PrinterTable" />
+    <AssociationSet Name="FK_BarTable_BarTableGuest" Association="HotelMateWebModel.FK_BarTable_BarTableGuest">
+      <End Role="Guest" EntitySet="Guests" />
+      <End Role="BarTable" EntitySet="BarTables" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BarTable_BarTableStaff" Association="HotelMateWebModel.FK_BarTable_BarTableStaff">
+      <End Role="Person" EntitySet="People" />
+      <End Role="BarTable" EntitySet="BarTables" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GuestOrder_GuestOrderTable" Association="HotelMateWebModel.FK_GuestOrder_GuestOrderTable">
+      <End Role="BarTable" EntitySet="BarTables" />
+      <End Role="GuestOrder" EntitySet="GuestOrders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PrinterTable_PrinterTableBarTable" Association="HotelMateWebModel.FK_PrinterTable_PrinterTableBarTable">
+      <End Role="BarTable" EntitySet="BarTables" />
+      <End Role="PrinterTable" EntitySet="PrinterTables" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TableItem_TableItemBarTable" Association="HotelMateWebModel.FK_TableItem_TableItemBarTable">
+      <End Role="BarTable" EntitySet="BarTables" />
+      <End Role="TableItem" EntitySet="TableItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Batch_BatchDistributionPoint" Association="HotelMateWebModel.FK_Batch_BatchDistributionPoint">
+      <End Role="DistributionPoint" EntitySet="DistributionPoints" />
+      <End Role="Batch" EntitySet="Batches" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Batch_BatchPOI" Association="HotelMateWebModel.FK_Batch_BatchPOI">
+      <End Role="PurchaseOrderItem" EntitySet="PurchaseOrderItems" />
+      <End Role="Batch" EntitySet="Batches" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DamagedBatchItem_DamagedBatchItemBatch" Association="HotelMateWebModel.FK_DamagedBatchItem_DamagedBatchItemBatch">
+      <End Role="Batch" EntitySet="Batches" />
+      <End Role="DamagedBatchItem" EntitySet="DamagedBatchItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DistributionPointItems_DistributionPointItemsBatch" Association="HotelMateWebModel.FK_DistributionPointItems_DistributionPointItemsBatch">
+      <End Role="Batch" EntitySet="Batches" />
+      <End Role="DistributionPointItem" EntitySet="DistributionPointItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BusinessAccount_BusinessAccountHotel" Association="HotelMateWebModel.FK_BusinessAccount_BusinessAccountHotel">
+      <End Role="Hotel" EntitySet="Hotels" />
+      <End Role="BusinessAccount" EntitySet="BusinessAccounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BusinessCorporateAccount_BusinessCorporateAccountCompany" Association="HotelMateWebModel.FK_BusinessCorporateAccount_BusinessCorporateAccountCompany">
+      <End Role="BusinessAccount" EntitySet="BusinessAccounts" />
+      <End Role="BusinessCorporateAccount" EntitySet="BusinessCorporateAccounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Guest_CompanyGuest" Association="HotelMateWebModel.FK_Guest_CompanyGuest">
+      <End Role="BusinessAccount" EntitySet="BusinessAccounts" />
+      <End Role="Guest" EntitySet="Guests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SoldItemsAll_SoldItemsAllBA" Association="HotelMateWebModel.FK_SoldItemsAll_SoldItemsAllBA">
+      <End Role="BusinessAccount" EntitySet="BusinessAccounts" />
+      <End Role="SoldItemsAll" EntitySet="SoldItemsAlls" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BusinessCorporateAccount_BusinessCorporateAccountPaymentMethod" Association="HotelMateWebModel.FK_BusinessCorporateAccount_BusinessCorporateAccountPaymentMethod">
+      <End Role="PaymentMethod" EntitySet="PaymentMethods" />
+      <End Role="BusinessCorporateAccount" EntitySet="BusinessCorporateAccounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BusinessCorporateAccount_BusinessCorporateAccountPerson" Association="HotelMateWebModel.FK_BusinessCorporateAccount_BusinessCorporateAccountPerson">
+      <End Role="Person" EntitySet="People" />
+      <End Role="BusinessCorporateAccount" EntitySet="BusinessCorporateAccounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DistributionItems_DistributionItemsDistributionPoint" Association="HotelMateWebModel.FK_DistributionItems_DistributionItemsDistributionPoint">
+      <End Role="DistributionPoint" EntitySet="DistributionPoints" />
+      <End Role="DistributionPointItem" EntitySet="DistributionPointItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DistributionPoint_DistributionPointManager" Association="HotelMateWebModel.FK_DistributionPoint_DistributionPointManager">
+      <End Role="Person" EntitySet="People" />
+      <End Role="DistributionPoint" EntitySet="DistributionPoints" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Person_PersonDistributionPoint" Association="HotelMateWebModel.FK_Person_PersonDistributionPoint">
+      <End Role="DistributionPoint" EntitySet="DistributionPoints" />
+      <End Role="Person" EntitySet="People" />
+    </AssociationSet>
+    <AssociationSet Name="FK_POSItems_POSItemsDistributionPoint" Association="HotelMateWebModel.FK_POSItems_POSItemsDistributionPoint">
+      <End Role="DistributionPoint" EntitySet="DistributionPoints" />
+      <End Role="POSItem" EntitySet="POSItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SoldItemsAll_SoldItemsAllDistributionPoint" Association="HotelMateWebModel.FK_SoldItemsAll_SoldItemsAllDistributionPoint">
+      <End Role="DistributionPoint" EntitySet="DistributionPoints" />
+      <End Role="SoldItemsAll" EntitySet="SoldItemsAlls" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DistributionPointItems_DistributionPointItemsRecievedBy" Association="HotelMateWebModel.FK_DistributionPointItems_DistributionPointItemsRecievedBy">
+      <End Role="Person" EntitySet="People" />
+      <End Role="DistributionPointItem" EntitySet="DistributionPointItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EmployeeShift_EmployeeShiftPerson" Association="HotelMateWebModel.FK_EmployeeShift_EmployeeShiftPerson">
+      <End Role="Person" EntitySet="People" />
+      <End Role="EmployeeShift" EntitySet="EmployeeShifts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Expense_ExpenseStaff" Association="HotelMateWebModel.FK_Expense_ExpenseStaff">
+      <End Role="Person" EntitySet="People" />
+      <End Role="Expense" EntitySet="Expenses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Guest_GuestPerson" Association="HotelMateWebModel.FK_Guest_GuestPerson">
+      <End Role="Person" EntitySet="People" />
+      <End Role="Guest" EntitySet="Guests" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GuestCredential_GuestCredentialPerson" Association="HotelMateWebModel.FK_GuestCredential_GuestCredentialPerson">
+      <End Role="Person" EntitySet="People" />
+      <End Role="GuestCredential" EntitySet="GuestCredentials" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GuestLedger_GuestLedgerCashier" Association="HotelMateWebModel.FK_GuestLedger_GuestLedgerCashier">
+      <End Role="Person" EntitySet="People" />
+      <End Role="GuestLedger" EntitySet="GuestLedgers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GuestOrder_GuestOrderWaiter" Association="HotelMateWebModel.FK_GuestOrder_GuestOrderWaiter">
+      <End Role="Person" EntitySet="People" />
+      <End Role="GuestOrder" EntitySet="GuestOrders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GuestRoomAccount_GuestRoomAccountPerson" Association="HotelMateWebModel.FK_GuestRoomAccount_GuestRoomAccountPerson">
+      <End Role="Person" EntitySet="People" />
+      <End Role="GuestRoomAccount" EntitySet="GuestRoomAccounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Person_PersonHotel" Association="HotelMateWebModel.FK_Person_PersonHotel">
+      <End Role="Hotel" EntitySet="Hotels" />
+      <End Role="Person" EntitySet="People" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Invoice_InvoiceAssignedTo" Association="HotelMateWebModel.FK_Invoice_InvoiceAssignedTo">
+      <End Role="Person" EntitySet="People" />
+      <End Role="Invoice" EntitySet="Invoices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Invoice_InvoiceCreator" Association="HotelMateWebModel.FK_Invoice_InvoiceCreator">
+      <End Role="Person" EntitySet="People" />
+      <End Role="Invoice" EntitySet="Invoices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Person_PersonType" Association="HotelMateWebModel.FK_Person_PersonType">
+      <End Role="PersonType" EntitySet="PersonTypes" />
+      <End Role="Person" EntitySet="People" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesDiscount_SalesDiscountPerson" Association="HotelMateWebModel.FK_SalesDiscount_SalesDiscountPerson">
+      <End Role="Person" EntitySet="People" />
+      <End Role="SalesDiscount" EntitySet="SalesDiscounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SoldItemsAll_SoldItemsAllPerson" Association="HotelMateWebModel.FK_SoldItemsAll_SoldItemsAllPerson">
+      <End Role="Person" EntitySet="People" />
+      <End Role="SoldItemsAll" EntitySet="SoldItemsAlls" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Store_StoreManager" Association="HotelMateWebModel.FK_Store_StoreManager">
+      <End Role="Person" EntitySet="People" />
+      <End Role="Store" EntitySet="Stores" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StoreItems_StoreItemsRecievedBy" Association="HotelMateWebModel.FK_StoreItems_StoreItemsRecievedBy">
+      <End Role="Person" EntitySet="People" />
+      <End Role="StoreItem" EntitySet="StoreItems" />
+    </AssociationSet>
+    <AssociationSet Name="BusinessRoomAccounts" Association="HotelMateWebModel.BusinessRoomAccounts">
+      <End Role="GuestRoom" EntitySet="GuestRooms" />
+      <End Role="BusinessAccount" EntitySet="BusinessAccounts" />
+    </AssociationSet>
+    <EntitySet Name="Payments" EntityType="HotelMateWebModel.Payment" />
+    <EntitySet Name="RoomPaymentTypes" EntityType="HotelMateWebModel.RoomPaymentType" />
+    <AssociationSet Name="FK_Payment_PaymentBA" Association="HotelMateWebModel.FK_Payment_PaymentBA">
+      <End Role="BusinessAccount" EntitySet="BusinessAccounts" />
+      <End Role="Payment" EntitySet="Payments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Payment_PaymentDistributionPoint" Association="HotelMateWebModel.FK_Payment_PaymentDistributionPoint">
+      <End Role="DistributionPoint" EntitySet="DistributionPoints" />
+      <End Role="Payment" EntitySet="Payments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Payment_PaymentGuest" Association="HotelMateWebModel.FK_Payment_PaymentGuest">
+      <End Role="Guest" EntitySet="Guests" />
+      <End Role="Payment" EntitySet="Payments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GuestLedger_GuestLedgerPaymentType" Association="HotelMateWebModel.FK_GuestLedger_GuestLedgerPaymentType">
+      <End Role="RoomPaymentType" EntitySet="RoomPaymentTypes" />
+      <End Role="GuestLedger" EntitySet="GuestLedgers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GuestRoomAccount_GuestRoomAccountPayment" Association="HotelMateWebModel.FK_GuestRoomAccount_GuestRoomAccountPayment">
+      <End Role="RoomPaymentType" EntitySet="RoomPaymentTypes" />
+      <End Role="GuestRoomAccount" EntitySet="GuestRoomAccounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Payment_PaymentCashier" Association="HotelMateWebModel.FK_Payment_PaymentCashier">
+      <End Role="Person" EntitySet="People" />
+      <End Role="Payment" EntitySet="Payments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Payment_PaymentMethod" Association="HotelMateWebModel.FK_Payment_PaymentMethod">
+      <End Role="PaymentMethod" EntitySet="PaymentMethods" />
+      <End Role="Payment" EntitySet="Payments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Payment_PaymentPaymentType" Association="HotelMateWebModel.FK_Payment_PaymentPaymentType">
+      <End Role="RoomPaymentType" EntitySet="RoomPaymentTypes" />
+      <End Role="Payment" EntitySet="Payments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RoomPaymentType_RoomPaymentTypeStatus" Association="HotelMateWebModel.FK_RoomPaymentType_RoomPaymentTypeStatus">
+      <End Role="RoomPaymentTypeStatu" EntitySet="RoomPaymentTypeStatus" />
+      <End Role="RoomPaymentType" EntitySet="RoomPaymentTypes" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="GuestReservation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoomId" Type="Int32" Nullable="false" />
+    <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="GuestId" Type="Int32" Nullable="false" />
+    <Property Name="FutureBooking" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Room" Relationship="HotelMateWebModel.FK_GuestReservation_GuestReservationRoom" FromRole="GuestReservation" ToRole="Room" />
+    <Property Name="ForDelete" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Guest" Relationship="HotelMateWebModel.FK_GuestReservation_GuestReservationGuest" FromRole="GuestReservation" ToRole="Guest" />
+  </EntityType>
+  <EntityType Name="GuestRoom">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GuestId" Type="Int32" Nullable="false" />
+    <Property Name="RoomId" Type="Int32" Nullable="false" />
+    <Property Name="CheckinDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CheckoutDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="RoomRate" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="Occupants" Type="Int32" Nullable="false" />
+    <Property Name="Children" Type="Int32" Nullable="false" />
+    <Property Name="GroupBooking" Type="Boolean" Nullable="false" />
+    <Property Name="GroupBookingMainRoom" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="GuestRoomAccounts" Relationship="HotelMateWebModel.FK_GuesRoomAccount_GuestRoom" FromRole="GuestRoom" ToRole="GuestRoomAccount" />
+    <NavigationProperty Name="Room" Relationship="HotelMateWebModel.FK_GuestRoom_GuestRoomRoom" FromRole="GuestRoom" ToRole="Room" />
+    <Property Name="RoomNumber" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="SameDayTransfer" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Guest" Relationship="HotelMateWebModel.FK_GuestRoom_GuestRoomGuest" FromRole="GuestRoom" ToRole="Guest" />
+    <NavigationProperty Name="BusinessAccounts" Relationship="HotelMateWebModel.BusinessRoomAccounts" FromRole="GuestRoom" ToRole="BusinessAccount" />
+  </EntityType>
+  <EntityType Name="GuestRoomAccount">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GuestRoomId" Type="Int32" Nullable="false" />
+    <Property Name="Amount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="PaymentTypeId" Type="Int32" Nullable="false" />
+    <Property Name="TransactionDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="TransactionId" Type="Int32" />
+    <NavigationProperty Name="GuestRoom" Relationship="HotelMateWebModel.FK_GuesRoomAccount_GuestRoom" FromRole="GuestRoomAccount" ToRole="GuestRoom" />
+    <Property Name="PaymentMethodId" Type="Int32" Nullable="false" />
+    <Property Name="PaymentMethodNote" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="PaymentMethod" Relationship="HotelMateWebModel.FK_GuestRoomAccount_GuestRoomAccountPaymentMethod" FromRole="GuestRoomAccount" ToRole="PaymentMethod" />
+    <NavigationProperty Name="Person" Relationship="HotelMateWebModel.FK_GuestRoomAccount_GuestRoomAccountPerson" FromRole="GuestRoomAccount" ToRole="Person" />
+    <NavigationProperty Name="RoomPaymentType" Relationship="HotelMateWebModel.FK_GuestRoomAccount_GuestRoomAccountPayment" FromRole="GuestRoomAccount" ToRole="RoomPaymentType" />
+  </EntityType>
+  <EntityType Name="Hotel">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HotelName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Telephone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ContactName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Items" Relationship="HotelMateWebModel.FK_Item_ItemHotel" FromRole="Hotel" ToRole="Item" />
+    <NavigationProperty Name="PersonTypes" Relationship="HotelMateWebModel.FK_PersonType_PersonTypeHotel" FromRole="Hotel" ToRole="PersonType" />
+    <NavigationProperty Name="Rooms" Relationship="HotelMateWebModel.FK_Room_RoomHotel" FromRole="Hotel" ToRole="Room" />
+    <NavigationProperty Name="StockItems" Relationship="HotelMateWebModel.FK_StockItem_StockItemHotel" FromRole="Hotel" ToRole="StockItem" />
+    <NavigationProperty Name="Guests" Relationship="HotelMateWebModel.FK_Guest_GuestHotel" FromRole="Hotel" ToRole="Guest" />
+    <NavigationProperty Name="BusinessAccounts" Relationship="HotelMateWebModel.FK_BusinessAccount_BusinessAccountHotel" FromRole="Hotel" ToRole="BusinessAccount" />
+    <NavigationProperty Name="People" Relationship="HotelMateWebModel.FK_Person_PersonHotel" FromRole="Hotel" ToRole="Person" />
+  </EntityType>
+  <EntityType Name="Item">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UnitPrice" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="Category" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OrigPrice" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="NotNumber" Type="Int32" Nullable="false" />
+    <Property Name="NotStatus" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="ItemName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Checker" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="TotalQuantity" Type="Int32" Nullable="false" />
+    <Property Name="Barcode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OrderStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DISCOUNT" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="DISCOUNTSTARTDATE" Type="DateTime" Precision="3" />
+    <Property Name="DISCOUNTENDDATE" Type="DateTime" Precision="3" />
+    <Property Name="DISCOUNTEDPERCENTAGE" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="SubCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="HotelId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Hotel" Relationship="HotelMateWebModel.FK_Item_ItemHotel" FromRole="Item" ToRole="Hotel" />
+    <NavigationProperty Name="Item1" Relationship="HotelMateWebModel.FK_Item_ItemTransaction" FromRole="Item" ToRole="Item1" />
+    <NavigationProperty Name="Item2" Relationship="HotelMateWebModel.FK_Item_ItemTransaction" FromRole="Item1" ToRole="Item" />
+    <NavigationProperty Name="Transactions" Relationship="HotelMateWebModel.TransactionItem" FromRole="Item" ToRole="Transaction" />
+  </EntityType>
+  <EntityType Name="PersonType">
+    <Key>
+      <PropertyRef Name="PersonTypeId" />
+    </Key>
+    <Property Name="PersonTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="HotelId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Hotel" Relationship="HotelMateWebModel.FK_PersonType_PersonTypeHotel" FromRole="PersonType" ToRole="Hotel" />
+    <NavigationProperty Name="People" Relationship="HotelMateWebModel.FK_Person_PersonType" FromRole="PersonType" ToRole="Person" />
+  </EntityType>
+  <EntityType Name="Pictural">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="PicturePath" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Rooms" Relationship="HotelMateWebModel.RoomPictures" FromRole="Pictural" ToRole="Room" />
+  </EntityType>
+  <EntityType Name="Room">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoomNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="NoOfBeds" Type="Int32" Nullable="false" />
+    <Property Name="StatusId" Type="Int32" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Smoking" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="RoomType" Type="Int32" Nullable="false" />
+    <Property Name="ExtNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Notes" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="BusinessPrice" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="HotelId" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="RowVersion" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="GuestReservations" Relationship="HotelMateWebModel.FK_GuestReservation_GuestReservationRoom" FromRole="Room" ToRole="GuestReservation" />
+    <NavigationProperty Name="GuestRooms" Relationship="HotelMateWebModel.FK_GuestRoom_GuestRoomRoom" FromRole="Room" ToRole="GuestRoom" />
+    <NavigationProperty Name="Hotel" Relationship="HotelMateWebModel.FK_Room_RoomHotel" FromRole="Room" ToRole="Hotel" />
+    <NavigationProperty Name="RoomStatu" Relationship="HotelMateWebModel.FK_Room_RoomStatus" FromRole="Room" ToRole="RoomStatu" />
+    <NavigationProperty Name="RoomType1" Relationship="HotelMateWebModel.FK_Room_RoomType" FromRole="Room" ToRole="RoomType" />
+    <NavigationProperty Name="Picturals" Relationship="HotelMateWebModel.RoomPictures" FromRole="Room" ToRole="Pictural" />
+  </EntityType>
+  <EntityType Name="RoomPaymentTypeStatu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="RoomPaymentTypes" Relationship="HotelMateWebModel.FK_RoomPaymentType_RoomPaymentTypeStatus" FromRole="RoomPaymentTypeStatu" ToRole="RoomPaymentType" />
+  </EntityType>
+  <EntityType Name="RoomStatu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Rooms" Relationship="HotelMateWebModel.FK_Room_RoomStatus" FromRole="RoomStatu" ToRole="Room" />
+  </EntityType>
+  <EntityType Name="RoomTransferHistory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Notes" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="OldRoomId" Type="Int32" Nullable="false" />
+    <Property Name="NewRoomId" Type="Int32" Nullable="false" />
+    <Property Name="OldGuestId" Type="Int32" Nullable="false" />
+    <Property Name="NewGuestId" Type="Int32" Nullable="false" />
+    <Property Name="TransferDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="OldRoomNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OldGuestName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Guest" Relationship="HotelMateWebModel.FK_RoomTransferHistory_NewGuest" FromRole="RoomTransferHistory" ToRole="Guest" />
+  </EntityType>
+  <EntityType Name="RoomType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="HotelId" Type="Int32" />
+    <NavigationProperty Name="Rooms" Relationship="HotelMateWebModel.FK_Room_RoomType" FromRole="RoomType" ToRole="Room" />
+  </EntityType>
+  <EntityType Name="Transaction">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TranscationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="Amount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="StaffId" Type="Int32" Nullable="false" />
+    <Property Name="GuestSignature" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="GuestId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Items" Relationship="HotelMateWebModel.TransactionItem" FromRole="Transaction" ToRole="Item" />
+    <NavigationProperty Name="Guest" Relationship="HotelMateWebModel.FK_Transaction_TransactionGuest" FromRole="Transaction" ToRole="Guest" />
+  </EntityType>
+  <Association Name="FK_GuestReservation_GuestReservationRoom">
+    <End Type="HotelMateWebModel.Room" Role="Room" Multiplicity="1" />
+    <End Type="HotelMateWebModel.GuestReservation" Role="GuestReservation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Room">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GuestReservation">
+        <PropertyRef Name="RoomId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GuesRoomAccount_GuestRoom">
+    <End Type="HotelMateWebModel.GuestRoom" Role="GuestRoom" Multiplicity="1" />
+    <End Type="HotelMateWebModel.GuestRoomAccount" Role="GuestRoomAccount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GuestRoom">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GuestRoomAccount">
+        <PropertyRef Name="GuestRoomId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GuestRoom_GuestRoomRoom">
+    <End Type="HotelMateWebModel.Room" Role="Room" Multiplicity="1" />
+    <End Type="HotelMateWebModel.GuestRoom" Role="GuestRoom" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Room">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GuestRoom">
+        <PropertyRef Name="RoomId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Item_ItemHotel">
+    <End Type="HotelMateWebModel.Hotel" Role="Hotel" Multiplicity="1" />
+    <End Type="HotelMateWebModel.Item" Role="Item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Item">
+        <PropertyRef Name="HotelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PersonType_PersonTypeHotel">
+    <End Type="HotelMateWebModel.Hotel" Role="Hotel" Multiplicity="1" />
+    <End Type="HotelMateWebModel.PersonType" Role="PersonType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PersonType">
+        <PropertyRef Name="HotelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Room_RoomHotel">
+    <End Type="HotelMateWebModel.Hotel" Role="Hotel" Multiplicity="1" />
+    <End Type="HotelMateWebModel.Room" Role="Room" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Room">
+        <PropertyRef Name="HotelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Item_ItemTransaction">
+    <End Type="HotelMateWebModel.Item" Role="Item" Multiplicity="1" />
+    <End Type="HotelMateWebModel.Item" Role="Item1" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Item">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Item1">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Room_RoomStatus">
+    <End Type="HotelMateWebModel.RoomStatu" Role="RoomStatu" Multiplicity="1" />
+    <End Type="HotelMateWebModel.Room" Role="Room" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoomStatu">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Room">
+        <PropertyRef Name="StatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Room_RoomType">
+    <End Type="HotelMateWebModel.RoomType" Role="RoomType" Multiplicity="1" />
+    <End Type="HotelMateWebModel.Room" Role="Room" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoomType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Room">
+        <PropertyRef Name="RoomType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RoomPictures">
+    <End Type="HotelMateWebModel.Room" Role="Room" Multiplicity="*" />
+    <End Type="HotelMateWebModel.Pictural" Role="Pictural" Multiplicity="*" />
+  </Association>
+  <Association Name="TransactionItem">
+    <End Type="HotelMateWebModel.Item" Role="Item" Multiplicity="*" />
+    <End Type="HotelMateWebModel.Transaction" Role="Transaction" Multiplicity="*" />
+  </Association>
+  <EntityType Name="Expense">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ExpenseDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="Amount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="StaffId" Type="Int32" Nullable="false" />
+    <Property Name="RoomId" Type="Int32" />
+    <Property Name="GuestSignature" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="ExpenseTypeId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ExpensesType" Relationship="HotelMateWebModel.FK_Expense_ExpensesType" FromRole="Expense" ToRole="ExpensesType" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Person" Relationship="HotelMateWebModel.FK_Expense_ExpenseStaff" FromRole="Expense" ToRole="Person" />
+  </EntityType>
+  <EntityType Name="ExpensesType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="SortOrder" Type="Int32" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LastUpdatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="LastUpdatedDateTime" Type="DateTime" Precision="3" />
+    <Property Name="UpdateId" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Expenses" Relationship="HotelMateWebModel.FK_Expense_ExpensesType" FromRole="ExpensesType" ToRole="Expense" />
+  </EntityType>
+  <Association Name="FK_Expense_ExpensesType">
+    <End Type="HotelMateWebModel.ExpensesType" Role="ExpensesType" Multiplicity="1" />
+    <End Type="HotelMateWebModel.Expense" Role="Expense" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ExpensesType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Expense">
+        <PropertyRef Name="ExpenseTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="PaymentMethod">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="GuestRoomAccounts" Relationship="HotelMateWebModel.FK_GuestRoomAccount_GuestRoomAccountPaymentMethod" FromRole="PaymentMethod" ToRole="GuestRoomAccount" />
+    <NavigationProperty Name="SoldItemsAlls" Relationship="HotelMateWebModel.FK_SoldItemsAll_SoldItemsAllPaymentMethod" FromRole="PaymentMethod" ToRole="SoldItemsAll" />
+    <NavigationProperty Name="BusinessCorporateAccounts" Relationship="HotelMateWebModel.FK_BusinessCorporateAccount_BusinessCorporateAccountPaymentMethod" FromRole="PaymentMethod" ToRole="BusinessCorporateAccount" />
+    <NavigationProperty Name="Payments" Relationship="HotelMateWebModel.FK_Payment_PaymentMethod" FromRole="PaymentMethod" ToRole="Payment" />
+  </EntityType>
+  <Association Name="FK_GuestRoomAccount_GuestRoomAccountPaymentMethod">
+    <End Type="HotelMateWebModel.PaymentMethod" Role="PaymentMethod" Multiplicity="1" />
+    <End Type="HotelMateWebModel.GuestRoomAccount" Role="GuestRoomAccount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PaymentMethod">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GuestRoomAccount">
+        <PropertyRef Name="PaymentMethodId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="EmployeeShift">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ShiftDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="EndTime" Type="DateTime" Precision="3" />
+    <Property Name="PersonId" Type="Int32" Nullable="false" />
+    <Property Name="TotalHotelSalesRecievable" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="TotalSales" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="CloseMethod" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TotalBarSalesRecievable" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <NavigationProperty Name="Person" Relationship="HotelMateWebModel.FK_EmployeeShift_EmployeeShiftPerson" FromRole="EmployeeShift" ToRole="Person" />
+  </EntityType>
+  <EntityType Name="InvoiceStatusType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Invoices" Relationship="HotelMateWebModel.FK_Invoice_InvoiceStatus" FromRole="InvoiceStatusType" ToRole="Invoice" />
+  </EntityType>
+  <EntityType Name="Supplier">
+    <Key>
+      <PropertyRef Name="SupplierID" />
+    </Key>
+    <Property Name="SupplierID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="MiddleName" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Title" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Address" Type="String" Nullable="false" MaxLength="600" FixedLength="false" Unicode="true" />
+    <Property Name="HotelId" Type="Int32" Nullable="false" />
+    <Property Name="SupplierTypeId" Type="Int32" Nullable="false" />
+    <Property Name="DisplayName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Username" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="StartDate" Type="DateTime" Precision="3" />
+    <Property Name="EndDate" Type="DateTime" Precision="3" />
+    <Property Name="Guardian" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="GuardianAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="PreviousEmployer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PreviousEmployerStartDate" Type="DateTime" Precision="3" />
+    <Property Name="PreviousEmployerEndDate" Type="DateTime" Precision="3" />
+    <Property Name="ReasonForLeaving" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Invoice">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StatusType" Type="Int32" Nullable="false" />
+    <Property Name="RaisedBy" Type="Int32" Nullable="false" />
+    <Property Name="AssignedTo" Type="Int32" Nullable="false" />
+    <Property Name="Supplier" Type="Int32" />
+    <Property Name="TotalAmount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="InvoiceDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="InvoiceStatusType" Relationship="HotelMateWebModel.FK_Invoice_InvoiceStatus" FromRole="Invoice" ToRole="InvoiceStatusType" />
+    <Property Name="PurchaseOrderId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="PurchaseOrder" Relationship="HotelMateWebModel.FK_Invoice_InvoicePO" FromRole="Invoice" ToRole="PurchaseOrder" />
+    <NavigationProperty Name="Person" Relationship="HotelMateWebModel.FK_Invoice_InvoiceAssignedTo" FromRole="Invoice" ToRole="Person" />
+    <NavigationProperty Name="Person1" Relationship="HotelMateWebModel.FK_Invoice_InvoiceCreator" FromRole="Invoice" ToRole="Person" />
+  </EntityType>
+  <Association Name="FK_Invoice_InvoiceStatus">
+    <End Type="HotelMateWebModel.InvoiceStatusType" Role="InvoiceStatusType" Multiplicity="1" />
+    <End Type="HotelMateWebModel.Invoice" Role="Invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InvoiceStatusType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Invoice">
+        <PropertyRef Name="StatusType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Store">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="StoreManager" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="StoreItems" Relationship="HotelMateWebModel.FK_StoteItems_StoteItemsStore" FromRole="Store" ToRole="StoreItem" />
+    <NavigationProperty Name="Person" Relationship="HotelMateWebModel.FK_Store_StoreManager" FromRole="Store" ToRole="Person" />
+  </EntityType>
+  <EntityType Name="PurchaseOrderItem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ItemId" Type="Int32" Nullable="false" />
+    <Property Name="PurchaseOrderId" Type="Int32" Nullable="false" />
+    <Property Name="Qty" Type="Int32" Nullable="false" />
+    <Property Name="TotalPrice" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+    <Property Name="QtyRecieved" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="StockItem" Relationship="HotelMateWebModel.FK_PurchaseOrderItem_PurchaseOrderItemStockItem" FromRole="PurchaseOrderItem" ToRole="StockItem" />
+    <NavigationProperty Name="PurchaseOrder" Relationship="HotelMateWebModel.FK_PurchaseOrderItem_PurchaseOrderItemPO" FromRole="PurchaseOrderItem" ToRole="PurchaseOrder" />
+    <Property Name="Returns" Type="Int32" Nullable="false" />
+    <Property Name="ReturnValue" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+    <NavigationProperty Name="Batches" Relationship="HotelMateWebModel.FK_Batch_BatchPOI" FromRole="PurchaseOrderItem" ToRole="Batch" />
+  </EntityType>
+  <EntityType Name="StockItem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UnitPrice" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="PicturePath" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="CategoryId" Type="Int32" Nullable="false" />
+    <Property Name="OrigPrice" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="NotNumber" Type="Int32" Nullable="false" />
+    <Property Name="NotStatus" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="StockItemName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Checker" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+    <Property Name="TotalQuantity" Type="Int32" Nullable="false" />
+    <Property Name="Barcode" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="OrderStatus" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="DISCOUNT" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="DISCOUNTSTARTDATE" Type="DateTime" Precision="3" />
+    <Property Name="DISCOUNTENDDATE" Type="DateTime" Precision="3" />
+    <Property Name="DISCOUNTEDPERCENTAGE" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="HotelId" Type="Int32" Nullable="false" />
+    <Property Name="ForSale" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Hotel" Relationship="HotelMateWebModel.FK_StockItem_StockItemHotel" FromRole="StockItem" ToRole="Hotel" />
+    <NavigationProperty Name="PurchaseOrderItems" Relationship="HotelMateWebModel.FK_PurchaseOrderItem_PurchaseOrderItemStockItem" FromRole="StockItem" ToRole="PurchaseOrderItem" />
+    <NavigationProperty Name="StockItem1" Relationship="HotelMateWebModel.FK_StockItem_StockItemTransaction" FromRole="StockItem" ToRole="StockItem1" />
+    <NavigationProperty Name="StockItem2" Relationship="HotelMateWebModel.FK_StockItem_StockItemTransaction" FromRole="StockItem1" ToRole="StockItem" />
+    <NavigationProperty Name="StoreItems" Relationship="HotelMateWebModel.FK_StoteItems_StoteItemsItem" FromRole="StockItem" ToRole="StoreItem" />
+    <Property Name="CookedFood" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="DistributionPointItems" Relationship="HotelMateWebModel.FK_DistributionItems_DistributionItemsItem" FromRole="StockItem" ToRole="DistributionPointItem" />
+    <NavigationProperty Name="POSItems" Relationship="HotelMateWebModel.FK_POSItems_POSItemsStockItem" FromRole="StockItem" ToRole="POSItem" />
+    <NavigationProperty Name="DamagedBatchItems" Relationship="HotelMateWebModel.FK_DamagedBatchItem_DamagedBatchItemItem" FromRole="StockItem" ToRole="DamagedBatchItem" />
+    <NavigationProperty Name="GuestOrderItems" Relationship="HotelMateWebModel.FK_GuestOrderItem_GuestOrderItemItem" FromRole="StockItem" ToRole="GuestOrderItem" />
+    <NavigationProperty Name="SoldItemsAlls" Relationship="HotelMateWebModel.FK_SoldItemsAll_SoldItemsAllItem" FromRole="StockItem" ToRole="SoldItemsAll" />
+    <NavigationProperty Name="GuestBillItems" Relationship="HotelMateWebModel.FK_GuestTemporalItem_GuestTemporalItemItem" FromRole="StockItem" ToRole="GuestBillItem" />
+    <NavigationProperty Name="GuestRequestItems" Relationship="HotelMateWebModel.FK_GuestRequestItem_GuestRequestItemItem" FromRole="StockItem" ToRole="GuestRequestItem" />
+    <Property Name="KitchenOnly" Type="Boolean" Nullable="false" />
+    <Property Name="Discounted" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="TableItems" Relationship="HotelMateWebModel.FK_TableItem_TableItemStockItem" FromRole="StockItem" ToRole="TableItem" />
+    <Property Name="RawItem" Type="Boolean" Nullable="false" />
+    <Property Name="StarBuy" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="FoodMatrices" Relationship="HotelMateWebModel.FK_FoodMatrix_FoodMatrixCookedFood" FromRole="StockItem" ToRole="FoodMatrix" />
+    <NavigationProperty Name="FoodMatrices1" Relationship="HotelMateWebModel.FK_FoodMatrix_FoodMatrixRawItem" FromRole="StockItem" ToRole="FoodMatrix" />
+    <Property Name="ClubPrice" Type="Decimal" Precision="18" Scale="4" />
+  </EntityType>
+  <Association Name="FK_StockItem_StockItemHotel">
+    <End Type="HotelMateWebModel.Hotel" Role="Hotel" Multiplicity="1" />
+    <End Type="HotelMateWebModel.StockItem" Role="StockItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StockItem">
+        <PropertyRef Name="HotelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PurchaseOrderItem_PurchaseOrderItemStockItem">
+    <End Type="HotelMateWebModel.StockItem" Role="StockItem" Multiplicity="1" />
+    <End Type="HotelMateWebModel.PurchaseOrderItem" Role="PurchaseOrderItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StockItem">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PurchaseOrderItem">
+        <PropertyRef Name="ItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StockItem_StockItemTransaction">
+    <End Type="HotelMateWebModel.StockItem" Role="StockItem" Multiplicity="1" />
+    <End Type="HotelMateWebModel.StockItem" Role="StockItem1" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="StockItem">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StockItem1">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="StoreItem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StoreId" Type="Int32" Nullable="false" />
+    <Property Name="ItemId" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="DateAdded" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="RecievedBy" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="StockItem" Relationship="HotelMateWebModel.FK_StoteItems_StoteItemsItem" FromRole="StoreItem" ToRole="StockItem" />
+    <NavigationProperty Name="Store" Relationship="HotelMateWebModel.FK_StoteItems_StoteItemsStore" FromRole="StoreItem" ToRole="Store" />
+    <Property Name="Remaining" Type="Int32" Nullable="false" />
+    <Property Name="Damaged" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Person" Relationship="HotelMateWebModel.FK_StoreItems_StoreItemsRecievedBy" FromRole="StoreItem" ToRole="Person" />
+  </EntityType>
+  <Association Name="FK_StoteItems_StoteItemsItem">
+    <End Type="HotelMateWebModel.StockItem" Role="StockItem" Multiplicity="1" />
+    <End Type="HotelMateWebModel.StoreItem" Role="StoreItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StockItem">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StoreItem">
+        <PropertyRef Name="ItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StoteItems_StoteItemsStore">
+    <End Type="HotelMateWebModel.Store" Role="Store" Multiplicity="1" />
+    <End Type="HotelMateWebModel.StoreItem" Role="StoreItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Store">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StoreItem">
+        <PropertyRef Name="StoreId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="DistributionPointItem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DistributionPointId" Type="Int32" Nullable="false" />
+    <Property Name="ItemId" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="DateAdded" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="RecievedBy" Type="Int32" Nullable="false" />
+    <Property Name="Remaining" Type="Int32" Nullable="false" />
+    <Property Name="BatchId" Type="Int32" />
+    <NavigationProperty Name="StockItem" Relationship="HotelMateWebModel.FK_DistributionItems_DistributionItemsItem" FromRole="DistributionPointItem" ToRole="StockItem" />
+    <Property Name="PreviousRemaining" Type="Int32" Nullable="false" />
+    <Property Name="Damaged" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Batch" Relationship="HotelMateWebModel.FK_DistributionPointItems_DistributionPointItemsBatch" FromRole="DistributionPointItem" ToRole="Batch" />
+    <NavigationProperty Name="DistributionPoint" Relationship="HotelMateWebModel.FK_DistributionItems_DistributionItemsDistributionPoint" FromRole="DistributionPointItem" ToRole="DistributionPoint" />
+    <NavigationProperty Name="Person" Relationship="HotelMateWebModel.FK_DistributionPointItems_DistributionPointItemsRecievedBy" FromRole="DistributionPointItem" ToRole="Person" />
+  </EntityType>
+  <Association Name="FK_DistributionItems_DistributionItemsItem">
+    <End Type="HotelMateWebModel.StockItem" Role="StockItem" Multiplicity="1" />
+    <End Type="HotelMateWebModel.DistributionPointItem" Role="DistributionPointItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StockItem">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DistributionPointItem">
+        <PropertyRef Name="ItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="POSItem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ItemId" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="Remaining" Type="Int32" Nullable="false" />
+    <Property Name="DistributionPointId" Type="Int32" Nullable="false" />
+    <Property Name="Invinsible" Type="Boolean" Nullable="false" />
+    <Property Name="PreviousQty" Type="Int32" />
+    <Property Name="PreviousRemaining" Type="Int32" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="StockItem" Relationship="HotelMateWebModel.FK_POSItems_POSItemsStockItem" FromRole="POSItem" ToRole="StockItem" />
+    <Property Name="Damaged" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="DistributionPoint" Relationship="HotelMateWebModel.FK_POSItems_POSItemsDistributionPoint" FromRole="POSItem" ToRole="DistributionPoint" />
+  </EntityType>
+  <Association Name="FK_POSItems_POSItemsStockItem">
+    <End Type="HotelMateWebModel.StockItem" Role="StockItem" Multiplicity="1" />
+    <End Type="HotelMateWebModel.POSItem" Role="POSItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StockItem">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="POSItem">
+        <PropertyRef Name="ItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="DamagedBatchItem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NumberDamaged" Type="Int32" Nullable="false" />
+    <Property Name="ItemId" Type="Int32" Nullable="false" />
+    <Property Name="BatchId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="StockItem" Relationship="HotelMateWebModel.FK_DamagedBatchItem_DamagedBatchItemItem" FromRole="DamagedBatchItem" ToRole="StockItem" />
+    <NavigationProperty Name="Batch" Relationship="HotelMateWebModel.FK_DamagedBatchItem_DamagedBatchItemBatch" FromRole="DamagedBatchItem" ToRole="Batch" />
+  </EntityType>
+  <Association Name="FK_DamagedBatchItem_DamagedBatchItemItem">
+    <End Type="HotelMateWebModel.StockItem" Role="StockItem" Multiplicity="1" />
+    <End Type="HotelMateWebModel.DamagedBatchItem" Role="DamagedBatchItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StockItem">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DamagedBatchItem">
+        <PropertyRef Name="ItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="TableItem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TableId" Type="Int32" Nullable="false" />
+    <Property Name="ItemId" Type="Int32" Nullable="false" />
+    <Property Name="Qty" Type="Int32" Nullable="false" />
+    <Property Name="DateSold" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Cashier" Type="Int32" Nullable="false" />
+    <Property Name="GuestOrderItemId" Type="Int32" />
+    <Property Name="Fulfilled" Type="Boolean" Nullable="false" />
+    <Property Name="Collected" Type="Boolean" Nullable="false" />
+    <Property Name="CompletedTime" Type="DateTime" Precision="3" />
+    <Property Name="CollectedTime" Type="DateTime" Precision="3" />
+    <Property Name="Completed" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="StockItem" Relationship="HotelMateWebModel.FK_TableItem_TableItemStockItem" FromRole="TableItem" ToRole="StockItem" />
+    <Property Name="StoreFulfilled" Type="Boolean" Nullable="false" />
+    <Property Name="StoreFulfilledTime" Type="DateTime" Precision="3" />
+    <Property Name="SentToPOS" Type="Boolean" Nullable="false" />
+    <Property Name="Note" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="SentToPrinter" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="BarTable" Relationship="HotelMateWebModel.FK_TableItem_TableItemBarTable" FromRole="TableItem" ToRole="BarTable" />
+  </EntityType>
+  <EntityType Name="MovieCategory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Movies" Relationship="HotelMateWebModel.FK_Movie_MovieCategory" FromRole="MovieCategory" ToRole="Movie" />
+  </EntityType>
+  <EntityType Name="Taxi">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Telephone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Mobile" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="PicturePath" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Adventure">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Telephones" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="PicturePath" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Latitude" Type="Decimal" Nullable="false" Precision="18" Scale="8" />
+    <Property Name="Longitude" Type="Decimal" Nullable="false" Precision="18" Scale="8" />
+    <Property Name="OpeningClosing" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Website" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="IsPlaceOfInterest" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Movie">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="CategoryId" Type="Int32" Nullable="false" />
+    <Property Name="Starring" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="Year" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Filename" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="MovieCategory" Relationship="HotelMateWebModel.FK_Movie_MovieCategory" FromRole="Movie" ToRole="MovieCategory" />
+    <NavigationProperty Name="GuestPlaylists" Relationship="HotelMateWebModel.GuestMovie" FromRole="Movie" ToRole="GuestPlaylist" />
+    <Property Name="AdultOnly" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Movie_MovieCategory">
+    <End Type="HotelMateWebModel.MovieCategory" Role="MovieCategory" Multiplicity="1" />
+    <End Type="HotelMateWebModel.Movie" Role="Movie" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MovieCategory">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Movie">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="GuestPlaylist">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="GuestId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Movies" Relationship="HotelMateWebModel.GuestMovie" FromRole="GuestPlaylist" ToRole="Movie" />
+    <NavigationProperty Name="Guest" Relationship="HotelMateWebModel.FK_Playlist_PlaylistGuest" FromRole="GuestPlaylist" ToRole="Guest" />
+    <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <Association Name="GuestMovie">
+    <End Type="HotelMateWebModel.GuestPlaylist" Role="GuestPlaylist" Multiplicity="*" />
+    <End Type="HotelMateWebModel.Movie" Role="Movie" Multiplicity="*" />
+  </Association>
+  <EntityType Name="Escort">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Telephone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Mobile" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="PicturePath" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="EscortPictures" Relationship="HotelMateWebModel.FK_EscortPicture_Escort" FromRole="Escort" ToRole="EscortPicture" />
+  </EntityType>
+  <EntityType Name="GuestOrder">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TableId" Type="Int32" Nullable="false" />
+    <Property Name="PersonId" Type="Int32" />
+    <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="Paid" Type="Boolean" Nullable="false" />
+    <Property Name="GuestId" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="GuestOrderItems" Relationship="HotelMateWebModel.FK_GuestOrderItem_GuestOrder" FromRole="GuestOrder" ToRole="GuestOrderItem" />
+    <NavigationProperty Name="Guest" Relationship="HotelMateWebModel.FK_GuestOrder_GuestOrderGuest" FromRole="GuestOrder" ToRole="Guest" />
+    <Property Name="PreparedByWaitress" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="GuestBillItems" Relationship="HotelMateWebModel.FK_GuestTemporalItem_GuestOrder" FromRole="GuestOrder" ToRole="GuestBillItem" />
+    <NavigationProperty Name="GuestRequestItems" Relationship="HotelMateWebModel.FK_GuestRequestItem_GuestRequest" FromRole="GuestOrder" ToRole="GuestRequestItem" />
+    <NavigationProperty Name="PaymentOrders" Relationship="HotelMateWebModel.FK_PaymentOrder_PaymentOrderGuestOrder" FromRole="GuestOrder" ToRole="PaymentOrder" />
+    <NavigationProperty Name="BarTable" Relationship="HotelMateWebModel.FK_GuestOrder_GuestOrderTable" FromRole="GuestOrder" ToRole="BarTable" />
+    <NavigationProperty Name="Person" Relationship="HotelMateWebModel.FK_GuestOrder_GuestOrderWaiter" FromRole="GuestOrder" ToRole="Person" />
+  </EntityType>
+  <EntityType Name="GuestOrderItem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ItemId" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+    <Property Name="Confirmed" Type="Boolean" Nullable="false" />
+    <Property Name="Delivered" Type="Boolean" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="Paid" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="GuestOrderId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="GuestOrder" Relationship="HotelMateWebModel.FK_GuestOrderItem_GuestOrder" FromRole="GuestOrderItem" ToRole="GuestOrder" />
+    <NavigationProperty Name="StockItem" Relationship="HotelMateWebModel.FK_GuestOrderItem_GuestOrderItemItem" FromRole="GuestOrderItem" ToRole="StockItem" />
+    <Property Name="WaitreesCanSee" Type="Boolean" Nullable="false" />
+    <Property Name="GuestCanSee" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_GuestOrderItem_GuestOrder">
+    <End Type="HotelMateWebModel.GuestOrder" Role="GuestOrder" Multiplicity="1" />
+    <End Type="HotelMateWebModel.GuestOrderItem" Role="GuestOrderItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GuestOrder">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GuestOrderItem">
+        <PropertyRef Name="GuestOrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GuestOrderItem_GuestOrderItemItem">
+    <End Type="HotelMateWebModel.StockItem" Role="StockItem" Multiplicity="1" />
+    <End Type="HotelMateWebModel.GuestOrderItem" Role="GuestOrderItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StockItem">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GuestOrderItem">
+        <PropertyRef Name="ItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Guest">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FullName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Telephone" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Mobile" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="CountryId" Type="Int32" Nullable="false" />
+    <Property Name="CarDetails" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Notes" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="PassportNumber" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CompanyId" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsFutureReservation" Type="Boolean" Nullable="false" />
+    <Property Name="HotelId" Type="Int32" Nullable="false" />
+    <Property Name="PersonId" Type="Int32" />
+    <Property Name="RoomNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GuestRoomId" Type="Int32" />
+    <Property Name="IsChild" Type="Boolean" Nullable="false" />
+    <Property Name="IsPresent" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Hotel" Relationship="HotelMateWebModel.FK_Guest_GuestHotel" FromRole="Guest" ToRole="Hotel" />
+    <NavigationProperty Name="GuestOrders" Relationship="HotelMateWebModel.FK_GuestOrder_GuestOrderGuest" FromRole="Guest" ToRole="GuestOrder" />
+    <NavigationProperty Name="GuestReservations" Relationship="HotelMateWebModel.FK_GuestReservation_GuestReservationGuest" FromRole="Guest" ToRole="GuestReservation" />
+    <NavigationProperty Name="GuestRooms" Relationship="HotelMateWebModel.FK_GuestRoom_GuestRoomGuest" FromRole="Guest" ToRole="GuestRoom" />
+    <NavigationProperty Name="GuestPlaylists" Relationship="HotelMateWebModel.FK_Playlist_PlaylistGuest" FromRole="Guest" ToRole="GuestPlaylist" />
+    <NavigationProperty Name="RoomTransferHistories" Relationship="HotelMateWebModel.FK_RoomTransferHistory_NewGuest" FromRole="Guest" ToRole="RoomTransferHistory" />
+    <NavigationProperty Name="SoldItemsAlls" Relationship="HotelMateWebModel.FK_SoldItemsAll_SoldItemsAllGuest" FromRole="Guest" ToRole="SoldItemsAll" />
+    <NavigationProperty Name="Transactions" Relationship="HotelMateWebModel.FK_Transaction_TransactionGuest" FromRole="Guest" ToRole="Transaction" />
+    <NavigationProperty Name="GuestLedgers" Relationship="HotelMateWebModel.FK_GuestLedger_GuestLedgerGuest" FromRole="Guest" ToRole="GuestLedger" />
+    <NavigationProperty Name="GuestChats" Relationship="HotelMateWebModel.FK_GuestChat_GuestChatGuest" FromRole="Guest" ToRole="GuestChat" />
+    <NavigationProperty Name="GuestChatMessages" Relationship="HotelMateWebModel.FK_GuestChatMessages_GuestChatMessagesOwner" FromRole="Guest" ToRole="GuestChatMessage" />
+    <NavigationProperty Name="GuestChatMessages1" Relationship="HotelMateWebModel.FK_GuestChatMessages_GuestChatMessagesStranger" FromRole="Guest" ToRole="GuestChatMessage" />
+    <NavigationProperty Name="GuestFeedBacks" Relationship="HotelMateWebModel.FK_GuestFeedBack_Guest" FromRole="Guest" ToRole="GuestFeedBack" />
+    <NavigationProperty Name="PaymentOrders" Relationship="HotelMateWebModel.FK_PaymentOrder_PaymentOrderGuest" FromRole="Guest" ToRole="PaymentOrder" />
+    <NavigationProperty Name="BarTables" Relationship="HotelMateWebModel.FK_BarTable_BarTableGuest" FromRole="Guest" ToRole="BarTable" />
+    <NavigationProperty Name="BusinessAccount" Relationship="HotelMateWebModel.FK_Guest_CompanyGuest" FromRole="Guest" ToRole="BusinessAccount" />
+    <NavigationProperty Name="Person" Relationship="HotelMateWebModel.FK_Guest_GuestPerson" FromRole="Guest" ToRole="Person" />
+    <NavigationProperty Name="Payments" Relationship="HotelMateWebModel.FK_Payment_PaymentGuest" FromRole="Guest" ToRole="Payment" />
+  </EntityType>
+  <EntityType Name="SoldItemsAll">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ItemId" Type="Int32" Nullable="false" />
+    <Property Name="Qty" Type="Int32" Nullable="false" />
+    <Property Name="TotalPrice" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="TransactionId" Type="Int32" Nullable="false" />
+    <Property Name="DateSold" Type="DateTime" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="PersonId" Type="Int32" Nullable="false" />
+    <Property Name="TillOpen" Type="Boolean" Nullable="false" />
+    <Property Name="PaymentTypeId" Type="Int32" />
+    <Property Name="GuestId" Type="Int32" />
+    <Property Name="PaymentMethodId" Type="Int32" Nullable="false" />
+    <Property Name="PaymentMethodNote" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="TimeOfSale" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DistributionPointId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Guest" Relationship="HotelMateWebModel.FK_SoldItemsAll_SoldItemsAllGuest" FromRole="SoldItemsAll" ToRole="Guest" />
+    <NavigationProperty Name="PaymentMethod" Relationship="HotelMateWebModel.FK_SoldItemsAll_SoldItemsAllPaymentMethod" FromRole="SoldItemsAll" ToRole="PaymentMethod" />
+    <NavigationProperty Name="StockItem" Relationship="HotelMateWebModel.FK_SoldItemsAll_SoldItemsAllItem" FromRole="SoldItemsAll" ToRole="StockItem" />
+    <Property Name="BusinessAccountId" Type="Int32" />
+    <Property Name="RecieptNumber" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="ReasonForVoid" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="BusinessAccount" Relationship="HotelMateWebModel.FK_SoldItemsAll_SoldItemsAllBA" FromRole="SoldItemsAll" ToRole="BusinessAccount" />
+    <NavigationProperty Name="DistributionPoint" Relationship="HotelMateWebModel.FK_SoldItemsAll_SoldItemsAllDistributionPoint" FromRole="SoldItemsAll" ToRole="DistributionPoint" />
+    <NavigationProperty Name="Person" Relationship="HotelMateWebModel.FK_SoldItemsAll_SoldItemsAllPerson" FromRole="SoldItemsAll" ToRole="Person" />
+  </EntityType>
+  <Association Name="FK_Guest_GuestHotel">
+    <End Type="HotelMateWebModel.Hotel" Role="Hotel" Multiplicity="1" />
+    <End Type="HotelMateWebModel.Guest" Role="Guest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Guest">
+        <PropertyRef Name="HotelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GuestOrder_GuestOrderGuest">
+    <End Type="HotelMateWebModel.Guest" Role="Guest" Multiplicity="1" />
+    <End Type="HotelMateWebModel.GuestOrder" Role="GuestOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Guest">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GuestOrder">
+        <PropertyRef Name="GuestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GuestReservation_GuestReservationGuest">
+    <End Type="HotelMateWebModel.Guest" Role="Guest" Multiplicity="1" />
+    <End Type="HotelMateWebModel.GuestReservation" Role="GuestReservation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Guest">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GuestReservation">
+        <PropertyRef Name="GuestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GuestRoom_GuestRoomGuest">
+    <End Type="HotelMateWebModel.Guest" Role="Guest" Multiplicity="1" />
+    <End Type="HotelMateWebModel.GuestRoom" Role="GuestRoom" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Guest">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GuestRoom">
+        <PropertyRef Name="GuestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Playlist_PlaylistGuest">
+    <End Type="HotelMateWebModel.Guest" Role="Guest" Multiplicity="1" />
+    <End Type="HotelMateWebModel.GuestPlaylist" Role="GuestPlaylist" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Guest">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GuestPlaylist">
+        <PropertyRef Name="GuestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RoomTransferHistory_NewGuest">
+    <End Type="HotelMateWebModel.Guest" Role="Guest" Multiplicity="1" />
+    <End Type="HotelMateWebModel.RoomTransferHistory" Role="RoomTransferHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Guest">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RoomTransferHistory">
+        <PropertyRef Name="NewGuestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SoldItemsAll_SoldItemsAllGuest">
+    <End Type="HotelMateWebModel.Guest" Role="Guest" Multiplicity="0..1" />
+    <End Type="HotelMateWebModel.SoldItemsAll" Role="SoldItemsAll" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Guest">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SoldItemsAll">
+        <PropertyRef Name="GuestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transaction_TransactionGuest">
+    <End Type="HotelMateWebModel.Guest" Role="Guest" Multiplicity="1" />
+    <End Type="HotelMateWebModel.Transaction" Role="Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Guest">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Transaction">
+        <PropertyRef Name="GuestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SoldItemsAll_SoldItemsAllPaymentMethod">
+    <End Type="HotelMateWebModel.PaymentMethod" Role="PaymentMethod" Multiplicity="1" />
+    <End Type="HotelMateWebModel.SoldItemsAll" Role="SoldItemsAll" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PaymentMethod">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SoldItemsAll">
+        <PropertyRef Name="PaymentMethodId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SoldItemsAll_SoldItemsAllItem">
+    <End Type="HotelMateWebModel.StockItem" Role="StockItem" Multiplicity="1" />
+    <End Type="HotelMateWebModel.SoldItemsAll" Role="SoldItemsAll" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StockItem">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SoldItemsAll">
+        <PropertyRef Name="ItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="GuestLedger">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="GuestId" Type="Int32" Nullable="false" />
+    <Property Name="Amount" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+    <Property Name="Cashier" Type="Int32" Nullable="false" />
+    <Property Name="Telephone" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="RoomPaymentTypeId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Guest" Relationship="HotelMateWebModel.FK_GuestLedger_GuestLedgerGuest" FromRole="GuestLedger" ToRole="Guest" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Person" Relationship="HotelMateWebModel.FK_GuestLedger_GuestLedgerCashier" FromRole="GuestLedger" ToRole="Person" />
+    <NavigationProperty Name="RoomPaymentType" Relationship="HotelMateWebModel.FK_GuestLedger_GuestLedgerPaymentType" FromRole="GuestLedger" ToRole="RoomPaymentType" />
+  </EntityType>
+  <Association Name="FK_GuestLedger_GuestLedgerGuest">
+    <End Type="HotelMateWebModel.Guest" Role="Guest" Multiplicity="1" />
+    <End Type="HotelMateWebModel.GuestLedger" Role="GuestLedger" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Guest">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GuestLedger">
+        <PropertyRef Name="GuestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="GuestBillItem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ItemId" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+    <Property Name="Confirmed" Type="Boolean" Nullable="false" />
+    <Property Name="Delivered" Type="Boolean" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="Paid" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="GuestOrderId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="GuestOrder" Relationship="HotelMateWebModel.FK_GuestTemporalItem_GuestOrder" FromRole="GuestBillItem" ToRole="GuestOrder" />
+    <NavigationProperty Name="StockItem" Relationship="HotelMateWebModel.FK_GuestTemporalItem_GuestTemporalItemItem" FromRole="GuestBillItem" ToRole="StockItem" />
+  </EntityType>
+  <EntityType Name="GuestPaidItem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ItemId" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+    <Property Name="Confirmed" Type="Boolean" Nullable="false" />
+    <Property Name="Delivered" Type="Boolean" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="Paid" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="GuestOrderId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GuestRequestItem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ItemId" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+    <Property Name="Confirmed" Type="Boolean" Nullable="false" />
+    <Property Name="Delivered" Type="Boolean" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="Paid" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="GuestOrderId" Type="Int32" Nullable="false" />
+    <Property Name="RequestBy" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="GuestOrder" Relationship="HotelMateWebModel.FK_GuestRequestItem_GuestRequest" FromRole="GuestRequestItem" ToRole="GuestOrder" />
+    <NavigationProperty Name="StockItem" Relationship="HotelMateWebModel.FK_GuestRequestItem_GuestRequestItemItem" FromRole="GuestRequestItem" ToRole="StockItem" />
+  </EntityType>
+  <Association Name="FK_GuestTemporalItem_GuestOrder">
+    <End Type="HotelMateWebModel.GuestOrder" Role="GuestOrder" Multiplicity="1" />
+    <End Type="HotelMateWebModel.GuestBillItem" Role="GuestBillItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GuestOrder">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GuestBillItem">
+        <PropertyRef Name="GuestOrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GuestTemporalItem_GuestTemporalItemItem">
+    <End Type="HotelMateWebModel.StockItem" Role="StockItem" Multiplicity="1" />
+    <End Type="HotelMateWebModel.GuestBillItem" Role="GuestBillItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StockItem">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GuestBillItem">
+        <PropertyRef Name="ItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GuestRequestItem_GuestRequest">
+    <End Type="HotelMateWebModel.GuestOrder" Role="GuestOrder" Multiplicity="1" />
+    <End Type="HotelMateWebModel.GuestRequestItem" Role="GuestRequestItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GuestOrder">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GuestRequestItem">
+        <PropertyRef Name="GuestOrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GuestRequestItem_GuestRequestItemItem">
+    <End Type="HotelMateWebModel.StockItem" Role="StockItem" Multiplicity="1" />
+    <End Type="HotelMateWebModel.GuestRequestItem" Role="GuestRequestItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StockItem">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GuestRequestItem">
+        <PropertyRef Name="ItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="EscortPicture">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EscortId" Type="Int32" Nullable="false" />
+    <Property Name="PicturePath" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Escort" Relationship="HotelMateWebModel.FK_EscortPicture_Escort" FromRole="EscortPicture" ToRole="Escort" />
+  </EntityType>
+  <EntityType Name="GuestChat">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GuestId" Type="Int32" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Guest" Relationship="HotelMateWebModel.FK_GuestChat_GuestChatGuest" FromRole="GuestChat" ToRole="Guest" />
+  </EntityType>
+  <EntityType Name="GuestChatMessage">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OwnerId" Type="Int32" Nullable="false" />
+    <Property Name="StrangerId" Type="Int32" Nullable="false" />
+    <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="MessageBy" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="PicturePath" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Guest" Relationship="HotelMateWebModel.FK_GuestChatMessages_GuestChatMessagesOwner" FromRole="GuestChatMessage" ToRole="Guest" />
+    <NavigationProperty Name="Guest1" Relationship="HotelMateWebModel.FK_GuestChatMessages_GuestChatMessagesStranger" FromRole="GuestChatMessage" ToRole="Guest" />
+  </EntityType>
+  <EntityType Name="GuestFeedBack">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Comments" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="GuestId" Type="Int32" Nullable="false" />
+    <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Guest" Relationship="HotelMateWebModel.FK_GuestFeedBack_Guest" FromRole="GuestFeedBack" ToRole="Guest" />
+  </EntityType>
+  <Association Name="FK_EscortPicture_Escort">
+    <End Type="HotelMateWebModel.Escort" Role="Escort" Multiplicity="1" />
+    <End Type="HotelMateWebModel.EscortPicture" Role="EscortPicture" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Escort">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EscortPicture">
+        <PropertyRef Name="EscortId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GuestChat_GuestChatGuest">
+    <End Type="HotelMateWebModel.Guest" Role="Guest" Multiplicity="1" />
+    <End Type="HotelMateWebModel.GuestChat" Role="GuestChat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Guest">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GuestChat">
+        <PropertyRef Name="GuestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GuestChatMessages_GuestChatMessagesOwner">
+    <End Type="HotelMateWebModel.Guest" Role="Guest" Multiplicity="1" />
+    <End Type="HotelMateWebModel.GuestChatMessage" Role="GuestChatMessage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Guest">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GuestChatMessage">
+        <PropertyRef Name="OwnerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GuestChatMessages_GuestChatMessagesStranger">
+    <End Type="HotelMateWebModel.Guest" Role="Guest" Multiplicity="1" />
+    <End Type="HotelMateWebModel.GuestChatMessage" Role="GuestChatMessage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Guest">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GuestChatMessage">
+        <PropertyRef Name="StrangerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GuestFeedBack_Guest">
+    <End Type="HotelMateWebModel.Guest" Role="Guest" Multiplicity="1" />
+    <End Type="HotelMateWebModel.GuestFeedBack" Role="GuestFeedBack" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Guest">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GuestFeedBack">
+        <PropertyRef Name="GuestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="GuestCredential">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PersonId" Type="Int32" Nullable="false" />
+    <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="PinCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GuestName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Person" Relationship="HotelMateWebModel.FK_GuestCredential_GuestCredentialPerson" FromRole="GuestCredential" ToRole="Person" />
+  </EntityType>
+  <Association Name="FK_TableItem_TableItemStockItem">
+    <End Type="HotelMateWebModel.StockItem" Role="StockItem" Multiplicity="1" />
+    <End Type="HotelMateWebModel.TableItem" Role="TableItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StockItem">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TableItem">
+        <PropertyRef Name="ItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="PurchaseOrderStoreType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PurchaseOrder">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="RaisedBy" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="NetValue" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="BaseNetValue" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="InvoiceRaised" Type="Boolean" Nullable="false" />
+    <Property Name="GoodsRecieved" Type="Boolean" Nullable="false" />
+    <Property Name="GoodsBought" Type="Boolean" Nullable="false" />
+    <Property Name="Completed" Type="Boolean" Nullable="false" />
+    <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SupplierInvoice" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Invoices" Relationship="HotelMateWebModel.FK_Invoice_InvoicePO" FromRole="PurchaseOrder" ToRole="Invoice" />
+    <NavigationProperty Name="PurchaseOrderItems" Relationship="HotelMateWebModel.FK_PurchaseOrderItem_PurchaseOrderItemPO" FromRole="PurchaseOrder" ToRole="PurchaseOrderItem" />
+    <Property Name="InvoicePath" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_Invoice_InvoicePO">
+    <End Type="HotelMateWebModel.PurchaseOrder" Role="PurchaseOrder" Multiplicity="1" />
+    <End Type="HotelMateWebModel.Invoice" Role="Invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PurchaseOrder">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Invoice">
+        <PropertyRef Name="PurchaseOrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PurchaseOrderItem_PurchaseOrderItemPO">
+    <End Type="HotelMateWebModel.PurchaseOrder" Role="PurchaseOrder" Multiplicity="1" />
+    <End Type="HotelMateWebModel.PurchaseOrderItem" Role="PurchaseOrderItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PurchaseOrder">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PurchaseOrderItem">
+        <PropertyRef Name="PurchaseOrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="FoodMatrix">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RawItemId" Type="Int32" Nullable="false" />
+    <Property Name="FoodItemId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="StockItem" Relationship="HotelMateWebModel.FK_FoodMatrix_FoodMatrixCookedFood" FromRole="FoodMatrix" ToRole="StockItem" />
+    <NavigationProperty Name="StockItem1" Relationship="HotelMateWebModel.FK_FoodMatrix_FoodMatrixRawItem" FromRole="FoodMatrix" ToRole="StockItem" />
+    <Property Name="Qty" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PaymentOrder">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="PaymentDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="TransactionRef" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PaymentRef" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ResponseCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TransactionStatus" Type="Boolean" Nullable="false" />
+    <Property Name="TotalAmount" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="GuestId" Type="Int32" Nullable="false" />
+    <Property Name="GuestOrderId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Guest" Relationship="HotelMateWebModel.FK_PaymentOrder_PaymentOrderGuest" FromRole="PaymentOrder" ToRole="Guest" />
+    <NavigationProperty Name="GuestOrder" Relationship="HotelMateWebModel.FK_PaymentOrder_PaymentOrderGuestOrder" FromRole="PaymentOrder" ToRole="GuestOrder" />
+  </EntityType>
+  <EntityType Name="SalesDiscount">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DiscountDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ReceiptNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Amount" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+    <Property Name="PersonId" Type="Int32" Nullable="false" />
+    <Property Name="ActualCashierId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Person" Relationship="HotelMateWebModel.FK_SalesDiscount_SalesDiscountPerson" FromRole="SalesDiscount" ToRole="Person" />
+  </EntityType>
+  <EntityType Name="SchoolPicture">
+    <Key>
+      <PropertyRef Name="SchoolPicturesId" />
+    </Key>
+    <Property Name="SchoolPicturesId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ContentType" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Filename" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="Binary" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Caption" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_FoodMatrix_FoodMatrixCookedFood">
+    <End Type="HotelMateWebModel.StockItem" Role="StockItem" Multiplicity="1" />
+    <End Type="HotelMateWebModel.FoodMatrix" Role="FoodMatrix" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StockItem">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FoodMatrix">
+        <PropertyRef Name="FoodItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FoodMatrix_FoodMatrixRawItem">
+    <End Type="HotelMateWebModel.StockItem" Role="StockItem" Multiplicity="1" />
+    <End Type="HotelMateWebModel.FoodMatrix" Role="FoodMatrix" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StockItem">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FoodMatrix">
+        <PropertyRef Name="RawItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PaymentOrder_PaymentOrderGuest">
+    <End Type="HotelMateWebModel.Guest" Role="Guest" Multiplicity="1" />
+    <End Type="HotelMateWebModel.PaymentOrder" Role="PaymentOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Guest">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PaymentOrder">
+        <PropertyRef Name="GuestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PaymentOrder_PaymentOrderGuestOrder">
+    <End Type="HotelMateWebModel.GuestOrder" Role="GuestOrder" Multiplicity="1" />
+    <End Type="HotelMateWebModel.PaymentOrder" Role="PaymentOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GuestOrder">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PaymentOrder">
+        <PropertyRef Name="GuestOrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="GuestMessage">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MessageDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Message" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="TableName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="BarTable">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TableName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="TableAlias" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="GuestId" Type="Int32" Nullable="false" />
+    <Property Name="TableId" Type="Int32" Nullable="false" />
+    <Property Name="StaffId" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Guest" Relationship="HotelMateWebModel.FK_BarTable_BarTableGuest" FromRole="BarTable" ToRole="Guest" />
+    <NavigationProperty Name="Person" Relationship="HotelMateWebModel.FK_BarTable_BarTableStaff" FromRole="BarTable" ToRole="Person" />
+    <NavigationProperty Name="GuestOrders" Relationship="HotelMateWebModel.FK_GuestOrder_GuestOrderTable" FromRole="BarTable" ToRole="GuestOrder" />
+    <NavigationProperty Name="PrinterTables" Relationship="HotelMateWebModel.FK_PrinterTable_PrinterTableBarTable" FromRole="BarTable" ToRole="PrinterTable" />
+    <NavigationProperty Name="TableItems" Relationship="HotelMateWebModel.FK_TableItem_TableItemBarTable" FromRole="BarTable" ToRole="TableItem" />
+  </EntityType>
+  <EntityType Name="Batch">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BatchDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="DistributionPointId" Type="Int32" Nullable="false" />
+    <Property Name="PurchaseOrderItemId" Type="Int32" Nullable="false" />
+    <Property Name="QuantityTransferred" Type="Int32" Nullable="false" />
+    <Property Name="POSItemId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="DistributionPoint" Relationship="HotelMateWebModel.FK_Batch_BatchDistributionPoint" FromRole="Batch" ToRole="DistributionPoint" />
+    <NavigationProperty Name="PurchaseOrderItem" Relationship="HotelMateWebModel.FK_Batch_BatchPOI" FromRole="Batch" ToRole="PurchaseOrderItem" />
+    <NavigationProperty Name="DamagedBatchItems" Relationship="HotelMateWebModel.FK_DamagedBatchItem_DamagedBatchItemBatch" FromRole="Batch" ToRole="DamagedBatchItem" />
+    <NavigationProperty Name="DistributionPointItems" Relationship="HotelMateWebModel.FK_DistributionPointItems_DistributionPointItemsBatch" FromRole="Batch" ToRole="DistributionPointItem" />
+  </EntityType>
+  <EntityType Name="BusinessAccount">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ContactName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Telephone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ContactNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CompanyAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CompanyTelephone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="NatureOfBusiness" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="HotelId" Type="Int32" Nullable="false" />
+    <Property Name="Debtor" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Hotel" Relationship="HotelMateWebModel.FK_BusinessAccount_BusinessAccountHotel" FromRole="BusinessAccount" ToRole="Hotel" />
+    <NavigationProperty Name="BusinessCorporateAccounts" Relationship="HotelMateWebModel.FK_BusinessCorporateAccount_BusinessCorporateAccountCompany" FromRole="BusinessAccount" ToRole="BusinessCorporateAccount" />
+    <NavigationProperty Name="Guests" Relationship="HotelMateWebModel.FK_Guest_CompanyGuest" FromRole="BusinessAccount" ToRole="Guest" />
+    <NavigationProperty Name="SoldItemsAlls" Relationship="HotelMateWebModel.FK_SoldItemsAll_SoldItemsAllBA" FromRole="BusinessAccount" ToRole="SoldItemsAll" />
+    <NavigationProperty Name="GuestRooms" Relationship="HotelMateWebModel.BusinessRoomAccounts" FromRole="BusinessAccount" ToRole="GuestRoom" />
+    <NavigationProperty Name="Payments" Relationship="HotelMateWebModel.FK_Payment_PaymentBA" FromRole="BusinessAccount" ToRole="Payment" />
+  </EntityType>
+  <EntityType Name="BusinessCorporateAccount">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Amount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="TransactionDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="TransactionId" Type="Int32" />
+    <Property Name="PaymentMethodId" Type="Int32" Nullable="false" />
+    <Property Name="PaymentMethodNote" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="BusinessAccountId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="BusinessAccount" Relationship="HotelMateWebModel.FK_BusinessCorporateAccount_BusinessCorporateAccountCompany" FromRole="BusinessCorporateAccount" ToRole="BusinessAccount" />
+    <NavigationProperty Name="PaymentMethod" Relationship="HotelMateWebModel.FK_BusinessCorporateAccount_BusinessCorporateAccountPaymentMethod" FromRole="BusinessCorporateAccount" ToRole="PaymentMethod" />
+    <NavigationProperty Name="Person" Relationship="HotelMateWebModel.FK_BusinessCorporateAccount_BusinessCorporateAccountPerson" FromRole="BusinessCorporateAccount" ToRole="Person" />
+  </EntityType>
+  <EntityType Name="DistributionPoint">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="DistributionPointManager" Type="Int32" Nullable="false" />
+    <Property Name="IsSales" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Batches" Relationship="HotelMateWebModel.FK_Batch_BatchDistributionPoint" FromRole="DistributionPoint" ToRole="Batch" />
+    <NavigationProperty Name="DistributionPointItems" Relationship="HotelMateWebModel.FK_DistributionItems_DistributionItemsDistributionPoint" FromRole="DistributionPoint" ToRole="DistributionPointItem" />
+    <NavigationProperty Name="Person" Relationship="HotelMateWebModel.FK_DistributionPoint_DistributionPointManager" FromRole="DistributionPoint" ToRole="Person" />
+    <NavigationProperty Name="People" Relationship="HotelMateWebModel.FK_Person_PersonDistributionPoint" FromRole="DistributionPoint" ToRole="Person" />
+    <NavigationProperty Name="POSItems" Relationship="HotelMateWebModel.FK_POSItems_POSItemsDistributionPoint" FromRole="DistributionPoint" ToRole="POSItem" />
+    <NavigationProperty Name="SoldItemsAlls" Relationship="HotelMateWebModel.FK_SoldItemsAll_SoldItemsAllDistributionPoint" FromRole="DistributionPoint" ToRole="SoldItemsAll" />
+    <NavigationProperty Name="Payments" Relationship="HotelMateWebModel.FK_Payment_PaymentDistributionPoint" FromRole="DistributionPoint" ToRole="Payment" />
+  </EntityType>
+  <EntityType Name="Person">
+    <Key>
+      <PropertyRef Name="PersonID" />
+    </Key>
+    <Property Name="PersonID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="MiddleName" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Title" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Address" Type="String" Nullable="false" MaxLength="600" FixedLength="false" Unicode="true" />
+    <Property Name="HotelId" Type="Int32" Nullable="false" />
+    <Property Name="PersonTypeId" Type="Int32" Nullable="false" />
+    <Property Name="DisplayName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Username" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="StartDate" Type="DateTime" Precision="3" />
+    <Property Name="EndDate" Type="DateTime" Precision="3" />
+    <Property Name="Guardian" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="GuardianAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="PreviousEmployer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PreviousEmployerStartDate" Type="DateTime" Precision="3" />
+    <Property Name="PreviousEmployerEndDate" Type="DateTime" Precision="3" />
+    <Property Name="ReasonForLeaving" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Telephone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="JobTitle" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="CityState" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="WorkAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="MaritalStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NoOfChildren" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="PlaceOfBirth" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="IdNumber" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="BankDetails" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="AccountNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Salary" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Qualification" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="PicturePath" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="FullMember" Type="Boolean" Nullable="false" />
+    <Property Name="DistributionPointId" Type="Int32" />
+    <NavigationProperty Name="BarTables" Relationship="HotelMateWebModel.FK_BarTable_BarTableStaff" FromRole="Person" ToRole="BarTable" />
+    <NavigationProperty Name="BusinessCorporateAccounts" Relationship="HotelMateWebModel.FK_BusinessCorporateAccount_BusinessCorporateAccountPerson" FromRole="Person" ToRole="BusinessCorporateAccount" />
+    <NavigationProperty Name="DistributionPoints" Relationship="HotelMateWebModel.FK_DistributionPoint_DistributionPointManager" FromRole="Person" ToRole="DistributionPoint" />
+    <NavigationProperty Name="DistributionPoint" Relationship="HotelMateWebModel.FK_Person_PersonDistributionPoint" FromRole="Person" ToRole="DistributionPoint" />
+    <NavigationProperty Name="DistributionPointItems" Relationship="HotelMateWebModel.FK_DistributionPointItems_DistributionPointItemsRecievedBy" FromRole="Person" ToRole="DistributionPointItem" />
+    <NavigationProperty Name="EmployeeShifts" Relationship="HotelMateWebModel.FK_EmployeeShift_EmployeeShiftPerson" FromRole="Person" ToRole="EmployeeShift" />
+    <NavigationProperty Name="Expenses" Relationship="HotelMateWebModel.FK_Expense_ExpenseStaff" FromRole="Person" ToRole="Expense" />
+    <NavigationProperty Name="Guests" Relationship="HotelMateWebModel.FK_Guest_GuestPerson" FromRole="Person" ToRole="Guest" />
+    <NavigationProperty Name="GuestCredentials" Relationship="HotelMateWebModel.FK_GuestCredential_GuestCredentialPerson" FromRole="Person" ToRole="GuestCredential" />
+    <NavigationProperty Name="GuestLedgers" Relationship="HotelMateWebModel.FK_GuestLedger_GuestLedgerCashier" FromRole="Person" ToRole="GuestLedger" />
+    <NavigationProperty Name="GuestOrders" Relationship="HotelMateWebModel.FK_GuestOrder_GuestOrderWaiter" FromRole="Person" ToRole="GuestOrder" />
+    <NavigationProperty Name="GuestRoomAccounts" Relationship="HotelMateWebModel.FK_GuestRoomAccount_GuestRoomAccountPerson" FromRole="Person" ToRole="GuestRoomAccount" />
+    <NavigationProperty Name="Hotel" Relationship="HotelMateWebModel.FK_Person_PersonHotel" FromRole="Person" ToRole="Hotel" />
+    <NavigationProperty Name="Invoices" Relationship="HotelMateWebModel.FK_Invoice_InvoiceAssignedTo" FromRole="Person" ToRole="Invoice" />
+    <NavigationProperty Name="Invoices1" Relationship="HotelMateWebModel.FK_Invoice_InvoiceCreator" FromRole="Person" ToRole="Invoice" />
+    <NavigationProperty Name="PersonType" Relationship="HotelMateWebModel.FK_Person_PersonType" FromRole="Person" ToRole="PersonType" />
+    <NavigationProperty Name="SalesDiscounts" Relationship="HotelMateWebModel.FK_SalesDiscount_SalesDiscountPerson" FromRole="Person" ToRole="SalesDiscount" />
+    <NavigationProperty Name="SoldItemsAlls" Relationship="HotelMateWebModel.FK_SoldItemsAll_SoldItemsAllPerson" FromRole="Person" ToRole="SoldItemsAll" />
+    <NavigationProperty Name="Stores" Relationship="HotelMateWebModel.FK_Store_StoreManager" FromRole="Person" ToRole="Store" />
+    <NavigationProperty Name="StoreItems" Relationship="HotelMateWebModel.FK_StoreItems_StoreItemsRecievedBy" FromRole="Person" ToRole="StoreItem" />
+    <NavigationProperty Name="Payments" Relationship="HotelMateWebModel.FK_Payment_PaymentCashier" FromRole="Person" ToRole="Payment" />
+  </EntityType>
+  <EntityType Name="PrinterTable">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TableId" Type="Int32" Nullable="false" />
+    <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="BarTable" Relationship="HotelMateWebModel.FK_PrinterTable_PrinterTableBarTable" FromRole="PrinterTable" ToRole="BarTable" />
+  </EntityType>
+  <Association Name="FK_BarTable_BarTableGuest">
+    <End Type="HotelMateWebModel.Guest" Role="Guest" Multiplicity="1" />
+    <End Type="HotelMateWebModel.BarTable" Role="BarTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Guest">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BarTable">
+        <PropertyRef Name="GuestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BarTable_BarTableStaff">
+    <End Type="HotelMateWebModel.Person" Role="Person" Multiplicity="1" />
+    <End Type="HotelMateWebModel.BarTable" Role="BarTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="BarTable">
+        <PropertyRef Name="StaffId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GuestOrder_GuestOrderTable">
+    <End Type="HotelMateWebModel.BarTable" Role="BarTable" Multiplicity="1" />
+    <End Type="HotelMateWebModel.GuestOrder" Role="GuestOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BarTable">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GuestOrder">
+        <PropertyRef Name="TableId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PrinterTable_PrinterTableBarTable">
+    <End Type="HotelMateWebModel.BarTable" Role="BarTable" Multiplicity="1" />
+    <End Type="HotelMateWebModel.PrinterTable" Role="PrinterTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BarTable">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PrinterTable">
+        <PropertyRef Name="TableId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TableItem_TableItemBarTable">
+    <End Type="HotelMateWebModel.BarTable" Role="BarTable" Multiplicity="1" />
+    <End Type="HotelMateWebModel.TableItem" Role="TableItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BarTable">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TableItem">
+        <PropertyRef Name="TableId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Batch_BatchDistributionPoint">
+    <End Type="HotelMateWebModel.DistributionPoint" Role="DistributionPoint" Multiplicity="1" />
+    <End Type="HotelMateWebModel.Batch" Role="Batch" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DistributionPoint">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Batch">
+        <PropertyRef Name="DistributionPointId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Batch_BatchPOI">
+    <End Type="HotelMateWebModel.PurchaseOrderItem" Role="PurchaseOrderItem" Multiplicity="1" />
+    <End Type="HotelMateWebModel.Batch" Role="Batch" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PurchaseOrderItem">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Batch">
+        <PropertyRef Name="PurchaseOrderItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DamagedBatchItem_DamagedBatchItemBatch">
+    <End Type="HotelMateWebModel.Batch" Role="Batch" Multiplicity="1" />
+    <End Type="HotelMateWebModel.DamagedBatchItem" Role="DamagedBatchItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Batch">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DamagedBatchItem">
+        <PropertyRef Name="BatchId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DistributionPointItems_DistributionPointItemsBatch">
+    <End Type="HotelMateWebModel.Batch" Role="Batch" Multiplicity="0..1" />
+    <End Type="HotelMateWebModel.DistributionPointItem" Role="DistributionPointItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Batch">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DistributionPointItem">
+        <PropertyRef Name="BatchId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BusinessAccount_BusinessAccountHotel">
+    <End Type="HotelMateWebModel.Hotel" Role="Hotel" Multiplicity="1" />
+    <End Type="HotelMateWebModel.BusinessAccount" Role="BusinessAccount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BusinessAccount">
+        <PropertyRef Name="HotelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BusinessCorporateAccount_BusinessCorporateAccountCompany">
+    <End Type="HotelMateWebModel.BusinessAccount" Role="BusinessAccount" Multiplicity="1" />
+    <End Type="HotelMateWebModel.BusinessCorporateAccount" Role="BusinessCorporateAccount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessAccount">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BusinessCorporateAccount">
+        <PropertyRef Name="BusinessAccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Guest_CompanyGuest">
+    <End Type="HotelMateWebModel.BusinessAccount" Role="BusinessAccount" Multiplicity="0..1" />
+    <End Type="HotelMateWebModel.Guest" Role="Guest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessAccount">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Guest">
+        <PropertyRef Name="CompanyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SoldItemsAll_SoldItemsAllBA">
+    <End Type="HotelMateWebModel.BusinessAccount" Role="BusinessAccount" Multiplicity="0..1" />
+    <End Type="HotelMateWebModel.SoldItemsAll" Role="SoldItemsAll" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessAccount">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SoldItemsAll">
+        <PropertyRef Name="BusinessAccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BusinessCorporateAccount_BusinessCorporateAccountPaymentMethod">
+    <End Type="HotelMateWebModel.PaymentMethod" Role="PaymentMethod" Multiplicity="1" />
+    <End Type="HotelMateWebModel.BusinessCorporateAccount" Role="BusinessCorporateAccount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PaymentMethod">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BusinessCorporateAccount">
+        <PropertyRef Name="PaymentMethodId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BusinessCorporateAccount_BusinessCorporateAccountPerson">
+    <End Type="HotelMateWebModel.Person" Role="Person" Multiplicity="0..1" />
+    <End Type="HotelMateWebModel.BusinessCorporateAccount" Role="BusinessCorporateAccount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="BusinessCorporateAccount">
+        <PropertyRef Name="TransactionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DistributionItems_DistributionItemsDistributionPoint">
+    <End Type="HotelMateWebModel.DistributionPoint" Role="DistributionPoint" Multiplicity="1" />
+    <End Type="HotelMateWebModel.DistributionPointItem" Role="DistributionPointItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DistributionPoint">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DistributionPointItem">
+        <PropertyRef Name="DistributionPointId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DistributionPoint_DistributionPointManager">
+    <End Type="HotelMateWebModel.Person" Role="Person" Multiplicity="1" />
+    <End Type="HotelMateWebModel.DistributionPoint" Role="DistributionPoint" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="DistributionPoint">
+        <PropertyRef Name="DistributionPointManager" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Person_PersonDistributionPoint">
+    <End Type="HotelMateWebModel.DistributionPoint" Role="DistributionPoint" Multiplicity="0..1" />
+    <End Type="HotelMateWebModel.Person" Role="Person" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DistributionPoint">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Person">
+        <PropertyRef Name="DistributionPointId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_POSItems_POSItemsDistributionPoint">
+    <End Type="HotelMateWebModel.DistributionPoint" Role="DistributionPoint" Multiplicity="1" />
+    <End Type="HotelMateWebModel.POSItem" Role="POSItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DistributionPoint">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="POSItem">
+        <PropertyRef Name="DistributionPointId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SoldItemsAll_SoldItemsAllDistributionPoint">
+    <End Type="HotelMateWebModel.DistributionPoint" Role="DistributionPoint" Multiplicity="1" />
+    <End Type="HotelMateWebModel.SoldItemsAll" Role="SoldItemsAll" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DistributionPoint">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SoldItemsAll">
+        <PropertyRef Name="DistributionPointId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DistributionPointItems_DistributionPointItemsRecievedBy">
+    <End Type="HotelMateWebModel.Person" Role="Person" Multiplicity="1" />
+    <End Type="HotelMateWebModel.DistributionPointItem" Role="DistributionPointItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="DistributionPointItem">
+        <PropertyRef Name="RecievedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EmployeeShift_EmployeeShiftPerson">
+    <End Type="HotelMateWebModel.Person" Role="Person" Multiplicity="1" />
+    <End Type="HotelMateWebModel.EmployeeShift" Role="EmployeeShift" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="EmployeeShift">
+        <PropertyRef Name="PersonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Expense_ExpenseStaff">
+    <End Type="HotelMateWebModel.Person" Role="Person" Multiplicity="1" />
+    <End Type="HotelMateWebModel.Expense" Role="Expense" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="Expense">
+        <PropertyRef Name="StaffId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Guest_GuestPerson">
+    <End Type="HotelMateWebModel.Person" Role="Person" Multiplicity="0..1" />
+    <End Type="HotelMateWebModel.Guest" Role="Guest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="Guest">
+        <PropertyRef Name="PersonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GuestCredential_GuestCredentialPerson">
+    <End Type="HotelMateWebModel.Person" Role="Person" Multiplicity="1" />
+    <End Type="HotelMateWebModel.GuestCredential" Role="GuestCredential" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="GuestCredential">
+        <PropertyRef Name="PersonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GuestLedger_GuestLedgerCashier">
+    <End Type="HotelMateWebModel.Person" Role="Person" Multiplicity="1" />
+    <End Type="HotelMateWebModel.GuestLedger" Role="GuestLedger" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="GuestLedger">
+        <PropertyRef Name="Cashier" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GuestOrder_GuestOrderWaiter">
+    <End Type="HotelMateWebModel.Person" Role="Person" Multiplicity="0..1" />
+    <End Type="HotelMateWebModel.GuestOrder" Role="GuestOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="GuestOrder">
+        <PropertyRef Name="PersonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GuestRoomAccount_GuestRoomAccountPerson">
+    <End Type="HotelMateWebModel.Person" Role="Person" Multiplicity="0..1" />
+    <End Type="HotelMateWebModel.GuestRoomAccount" Role="GuestRoomAccount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="GuestRoomAccount">
+        <PropertyRef Name="TransactionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Person_PersonHotel">
+    <End Type="HotelMateWebModel.Hotel" Role="Hotel" Multiplicity="1" />
+    <End Type="HotelMateWebModel.Person" Role="Person" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Person">
+        <PropertyRef Name="HotelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Invoice_InvoiceAssignedTo">
+    <End Type="HotelMateWebModel.Person" Role="Person" Multiplicity="1" />
+    <End Type="HotelMateWebModel.Invoice" Role="Invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="Invoice">
+        <PropertyRef Name="AssignedTo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Invoice_InvoiceCreator">
+    <End Type="HotelMateWebModel.Person" Role="Person" Multiplicity="1" />
+    <End Type="HotelMateWebModel.Invoice" Role="Invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="Invoice">
+        <PropertyRef Name="RaisedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Person_PersonType">
+    <End Type="HotelMateWebModel.PersonType" Role="PersonType" Multiplicity="1" />
+    <End Type="HotelMateWebModel.Person" Role="Person" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PersonType">
+        <PropertyRef Name="PersonTypeId" />
+      </Principal>
+      <Dependent Role="Person">
+        <PropertyRef Name="PersonTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesDiscount_SalesDiscountPerson">
+    <End Type="HotelMateWebModel.Person" Role="Person" Multiplicity="1" />
+    <End Type="HotelMateWebModel.SalesDiscount" Role="SalesDiscount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="SalesDiscount">
+        <PropertyRef Name="PersonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SoldItemsAll_SoldItemsAllPerson">
+    <End Type="HotelMateWebModel.Person" Role="Person" Multiplicity="1" />
+    <End Type="HotelMateWebModel.SoldItemsAll" Role="SoldItemsAll" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="SoldItemsAll">
+        <PropertyRef Name="PersonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Store_StoreManager">
+    <End Type="HotelMateWebModel.Person" Role="Person" Multiplicity="1" />
+    <End Type="HotelMateWebModel.Store" Role="Store" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="Store">
+        <PropertyRef Name="StoreManager" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StoreItems_StoreItemsRecievedBy">
+    <End Type="HotelMateWebModel.Person" Role="Person" Multiplicity="1" />
+    <End Type="HotelMateWebModel.StoreItem" Role="StoreItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="StoreItem">
+        <PropertyRef Name="RecievedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BusinessRoomAccounts">
+    <End Type="HotelMateWebModel.GuestRoom" Role="GuestRoom" Multiplicity="*" />
+    <End Type="HotelMateWebModel.BusinessAccount" Role="BusinessAccount" Multiplicity="*" />
+  </Association>
+  <EntityType Name="Payment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PaymentDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="PaymentMethodId" Type="Int32" Nullable="false" />
+    <Property Name="Total" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+    <Property Name="SubTotal" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+    <Property Name="Tax" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TaxAmount" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+    <Property Name="Discount" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DiscountAmount" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+    <Property Name="ServiceCharge" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ServiceChargeAmount" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+    <Property Name="Resident" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ResidentAmount" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+    <Property Name="CashierId" Type="Int32" Nullable="false" />
+    <Property Name="GuestId" Type="Int32" />
+    <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ReceiptNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Paid" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+    <Property Name="Outstanding" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+    <Property Name="Type" Type="Int32" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="DistributionPointId" Type="Int32" />
+    <Property Name="BusinessAccountId" Type="Int32" />
+    <Property Name="PaymentTypeId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="BusinessAccount" Relationship="HotelMateWebModel.FK_Payment_PaymentBA" FromRole="Payment" ToRole="BusinessAccount" />
+    <NavigationProperty Name="DistributionPoint" Relationship="HotelMateWebModel.FK_Payment_PaymentDistributionPoint" FromRole="Payment" ToRole="DistributionPoint" />
+    <NavigationProperty Name="Guest" Relationship="HotelMateWebModel.FK_Payment_PaymentGuest" FromRole="Payment" ToRole="Guest" />
+    <NavigationProperty Name="Person" Relationship="HotelMateWebModel.FK_Payment_PaymentCashier" FromRole="Payment" ToRole="Person" />
+    <NavigationProperty Name="PaymentMethod" Relationship="HotelMateWebModel.FK_Payment_PaymentMethod" FromRole="Payment" ToRole="PaymentMethod" />
+    <NavigationProperty Name="RoomPaymentType" Relationship="HotelMateWebModel.FK_Payment_PaymentPaymentType" FromRole="Payment" ToRole="RoomPaymentType" />
+  </EntityType>
+  <EntityType Name="RoomPaymentType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="PaymentStatusId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="GuestLedgers" Relationship="HotelMateWebModel.FK_GuestLedger_GuestLedgerPaymentType" FromRole="RoomPaymentType" ToRole="GuestLedger" />
+    <NavigationProperty Name="GuestRoomAccounts" Relationship="HotelMateWebModel.FK_GuestRoomAccount_GuestRoomAccountPayment" FromRole="RoomPaymentType" ToRole="GuestRoomAccount" />
+    <NavigationProperty Name="Payments" Relationship="HotelMateWebModel.FK_Payment_PaymentPaymentType" FromRole="RoomPaymentType" ToRole="Payment" />
+    <NavigationProperty Name="RoomPaymentTypeStatu" Relationship="HotelMateWebModel.FK_RoomPaymentType_RoomPaymentTypeStatus" FromRole="RoomPaymentType" ToRole="RoomPaymentTypeStatu" />
+  </EntityType>
+  <Association Name="FK_Payment_PaymentBA">
+    <End Type="HotelMateWebModel.BusinessAccount" Role="BusinessAccount" Multiplicity="0..1" />
+    <End Type="HotelMateWebModel.Payment" Role="Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessAccount">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="BusinessAccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Payment_PaymentDistributionPoint">
+    <End Type="HotelMateWebModel.DistributionPoint" Role="DistributionPoint" Multiplicity="0..1" />
+    <End Type="HotelMateWebModel.Payment" Role="Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DistributionPoint">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="DistributionPointId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Payment_PaymentGuest">
+    <End Type="HotelMateWebModel.Guest" Role="Guest" Multiplicity="0..1" />
+    <End Type="HotelMateWebModel.Payment" Role="Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Guest">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="GuestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GuestLedger_GuestLedgerPaymentType">
+    <End Type="HotelMateWebModel.RoomPaymentType" Role="RoomPaymentType" Multiplicity="1" />
+    <End Type="HotelMateWebModel.GuestLedger" Role="GuestLedger" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoomPaymentType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GuestLedger">
+        <PropertyRef Name="RoomPaymentTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GuestRoomAccount_GuestRoomAccountPayment">
+    <End Type="HotelMateWebModel.RoomPaymentType" Role="RoomPaymentType" Multiplicity="1" />
+    <End Type="HotelMateWebModel.GuestRoomAccount" Role="GuestRoomAccount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoomPaymentType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GuestRoomAccount">
+        <PropertyRef Name="PaymentTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Payment_PaymentCashier">
+    <End Type="HotelMateWebModel.Person" Role="Person" Multiplicity="1" />
+    <End Type="HotelMateWebModel.Payment" Role="Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="CashierId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Payment_PaymentMethod">
+    <End Type="HotelMateWebModel.PaymentMethod" Role="PaymentMethod" Multiplicity="1" />
+    <End Type="HotelMateWebModel.Payment" Role="Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PaymentMethod">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="PaymentMethodId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Payment_PaymentPaymentType">
+    <End Type="HotelMateWebModel.RoomPaymentType" Role="RoomPaymentType" Multiplicity="1" />
+    <End Type="HotelMateWebModel.Payment" Role="Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoomPaymentType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="PaymentTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RoomPaymentType_RoomPaymentTypeStatus">
+    <End Type="HotelMateWebModel.RoomPaymentTypeStatu" Role="RoomPaymentTypeStatu" Multiplicity="1" />
+    <End Type="HotelMateWebModel.RoomPaymentType" Role="RoomPaymentType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoomPaymentTypeStatu">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RoomPaymentType">
+        <PropertyRef Name="PaymentStatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

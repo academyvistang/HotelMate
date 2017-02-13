@@ -1,0 +1,22 @@
+﻿@model HotelMateWebV1.Models.GroupBookingViewModel
+<link href="~/css/CoolTable.css" rel="stylesheet" />
+
+<div id="hero" class="row">
+    <div class="eight columns">
+        <h1 class="page-title ci-title"> <span>@Model.PageTitle</span> </h1>
+        @Html.Partial("_RoomsRefund", Model.RoomBookingViewModel)
+    </div>
+    @Html.Partial("_CheckAvailabilityNew")
+</div> <!-- #hero -->
+
+<div class="row">
+    <div class="twelve columns">
+        <div class="twelve columns main-separator after-hero">
+            <div class="home-slide-controls">
+                <a class="slide-prev" href="">Previous Slide</a>
+                <a class="slide-next" href="">Next Slide</a>
+            </div>
+        </div>
+    </div>
+</div>
+

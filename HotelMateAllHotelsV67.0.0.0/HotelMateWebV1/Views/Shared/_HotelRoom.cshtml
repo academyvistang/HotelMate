@@ -1,0 +1,66 @@
+﻿@using HotelMateWebV1.Helpers
+@model HotelMateWebV1.Models.RoomViewModel
+           
+<script src="~/DragnDrop/jquery-1.6.2.min.js"></script>
+           
+<style>
+    .dropdownDiv {
+        height: 100px;
+        width: 100%;
+        overflow: auto;
+        padding: 2px;
+    }
+</style>
+
+                    @Html.HiddenFor(model => model.Id)
+                    @Html.HiddenFor(model => model.IsActive)
+
+                    <div class="six columns">
+                    <label for="RoomNumber">Room Number*</label>
+                    @Html.TextBoxFor(model => model.RoomNumber)
+                    @Html.ValidationMessageFor(model => model.RoomNumber)
+                    </div>
+
+                    <div class="six columns">
+                    <label for="adults">NO OF BEDS*</label>
+                    <input type="number" min="1" max="6" id="NoOfBeds" name="NoOfBeds" value="@Model.NoOfBeds">
+                    </div>
+
+                    <div class="six columns">
+                    <label for="children">PRICE*</label>
+                    <input type="number" min="1" max="4000000" id="Price" name="Price" value="@Model.Price">
+                    @Html.ValidationMessageFor(model => model.Price)
+                    </div>
+
+                    <div class="twelve columns">
+                    <label for="comments">NOTES</label>
+                    @Html.TextAreaFor(model => model.Notes, new { @cols = "30", @rows = "1" })
+                    </div>
+
+                    <div class="six columns">
+                        <label for="comments">Room Type</label>
+                        @Html.DropDownListFor(model => model.RoomType, Model.RoomTypeList, new {@name="room_select", @id="b-type", @class="" })
+                        @Html.ValidationMessageFor(model => model.RoomType)
+                    </div>
+
+                     <div class="six columns">
+                        <label for="comments">Room Status</label>
+                        @Html.DropDownListFor(model => model.StatusId, Model.RoomStatusList, new {@name="room_select", @id="b-status", @class="" })
+                        @Html.ValidationMessageFor(model => model.StatusId)
+                    </div>
+
+                   <div class="six columns">
+                                        <label for="comments">EXTENSION NUMBER</label>
+                                        @Html.TextBoxFor(model => model.ExtNumber)
+                                        </div>
+
+                    <div class="twelve columns">
+                    <input type="submit" value="Save" name="send_booking">
+                    </div>
+    
+         
+
+
+    
+
+

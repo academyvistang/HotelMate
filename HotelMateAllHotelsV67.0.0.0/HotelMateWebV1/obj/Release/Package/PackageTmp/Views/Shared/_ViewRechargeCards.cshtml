@@ -1,0 +1,39 @@
+﻿@model HotelMateWebV1.Models.HotelMenuModel
+<link href="~/css/CoolTable.css" rel="stylesheet" />
+
+<style>
+    .question {
+        border: 2px solid green;
+        margin-bottom: 5px;
+        background-color: lightblue;
+    }
+
+    .hover_img a {
+        position: relative;
+    }
+
+        .hover_img a span {
+            position: absolute;
+            display: none;
+            z-index: 99;
+        }
+
+        .hover_img a:hover span {
+            display: block;
+        }
+</style>
+
+
+@if (Model.Adventures.Count() > 0)
+{
+    <div>
+        @foreach (var adv in Model.Adventures)
+        {
+            @Html.Partial("_RechargeCardPartial", adv)
+        }
+
+    </div>
+}
+
+
+

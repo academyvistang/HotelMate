@@ -1,0 +1,64 @@
+﻿@model HotelMateWebV1.Models.GuestRoomAccountViewModel
+<link href="~/css/CoolTable.css" rel="stylesheet" />
+
+@{ int totalRecordCount = 0;}
+
+
+<div class="eight columns">
+
+    @if (!Model.Guest.GuestRooms.SelectMany(x => x.GuestRoomAccounts).Any())
+    {   
+        @Html.Partial("_EntityUpdated", "This guest has no bill at the moment.")
+    }
+    else
+    {
+    <div>
+        <table class="striped fixedlayout">
+            <thead>
+                <tr>
+                    <th width="15%"></th>
+                    <th width="15%">Room No.</th>
+                    <th width="15%">Room Type</th>
+                    <th width="15%">Amount</th>
+                    <th width="15%">Status</th>
+                    <th width="20%">Type</th>
+                    <th width="15%">Reference</th>
+                    <th width="15%">Date</th>
+                </tr>
+            </thead>
+            <tbody id="CasesTableBody1">
+                @foreach (var rm in Model.Guest.GuestRooms)
+                {
+                    totalRecordCount += rm.GuestRoomAccounts.Count();
+
+                    foreach (var ac in rm.GuestRoomAccounts.OrderByDescending(x => x.TransactionDate))
+                    {
+                        <tr id="@ac.Id">
+                            <td class="tth2">
+                                <a class="erbEditorOpener buttonDevFirst" href="@Url.Action("EditGuestAccount", "GuestAccount", new { id = ac.Id })">Adjust Bill</a>
+                            </td>
+                            <td class="tth2">@rm.Room.RoomNumber</td>
+                            <td class="tth2">@rm.Room.RoomType1.Name</td>
+                            <td class="tth2">@ac.Amount</td>
+                            <td class="tth2">@ac.PaymentMethod.Name</td>
+                            @*<td class="tth2"></td>*@
+                            <td class="tth2">@ac.RoomPaymentType.Name </td>
+                            <td class="tth2">@ac.TransactionId</td>
+                            <td class="tth2">@ac.TransactionDate.ToShortDateString()</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>    
+    }
+
+</div>
+
+
+
+
+
+
+
+

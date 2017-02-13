@@ -1,0 +1,45 @@
+﻿@model HotelMateWebV1.Models.AdminViewModel
+@using HotelMateWebV1.Helpers.Enums
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+
+<div class="cl-mcont">
+
+    <div class="stats_bar">
+        <div class="butpro butstyle">
+            <div class="sub"><h2>Guests</h2><span id="total_clientes">@Model.NumberOfGuests</span></div>
+            <div class="stat"><span class="spk1"><canvas style="display: inline-block; width: 74px; height: 16px; vertical-align: top;" width="74" height="16"></canvas></span></div>
+        </div>
+        <div class="butpro butstyle">
+            <div class="sub"><h2>Sales (NGN)</h2><span>@Model.MonthlyCreditSales</span></div>
+            <div class="stat"><span class="up"> 13,5%</span></div>
+        </div>
+        <div class="butpro butstyle">
+            <div class="sub"><h2>Long Stay</h2><span>@Model.LongTermStay</span></div>
+            <div class="stat"><span class="down"> 20,7%</span></div>
+        </div>
+        <div class="butpro butstyle">
+            <div class="sub"><h2>Short Stay</h2><span>@Model.ShortTermStay</span></div>
+            <div class="stat"><span class="equal"> 0%</span></div>
+        </div>
+        <div class="butpro butstyle">
+            <div class="sub"><h2>AVERAGE</h2><span>3%</span></div>
+            <div class="stat"><span class="spk2"></span></div>
+        </div>
+        <div class="butpro butstyle">
+            <div class="sub"><h2>Reservations</h2><span>@Model.ReservationCount</span></div>
+            <div class="stat"><span class="spk3"></span></div>
+        </div>
+    </div>
+
+
+
+</div>
+
+
+
+

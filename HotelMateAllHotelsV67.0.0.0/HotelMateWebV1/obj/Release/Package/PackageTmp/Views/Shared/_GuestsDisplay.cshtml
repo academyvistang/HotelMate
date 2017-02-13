@@ -1,0 +1,45 @@
+﻿@using HotelMateWebV1.Helpers
+@model HotelMateWebV1.Models.RoomBookingViewModel
+<link href="~/css/CoolTable.css" rel="stylesheet" />
+
+
+
+    <div class="eight columns">
+        <h1 class="page-title ci-title" style="margin-bottom:10px;"><span>GROUP RESERVATIONS</span></h1>
+        <div>
+            <table class="striped fixedlayout">
+                <thead>
+                    <tr>
+                        <th width="50%"></th>
+                        <th width="20%">Guest</th>
+                        <th width="15%">Checked In</th>
+                        <th width="15%">Rooms</th>                       
+                    </tr>
+                </thead>
+                <tbody id="CasesTableBody1">
+                    @foreach (var guest in Model.GuestList)
+                    {
+                        <tr id="@guest.Id">
+                            <td class="tth2">
+                            <a class="erbEditorOpener buttonDevFirst" href="@Url.Action("AddRooms", "Booking", new { id = guest.Id })">Add Rooms</a>
+                                @if (guest.GuestRoomsBeRemoved())
+                                { 
+                                  <a class="erbEditorOpener buttonDevFirst" href="@Url.Action("RemoveRooms", "Booking", new { id = guest.Id })">Remove Rooms</a>
+                                }
+                            </td>
+                            <td class="tth2">@guest.FullName</td>
+                            <td class="tth2">@DateTime.Now.ToShortDateString()</td>
+                            <td class="tth2">@guest.GuestRooms.Select(x => x.Room.RoomNumber).ToDelimitedString(",")</td>                        
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+   
+
+@if(Model.NoRemoveableRooms)
+{
+    <p>There are no removeable rooms. Please use the checkout button to check out guests.</p>
+}

@@ -1,0 +1,68 @@
+﻿@model HotelMateWebV1.Models.AdminViewModel
+@using HotelMateWebV1.Helpers.Enums
+<link href="~/Content/telerik.common.css" rel="stylesheet" />
+<link href="~/Content/telerik.webblue.css" rel="stylesheet" />
+
+
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="page-head">
+    <h2>Data Tables</h2>
+    <ol class="breadcrumb">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Tables</a></li>
+        <li class="active">DataTables</li>
+    </ol>
+</div>
+<div class="cl-mcont">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="block-flat">
+                <div class="header">
+                    <h3>Basic DataTable</h3>
+                </div>
+                <div class="content">
+                    <div class="table-responsive">
+                        <div class="grid_dashboard">
+        @(Html.Telerik().Grid<HotelMateWeb.Dal.DataCore.GuestRoom>(Model.GuestRooms)
+        .Name("Grid")
+        .Columns(columns =>
+        {
+            columns.Template(
+                    @<text>
+                        @Html.ActionLink(@item.Room.RoomNumber, "Edit", new { controller = "Person", id = item.Id }, new { @class = "specialLink" })
+                    </text>
+               ).Width(120);
+            columns.Bound(o => o.Room.RoomNumber).Title("Name").Width(130);
+                
+            columns.Bound(o => o.CheckinDate).Format("{0:dd/MM/yyyy}").Width(80);            
+            columns.Bound(o => o.CheckoutDate).Format("{0:dd/MM/yyyy}").Width(80);
+            columns.Template(
+                    @<text>
+                        <label> <span style="color:Red;"></span></label>
+                    </text>
+                                ).Title("End Date").Width(80);
+      
+
+        })
+                                    .Scrollable()
+                                    .Sortable()
+                                    .Pageable(pager => pager.PageSize(5))
+                                    .Filterable()
+                            )
+                            <div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+

@@ -1,0 +1,19 @@
+﻿@model HotelMateWebV1.Models.GuestRoomAccountViewModel
+
+@{
+    ViewBag.Title = "Booking";
+}
+
+@if (Model.CompanyGuest.HasValue)
+{
+    @Html.Partial("_CheckOutGuestDisplayPOSCompany")
+}
+else
+{
+    @Html.Partial("_CheckOutGuestDisplayPOS")
+}
+
+@section SideBarBox
+{
+    @Html.Partial("_ElokasSidebar")
+}

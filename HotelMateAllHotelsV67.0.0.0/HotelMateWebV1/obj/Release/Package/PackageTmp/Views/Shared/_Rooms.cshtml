@@ -1,0 +1,173 @@
+﻿@using HotelMateWebV1.Helpers
+@model HotelMateWebV1.Models.RoomBookingViewModel
+
+<script src="~/DragnDrop/jquery-1.6.2.min.js"></script>
+
+<script>
+
+    $(function ()
+    {
+
+        $("#SubmitBTN").click(function ()
+        {
+            $(this).attr('disabled', 'disabled');
+            $(this).text("Submitting...");
+        });
+
+    });
+
+</script>
+
+
+<style>
+    .dropdownDiv {
+        height: 100px;
+        width: 100%;
+        overflow: auto;
+        padding: 2px;
+    }
+</style>
+
+
+
+
+@Html.HiddenFor(model => model.Room.Id)
+@Html.HiddenFor(model => model.Room.RoomNumber)
+@Html.HiddenFor(model => model.Room.RoomType)
+@Html.HiddenFor(model => model.Guest.IsActive)
+@Html.HiddenFor(model => model.Guest.Status)
+@Html.HiddenFor(model => model.GuestRoom.RoomId)
+@Html.HiddenFor(model => model.Guest.Id)
+
+
+<div class="six columns">
+    <label for="FullName">Name*</label>
+    @Html.TextBoxFor(model => model.Guest.FullName)
+    @Html.ValidationMessageFor(model => model.Guest.FullName)
+</div>
+
+<div class="six columns">
+    <label for="email">E-Mail*</label>
+    @Html.TextBoxFor(model => model.Guest.Email)
+    @Html.ValidationMessageFor(model => model.Guest.Email)
+</div>
+
+<div class="six columns">
+    <label for="email">Telephone*</label>
+    @Html.TextBoxFor(model => model.Guest.Telephone)
+    @Html.ValidationMessageFor(model => model.Guest.Telephone)
+</div>
+
+<div class="six columns">
+    <label for="car">Car Details</label>
+    @Html.TextBoxFor(model => model.Guest.CarDetails)
+</div>
+
+<div class="twelve columns">
+    <label for="comments">Address</label>
+    @Html.TextAreaFor(model => model.Guest.Address, new { @cols = "30", @rows = "1" })
+    @Html.ValidationMessageFor(model => model.Guest.Address)
+</div>
+
+
+
+<div class="six columns">
+    <label for="adults">Guests*</label>
+    <input type="number" min="1" max="6" id="GuestRoom.Occupants" name="GuestRoom.Occupants" value="@Model.GuestRoom.Occupants">
+</div>
+
+<div class="six columns">
+    <label for="children">Children</label>
+    <input type="number" min="0" max="4" id="GuestRoom.Children" name="GuestRoom.Children" value="@Model.GuestRoom.Children">
+</div>
+
+<div class="six columns">
+    <label for="roomRate">Room Rate</label>
+    @if (Model.Guest.Id > 0)
+    {
+        <input type="number" readonly min="1" max="90000000" id="GuestRoom.RoomRate" name="GuestRoom.RoomRate" value="@Model.GuestRoom.RoomRate">
+    }
+    else
+    {
+        <input type="number" min="1" max="90000000" id="GuestRoom.RoomRate" name="GuestRoom.RoomRate" value="@Model.GuestRoom.RoomRate">
+    }
+</div>
+<div class="six columns">
+    <label for="discountedRate">Discounted Rate</label>
+    @if (Model.Guest.Id > 0)
+    {
+        <input type="number" readonly min="0" max="90000000" id="GuestRoom.DiscountedRate" name="GuestRoom.DiscountedRate" value="@Model.GuestRoom.RoomRate">
+    }
+    else
+    {
+        <input type="number" min="0" max="90000000" id="GuestRoom.DiscountedRate" name="GuestRoom.DiscountedRate" value="@Model.GuestRoom.RoomRate">
+    }
+</div>
+
+<div class="six columns">
+    <label for="discountedRate">Initial Deposit</label>
+    @if (Model.Guest.Id > 0)
+    {
+        <input type="number" readonly min="0" max="90000000" id="InitialDeposit" name="InitialDeposit" value="@Model.InitialDeposit">
+    }
+    else
+    {
+        <input type="number" min="0" max="90000000" id="InitialDeposit" name="InitialDeposit" value="@Model.InitialDeposit">
+    }
+</div>
+
+<div class="six columns">
+    <label for="b-room">Nationality</label>
+
+    <select name='room_nationality' id='b-nationality' class=''>
+        <option class="level-0" value="1" selected="selected">Nigerian</option>
+        <option class="level-0" value="2">British</option>
+        <option class="level-0" value="3">American</option>
+        <option class="level-0" value="4">Ghanaian</option>
+        <option class="level-0" value="5">African</option>
+        <option class="level-0" value="6">Other</option>
+    </select>
+</div>
+
+<div class="six columns">
+    <label for="comments">BUSINESS/COMPANY GUEST</label>
+    @Html.CheckBox("CompanyGuest")
+</div>
+
+@{string strDisplay = "display:none;"; if (Model.Guest.CompanyId > 0) { strDisplay = string.Empty; }}
+
+<div style="@strDisplay" id="ShowCompany">
+    <div class="six columns">
+        <label for="comments">BUSINESS/COMPANY NAME</label>
+        @Html.DropDownListFor(model => model.Guest.CompanyId, Model.BusinessAccounts)
+    </div>
+</div>
+
+<div class="twelve columns">
+    <label for="comments">REMINDERS/NOTES</label>
+    @Html.TextAreaFor(model => model.Guest.Notes, new { @cols = "30", @rows = "1" })
+</div>
+
+
+@Html.Partial("_PaymentMethodSelector", Model)
+
+
+<div class="twelve columns">
+    @if(Model.GuestId  > 0)
+    {
+        <input id="SubmitBTN" type="submit" value="Edit Reserved Room(s)" name="send_booking">
+    }
+    else
+    {
+        <input id="SubmitBTN" type="submit" value="Reserve Room(s)" name="send_booking">
+    }
+    
+</div>
+
+
+
+
+
+
+
+

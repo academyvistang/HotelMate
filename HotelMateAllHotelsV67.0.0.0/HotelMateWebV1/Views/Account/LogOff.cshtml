@@ -1,0 +1,22 @@
+﻿@model HotelMateWebV1.Models.PersonViewModel
+
+@{
+    ViewBag.Title = "Booking";
+}
+
+@using (Html.BeginForm("LogOffCompletely", "Account", FormMethod.Post, new { enctype = "multipart/form-data", @id = "target", @class = "booking-form b-form row" }))
+{
+    @Html.Partial("_CloseLogOffShift")
+}
+
+@section PaginationBox
+{
+    @Html.Partial("_Pagination")
+}
+
+
+
+
+
+
+

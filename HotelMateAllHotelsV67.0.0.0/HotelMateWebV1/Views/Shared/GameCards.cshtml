@@ -1,0 +1,30 @@
+﻿@model List<HotelMateWebV1.Models.CardModel>
+           
+<style type="text/css">    
+    .playingcards
+    {
+        cursor:pointer;
+    }
+</style> 
+
+
+
+@foreach (var cardModel in Model)
+{
+    string name = cardModel.Card.Suit.Name + cardModel.Card.Rank.Name + ".gif";
+    
+    if (string.IsNullOrEmpty(cardModel.ActionUrl))
+    {
+        <img alt="" src="../../Images/PlayingCards/@name" />
+    }
+    else
+    {
+        <a class="clickablecard" title="Click Card To Play" href="@cardModel.ActionUrl"><img alt="Click Card To Play" title="Click Card To Play" src="../../Images/PlayingCards/@name" id="@cardModel.Card.Id" class="playingcards" /></a>
+    }
+}
+
+
+
+
+
+

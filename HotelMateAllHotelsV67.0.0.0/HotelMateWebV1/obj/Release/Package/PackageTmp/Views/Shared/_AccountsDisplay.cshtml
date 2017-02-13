@@ -1,0 +1,75 @@
+﻿@model HotelMateWebV1.Models.GuestRoomAccountViewModel
+
+<link href="~/css/CoolTable.css" rel="stylesheet" />
+
+
+ <div class="eight columns">
+
+     @if (Model.ItemSaved.HasValue && Model.ItemSaved.Value)
+     {
+         @Html.Partial("_EntityUpdated", "Guest account has been updated.")
+         <a class="erbEditorOpener buttonDevFirst" href="@Url.Action("PrintGuestPayment", "Printing", new { id = Model.GuestAccountId })">Print Receipt</a>
+         <br />
+         <br />
+         
+     }
+     
+     <h1 class="page-title ci-title" style="margin-bottom:10px;"><span>TOP UP GUEST ACCOUNT</span></h1>
+     
+        <article id="post-16" class="post-16 page type-page status-publish hentry entry group">
+
+            <div class="booking-form-wrap bs bg">
+   
+                @using (Html.BeginForm("TopUpAccount", "GuestAccount", FormMethod.Post, new { enctype = "multipart/form-data", @class = "booking-form b-form row" }))
+                {
+                   @Html.Partial("_Account")
+                }
+            </div>
+
+        </article>
+
+     @if (Model.Guest.GuestRooms.SelectMany(x => x.GuestRoomAccounts).Count() > 0)
+     {     
+        <div>
+            <table class="striped fixedlayout">
+                <thead>
+                    <tr>
+                      
+                        <th width="15%">Room No.</th>
+                        <th width="20%">Room Type</th>
+                        <th width="17%">Amount</th>
+                        <th width="10%">Status</th>
+                        <th width="10%">Type</th>
+                        <th width="20%">Reference</th>
+                        <th width="15%">Date</th>
+                    </tr>
+                </thead>
+                <tbody id="CasesTableBody1">
+                    @foreach (var rm in Model.Guest.GuestRooms)
+                    {
+                         foreach (var ac in rm.GuestRoomAccounts.OrderByDescending(x => x.TransactionDate))
+                          {
+                              <tr id="@ac.Id">
+                                 
+                                  <td class="tth2">@rm.Room.RoomNumber</td>
+                                  <td class="tth2">@rm.Room.RoomType1.Name</td>
+                                  <td class="tth2">@ac.Amount</td>
+                                  <td class="tth2"></td>
+                                  <td class="tth2">@ac.RoomPaymentType.Name </td>
+                                  <td class="tth2">@ac.TransactionId</td>
+                                  <td class="tth2">@ac.TransactionDate.ToShortDateString()</td>
+                              </tr>
+                          }
+                    }
+                </tbody>
+            </table>
+
+        </div>
+     }
+
+
+    </div>
+
+   
+ 
+

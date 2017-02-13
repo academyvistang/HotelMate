@@ -1,0 +1,19 @@
+﻿@model PaginatedList<HotelMateWeb.Dal.DataCore.GuestRoomAccount>
+
+<div class="row">
+    <div class="twelve columns">
+        <div class="twelve columns main-separator after-hero">
+            <div class="home-slide-controls">
+                @if (Model.HasPreviousPage)
+                {
+                    <a class="slide-prev" href="@Url.Action("ViewEntireList", "GuestAccount", new { id = Model.GuestId, roomId = Model.RoomId, paymentTypeId = Model.PaymentTypeId, page = (Model.PageIndex-1) })">Previous Slide</a>
+                }
+                
+                @if (Model.HasNextPage)
+                {
+                    <a class="slide-next" href="@Url.Action("ViewEntireList", "GuestAccount", new { id = Model.GuestId, roomId = Model.RoomId, paymentTypeId = Model.PaymentTypeId,  page = (Model.PageIndex + 1) })">Next Slide</a>
+                }
+            </div>
+        </div>
+    </div>
+</div>

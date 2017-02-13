@@ -1,0 +1,66 @@
+﻿@model HotelMateWebV1.Models.IndexViewModel21
+
+<div id="enchant-stage" class="well pull-left" style=" display:none;">
+</div>
+
+
+<div id="enchant-stageNew" class="well pull-left" >
+
+<div style="width: 640px; height: 320px; position: absolute; transform-origin: 0px 0px 0px; transform: matrix(1, 0, 0, 1, 0, 0);">
+
+@Html.Hidden("CurrentUser", Model.CurrentUserName);
+  
+  <div id="productgridcontainer">
+
+       @foreach (var card in Model.Computer.UsersStack)
+       {
+           string name = card.Suit.Name + card.Rank.Name + ".gif";
+
+           if (card.ShowNumberedSide)
+           {
+	          <img alt="" src="../../Images/PlayingCards/@name" id="@card.Id" />
+           }
+           else
+           {
+            <img alt="" src="../../Images/PlayingCards/@name" id="@card.Id" />
+           }
+       }
+
+       <br />
+
+
+       @foreach (var card in Model.User.UsersStack)
+       {
+           string name = card.Suit.Name + card.Rank.Name + ".gif";
+
+           if (card.ShowNumberedSide)
+           {
+	          <img alt="" src="../../Images/PlayingCards/@name" id="@card.Id" />
+           }
+           else
+           {
+            <img alt="" src="../../Images/PlayingCards/@name" id="@card.Id" />
+           }
+       }
+
+       <br />
+
+        @foreach (var card in Model.AgboFloor)
+       {
+           string name = card.Suit.Name + card.Rank.Name + ".gif";
+
+           if (card.ShowNumberedSide)
+           {
+	          <img alt="" src="../../Images/PlayingCards/@name" id="@card.Id" />
+           }
+           else
+           {
+            <img alt="" src="../../Images/PlayingCards/@name" id="@card.Id" />
+           }
+       }
+
+ </div>           
+           
+</div>
+
+</div>

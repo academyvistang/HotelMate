@@ -1,0 +1,32 @@
+﻿@model HotelMateWebV1.Models.CompanyViewModel
+
+<section id="content" class=" eight columns">
+
+    @if (Model.ItemSaved.HasValue && Model.ItemSaved.Value)
+    {
+        @Html.Partial("_EntityUpdated", "Company details updated.")
+    }
+
+    <h1 class="page-title ci-title"><span>Manage Company</span></h1>
+
+    <article id="post-16" class="post-16 page type-page status-publish hentry entry group">
+
+        <div class="booking-form-wrap bs bg">
+
+            @using (Html.BeginForm("New", "CompanyAccount", FormMethod.Post, new { enctype = "multipart/form-data", @class = "booking-form b-form row" }))
+            {
+                @Html.Partial("_CompanyFull")
+            }
+
+        </div>
+
+    </article>
+
+</section>
+<!-- #content -->
+@section SideBarBox
+{
+    @Html.Partial("_CheckAvailabilityNew")
+}
+
+

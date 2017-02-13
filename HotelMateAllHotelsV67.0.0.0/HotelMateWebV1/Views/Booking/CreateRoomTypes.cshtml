@@ -1,0 +1,27 @@
+﻿@model HotelMateWebV1.Models.RoomTypeViewModel
+
+<section id="content" class=" eight columns">
+    @if (Model.ItemSaved.HasValue && Model.ItemSaved.Value)
+    {
+        @Html.Partial("_EntityUpdated", "Room Type details have been updated.")
+    }
+
+
+    <h1 class="page-title ci-title"><span>Create New Room Type</span></h1>
+    <article id="post-16" class="post-16 page type-page status-publish hentry entry group">
+
+        <div class="booking-form-wrap bs bg">
+
+            @using (Html.BeginForm("CreateRoomTypes", "Booking", FormMethod.Post, new { enctype = "multipart/form-data", @id = "target", @class = "booking-form b-form row" }))
+            {
+                @Html.Partial("_NewRoomType")
+            }
+        </div>
+
+    </article>
+</section>
+<!-- #content -->
+@section SideBarBox
+{
+    @Html.Partial("_CheckAvailabilityNew")
+}

@@ -1,0 +1,65 @@
+﻿@model HotelMateWebV1.Models.IndexViewModel
+
+
+
+<div id="customerModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="customerModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="customerModalLabel">Hotel Guest</h3>
+    </div>
+    <div class="modal-body">
+        <div id="customerError"></div>
+        <div class="control-group">
+            <label class="control-label" for="company">Guest: Use - dropdown to select guests.</label>
+            @Html.DropDownListFor(x => x.GuestId, new SelectList(Model.CurrentGuests, "Id", "RoomNumber"))
+            @*<div class="controls"> <input type="text" name="company" value="" class="input-block-level tip" title="Use - (dash/minus) to bypass this feild." id="company" /> </div>*@
+        </div>
+        @*<div style="width:100%">
+            <div style="width: 48%; float:left;">
+                <div class="control-group">
+                    <label class="control-label" for="name">Name</label>
+                    <div class="controls"> <input type="text" name="name" value="" class="input-block-level" id="name" /> </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="email_address">Email Address</label>
+                    <div class="controls">
+                        <input type="email" id="cusEmail" name="email" class="input-block-level" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="phone">Phone</label>
+                    <div class="controls">
+                        <input type="tel" id="cusPhone" name="phone" class="input-block-level" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="postal_code">Postal Code</label>
+                    <div class="controls"> <input type="text" name="postal_code" value="" class="input-block-level" id="postal_code" /> </div>
+                </div>
+            </div>
+            <div style="width: 48%; float:right;">
+                <div class="control-group">
+                    <label class="control-label" for="address">Address</label>
+                    <div class="controls"> <input type="text" name="address" value="" class="input-block-level" id="address" /> </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="city">City</label>
+                    <div class="controls"> <input type="text" name="city" value="" class="input-block-level" id="city" /> </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="state">State</label>
+                    <div class="controls"> <input type="text" name="state" value="" class="input-block-level" id="state" /> </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="country">Country</label>
+                    <div class="controls"> <input type="text" name="country" value="" class="input-block-level" id="country" /> </div>
+                </div>
+            </div>
+        </div>*@
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        <button class="btn btn-primary" id="add-customer">Add Customer</button>
+    </div>
+</div>
+

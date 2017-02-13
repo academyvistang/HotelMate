@@ -1,0 +1,23 @@
+﻿@model HotelMateWebV1.Models.HotelMenuModel
+
+
+<div class="row">
+    <div class="four columns">
+        <a href="#"> <img src="~/Products/@Model.Adventure.PicturePath" alt="image" height="200" width="300" /> </a>
+    </div>
+    <div class="eight columns">
+
+        <div class="row">
+            <div class="four columns">
+                <label for="email"></label>
+            </div>
+            <div class="four columns">
+                <a class="erbEditorOpener buttonDevFirst" href="@Url.Action("BuyWithAmount", "Guest", new { id = Model.Id })">Buy NGN @Model.RecargeCardPrice</a>
+            </div>
+        </div>
+        <br />
+
+      
+    </div>
+</div>
+<hr />

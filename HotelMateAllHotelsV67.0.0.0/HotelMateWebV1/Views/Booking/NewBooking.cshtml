@@ -1,0 +1,459 @@
+﻿
+@model HotelMateWebV1.Models.RoomBookingViewModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutCombo.cshtml";
+}
+
+
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+<style>
+    .disabled
+     {
+       opacity: 0.65; 
+       cursor: not-allowed;
+     }
+</style>
+
+<script>
+    $(function ()
+    {
+        $("#submit").click(function ()
+        {
+            $("#submit").addClass('disabled');
+            $(this).val("Submitting...");
+            $('#BookingForm').submit(); //.trigger('submit');
+        })
+
+    });
+</script>
+
+<style>
+    .custom-combobox {
+        position: relative;
+        display: inline-block;
+        list-style-type: none;
+        width: 250px;
+    }
+
+    .custom-combobox-toggle {
+        width: 250px;
+        list-style-type: none;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        margin-left: -1px;
+        padding: 0;
+        /* support: IE7 */
+        *height: 1.7em;
+        *top: 0.1em;
+    }
+
+    .custom-combobox-input {
+        margin: 0;
+        padding: 0.3em;
+        width:250px;
+        list-style-type: none;
+    }
+</style>
+
+<script>
+
+    $(function ()
+    {
+        /* -----------------------------------------
+         Datepicker Init (jQuery UI)
+         ----------------------------------------- */
+        // The datepickers must output the format yy/mm/dd
+        // otherwise PHP's checkdate() fails.
+        // Makes sure arrival date is not after departure date, and vice versa.
+        $(".datepicker[name='arrived']").datepicker({
+            dateFormat: 'yy/mm/dd', minDate: 0,
+            onSelect: function (dateText, dateObj) {
+                var departedDate = $(".datepicker[name='departed']").datepicker("getDate");
+                var minDate = new Date(dateObj.selectedYear, dateObj.selectedMonth, dateObj.selectedDay);
+                minDate.setDate(minDate.getDate() + 1);
+                $(".datepicker[name='departed']").datepicker("option", "minDate", minDate);
+
+
+                if (departedDate <= minDate) {
+                    $(".datepicker[name='departed']").datepicker('setDate', minDate);
+                }
+                else {
+                    $(".datepicker[name='departed']").datepicker('setDate', departedDate);
+                }
+            }
+        });
+
+        $(".datepicker[name='departed']").datepicker({
+            dateFormat: 'yy/mm/dd', minDate: 1,
+            onSelect: function (dateText, dateObj) {
+                var arrivedDate = $(".datepicker[name='arrived']").datepicker("getDate");
+                //var maxDate = new Date(dateText);
+                var maxDate = new Date(dateObj.selectedYear, dateObj.selectedMonth, dateObj.selectedDay);
+                maxDate.setDate(maxDate.getDate() - 1);
+                $(".datepicker[name='arrived']").datepicker("option", "maxDate", maxDate);
+                $(".datepicker[name='arrived']").datepicker('setDate', arrivedDate);
+            }
+        });
+
+
+        $(".datepicker[name='arrive']").datepicker({
+            dateFormat: 'yy/mm/dd', minDate: 0,
+            onSelect: function (dateText, dateObj) {
+                var departedDate = $(".datepicker[name='depart']").datepicker("getDate");
+
+                var minDate = new Date(dateObj.selectedYear, dateObj.selectedMonth, dateObj.selectedDay);
+                minDate.setDate(minDate.getDate() + 1);
+                $(".datepicker[name='depart']").datepicker("option", "minDate", minDate);
+
+                if (departedDate <= minDate) {
+                    $(".datepicker[name='depart']").datepicker('setDate', minDate);
+                }
+                else {
+                    $(".datepicker[name='depart']").datepicker('setDate', departedDate);
+                }
+            }
+        });
+
+        $(".datepicker[name='depart']").datepicker({
+            dateFormat: 'yy/mm/dd', minDate: 1,
+            onSelect: function (dateText, dateObj) {
+                //var maxDate = new Date(dateText);
+                var maxDate = new Date(dateObj.selectedYear, dateObj.selectedMonth, dateObj.selectedDay);
+                maxDate.setDate(maxDate.getDate() - 1);
+                //alert("Here");
+                //$(".datepicker[name='arrive']").datepicker("option", "maxDate", maxDate);
+            }
+        });
+
+
+
+        /* -----------------------------------------
+         Datepicker Init (jQuery UI)
+         ----------------------------------------- */
+        //if ( $('#map').length ) {
+        //	map_init('map');
+        //}
+        //
+        $('#ComplimentaryRoom').change(function () {
+            if ($(this).is(":checked")) {
+                var bs = $("#Room_BusinessPrice").val();
+                $("#GuestRoom.RoomRate").val(0.00);
+                $("#DiscountedRate").val(0.00);
+                $("#lbldiscountedRate").text("Complimentary Rate");
+                alert("You have chosen to make this room a complimentary room. The guest will not be charged for this room.");
+            } else {
+                var rr = $("#Room_Price").val();
+                $("#GuestRoom_RoomRate").val(rr);
+                $("#DiscountedRate").val(0.00);
+                $("#lbldiscountedRate").text("Discounted Rate");
+            }
+        });
+
+        $('#CompanyGuest').change(function () {
+
+
+            if ($(this).is(":checked")) {
+                var bs = $("#Room_BusinessPrice").val();
+                $("#GuestRoom.RoomRate").val(bs);
+                $("#DiscountedRate").val(bs);
+                $("#lblRoomRate").text("Business Rate");
+                $("#ShowCompany").show();
+            } else {
+                var rr = $("#Room_Price").val();
+                $("#GuestRoom_RoomRate").val(rr);
+                $("#DiscountedRate").val(0.00);
+                $("#lblRoomRate").text("Room Rate");
+                $("#ShowCompany").hide();
+            }
+        });
+
+        $('#InitialDeposit').blur(function () {
+            var valInitialDep = $('#InitialDeposit').val();
+            if (valInitialDep > 0) {
+                $("#ShowPaymentMethod").show();
+            }
+            else {
+                $("#ShowPaymentMethod").hide();
+            }
+        });
+
+
+       
+
+        function GetHotelGuestByName(name) {
+
+            $('#gmail_loading').show();
+            $('#gmail_loading').hide();
+
+            $.ajax({
+                type: "get",
+                async: false,
+                url: "/Booking/GetGuestByName/",
+                data: { name: name },
+                dataType: "json",
+                success: function (data) {
+                    if (data.Found > 0) {
+                        $('#Guest_Telephone').val(data.Telephone);
+                        $('#Guest_Address').val(data.Address);
+                        $('#Guest_CarDetails').val(data.CarDetails);
+                        $('#Guest_Email').val(data.Email);
+                        $('#Guest_FullName').val(data.Fullname);
+                        $('#Guest_Notes').val(data.Notes);
+                    }
+                }
+            }).done(function () {
+                $('#gmail_loading').hide();
+            });
+        }
+
+        function GetHotelGuest(telephone) {
+
+            $('#gmail_loading').show();
+            $('#gmail_loading').hide();
+
+            $.ajax({
+                type: "get",
+                async: false,
+                url: "/Booking/GetGuest/",
+                data: { telephone: telephone },
+                dataType: "json",
+                success: function (data) {
+                    if (data.Found > 0) {
+                        $('#Guest_Telephone').val(data.Telephone);
+                        $('#Guest_Address').val(data.Address);
+                        $('#Guest_CarDetails').val(data.CarDetails);
+                        $('#Guest_Email').val(data.Email);
+                        $('#Guest_FullName').val(data.Fullname);
+                        $('#Guest_Notes').val(data.Notes);
+                    }
+                }
+            }).done(function () {
+                $('#gmail_loading').hide();
+            });
+        }
+
+        $('#RefreshBtn').click(function () {
+
+            $('#Guest_Telephone').val('');
+            $('#Guest_Email').val('');
+            $('#Guest_CarDetails').val('');
+            $('#Guest_Address').val('');
+            $('#Guest_Notes').val('');
+            $('#Guest_FullName').val('');
+
+            return false;
+        });
+
+        $('#RetrieveBtn').click(function () {
+
+            var name = $('.custom-combobox-input').val();
+
+            GetHotelGuestByName(name);
+
+            return false;
+        });
+
+        
+
+        $('#Guest_Telephone').blur(function ()
+        {
+            var tel = $('#Guest_Telephone').val();
+
+            GetHotelGuest(tel);
+        });
+
+      
+
+
+        //
+        //$('#Guest_FullName').blur(function () {
+        //    var name = $('#Guest_FullName').val();
+        //    GetHotelGuestByName(name);
+        //});
+
+        $("#target").submit(function (event) {
+            var vdiscountedRate = $("#DiscountedRate").val();
+
+            if (vdiscountedRate > 0) {
+                var yesno = confirm('You have choosen to overide the room rate and use the discounted/Business room rate, Do you want to continue?');
+
+                if (!yesno) {
+                    event.preventDefault();
+                }
+            }
+        });
+
+    });
+</script>
+
+<script>
+        (function ($)
+        {
+            
+
+            $.widget("custom.combobox", {
+                _create: function () {
+                    this.wrapper = $("<span>")
+                      .addClass("custom-combobox")
+                      .insertAfter(this.element);
+
+                    this.element.hide();
+                    this._createAutocomplete();
+                    this._createShowAllButton();
+                },
+
+                _createAutocomplete: function () {
+                    var selected = this.element.children(":selected"),
+                      value = selected.val() ? selected.text() : "";
+
+                    this.input = $("<input>")
+                      .appendTo(this.wrapper)
+                      .val(value)
+                      .attr("title", "")
+                      .addClass("custom-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left")
+                      .autocomplete({
+                          delay: 0,
+                          minLength: 0,
+                          source: $.proxy(this, "_source")
+                      })
+                      .tooltip({
+                          tooltipClass: "ui-state-highlight"
+                      });
+
+                    this._on(this.input, {
+                        autocompleteselect: function (event, ui) {
+                            ui.item.option.selected = true;
+                            this._trigger("select", event, {
+                                item: ui.item.option
+                            });
+                        },
+
+                        autocompletechange: "_removeIfInvalid"
+                    });
+                },
+
+                _createShowAllButton: function () {
+                    var input = this.input,
+                      wasOpen = false;
+
+                    $("<a>")
+                      .attr("tabIndex", -1)
+                      .tooltip()
+
+                      .appendTo(this.wrapper)
+                      .button({
+                          icons: {
+                              primary: "ui-icon-triangle-1-s"
+                          },
+                          text: false
+                      })
+                      .removeClass("ui-corner-all")
+                      .addClass("custom-combobox-toggle ui-corner-right")
+                      .mousedown(function () {
+                          wasOpen = input.autocomplete("widget").is(":visible");
+                      })
+                      .click(function () {
+                          input.focus();
+
+                          // Close if already visible
+                          if (wasOpen) {
+                              return;
+                          }
+
+                          // Pass empty string as value to search for, displaying all results
+                          input.autocomplete("search", "");
+                      });
+                },
+
+                _source: function (request, response) {
+                    var matcher = new RegExp($.ui.autocomplete.escapeRegex(request.term), "i");
+                    response(this.element.children("option").map(function () {
+                        var text = $(this).text();
+                        if (this.value && (!request.term || matcher.test(text)))
+                            return {
+                                label: text,
+                                value: text,
+                                option: this
+                            };
+                    }));
+                },
+
+                _removeIfInvalid: function (event, ui) {
+
+                    // Selected an item, nothing to do
+                    if (ui.item) {
+                        return;
+                    }
+
+                    // Search for a match (case-insensitive)
+                    var value = this.input.val(),
+                      valueLowerCase = value.toLowerCase(),
+                      valid = false;
+                    this.element.children("option").each(function () {
+                        if ($(this).text().toLowerCase() === valueLowerCase) {
+                            this.selected = valid = true;
+                            return false;
+                        }
+                    });
+
+                    // Found a match, nothing to do
+                    if (valid) {
+                        return;
+                    }
+
+                    // Remove invalid value
+                    this.input
+                      .val("")
+                    this.element.val("");
+                    this._delay(function () {
+                        this.input.tooltip("close").attr("title", "");
+                    }, 2500);
+                    this.input.data("ui-autocomplete").term = "";
+                },
+
+                _destroy: function () {
+                    this.wrapper.remove();
+                    this.element.show();
+                }
+            });
+
+        })(jQuery);
+
+    $(function () {
+        $("#combobox").combobox();
+        $("#toggle").click(function () {
+            $("#combobox").toggle();
+        });
+    });
+</script>
+
+
+
+
+
+    <section id="content" class=" eight columns">
+        <h1 class="page-title ci-title"><span>New Guest Reservation</span></h1>
+        <article id="post-16" class="post-16 page type-page status-publish hentry entry group">
+
+            <div class="booking-form-wrap bs bg">
+             
+                    @using (Html.BeginForm("NewBooking", "Booking", FormMethod.Post, new { enctype = "multipart/form-data", @id="BookingForm", @class = "booking-form b-form row" }))
+                    {
+                      @Html.Partial("_Room")
+                    }
+            </div>
+
+        </article>
+    </section> 
+    <!-- #content -->
+
+@*@section SideBarBox
+{
+  @Html.Partial("_CheckAvailabilityNew")
+}*@
+
+

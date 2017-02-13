@@ -1,0 +1,105 @@
+/* GLOBAL: #Grey
+================================================== */
+
+body,
+.ci-title > span,
+#sidebar .widget-title > span,
+.home-slide-controls,
+#paging a,
+#paging a:visited,
+#paging span,
+.b-form input[type=text],
+.b-form input[type=email],
+.b-form textarea,
+.b-form input[type=number],
+.ci-newsletter form input[type=text],
+.dk_container,
+.dk_options a {
+	background-color: #434343;
+}
+
+a, a:visited, a:focus,
+#navigation a:hover,
+#navigation .sfHover > a,
+#navigation .sfHover > a:visited,
+#navigation li.current_page_item > a,
+#navigation li.current_page_item > a:visited,
+#navigation li.current-menu-item > a,
+#navigation li.current-menu-item > a:visited,
+#navigation li.current > a,
+#navigation li.current > a:visited,
+#navigation li.current-menu-ancestor > a,
+#navigation li.current-menu-ancestor > a:visited,
+.entry-title a:hover {
+	color: #D7D7D7;
+}
+
+.offer-widget a,
+.offer-widget a:visited,
+.offer-widget,
+.entry time,
+.offer-widget > div,
+#paging a:hover,
+#paging .current,
+.btn,
+.btn:visited,
+input[type=submit],
+button {
+	background-color: #151515;
+}
+
+#page {
+	border-color: #333333;
+}
+
+.btn:hover,
+input[type=submit]:hover,
+button:hover,
+.offer-widget a:hover {
+	background-color: #000000;
+}
+
+.flickr_badge_image a:hover {
+	border-color: #333333;
+}
+
+.main-separator,
+.ci-title,
+#sidebar .widget-title {
+	background-color: #555555;
+}
+
+#navigation ul {
+	background: #333333;
+}
+
+a:hover,
+body,
+#navigation a, #navigation a:visited {
+	color: #FFF;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="date"],
+input[type="datetime"],
+input[type="email"], input[type="number"],
+input[type="search"],
+input[type="tel"],
+input[type="time"],
+input[type="url"],
+textarea {
+	background: #333333;
+}
+
+.bg {
+	background-color: #333333;
+}
+
+.bs {
+	box-shadow: 7px 7px rgba(0,0,0,0.1);
+}
+
+.searchform input[type=text] {
+	border: 1px solid #F5F5F5;
+}

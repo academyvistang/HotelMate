@@ -1,0 +1,99 @@
+﻿@using HotelMateWebV1.Helpers.Enums
+@model HotelMateWebV1.Models.RoomBookingViewModel
+
+<link href="~/Admin/css/common.css" rel="stylesheet" />
+<link href="~/Admin/css/planning.css" rel="stylesheet" />
+<link href="~/Admin/css/standard.css" rel="stylesheet" />
+<link href="~/Admin/css/reset.css" rel="stylesheet" />
+
+
+
+@if (Model.RoomsMatrixList != null)
+{ 
+<div class="block-border">
+    <div class="block-content">
+        <h1>Rooms Matrix</h1>
+
+        <div id="MatrixDiv">            
+            @Html.Partial("_RoomMatrixDisplay")
+        </div>
+
+    </div>
+</div>
+}
+
+@*
+    <li>
+        <a href="#"><img src="images/icons/fugue/user-red.png" width="16" height="16"> John</a>
+        <ul>
+            <li class="zebras from-day-15 to-day-21"></li>
+            <li class="current-time at-day-9"></li>
+            <li class="from-day-2 to-day-10"><a href="#" title="Event description" class="with-tip">Project name<span class="event-blue" style="width:87.5%">Project name</span></a></li>
+            <li class="milestone at-day-15"><a href="#" title="Milestone description" class="with-tip"></a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="#"><img src="images/icons/fugue/user-green.png" width="16" height="16"> Sam</a>
+        <ul>
+            <li class="current-time at-day-9"></li>
+            <li class="from-day-7 to-day-12"><a href="#" title="Event description" class="with-tip">Project name<span class="event-blue" style="width:40%">Project name</span></a></li>
+            <li class="milestone at-day-12"><a href="#" title="Milestone description" class="with-tip"></a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="#"><img src="images/icons/fugue/user-gray-female.png" width="16" height="16"> Lena</a>
+        <ul>
+            <li class="current-time at-day-9"></li>
+            <li class="event-orange from-day-1 to-day-6"><a href="#" title="Event description" class="with-tip">Project name</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="#"><img src="images/icons/fugue/user-gray.png" width="16" height="16"> Marc</a>
+        <ul>
+            <li class="current-time at-day-9"></li>
+            <li class="event-green from-day-8 to-day-12"><a href="#" title="Event description" class="with-tip">Project name</a></li>
+            <li class="from-day-18 to-day-21"><a href="#" title="Event description" class="with-tip">Project name</a></li>
+        </ul>
+    </li>
+    <li>
+        <span><img src="images/icons/fugue/user-female.png" width="16" height="16"> Jane</span>
+        <ul class="zebras"></ul>
+    </li>
+    <li>
+        <a href="#"><img src="images/icons/fugue/user-business-gray.png" width="16" height="16"> Erik</a>
+        <ul>
+            <li class="current-time at-day-9"></li>
+            <li class="event-blue from-day-3 to-day-15"><a href="#" title="Event description" class="with-tip">Project name</a></li>
+            <li class="event-blue from-day-26 to-day-31"><a href="#" title="Event description" class="with-tip">Project name</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="#"><img src="images/icons/fugue/user-business-boss.png" width="16" height="16"> George</a>
+        <ul>
+            <li class="current-time at-day-9"></li>
+            <li class="event-purple from-day-18 to-day-27"><a href="#" title="Event description" class="with-tip">Project name</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="#"><img src="images/icons/fugue/user-business.png" width="16" height="16"> James</a>
+        <ul>
+            <li class="current-time at-day-9"></li>
+            <li class="milestone at-day-8"><a href="#" title="Milestone description" class="with-tip"></a></li>
+            <li class="milestone at-day-14"><a href="#" title="Milestone description" class="with-tip"></a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="#"><img src="images/icons/fugue/user-black.png" width="16" height="16"> Nathan</a>
+        <ul>
+            <li class="current-time at-day-9"></li>
+            <li class="event-blue from-day-5 to-day-9"><a href="#" title="Event description" class="with-tip">Project name</a></li>
+            <li class="event-purple from-day-17 to-day-21"><a href="#" title="Event description" class="with-tip">Project name</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="#"><img src="images/icons/fugue/user-thief.png" width="16" height="16"> Elwin</a>
+        <ul>
+            <li class="current-time at-day-9"></li>
+            <li class="event-blue from-day-14 to-day-25"><a href="#" title="Event description" class="with-tip">Project name</a></li>
+        </ul>
+    </li>*@

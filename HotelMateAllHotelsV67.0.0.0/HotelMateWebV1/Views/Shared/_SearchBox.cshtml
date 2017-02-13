@@ -1,0 +1,12 @@
+﻿@model HotelMateWebV1.Models.GuestRoomAccountViewModel
+
+
+
+<div class="ten columns">
+ @Html.TextBoxFor(model => model.SearchName, new  { @placeholder = "search",  @style = "width:100%;" })
+</div>
+
+<div class="two columns">
+    <input id="searchSubmit" type="submit" value="Search" name="Search">
+</div>
+

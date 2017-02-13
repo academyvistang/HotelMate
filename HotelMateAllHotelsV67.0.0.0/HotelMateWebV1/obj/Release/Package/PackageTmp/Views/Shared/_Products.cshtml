@@ -1,0 +1,13 @@
+﻿@model HotelMateWebV1.Models.IndexViewModel
+
+
+<div>
+
+    @foreach (var p in Model.productsList)
+    {
+        @*<button id="@p.Id" type="button" value='@p.Id' class="green"><i><img src="assets/uploads/thumbs/default.png"></i><span><span>@p.Name</span></span></button>*@
+        <button id="product-@p.Id" type="button" value='@p.Id' class="green"><i><img src="~/Products/@p.PicturePath"></i><span><span>@p.StockItemName</span></span></button>
+    }
+
+</div>
+

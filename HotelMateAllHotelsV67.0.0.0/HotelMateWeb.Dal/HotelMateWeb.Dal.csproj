@@ -1,0 +1,296 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{67752C1D-EAF8-42D5-8EB7-879DE5CD59FD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HotelMateWeb.Dal</RootNamespace>
+    <AssemblyName>HotelMateWeb.Dal</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\RecentProjects\OldProjects\Roche\UI\bin\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataCore\Adventure.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\BarTable.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\Batch.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\BusinessAccount.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\BusinessCorporateAccount.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\DamagedBatchItem.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\DistributionPoint.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\DistributionPointItem.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\EmployeeShift.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\Escort.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\EscortPicture.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\Expense.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\ExpensesType.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\FoodMatrix.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\Guest.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\GuestBillItem.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\GuestChat.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\GuestChatMessage.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\GuestCredential.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\GuestFeedBack.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\GuestLedger.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\GuestMessage.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\GuestOrder.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\GuestOrderItem.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\GuestPaidItem.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\GuestPlaylist.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\GuestRequestItem.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\GuestReservation.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\GuestRoom.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\GuestRoomAccount.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\Hotel.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\HotelMateWebData.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HotelMateWebData.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\HotelMateWebData.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\HotelMateWebData.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HotelMateWebData.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\Invoice.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\InvoiceStatusType.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\Item.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\Movie.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\MovieCategory.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\Payment.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\PaymentMethod.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\PaymentOrder.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\Person.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\PersonType.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\Pictural.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\POSItem.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\PrinterTable.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\PurchaseOrder.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\PurchaseOrderItem.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\PurchaseOrderStoreType.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\Room.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\RoomPaymentType.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\RoomPaymentTypeStatu.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\RoomStatu.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\RoomTransferHistory.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\RoomType.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\SalesDiscount.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\SchoolPicture.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\SoldItemsAll.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\StockItem.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\Store.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\StoreItem.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\Supplier.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\TableItem.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\Taxi.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\Transaction.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GenericRepository.cs" />
+    <Compile Include="HotelMateSingletonContext.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnitOfWork.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Core\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="DataCore\HotelMateWebData.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>HotelMateWebData.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="DataCore\HotelMateWebData.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HotelMateWebData.edmx</DependentUpon>
+      <LastGenOutput>HotelMateWebData.Context.cs</LastGenOutput>
+    </None>
+    <None Include="DataCore\HotelMateWebData.edmx.diagram">
+      <DependentUpon>HotelMateWebData.edmx</DependentUpon>
+    </None>
+    <None Include="DataCore\HotelMateWebData.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HotelMateWebData.edmx</DependentUpon>
+      <LastGenOutput>HotelMateWebData.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

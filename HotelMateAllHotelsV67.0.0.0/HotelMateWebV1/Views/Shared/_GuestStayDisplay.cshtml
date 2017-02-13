@@ -1,0 +1,34 @@
+﻿@model HotelMateWebV1.Models.GuestRoomAccountViewModel
+
+<link href="~/css/CoolTable.css" rel="stylesheet" />
+
+
+    <div class="eight columns">
+
+        @if (Model.ItemSaved.HasValue && Model.ItemSaved.Value)
+        {
+            @Html.Partial("_EntityUpdated", "Guest stay has been extended.")
+        }
+        
+        <h1 class="page-title ci-title" style="margin-bottom:10px;"><span>EXTEND GUEST STAY</span></h1>
+
+        <article id="post-16" class="post-16 page type-page status-publish hentry entry group">
+
+            <div class="booking-form-wrap bs bg">
+
+                @using (Html.BeginForm("ExtendGuestStay", "GuestAccount", FormMethod.Post, new { enctype = "multipart/form-data", @class = "booking-form b-form row" }))
+                {
+                    @Html.Partial("_ExtendGuestStay")
+                }
+            </div>
+
+        </article>
+    
+    </div>
+
+    
+
+
+
+
+

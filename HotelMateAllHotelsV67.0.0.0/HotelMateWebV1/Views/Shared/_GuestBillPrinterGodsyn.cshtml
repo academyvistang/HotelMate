@@ -1,0 +1,223 @@
+﻿@using System.Globalization
+@using HotelMateWebV1.Helpers
+@model HotelMateWebV1.Models.GuestRoomAccountViewModel
+
+
+<br />
+
+<img src="@Model.ImageUrl" width="400" alt="" />
+
+<br />
+
+@if (Model.Guest.BusinessAccount != null && !string.IsNullOrEmpty(Model.Guest.BusinessAccount.CompanyName))
+{
+    <div style="width:350px;">@Html.Label("Company Name") : @Html.Display(Model.Guest.BusinessAccount.CompanyName) </div>
+}
+
+<table class="striped fixedlayout">
+
+    <tbody id="CasesTableBody2">
+
+        <tr border="1">
+            <td class="tth2" bgcolor="#ff4980">@Html.LabelFor(model => model.GuestRoomNumber)</td>
+            <td class="tth2">@Html.DisplayFor(model => model.GuestRoomNumber)</td>
+            <td class="tth2" bgcolor="#ff4980">@Html.LabelFor(model => model.GuestName)</td>
+            <td class="tth2">@Html.DisplayFor(model => model.GuestName)</td>
+        </tr>
+        <tr border="1">
+            <td class="tth2" bgcolor="#ff4980">@Html.LabelFor(model => model.ArrivalDate)</td>
+            <td class="tth2">@Html.DisplayFor(model => model.ArrivalDate)</td>
+            <td class="tth2" bgcolor="#ff4980">@Html.LabelFor(model => model.DepartureDate)</td>
+            <td class="tth2">@Html.DisplayFor(model => model.DepartureDate)</td>
+        </tr>
+        <tr border="1">
+            <td class="tth2" bgcolor="#ff4980">@Html.LabelFor(model => model.NoOfNight)</td>
+            <td class="tth2">@Html.DisplayFor(model => model.NoOfNight)</td>
+            <td class="tth2" bgcolor="#ff4980">@Html.LabelFor(model => model.BillNo)</td>
+            <td class="tth2">@Html.DisplayFor(model => model.BillNo)</td>
+        </tr>
+
+    </tbody>
+
+</table>
+
+<br />
+
+
+@{
+    var OddColor = "#FFFFFF";
+    var evenColor = "#EAF3FF";
+    var Odd = OddColor;
+}
+<h3>Total Billing</h3>
+<br />
+<table cellpadding="3" cellspacing="3">
+    <tr border="1" bgcolor="#803F98" color="#DDDDDD">
+        <th width="15%">Date</th>
+        <th width="20%">Detail</th>
+        <th width="15%">Credit</th>
+        <th width="15%">Debit </th>
+        <th width="15%">Balance </th>
+    </tr>
+    @{
+        var OddColor1 = "#FFFFFF";
+        var evenColor1 = "#EAF3FF";
+        var Odd1 = OddColor1;
+    }
+    @foreach (var rm in Model.DisplayList.OrderBy(x => x.TransactionDate))
+    {
+        <tr border="1" bgcolor="@Odd1">
+            <td class="tth2">@rm.TransactionDate.ToShortDateString()</td>
+            <td class="tth2">@rm.Detail</td>
+            <td class="tth2">@rm.Credit</td>
+            <td class="tth2">@rm.Debit</td>
+            <td class="tth2">@rm.Balance</td>
+        </tr>
+        if (Odd1 == OddColor1)
+        {
+            Odd1 = evenColor;
+        }
+        else
+        {
+            Odd1 = OddColor1;
+        }
+    }
+
+   
+
+</table>
+<br />
+
+<br />
+<h3>Room(s) Cost</h3>
+<br />
+<table cellpadding="3" cellspacing="3">
+    <tr border="1" bgcolor="#803F98" color="#DDDDDD">
+        <th width="20%">Room No.</th>
+        <th width="20%">Checkin</th>
+        <th width="20%">Checkout</th>
+        <th width="20%">No. Of Nights</th>
+        <th width="25%">Rate </th>
+        <th width="20%">Total </th>
+    </tr>
+   
+    @foreach (var rm in Model.Guest.GuestRooms)
+    {
+        <tr border="1" bgcolor="@Odd1">
+            <td class="tth2">@rm.Room.RoomNumber</td>
+            <td class="tth2">@rm.CheckinDate.ToShortDateString()</td>
+            <td class="tth2">@DateTime.Now.ToShortDateString()</td>
+            <td class="tth2">@rm.GetNumberOfNights()</td>
+            <td class="tth2">@rm.RoomRate</td>
+            <td class="tth2">@rm.RoomCharge(true)</td>
+        </tr>
+        if (Odd1 == OddColor1)
+        {
+            Odd1 = evenColor;
+        }
+        else
+        {
+            Odd1 = OddColor1;
+        }
+    }
+
+    <tr border="1" bgcolor="#FFFFFF"><td colspan="7"></td></tr>
+    <tr border="1" bgcolor="#EAF3FF"><td></td><td></td><td></td><td></td><td>Total</td><td>@Model.Guest.GuestRooms.Summation(true).ToString(CultureInfo.InvariantCulture)</td></tr>
+
+
+</table>
+<h3><span style="color:#FF2AB5;">Itemised Bill</span></h3>
+<br />
+
+<table cellpadding="3" cellspacing="3">
+    <tr border="1" bgcolor="#803F98" color="#DDDDDD">
+        <th width="25%">Date</th>
+        <th width="25%">Item</th>
+        <th width="5%">Qty</th>
+        <th width="15%">Price</th>
+        <th width="15%">Total</th>
+        <th width="15%">Cashier</th>
+    </tr>
+    @{
+        var OddColor2 = "#FFFFFF";
+        var evenColor2 = "#EAF3FF";
+        var Odd2 = OddColor2;
+    }
+    @foreach (var rm in Model.ItemmisedItems)
+    {
+        <tr border="1" bgcolor="@Odd2">
+            <td class="tth2">@rm.DateSold</td>
+            <td class="tth2" title="@rm.StockItem.StockItemName">@rm.StockItem.StockItemName</td>
+            <td class="tth2">@rm.Qty</td>
+            <td class="tth2">@rm.StockItem.UnitPrice</td>
+            <td class="tth2">@rm.TotalPrice</td>
+            <td class="tth2" title="@rm.Person.FirstName">@rm.Person.FirstName</td>
+        </tr>
+        if (Odd2 == OddColor2)
+        {
+            Odd2 = evenColor2;
+        }
+        else
+        {
+            Odd2 = OddColor2;
+        }
+    }
+
+
+    <tr border="1" bgcolor="#FFFFFF"><td colspan="6"></td></tr>
+    <tr border="1" bgcolor="#ff4980">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Total</td>
+        <td>@Model.ItemmisedItems.Sum(x => x.TotalPrice).ToString(CultureInfo.InvariantCulture)</td>
+        <td></td>
+    </tr>
+
+</table>
+
+<br />
+
+
+
+
+<h3><span style="color:#FF2AB5;">Overall Balance</span></h3>
+
+<div>
+    <table class="striped fixedlayout">
+        <thead>
+        </thead>
+        <tbody id="CasesTableBody1">
+
+            @{ var balance = Model.Guest.GuestRooms.TotallySummation("-1","-1");}
+
+            @if (balance > 0)
+            {
+                <tr border="1" bgcolor="#ff4980"><td></td><td></td><td></td><td></td><td>Refund</td><td bgcolor="@Model.Guest.GetGuestBalanceWithTaxColour()">@balance</td></tr>
+            }
+            else
+            {
+                <tr border="1" bgcolor="#ff4980"><td></td><td></td><td></td><td></td><td>Balance</td><td bgcolor="@Model.Guest.GetGuestBalanceWithTaxColour()">@balance</td></tr>
+            }
+
+        </tbody>
+    </table>
+    <br />
+
+
+</div>
+<br />
+
+<br />
+<br />
+
+@Html.LabelFor(model => model.GuestSign)
+<br />
+<br />
+@Html.LabelFor(model => model.ReceptionSign)
+
+
+
+
+
+

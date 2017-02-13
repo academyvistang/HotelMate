@@ -1,0 +1,44 @@
+﻿
+
+<div class="four columns">
+    <div class="b-form widget bg bs">
+        @using (Html.BeginForm("SearchByNameFilter", "Booking", FormMethod.Post, new { enctype = "multipart/form-data", @class = "booking-form" }))
+        {
+            <h3>Search For Guest</h3>
+            <fieldset class="group">
+                <p>
+                    <label for="adults">Guest Name (Fuzzy)</label>
+                    @Html.TextBox("Fullname")
+                </p>
+
+                <p>
+                    <label for="b-room">Room Number</label>
+                    @Html.TextBox("RoomNumber")
+                </p>
+            </fieldset>
+
+            <fieldset class="group">
+                <p>
+                    <label for="arrive">Check In</label>
+                    <input readonly type="text" id="arrive" class="datepicker" name="arrive" value="">
+                </p>
+
+                <p>
+                    <label for="depart">Check Out</label>
+                    <input readonly id="depart" class="datepicker" type="text" name="depart" value="">
+                </p>
+            </fieldset>
+
+            
+
+            <fieldset>
+                <button class="btn b-book" type="submit">Search</button>
+                <small class="booking-note">Only enter fields that are relevant to your search</small>
+            </fieldset>
+        }
+    </div>
+</div>
+
+
+
+

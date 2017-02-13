@@ -1,0 +1,110 @@
+﻿@model HotelMateWebV1.Models.ProfileViewModel
+           
+            @{ Html.EnableClientValidation(); }
+            @using (Html.BeginForm("Index", "Profile", FormMethod.Post, new { @class = "form-3" }))
+            { 
+                
+    @Html.AntiForgeryToken()
+ 
+    @Html.HiddenFor(m => m.Username)
+
+    <div style=" color:Red; float:right; width:40%; height:30%;">   
+    @Html.ValidationMessageFor(m => m.Password)
+    <br />
+    @Html.ValidationMessageFor(m => m.ConfirmPassword)
+    <br />
+    @Html.ValidationMessageFor(m => m.Email)
+    </div>
+      
+				       
+                    <p class="clearfix">
+				        <label for="password">Password</label>
+				        <input type="password" name="Password" id="Password" placeholder="Password" value="@Model.Password" />
+                        @Html.ValidationMessage("Password")                        
+				    </p>
+    
+                    <p class="clearfix">
+				        <label for="password">Password</label>
+				        <input type="password" name="ConfirmPassword" id="ConfirmPassword" placeholder="Password" value="@Model.ConfirmPassword" />
+                        @Html.ValidationMessage("ConfirmPassword")                        
+                        
+				    </p>
+    
+    
+                    <p class="clearfix">
+				        <label for="email">Email Address</label>
+				        <input type="text" name="Email" id="Email" placeholder="Email" value="@Model.Email" />  
+                        @Html.ValidationMessage("Email")                        
+                                             
+				    </p>
+				   
+				    <p class="clearfix">
+				        <input type="submit" name="submit" value="Save" />
+				    </p> 
+                    
+       <div style="width:300px; overflow-y:hidden; overflow-x: scroll;">
+              <h3>Select A New Picture</h3>
+              <div style="height:80px; width:1750px;">
+
+              <div class="image_wrapper_01"><img src="../../Images/barak_obama256.png" alt="image" height="50" width="60" />
+              <input type="checkbox" name="characterName" value="barak_obama256.png" />          
+              </div>
+              <div class="image_wrapper_01"><img src="../../Images/kim_yongii256.png" alt="image" height="50" width="60" />
+              <input type="checkbox" name="characterName" value="kim_yongii256.png" />  
+              </div>
+              
+              <div class="image_wrapper_01"><img src="../../Images/hugo_chavez256.png" alt="image" height="50" width="60" />
+              <input type="checkbox" name="characterName" value="hugo_chavez256.png" />
+              </div>  
+
+              <div class="image_wrapper_01"><img src="../../Images/user1.png" alt="image" height="50" width="60" />
+              <input type="checkbox" name="characterName" value="user1.png" />             
+              </div> 
+              
+              <div class="image_wrapper_01"><img src="../../Images/user2.png" alt="image" height="50" width="60" />
+              <input type="checkbox" name="characterName" value="user2.png" /> 
+              </div>
+              
+               <div class="image_wrapper_01"><img src="../../Images/user3.png" alt="image" height="50" width="60"/>
+              <input type="checkbox" name="characterName" value="user3.png" />
+              </div>
+              
+               <div class="image_wrapper_01"><img src="../../Images/user4.png" alt="image" height="50" width="60" />
+              <input type="checkbox" name="characterName" value="user4.png" />
+              </div>
+              
+               <div class="image_wrapper_01"><img src="../../Images/user5.png" alt="image" height="50" width="60" />
+              <input type="checkbox" name="characterName" value="user5.png" />
+              </div>
+              
+               <div class="image_wrapper_01"><img src="../../Images/user6.png" alt="image" height="50" width="60" />
+              <input type="checkbox" name="characterName" value="user6.png" />
+              </div>
+              
+               <div class="image_wrapper_01"><img src="../../Images/user7.png" alt="image" height="50" width="60"/>
+              <input type="checkbox" name="characterName" value="user7.png" />
+              </div>
+              
+               <div class="image_wrapper_01"><img src="../../Images/user8.png" alt="image" height="50" width="60" />
+              <input type="checkbox" name="characterName" value="user8.png" />
+              </div>
+              
+               <div class="image_wrapper_01"><img src="../../Images/user9.png" alt="image" height="50" width="60" />
+              <input type="checkbox" name="characterName" value="user9.png" />
+              </div>
+              
+               <div class="image_wrapper_01"><img src="../../Images/user10.png" alt="image" height="50" width="60" />
+              <input type="checkbox" name="characterName" value="user10.png" />
+              </div>
+              
+               <div class="image_wrapper_01"><img src="../../Images/user11.png" alt="image" height="50" width="60" />
+              <input type="checkbox" name="characterName" value="user11.png" />
+              </div> 
+
+             
+              
+              </div> 
+              
+              </div> 				
+
+            }

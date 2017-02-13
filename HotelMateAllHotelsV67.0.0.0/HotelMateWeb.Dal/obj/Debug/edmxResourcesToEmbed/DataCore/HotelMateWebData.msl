@@ -1,0 +1,1014 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="HotelMateWebModelStoreContainer" CdmEntityContainer="HotelMateWebEntities">
+    <EntitySetMapping Name="GuestReservations">
+      <EntityTypeMapping TypeName="HotelMateWebModel.GuestReservation">
+        <MappingFragment StoreEntitySet="GuestReservation">
+          <ScalarProperty Name="ForDelete" ColumnName="ForDelete" />
+          <ScalarProperty Name="FutureBooking" ColumnName="FutureBooking" />
+          <ScalarProperty Name="GuestId" ColumnName="GuestId" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="RoomId" ColumnName="RoomId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GuestRooms">
+      <EntityTypeMapping TypeName="HotelMateWebModel.GuestRoom">
+        <MappingFragment StoreEntitySet="GuestRoom">
+          <ScalarProperty Name="SameDayTransfer" ColumnName="SameDayTransfer" />
+          <ScalarProperty Name="RoomNumber" ColumnName="RoomNumber" />
+          <ScalarProperty Name="GroupBookingMainRoom" ColumnName="GroupBookingMainRoom" />
+          <ScalarProperty Name="GroupBooking" ColumnName="GroupBooking" />
+          <ScalarProperty Name="Children" ColumnName="Children" />
+          <ScalarProperty Name="Occupants" ColumnName="Occupants" />
+          <ScalarProperty Name="RoomRate" ColumnName="RoomRate" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CheckoutDate" ColumnName="CheckoutDate" />
+          <ScalarProperty Name="CheckinDate" ColumnName="CheckinDate" />
+          <ScalarProperty Name="RoomId" ColumnName="RoomId" />
+          <ScalarProperty Name="GuestId" ColumnName="GuestId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GuestRoomAccounts">
+      <EntityTypeMapping TypeName="HotelMateWebModel.GuestRoomAccount">
+        <MappingFragment StoreEntitySet="GuestRoomAccount">
+          <ScalarProperty Name="PaymentMethodNote" ColumnName="PaymentMethodNote" />
+          <ScalarProperty Name="PaymentMethodId" ColumnName="PaymentMethodId" />
+          <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
+          <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+          <ScalarProperty Name="PaymentTypeId" ColumnName="PaymentTypeId" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="GuestRoomId" ColumnName="GuestRoomId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Hotels">
+      <EntityTypeMapping TypeName="HotelMateWebModel.Hotel">
+        <MappingFragment StoreEntitySet="Hotel">
+          <ScalarProperty Name="ContactName" ColumnName="ContactName" />
+          <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="HotelName" ColumnName="HotelName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Items">
+      <EntityTypeMapping TypeName="HotelMateWebModel.Item">
+        <MappingFragment StoreEntitySet="Item">
+          <ScalarProperty Name="HotelId" ColumnName="HotelId" />
+          <ScalarProperty Name="SubCategory" ColumnName="SubCategory" />
+          <ScalarProperty Name="DISCOUNTEDPERCENTAGE" ColumnName="DISCOUNTEDPERCENTAGE" />
+          <ScalarProperty Name="DISCOUNTENDDATE" ColumnName="DISCOUNTENDDATE" />
+          <ScalarProperty Name="DISCOUNTSTARTDATE" ColumnName="DISCOUNTSTARTDATE" />
+          <ScalarProperty Name="DISCOUNT" ColumnName="DISCOUNT" />
+          <ScalarProperty Name="OrderStatus" ColumnName="OrderStatus" />
+          <ScalarProperty Name="Barcode" ColumnName="Barcode" />
+          <ScalarProperty Name="TotalQuantity" ColumnName="TotalQuantity" />
+          <ScalarProperty Name="Checker" ColumnName="Checker" />
+          <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+          <ScalarProperty Name="Picture" ColumnName="Picture" />
+          <ScalarProperty Name="NotStatus" ColumnName="NotStatus" />
+          <ScalarProperty Name="NotNumber" ColumnName="NotNumber" />
+          <ScalarProperty Name="OrigPrice" ColumnName="OrigPrice" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PersonTypes">
+      <EntityTypeMapping TypeName="HotelMateWebModel.PersonType">
+        <MappingFragment StoreEntitySet="PersonType">
+          <ScalarProperty Name="HotelId" ColumnName="HotelId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="PersonTypeId" ColumnName="PersonTypeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Picturals">
+      <EntityTypeMapping TypeName="HotelMateWebModel.Pictural">
+        <MappingFragment StoreEntitySet="Pictural">
+          <ScalarProperty Name="PicturePath" ColumnName="PicturePath" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rooms">
+      <EntityTypeMapping TypeName="HotelMateWebModel.Room">
+        <MappingFragment StoreEntitySet="Room">
+          <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="HotelId" ColumnName="HotelId" />
+          <ScalarProperty Name="BusinessPrice" ColumnName="BusinessPrice" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="ExtNumber" ColumnName="ExtNumber" />
+          <ScalarProperty Name="RoomType" ColumnName="RoomType" />
+          <ScalarProperty Name="Smoking" ColumnName="Smoking" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+          <ScalarProperty Name="NoOfBeds" ColumnName="NoOfBeds" />
+          <ScalarProperty Name="RoomNumber" ColumnName="RoomNumber" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RoomPaymentTypeStatus">
+      <EntityTypeMapping TypeName="HotelMateWebModel.RoomPaymentTypeStatu">
+        <MappingFragment StoreEntitySet="RoomPaymentTypeStatus">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RoomStatus">
+      <EntityTypeMapping TypeName="HotelMateWebModel.RoomStatu">
+        <MappingFragment StoreEntitySet="RoomStatus">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RoomTransferHistories">
+      <EntityTypeMapping TypeName="HotelMateWebModel.RoomTransferHistory">
+        <MappingFragment StoreEntitySet="RoomTransferHistory">
+          <ScalarProperty Name="OldGuestName" ColumnName="OldGuestName" />
+          <ScalarProperty Name="OldRoomNumber" ColumnName="OldRoomNumber" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="TransferDate" ColumnName="TransferDate" />
+          <ScalarProperty Name="NewGuestId" ColumnName="NewGuestId" />
+          <ScalarProperty Name="OldGuestId" ColumnName="OldGuestId" />
+          <ScalarProperty Name="NewRoomId" ColumnName="NewRoomId" />
+          <ScalarProperty Name="OldRoomId" ColumnName="OldRoomId" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RoomTypes">
+      <EntityTypeMapping TypeName="HotelMateWebModel.RoomType">
+        <MappingFragment StoreEntitySet="RoomType">
+          <ScalarProperty Name="HotelId" ColumnName="HotelId" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Transactions">
+      <EntityTypeMapping TypeName="HotelMateWebModel.Transaction">
+        <MappingFragment StoreEntitySet="Transaction">
+          <ScalarProperty Name="GuestId" ColumnName="GuestId" />
+          <ScalarProperty Name="GuestSignature" ColumnName="GuestSignature" />
+          <ScalarProperty Name="StaffId" ColumnName="StaffId" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="TranscationDate" ColumnName="TranscationDate" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="RoomPictures" TypeName="HotelMateWebModel.RoomPictures" StoreEntitySet="RoomPictures">
+      <EndProperty Name="Pictural">
+        <ScalarProperty Name="Id" ColumnName="PicturalId" />
+      </EndProperty>
+      <EndProperty Name="Room">
+        <ScalarProperty Name="Id" ColumnName="RoomId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="TransactionItem" TypeName="HotelMateWebModel.TransactionItem" StoreEntitySet="TransactionItem">
+      <EndProperty Name="Transaction">
+        <ScalarProperty Name="Id" ColumnName="TransactionId" />
+      </EndProperty>
+      <EndProperty Name="Item">
+        <ScalarProperty Name="Id" ColumnName="ItemId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="Expenses">
+      <EntityTypeMapping TypeName="HotelMateWebModel.Expense">
+        <MappingFragment StoreEntitySet="Expense">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ExpenseTypeId" ColumnName="ExpenseTypeId" />
+          <ScalarProperty Name="GuestSignature" ColumnName="GuestSignature" />
+          <ScalarProperty Name="RoomId" ColumnName="RoomId" />
+          <ScalarProperty Name="StaffId" ColumnName="StaffId" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="ExpenseDate" ColumnName="ExpenseDate" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ExpensesTypes">
+      <EntityTypeMapping TypeName="HotelMateWebModel.ExpensesType">
+        <MappingFragment StoreEntitySet="ExpensesType">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="UpdateId" ColumnName="UpdateId" />
+          <ScalarProperty Name="LastUpdatedDateTime" ColumnName="LastUpdatedDateTime" />
+          <ScalarProperty Name="LastUpdatedBy" ColumnName="LastUpdatedBy" />
+          <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PaymentMethods">
+      <EntityTypeMapping TypeName="HotelMateWebModel.PaymentMethod">
+        <MappingFragment StoreEntitySet="PaymentMethod">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmployeeShifts">
+      <EntityTypeMapping TypeName="HotelMateWebModel.EmployeeShift">
+        <MappingFragment StoreEntitySet="EmployeeShift">
+          <ScalarProperty Name="TotalBarSalesRecievable" ColumnName="TotalBarSalesRecievable" />
+          <ScalarProperty Name="CloseMethod" ColumnName="CloseMethod" />
+          <ScalarProperty Name="TotalSales" ColumnName="TotalSales" />
+          <ScalarProperty Name="TotalHotelSalesRecievable" ColumnName="TotalHotelSalesRecievable" />
+          <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+          <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+          <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+          <ScalarProperty Name="ShiftDate" ColumnName="ShiftDate" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InvoiceStatusTypes">
+      <EntityTypeMapping TypeName="HotelMateWebModel.InvoiceStatusType">
+        <MappingFragment StoreEntitySet="InvoiceStatusType">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Suppliers">
+      <EntityTypeMapping TypeName="HotelMateWebModel.Supplier">
+        <MappingFragment StoreEntitySet="Supplier">
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="ReasonForLeaving" ColumnName="ReasonForLeaving" />
+          <ScalarProperty Name="PreviousEmployerEndDate" ColumnName="PreviousEmployerEndDate" />
+          <ScalarProperty Name="PreviousEmployerStartDate" ColumnName="PreviousEmployerStartDate" />
+          <ScalarProperty Name="PreviousEmployer" ColumnName="PreviousEmployer" />
+          <ScalarProperty Name="GuardianAddress" ColumnName="GuardianAddress" />
+          <ScalarProperty Name="Guardian" ColumnName="Guardian" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+          <ScalarProperty Name="SupplierTypeId" ColumnName="SupplierTypeId" />
+          <ScalarProperty Name="HotelId" ColumnName="HotelId" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="SupplierID" ColumnName="SupplierID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Invoices">
+      <EntityTypeMapping TypeName="HotelMateWebModel.Invoice">
+        <MappingFragment StoreEntitySet="Invoice">
+          <ScalarProperty Name="PurchaseOrderId" ColumnName="PurchaseOrderId" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="InvoiceDate" ColumnName="InvoiceDate" />
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+          <ScalarProperty Name="Supplier" ColumnName="Supplier" />
+          <ScalarProperty Name="AssignedTo" ColumnName="AssignedTo" />
+          <ScalarProperty Name="RaisedBy" ColumnName="RaisedBy" />
+          <ScalarProperty Name="StatusType" ColumnName="StatusType" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Stores">
+      <EntityTypeMapping TypeName="HotelMateWebModel.Store">
+        <MappingFragment StoreEntitySet="Store">
+          <ScalarProperty Name="StoreManager" ColumnName="StoreManager" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PurchaseOrderItems">
+      <EntityTypeMapping TypeName="HotelMateWebModel.PurchaseOrderItem">
+        <MappingFragment StoreEntitySet="PurchaseOrderItem">
+          <ScalarProperty Name="ReturnValue" ColumnName="ReturnValue" />
+          <ScalarProperty Name="Returns" ColumnName="Returns" />
+          <ScalarProperty Name="QtyRecieved" ColumnName="QtyRecieved" />
+          <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+          <ScalarProperty Name="Qty" ColumnName="Qty" />
+          <ScalarProperty Name="PurchaseOrderId" ColumnName="PurchaseOrderId" />
+          <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StockItems">
+      <EntityTypeMapping TypeName="HotelMateWebModel.StockItem">
+        <MappingFragment StoreEntitySet="StockItem">
+          <ScalarProperty Name="ClubPrice" ColumnName="ClubPrice" />
+          <ScalarProperty Name="StarBuy" ColumnName="StarBuy" />
+          <ScalarProperty Name="RawItem" ColumnName="RawItem" />
+          <ScalarProperty Name="Discounted" ColumnName="Discounted" />
+          <ScalarProperty Name="KitchenOnly" ColumnName="KitchenOnly" />
+          <ScalarProperty Name="CookedFood" ColumnName="CookedFood" />
+          <ScalarProperty Name="ForSale" ColumnName="ForSale" />
+          <ScalarProperty Name="HotelId" ColumnName="HotelId" />
+          <ScalarProperty Name="DISCOUNTEDPERCENTAGE" ColumnName="DISCOUNTEDPERCENTAGE" />
+          <ScalarProperty Name="DISCOUNTENDDATE" ColumnName="DISCOUNTENDDATE" />
+          <ScalarProperty Name="DISCOUNTSTARTDATE" ColumnName="DISCOUNTSTARTDATE" />
+          <ScalarProperty Name="DISCOUNT" ColumnName="DISCOUNT" />
+          <ScalarProperty Name="OrderStatus" ColumnName="OrderStatus" />
+          <ScalarProperty Name="Barcode" ColumnName="Barcode" />
+          <ScalarProperty Name="TotalQuantity" ColumnName="TotalQuantity" />
+          <ScalarProperty Name="Checker" ColumnName="Checker" />
+          <ScalarProperty Name="StockItemName" ColumnName="StockItemName" />
+          <ScalarProperty Name="NotStatus" ColumnName="NotStatus" />
+          <ScalarProperty Name="NotNumber" ColumnName="NotNumber" />
+          <ScalarProperty Name="OrigPrice" ColumnName="OrigPrice" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="PicturePath" ColumnName="PicturePath" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StoreItems">
+      <EntityTypeMapping TypeName="HotelMateWebModel.StoreItem">
+        <MappingFragment StoreEntitySet="StoreItems">
+          <ScalarProperty Name="Damaged" ColumnName="Damaged" />
+          <ScalarProperty Name="Remaining" ColumnName="Remaining" />
+          <ScalarProperty Name="RecievedBy" ColumnName="RecievedBy" />
+          <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+          <ScalarProperty Name="StoreId" ColumnName="StoreId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DistributionPointItems">
+      <EntityTypeMapping TypeName="HotelMateWebModel.DistributionPointItem">
+        <MappingFragment StoreEntitySet="DistributionPointItems">
+          <ScalarProperty Name="Damaged" ColumnName="Damaged" />
+          <ScalarProperty Name="PreviousRemaining" ColumnName="PreviousRemaining" />
+          <ScalarProperty Name="BatchId" ColumnName="BatchId" />
+          <ScalarProperty Name="Remaining" ColumnName="Remaining" />
+          <ScalarProperty Name="RecievedBy" ColumnName="RecievedBy" />
+          <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+          <ScalarProperty Name="DistributionPointId" ColumnName="DistributionPointId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="POSItems">
+      <EntityTypeMapping TypeName="HotelMateWebModel.POSItem">
+        <MappingFragment StoreEntitySet="POSItems">
+          <ScalarProperty Name="Damaged" ColumnName="Damaged" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="PreviousRemaining" ColumnName="PreviousRemaining" />
+          <ScalarProperty Name="PreviousQty" ColumnName="PreviousQty" />
+          <ScalarProperty Name="Invinsible" ColumnName="Invinsible" />
+          <ScalarProperty Name="DistributionPointId" ColumnName="DistributionPointId" />
+          <ScalarProperty Name="Remaining" ColumnName="Remaining" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DamagedBatchItems">
+      <EntityTypeMapping TypeName="HotelMateWebModel.DamagedBatchItem">
+        <MappingFragment StoreEntitySet="DamagedBatchItem">
+          <ScalarProperty Name="BatchId" ColumnName="BatchId" />
+          <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+          <ScalarProperty Name="NumberDamaged" ColumnName="NumberDamaged" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TableItems">
+      <EntityTypeMapping TypeName="HotelMateWebModel.TableItem">
+        <MappingFragment StoreEntitySet="TableItem">
+          <ScalarProperty Name="SentToPrinter" ColumnName="SentToPrinter" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="SentToPOS" ColumnName="SentToPOS" />
+          <ScalarProperty Name="StoreFulfilledTime" ColumnName="StoreFulfilledTime" />
+          <ScalarProperty Name="StoreFulfilled" ColumnName="StoreFulfilled" />
+          <ScalarProperty Name="Completed" ColumnName="Completed" />
+          <ScalarProperty Name="CollectedTime" ColumnName="CollectedTime" />
+          <ScalarProperty Name="CompletedTime" ColumnName="CompletedTime" />
+          <ScalarProperty Name="Collected" ColumnName="Collected" />
+          <ScalarProperty Name="Fulfilled" ColumnName="Fulfilled" />
+          <ScalarProperty Name="GuestOrderItemId" ColumnName="GuestOrderItemId" />
+          <ScalarProperty Name="Cashier" ColumnName="Cashier" />
+          <ScalarProperty Name="DateSold" ColumnName="DateSold" />
+          <ScalarProperty Name="Qty" ColumnName="Qty" />
+          <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+          <ScalarProperty Name="TableId" ColumnName="TableId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MovieCategories">
+      <EntityTypeMapping TypeName="HotelMateWebModel.MovieCategory">
+        <MappingFragment StoreEntitySet="MovieCategory">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Taxis">
+      <EntityTypeMapping TypeName="HotelMateWebModel.Taxi">
+        <MappingFragment StoreEntitySet="Taxi">
+          <ScalarProperty Name="PicturePath" ColumnName="PicturePath" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Adventures">
+      <EntityTypeMapping TypeName="HotelMateWebModel.Adventure">
+        <MappingFragment StoreEntitySet="Adventure">
+          <ScalarProperty Name="IsPlaceOfInterest" ColumnName="IsPlaceOfInterest" />
+          <ScalarProperty Name="Website" ColumnName="Website" />
+          <ScalarProperty Name="OpeningClosing" ColumnName="OpeningClosing" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="PicturePath" ColumnName="PicturePath" />
+          <ScalarProperty Name="Telephones" ColumnName="Telephones" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Movies">
+      <EntityTypeMapping TypeName="HotelMateWebModel.Movie">
+        <MappingFragment StoreEntitySet="Movie">
+          <ScalarProperty Name="AdultOnly" ColumnName="AdultOnly" />
+          <ScalarProperty Name="Filename" ColumnName="Filename" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="Starring" ColumnName="Starring" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GuestPlaylists">
+      <EntityTypeMapping TypeName="HotelMateWebModel.GuestPlaylist">
+        <MappingFragment StoreEntitySet="GuestPlaylist">
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="GuestId" ColumnName="GuestId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="GuestMovie" TypeName="HotelMateWebModel.GuestMovie" StoreEntitySet="GuestMovie">
+      <EndProperty Name="Movie">
+        <ScalarProperty Name="Id" ColumnName="MovieId" />
+      </EndProperty>
+      <EndProperty Name="GuestPlaylist">
+        <ScalarProperty Name="Id" ColumnName="PlaylistId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="Escorts">
+      <EntityTypeMapping TypeName="HotelMateWebModel.Escort">
+        <MappingFragment StoreEntitySet="Escort">
+          <ScalarProperty Name="PicturePath" ColumnName="PicturePath" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GuestOrders">
+      <EntityTypeMapping TypeName="HotelMateWebModel.GuestOrder">
+        <MappingFragment StoreEntitySet="GuestOrder">
+          <ScalarProperty Name="PreparedByWaitress" ColumnName="PreparedByWaitress" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="GuestId" ColumnName="GuestId" />
+          <ScalarProperty Name="Paid" ColumnName="Paid" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+          <ScalarProperty Name="TableId" ColumnName="TableId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GuestOrderItems">
+      <EntityTypeMapping TypeName="HotelMateWebModel.GuestOrderItem">
+        <MappingFragment StoreEntitySet="GuestOrderItem">
+          <ScalarProperty Name="GuestCanSee" ColumnName="GuestCanSee" />
+          <ScalarProperty Name="WaitreesCanSee" ColumnName="WaitreesCanSee" />
+          <ScalarProperty Name="GuestOrderId" ColumnName="GuestOrderId" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="Paid" ColumnName="Paid" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Delivered" ColumnName="Delivered" />
+          <ScalarProperty Name="Confirmed" ColumnName="Confirmed" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Guests">
+      <EntityTypeMapping TypeName="HotelMateWebModel.Guest">
+        <MappingFragment StoreEntitySet="Guest">
+          <ScalarProperty Name="IsPresent" ColumnName="IsPresent" />
+          <ScalarProperty Name="IsChild" ColumnName="IsChild" />
+          <ScalarProperty Name="GuestRoomId" ColumnName="GuestRoomId" />
+          <ScalarProperty Name="RoomNumber" ColumnName="RoomNumber" />
+          <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+          <ScalarProperty Name="HotelId" ColumnName="HotelId" />
+          <ScalarProperty Name="IsFutureReservation" ColumnName="IsFutureReservation" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="PassportNumber" ColumnName="PassportNumber" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="CarDetails" ColumnName="CarDetails" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SoldItemsAlls">
+      <EntityTypeMapping TypeName="HotelMateWebModel.SoldItemsAll">
+        <MappingFragment StoreEntitySet="SoldItemsAll">
+          <ScalarProperty Name="ReasonForVoid" ColumnName="ReasonForVoid" />
+          <ScalarProperty Name="RecieptNumber" ColumnName="RecieptNumber" />
+          <ScalarProperty Name="BusinessAccountId" ColumnName="BusinessAccountId" />
+          <ScalarProperty Name="DistributionPointId" ColumnName="DistributionPointId" />
+          <ScalarProperty Name="TimeOfSale" ColumnName="TimeOfSale" />
+          <ScalarProperty Name="PaymentMethodNote" ColumnName="PaymentMethodNote" />
+          <ScalarProperty Name="PaymentMethodId" ColumnName="PaymentMethodId" />
+          <ScalarProperty Name="GuestId" ColumnName="GuestId" />
+          <ScalarProperty Name="PaymentTypeId" ColumnName="PaymentTypeId" />
+          <ScalarProperty Name="TillOpen" ColumnName="TillOpen" />
+          <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="DateSold" ColumnName="DateSold" />
+          <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
+          <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+          <ScalarProperty Name="Qty" ColumnName="Qty" />
+          <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GuestLedgers">
+      <EntityTypeMapping TypeName="HotelMateWebModel.GuestLedger">
+        <MappingFragment StoreEntitySet="GuestLedger">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="RoomPaymentTypeId" ColumnName="RoomPaymentTypeId" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+          <ScalarProperty Name="Cashier" ColumnName="Cashier" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="GuestId" ColumnName="GuestId" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GuestBillItems">
+      <EntityTypeMapping TypeName="HotelMateWebModel.GuestBillItem">
+        <MappingFragment StoreEntitySet="GuestBillItem">
+          <ScalarProperty Name="GuestOrderId" ColumnName="GuestOrderId" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="Paid" ColumnName="Paid" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Delivered" ColumnName="Delivered" />
+          <ScalarProperty Name="Confirmed" ColumnName="Confirmed" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GuestPaidItems">
+      <EntityTypeMapping TypeName="HotelMateWebModel.GuestPaidItem">
+        <MappingFragment StoreEntitySet="GuestPaidItem">
+          <ScalarProperty Name="GuestOrderId" ColumnName="GuestOrderId" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="Paid" ColumnName="Paid" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Delivered" ColumnName="Delivered" />
+          <ScalarProperty Name="Confirmed" ColumnName="Confirmed" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GuestRequestItems">
+      <EntityTypeMapping TypeName="HotelMateWebModel.GuestRequestItem">
+        <MappingFragment StoreEntitySet="GuestRequestItem">
+          <ScalarProperty Name="RequestBy" ColumnName="RequestBy" />
+          <ScalarProperty Name="GuestOrderId" ColumnName="GuestOrderId" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="Paid" ColumnName="Paid" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Delivered" ColumnName="Delivered" />
+          <ScalarProperty Name="Confirmed" ColumnName="Confirmed" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EscortPictures">
+      <EntityTypeMapping TypeName="HotelMateWebModel.EscortPicture">
+        <MappingFragment StoreEntitySet="EscortPicture">
+          <ScalarProperty Name="PicturePath" ColumnName="PicturePath" />
+          <ScalarProperty Name="EscortId" ColumnName="EscortId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GuestChats">
+      <EntityTypeMapping TypeName="HotelMateWebModel.GuestChat">
+        <MappingFragment StoreEntitySet="GuestChat">
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="GuestId" ColumnName="GuestId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GuestChatMessages">
+      <EntityTypeMapping TypeName="HotelMateWebModel.GuestChatMessage">
+        <MappingFragment StoreEntitySet="GuestChatMessages">
+          <ScalarProperty Name="PicturePath" ColumnName="PicturePath" />
+          <ScalarProperty Name="MessageBy" ColumnName="MessageBy" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="StrangerId" ColumnName="StrangerId" />
+          <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GuestFeedBacks">
+      <EntityTypeMapping TypeName="HotelMateWebModel.GuestFeedBack">
+        <MappingFragment StoreEntitySet="GuestFeedBack">
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="GuestId" ColumnName="GuestId" />
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GuestCredentials">
+      <EntityTypeMapping TypeName="HotelMateWebModel.GuestCredential">
+        <MappingFragment StoreEntitySet="GuestCredential">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="GuestName" ColumnName="GuestName" />
+          <ScalarProperty Name="PinCode" ColumnName="PinCode" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PurchaseOrderStoreTypes">
+      <EntityTypeMapping TypeName="HotelMateWebModel.PurchaseOrderStoreType">
+        <MappingFragment StoreEntitySet="PurchaseOrderStoreType">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PurchaseOrders">
+      <EntityTypeMapping TypeName="HotelMateWebModel.PurchaseOrder">
+        <MappingFragment StoreEntitySet="PurchaseOrder">
+          <ScalarProperty Name="InvoicePath" ColumnName="InvoicePath" />
+          <ScalarProperty Name="SupplierInvoice" ColumnName="SupplierInvoice" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="Completed" ColumnName="Completed" />
+          <ScalarProperty Name="GoodsBought" ColumnName="GoodsBought" />
+          <ScalarProperty Name="GoodsRecieved" ColumnName="GoodsRecieved" />
+          <ScalarProperty Name="InvoiceRaised" ColumnName="InvoiceRaised" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="BaseNetValue" ColumnName="BaseNetValue" />
+          <ScalarProperty Name="NetValue" ColumnName="NetValue" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="RaisedBy" ColumnName="RaisedBy" />
+          <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FoodMatrices">
+      <EntityTypeMapping TypeName="HotelMateWebModel.FoodMatrix">
+        <MappingFragment StoreEntitySet="FoodMatrix">
+          <ScalarProperty Name="Qty" ColumnName="Qty" />
+          <ScalarProperty Name="FoodItemId" ColumnName="FoodItemId" />
+          <ScalarProperty Name="RawItemId" ColumnName="RawItemId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PaymentOrders">
+      <EntityTypeMapping TypeName="HotelMateWebModel.PaymentOrder">
+        <MappingFragment StoreEntitySet="PaymentOrder">
+          <ScalarProperty Name="GuestOrderId" ColumnName="GuestOrderId" />
+          <ScalarProperty Name="GuestId" ColumnName="GuestId" />
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+          <ScalarProperty Name="TransactionStatus" ColumnName="TransactionStatus" />
+          <ScalarProperty Name="ResponseCode" ColumnName="ResponseCode" />
+          <ScalarProperty Name="PaymentRef" ColumnName="PaymentRef" />
+          <ScalarProperty Name="TransactionRef" ColumnName="TransactionRef" />
+          <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SalesDiscounts">
+      <EntityTypeMapping TypeName="HotelMateWebModel.SalesDiscount">
+        <MappingFragment StoreEntitySet="SalesDiscount">
+          <ScalarProperty Name="ActualCashierId" ColumnName="ActualCashierId" />
+          <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="ReceiptNumber" ColumnName="ReceiptNumber" />
+          <ScalarProperty Name="DiscountDate" ColumnName="DiscountDate" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SchoolPictures">
+      <EntityTypeMapping TypeName="HotelMateWebModel.SchoolPicture">
+        <MappingFragment StoreEntitySet="SchoolPictures">
+          <ScalarProperty Name="Caption" ColumnName="Caption" />
+          <ScalarProperty Name="Binary" ColumnName="Binary" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="Filename" ColumnName="Filename" />
+          <ScalarProperty Name="ContentType" ColumnName="ContentType" />
+          <ScalarProperty Name="SchoolPicturesId" ColumnName="SchoolPicturesId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GuestMessages">
+      <EntityTypeMapping TypeName="HotelMateWebModel.GuestMessage">
+        <MappingFragment StoreEntitySet="GuestMessage">
+          <ScalarProperty Name="TableName" ColumnName="TableName" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="MessageDate" ColumnName="MessageDate" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BarTables">
+      <EntityTypeMapping TypeName="HotelMateWebModel.BarTable">
+        <MappingFragment StoreEntitySet="BarTable">
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="StaffId" ColumnName="StaffId" />
+          <ScalarProperty Name="TableId" ColumnName="TableId" />
+          <ScalarProperty Name="GuestId" ColumnName="GuestId" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="TableAlias" ColumnName="TableAlias" />
+          <ScalarProperty Name="TableName" ColumnName="TableName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Batches">
+      <EntityTypeMapping TypeName="HotelMateWebModel.Batch">
+        <MappingFragment StoreEntitySet="Batch">
+          <ScalarProperty Name="POSItemId" ColumnName="POSItemId" />
+          <ScalarProperty Name="QuantityTransferred" ColumnName="QuantityTransferred" />
+          <ScalarProperty Name="PurchaseOrderItemId" ColumnName="PurchaseOrderItemId" />
+          <ScalarProperty Name="DistributionPointId" ColumnName="DistributionPointId" />
+          <ScalarProperty Name="BatchDate" ColumnName="BatchDate" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BusinessAccounts">
+      <EntityTypeMapping TypeName="HotelMateWebModel.BusinessAccount">
+        <MappingFragment StoreEntitySet="BusinessAccount">
+          <ScalarProperty Name="Debtor" ColumnName="Debtor" />
+          <ScalarProperty Name="HotelId" ColumnName="HotelId" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="NatureOfBusiness" ColumnName="NatureOfBusiness" />
+          <ScalarProperty Name="CompanyTelephone" ColumnName="CompanyTelephone" />
+          <ScalarProperty Name="CompanyAddress" ColumnName="CompanyAddress" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+          <ScalarProperty Name="ContactName" ColumnName="ContactName" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BusinessCorporateAccounts">
+      <EntityTypeMapping TypeName="HotelMateWebModel.BusinessCorporateAccount">
+        <MappingFragment StoreEntitySet="BusinessCorporateAccount">
+          <ScalarProperty Name="BusinessAccountId" ColumnName="BusinessAccountId" />
+          <ScalarProperty Name="PaymentMethodNote" ColumnName="PaymentMethodNote" />
+          <ScalarProperty Name="PaymentMethodId" ColumnName="PaymentMethodId" />
+          <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
+          <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DistributionPoints">
+      <EntityTypeMapping TypeName="HotelMateWebModel.DistributionPoint">
+        <MappingFragment StoreEntitySet="DistributionPoint">
+          <ScalarProperty Name="IsSales" ColumnName="IsSales" />
+          <ScalarProperty Name="DistributionPointManager" ColumnName="DistributionPointManager" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="People">
+      <EntityTypeMapping TypeName="HotelMateWebModel.Person">
+        <MappingFragment StoreEntitySet="Person">
+          <ScalarProperty Name="DistributionPointId" ColumnName="DistributionPointId" />
+          <ScalarProperty Name="FullMember" ColumnName="FullMember" />
+          <ScalarProperty Name="PicturePath" ColumnName="PicturePath" />
+          <ScalarProperty Name="Qualification" ColumnName="Qualification" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Department" ColumnName="Department" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+          <ScalarProperty Name="BankDetails" ColumnName="BankDetails" />
+          <ScalarProperty Name="IdNumber" ColumnName="IdNumber" />
+          <ScalarProperty Name="PlaceOfBirth" ColumnName="PlaceOfBirth" />
+          <ScalarProperty Name="NoOfChildren" ColumnName="NoOfChildren" />
+          <ScalarProperty Name="MaritalStatus" ColumnName="MaritalStatus" />
+          <ScalarProperty Name="WorkAddress" ColumnName="WorkAddress" />
+          <ScalarProperty Name="CityState" ColumnName="CityState" />
+          <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="ReasonForLeaving" ColumnName="ReasonForLeaving" />
+          <ScalarProperty Name="PreviousEmployerEndDate" ColumnName="PreviousEmployerEndDate" />
+          <ScalarProperty Name="PreviousEmployerStartDate" ColumnName="PreviousEmployerStartDate" />
+          <ScalarProperty Name="PreviousEmployer" ColumnName="PreviousEmployer" />
+          <ScalarProperty Name="GuardianAddress" ColumnName="GuardianAddress" />
+          <ScalarProperty Name="Guardian" ColumnName="Guardian" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+          <ScalarProperty Name="PersonTypeId" ColumnName="PersonTypeId" />
+          <ScalarProperty Name="HotelId" ColumnName="HotelId" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PrinterTables">
+      <EntityTypeMapping TypeName="HotelMateWebModel.PrinterTable">
+        <MappingFragment StoreEntitySet="PrinterTable">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+          <ScalarProperty Name="TableId" ColumnName="TableId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="BusinessRoomAccounts" TypeName="HotelMateWebModel.BusinessRoomAccounts" StoreEntitySet="BusinessRoomAccounts">
+      <EndProperty Name="BusinessAccount">
+        <ScalarProperty Name="Id" ColumnName="BusinessAccountId" />
+      </EndProperty>
+      <EndProperty Name="GuestRoom">
+        <ScalarProperty Name="Id" ColumnName="GuestRoomId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="Payments">
+      <EntityTypeMapping TypeName="HotelMateWebModel.Payment">
+        <MappingFragment StoreEntitySet="Payment">
+          <ScalarProperty Name="PaymentTypeId" ColumnName="PaymentTypeId" />
+          <ScalarProperty Name="BusinessAccountId" ColumnName="BusinessAccountId" />
+          <ScalarProperty Name="DistributionPointId" ColumnName="DistributionPointId" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Outstanding" ColumnName="Outstanding" />
+          <ScalarProperty Name="Paid" ColumnName="Paid" />
+          <ScalarProperty Name="ReceiptNumber" ColumnName="ReceiptNumber" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="GuestId" ColumnName="GuestId" />
+          <ScalarProperty Name="CashierId" ColumnName="CashierId" />
+          <ScalarProperty Name="ResidentAmount" ColumnName="ResidentAmount" />
+          <ScalarProperty Name="Resident" ColumnName="Resident" />
+          <ScalarProperty Name="ServiceChargeAmount" ColumnName="ServiceChargeAmount" />
+          <ScalarProperty Name="ServiceCharge" ColumnName="ServiceCharge" />
+          <ScalarProperty Name="DiscountAmount" ColumnName="DiscountAmount" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="TaxAmount" ColumnName="TaxAmount" />
+          <ScalarProperty Name="Tax" ColumnName="Tax" />
+          <ScalarProperty Name="SubTotal" ColumnName="SubTotal" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="PaymentMethodId" ColumnName="PaymentMethodId" />
+          <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RoomPaymentTypes">
+      <EntityTypeMapping TypeName="HotelMateWebModel.RoomPaymentType">
+        <MappingFragment StoreEntitySet="RoomPaymentType">
+          <ScalarProperty Name="PaymentStatusId" ColumnName="PaymentStatusId" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

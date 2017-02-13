@@ -1,0 +1,38 @@
+﻿@model PaginatedList<HotelMateWeb.Dal.DataCore.GuestRoomAccount>
+
+<div class="eight columns">
+    <h1 class="page-title ci-title" style="margin-bottom:10px;"><span> (FULL LISTING)</span></h1>
+    
+        <div>
+            <table class="striped fixedlayout">
+                <thead>
+                    <tr>
+                        <th width="25%"></th>
+                        <th width="15%">Room No.</th>
+                        <th width="20%">Room Type</th>
+                        <th width="17%">Amount</th>
+                        <th width="20%">Type</th>
+                        <th width="20%">Reference</th>
+                        <th width="20%">Date</th>
+                    </tr>
+                </thead>
+                <tbody id="CasesTableBody1">
+                        @foreach (var gra in Model)
+                        {
+                            <tr id="@gra.Id">
+                                <td class="tth2">
+                                <a class="erbEditorOpener buttonDevFirst" href="@Url.Action("NewBooking", "Booking", new { id = gra.GuestRoom.Room.Id })">View Details</a>
+                                </td>
+                                <td class="tth2">@gra.GuestRoom.Room.RoomNumber</td>
+                                <td class="tth2">@gra.GuestRoom.Room.RoomType1.Name</td>
+                                <td class="tth2">@gra.Amount</td>
+                                <td class="tth2">@gra.RoomPaymentType.Name</td>
+                                <td class="tth2">@gra.TransactionId</td>
+                                <td class="tth2">@gra.TransactionDate.ToShortDateString()</td>
+                            </tr>
+                        }
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>

@@ -1,0 +1,126 @@
+﻿@using HotelMateWebV1.Helpers.Enums
+@model HotelMateWebV1.Models.RoomBookingViewModel
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $(".matrixArrows").click(function (e)
+        {
+            var Url = $(this).attr("href");           
+
+            $.ajax({
+                type: "get",
+                url: Url,
+                data: { category_id: 1 },
+                dataType: "html",
+                success: function (data) {
+                    $('#MatrixDiv').empty();
+                    $('#MatrixDiv').html(data);
+                }
+            });
+
+            e.preventDefault();
+            return false;
+        });
+
+    });
+</script>
+
+
+<div class="block-controls">
+    <ul class="controls-buttons">
+        <li><a href="@Url.Action("PreviousMonth", "Home", new  {Id = Model.MonthId })" class="matrixArrows" title="Previous Month"><img src="../Admin/images/icons/fugue/navigation-180.png" width="16" height="16"></a></li>
+        <li class="sep"></li>
+        <li class="controls-block"><strong>@Model.ThisMonth.ToString("MMMM")</strong></li>
+        <li class="sep"></li>
+        <li><a href="@Url.Action("NextMonth", "Home", new  {Id = Model.MonthId })" class="matrixArrows" title="Next Month"><img src="../Admin/images/icons/fugue/navigation.png" width="16" height="16"></a></li>
+    </ul>
+</div>
+
+<ul class="planning no-margin">
+    <li class="planning-header">
+        <span><b>Rooms</b></span>
+        <ul>
+            <li class="at-day-1">1</li>
+            <li class="at-day-2">2</li>
+            <li class="at-day-3">3</li>
+            <li class="at-day-4">4</li>
+            <li class="at-day-5">5</li>
+            <li class="at-day-6">6</li>
+            <li class="at-day-7">7</li>
+            <li class="at-day-8">8</li>
+            <li class="at-day-9">9</li>
+            <li class="at-day-10">10</li>
+            <li class="at-day-11">11</li>
+            <li class="at-day-12">12</li>
+            <li class="at-day-13">13</li>
+            <li class="at-day-14">14</li>
+            <li class="at-day-15">15</li>
+            <li class="at-day-16">16</li>
+            <li class="at-day-17">17</li>
+            <li class="at-day-18">18</li>
+            <li class="at-day-19">19</li>
+            <li class="at-day-20">20</li>
+            <li class="at-day-21">21</li>
+            <li class="at-day-22">22</li>
+            <li class="at-day-23">23</li>
+            <li class="at-day-24">24</li>
+            <li class="at-day-25">25</li>
+            <li class="at-day-26">26</li>
+            <li class="at-day-27">27</li>
+            <li class="at-day-28">28</li>
+            <li class="at-day-29">29</li>
+            <li class="at-day-30">30</li>
+            <li class="at-day-31">31</li>
+        </ul>
+    </li>
+    @foreach (var r in Model.RoomsMatrixList)
+    {
+        <li>
+            @if (r.RoomStatu.Id == (int)RoomStatusEnum.Occupied)
+            {
+                <a href="#"><img src="../Admin/images/icons/fugue/user-red.png" width="16" height="16">@r.RoomNumber</a>
+            }
+            else
+            {
+                <a href="#"><img src="~/images/bed_sleep_hotel_motel_lodging-24.png" width="16" height="16">@r.RoomNumber</a>
+            }
+            <ul>
+                @foreach (var gr in r.GuestReservations.Where(x => x.IsActive && (x.StartDate.IsBetween(Model.StartOfMonth, Model.EndOfMonth) || x.EndDate.IsBetween(Model.StartOfMonth, Model.EndOfMonth))))
+                {
+                    string nonFutureReservation = (gr.FutureBooking) ? "event-blue" : "event-orange";
+                    string linkUrl = (gr.FutureBooking) ? Url.Action("EditFutureBooking", "Booking", new { id = gr.GuestId }).ToString() : Url.Action("EditBooking", "Booking", new { id = r.Id }).ToString();
+
+                    <li class="current-time at-day-@DateTime.Today.Day"></li>
+
+                    if (gr.EndDate.Month == DateTime.Today.Month)
+                    {
+                        <li class="from-day-@gr.StartDate.Day to-day-@gr.EndDate.Day"><a href="@linkUrl" title="@gr.Guest.FullName" class="with-tip">@gr.Guest.FullName<span class="@nonFutureReservation" style="width:99%">@gr.Guest.FullName</span></a></li>
+                    }
+                    else
+                    {
+                        <li class="from-day-@gr.StartDate.Day to-day-31"><a href="@linkUrl" title="@gr.Guest.FullName" class="with-tip">@gr.Guest.FullName<span class="@nonFutureReservation" style="width:99%">@gr.Guest.FullName</span></a></li>
+                    }
+
+                    if (gr.EndDate.Month == DateTime.Today.Month)
+                    {
+                        <li class="milestone at-day-@gr.EndDate.Day"><a href="#" title="Checkout date : @gr.EndDate.ToShortDateString()" class="with-tip"></a></li>
+                    }
+                    else
+                    {
+                        <li class="milestone at-day-31"><a href="#" title="Checkout date : @gr.EndDate.ToShortDateString()" class="with-tip"></a></li>
+                    }
+                }
+
+                
+                @*<li class="zebras from-day-15 to-day-21"></li>*@
+
+            </ul>
+        </li>
+    }
+</ul>
+
+<ul class="message no-margin">
+    <li>@Model.RoomsMatrixList.Count Rooms found</li>
+</ul>

@@ -1,0 +1,50 @@
+﻿@model HotelMateWebV1.Models.IndexViewModel
+
+<div id="cp">
+    <div id="cpinner">
+        <div id="catContainer">
+            <div class="list_carousel">
+                <ul id="cats">
+                    @foreach(var c in Model.categoriesList)
+                    { 
+                      <li>
+                        <button id="category" type="button" value='@c.Id' class="gray" title="@c.Description">
+                            @c.Name
+                        </button>
+                      </li>
+                    }
+                    <li>
+                        <input value="" id="Search" name="Search" class="Search ui-autocomplete-input" style="width:100px;float: left;" placeholder="Item Search" onclick="this.select();" autocomplete="off">
+                    </li>
+                </ul>
+                <a class="prev" id="prev2" href="#"><span>prev</span></a> <a class="next" id="next2" href="#"><span>next</span></a>
+                <div class="pagination" id="pager2"></div>
+            </div>
+        </div>
+        <div class="quick-menu">
+            <div id="proContainer">
+                <div id="ajaxproducts">
+                    <div id="proajax">
+                        <div>
+
+                            @foreach(var p in Model.productsList)
+                            {
+                              @*<button id="@p.Id" type="button" value='@p.Id' class="green"><i><img src="assets/uploads/thumbs/default.png"></i><span><span>@p.Name</span></span></button>*@  
+                              <button id="product-@p.Id" type="button" value='@p.Id' class="green"><i><img src="~/Products/@p.PicturePath"  height="35px" ></i><span><span>@p.StockItemName</span></span></button>
+                            }
+                    
+                            
+                       </div>
+                  
+                    </div>
+                    
+                    <button id="previous" type="button" class="blue" style='z-index:10002;'><i><img src='~/sma2/assets/pos/images/previous.png' alt='previous' /></i><span>
+                    <span>Previous</span></span></button><button id="next" type="button" class="blue" style='z-index:10003;'>
+                    <i><img src='~/sma2/assets/pos/images/next.png' alt='next' /></i><span><span>Next</span></span></button>
+
+                </div>
+            </div>
+        </div>
+        <div style="clear:both;"></div>
+    </div>
+</div>

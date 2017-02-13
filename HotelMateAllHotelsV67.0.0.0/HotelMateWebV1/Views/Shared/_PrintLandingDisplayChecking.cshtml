@@ -1,0 +1,30 @@
+﻿@model HotelMateWebV1.Models.RoomBookingViewModel
+<link href="~/css/CoolTable.css" rel="stylesheet" />
+
+<div class="eight columns">
+
+    @Html.Partial("_EntityUpdated", "Guest details has been updated. To Print bill please click or print.")
+
+    <div>
+        <table class="striped fixedlayout">
+            <thead>
+                <tr>
+                    <th width="20%">Go Back</th>
+                    <th width="20%">Email</th>
+                    <th width="20%">Print</th>
+                    <th width="20%">Export</th>
+                </tr>
+            </thead>
+            <tbody id="CasesTableBody1">
+                <tr>
+                    <td class="tth2"><a class="erbEditorDirty buttonDevFirst" href="@Url.Action("Booking", "Home", new { id = Model.GuestId })">Go Back</a></td>
+                    <td class="tth2"><a class="erbEditorDirty buttonDevFirst" href="@Url.Action("EmailGuest", "Booking", new { id = Model.GuestId })">Email</a></td>
+                    <td class="tth2"><a class="erbEditorDirty buttonDevFirst" href="@Url.Action("PrintGuestAccountCheckIn", "Printing", new { id = Model.GuestId })">Print</a></td>
+                    <td class="tth2"><a class="erbEditorDirty buttonDevFirst" href="@Url.Action("PrintGuestAccountCheckIn", "Printing", new { id = Model.GuestId })">Export</a></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+

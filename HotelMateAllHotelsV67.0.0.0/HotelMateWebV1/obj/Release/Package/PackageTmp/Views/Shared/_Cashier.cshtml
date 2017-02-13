@@ -1,0 +1,25 @@
+﻿@model HotelMateWebV1.Models.IndexViewModel
+
+
+
+<div id="cashierModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="cashierModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="cashierModalLabel">Sales Assistants</h3>
+    </div>
+    <div class="modal-body">
+        <div id="cashierError"></div>
+        <div class="control-group">
+            <label class="control-label" for="company">Sales Assistants: Use - dropdown to select Sales Assistants.</label>
+            @Html.DropDownListFor(x => x.PersonId, new SelectList(Model.CurrentCashiers, "PersonID", "DisplayName"))
+            @*<div class="controls"> <input type="text" name="company" value="" class="input-block-level tip" title="Use - (dash/minus) to bypass this feild." id="company" /> </div>*@
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        <button class="btn btn-primary" id="add-cashier">Add cashier</button>
+    </div>
+</div>
+
+

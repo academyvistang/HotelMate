@@ -1,0 +1,40 @@
+﻿@model HotelMateWebV1.Models.HotelMenuModel
+<link href="~/css/CoolTable.css" rel="stylesheet" />
+
+<div class="twelve columns">
+
+    <div>
+        <table class="striped fixedlayout">
+            <thead>
+                <tr>
+                    <th width="50%">Go Back</th>
+                </tr>
+            </thead>
+            <tbody id="CasesTableBody1">
+                <tr>
+                    <td class="tth2"><a class="erbEditorDirty buttonDevFirst" href="@Url.Action("EscortServices", "Guest")">Go Back</a></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    <div>
+        <p>A text message has been sent to this escort about your you. Please expect a call from the escort</p>
+        <p>Should you wish to contact the escort, the contact numbers are @Model.EscortItem.Telephone , @Model.EscortItem.Mobile</p>
+
+        <br />
+        <br />
+
+
+        <p>@Model.EscortItem.Description</p>
+        <img src="~/Products/@Model.EscortItem.PicturePath" alt="@Model.EscortItem.Name" />
+    </div>
+</div>
+
+
+
+
+
+
+

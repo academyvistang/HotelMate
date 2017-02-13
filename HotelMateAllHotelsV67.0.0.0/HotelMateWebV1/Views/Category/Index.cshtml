@@ -1,0 +1,62 @@
+﻿@model HotelMateWebV1.Models.CategoryIndexModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="page-head">
+    <h2>Categories</h2>
+    <ol class="breadcrumb">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Category</a></li>
+        <li class="active">Categories List</li>
+    </ol>
+</div>
+<div class="cl-mcont">
+    <div class="row">
+
+     
+
+        <div class="col-md-12">
+            <div class="block-flat">
+                <div class="header">
+                    <h3>Categories</h3><span>@Html.ActionLink("Create New", "Create")</span>
+                </div>
+                <div class="content">
+                    <div class="table-responsive">
+                        <table class="table no-border hover">
+                            <thead class="no-border">
+                                <tr>
+                                    
+                                    <th style="width:30%;"><strong>Name</strong></th>
+                                    <th class="text-right"><strong>Description</strong></th>
+                                    <th style="width:15%;" class="text-center"><strong>Action</strong></th>
+                                    @*<th style="width:15%;"><strong>Date</strong></th>
+                                    <th style="width:15%;"><strong>Progress</strong></th>
+                                    <th style="width:15%;" class="text-center"><strong>Action</strong></th>*@
+                                </tr>
+                            </thead>
+                            <tbody class="no-border-y">
+                                @foreach (var item in Model.CategoryList)
+                                {
+                                        <tr>
+                                  
+                                            <td>@item.Name</td>
+                                            <td class="text-right color-success">@item.Description</td>
+                                            
+                                            @*<td class="color-success"><div class="progress"><div class="progress-bar progress-bar-success" style="width: 40%">40%</div></div></td>*@
+                                            <td class="text-center"><a class="label label-default" href="@Url.Action("Edit", "Category", new {id = item.Id })">
+                                            <i class="fa fa-pencil"></i>
+                                            </a> <a class="label label-danger" href="@Url.Action("Delete", "Category", new {id = item.Id })"><i class="fa fa-times"></i></a></td>
+                                        </tr>
+                                }
+                               
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

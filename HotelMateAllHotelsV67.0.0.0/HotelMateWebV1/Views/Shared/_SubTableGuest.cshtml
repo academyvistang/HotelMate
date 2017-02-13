@@ -1,0 +1,35 @@
+﻿@model HotelMateWeb.Dal.DataCore.GuestRoom
+
+
+<div class="table-responsive">
+    <table class="table no-border hover">
+
+        <tbody class="no-border-y">
+            @foreach (var item in Model.GuestRoomAccounts.Where(x => x.PaymentMethodId == (int)HotelMateWebV1.Helpers.Enums.PaymentMethodEnum.POSTBILL).ToList())
+             {               
+                    <tr>
+                        <td style="width:20%;">@item.RoomPaymentType.Name</td>                       
+                        <td style="width:20%;">@item.TransactionDate.ToShortDateString()</td>
+                        <td style="width:20%;">@item.Person.DisplayName</td>
+                        <td style="width:20%;">@item.Amount</td>
+                    </tr>                
+            }
+
+            
+            <tr>
+                <td style="width:20%;">@Model.Room.RoomNumber</td>
+                <td style="width:20%;">@Model.GetNumberOfNights() Nights</td>                
+                <td style="width:20%;">@Model.RoomRate</td>
+                <td style="width:20%;">@Model.RoomCharge()</td>
+            </tr>
+
+            @{var total = Model.GuestRoomAccounts.Where(x => x.PaymentMethodId == (int)HotelMateWebV1.Helpers.Enums.PaymentMethodEnum.POSTBILL).Sum(x => x.Amount) + Model.RoomCharge();}
+            <tr>
+                <td colspan="3">Total</td>
+                <td colspan="3">@total</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+

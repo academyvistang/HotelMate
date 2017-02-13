@@ -1,0 +1,27 @@
+﻿@model List<HotelMateWebV1.Models.TerminalModel>
+
+<div id="NoShow">
+
+    <div class="table-responsive">
+        <table class="table no-border hover">
+
+            <tbody class="no-border-y">
+
+
+                @foreach (var item in Model)
+                {
+                    foreach (var lst in item.ItemList)
+                    {
+                        <tr>
+                            <td style="width:80%;">@lst.RoomPaymentType.Name</td>
+                            <td style="width:20%;">@lst.Amount</td>
+                        </tr>
+                    }
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+

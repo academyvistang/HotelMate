@@ -1,0 +1,56 @@
+﻿@model HotelMateWebV1.Models.IndexViewModel         
+
+
+
+
+       @foreach (var card in Model.User1.UsersStack)
+       {
+           string name = card.Suit.Name + card.Rank.Name + ".gif";
+
+           if (card.ShowNumberedSide)
+           {
+	          <img alt="" src="../../Images/PlayingCards/@name" id="@card.Id" />
+           }
+           else
+           {
+            <img alt="" src="../../Images/PlayingCards/@name" id="@card.Id" />
+           }
+       }
+
+       <br />
+
+
+
+       @foreach (var card in Model.User2.UsersStack)
+       {
+           string name = card.Suit.Name + card.Rank.Name + ".gif";
+
+           if (card.ShowNumberedSide)
+           {
+	          <img alt="" src="../../Images/PlayingCards/@name" id="@card.Id" />
+           }
+           else
+           {
+            <img alt="" src="../../Images/PlayingCards/@name" id="@card.Id" />
+           }
+       }
+
+       <br />
+
+           
+
+
+       @foreach (var card in Model.Computer.UsersStack)
+       {
+           string name = card.Suit.Name + card.Rank.Name + ".gif";
+
+           if (card.ShowNumberedSide)
+           {
+	          <img alt="" src="../../Images/PlayingCards/@name" id="@card.Id" />
+           }
+           else
+           {
+            <img alt="" src="../../Images/PlayingCards/@name" id="@card.Id" />
+           }
+       }
+

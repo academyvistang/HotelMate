@@ -1,0 +1,53 @@
+﻿@model HotelMateWebV1.Models.SearchViewModel
+<link href="~/css/CoolTable.css" rel="stylesheet" />
+
+
+<div id="hero" class="row">
+    <div class="eight columns">
+
+        <div>
+            <table class="striped fixedlayout">
+                <thead>
+                    <tr>
+                        <th width="15%"></th>
+                        <th width="25%">Guest</th>
+                        <th width="25%">Checkin</th>
+                        <th width="25%">Checkout</th>
+                        <th width="25%">Room Number</th>
+                        <th width="25%">Room Type</th>
+                        <th width="25%">Rate </th>
+                    </tr>
+                </thead>
+                <tbody id="CasesTableBody1">
+                    @foreach (var rm in Model.GuestRoomsList)
+                    {
+                        <tr id="@rm.Id">
+                            <td class="tth2">@Html.ActionLink("View Details", "EditBooking", "Booking", new { id = rm.Room.Id }, null)</td>
+                            <td class="tth2">@rm.Guest.FullName</td>
+                            <td class="tth2">@rm.CheckinDate.ToShortDateString()</td>
+                            <td class="tth2">@rm.CheckoutDate.ToShortDateString()</td>
+                            <td class="tth2">@rm.Room.RoomNumber</td>
+                            <td class="tth2">@rm.Room.RoomType1.Name</td>
+                            <td class="tth2">@rm.Room.Price</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+    @Html.Partial("_CheckAvailabilityNew")
+</div> <!-- #hero -->
+
+
+
+<div class="row">
+    <div class="twelve columns">
+        <div class="twelve columns main-separator after-hero">
+            <div class="home-slide-controls">
+                <a class="slide-prev" href="">Previous Slide</a>
+                <a class="slide-next" href="">Next Slide</a>
+            </div>
+        </div>
+    </div>
+</div>

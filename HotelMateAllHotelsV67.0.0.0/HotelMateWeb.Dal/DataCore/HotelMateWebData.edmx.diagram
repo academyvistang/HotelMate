@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="309931b18c794ca19b2c72eeed5c5814" Name="Diagram1" ZoomLevel="72">
+        <EntityTypeShape EntityType="HotelMateWebModel.GuestReservation" Width="1.5" PointX="10.5" PointY="20.5" />
+        <EntityTypeShape EntityType="HotelMateWebModel.GuestRoom" Width="1.5" PointX="13.5" PointY="19.75" />
+        <EntityTypeShape EntityType="HotelMateWebModel.GuestRoomAccount" Width="1.5" PointX="15.75" PointY="20.5" />
+        <EntityTypeShape EntityType="HotelMateWebModel.Hotel" Width="1.5" PointX="0.75" PointY="18.5" />
+        <EntityTypeShape EntityType="HotelMateWebModel.Item" Width="1.5" PointX="3" PointY="34.625" />
+        <EntityTypeShape EntityType="HotelMateWebModel.PersonType" Width="1.5" PointX="3" PointY="31.625" />
+        <EntityTypeShape EntityType="HotelMateWebModel.Pictural" Width="1.5" PointX="5.25" PointY="15.125" />
+        <EntityTypeShape EntityType="HotelMateWebModel.Room" Width="1.5" PointX="3" PointY="17.75" />
+        <EntityTypeShape EntityType="HotelMateWebModel.RoomPaymentTypeStatu" Width="1.5" PointX="11.25" PointY="16.875" />
+        <EntityTypeShape EntityType="HotelMateWebModel.RoomStatu" Width="1.5" PointX="0.75" PointY="22.625" />
+        <EntityTypeShape EntityType="HotelMateWebModel.RoomTransferHistory" Width="1.5" PointX="10.5" PointY="29.875" />
+        <EntityTypeShape EntityType="HotelMateWebModel.RoomType" Width="1.5" PointX="0.75" PointY="14.75" />
+        <EntityTypeShape EntityType="HotelMateWebModel.Transaction" Width="1.5" PointX="10.5" PointY="26" />
+        <AssociationConnector Association="HotelMateWebModel.FK_GuestReservation_GuestReservationRoom" />
+        <AssociationConnector Association="HotelMateWebModel.FK_GuesRoomAccount_GuestRoom" />
+        <AssociationConnector Association="HotelMateWebModel.FK_GuestRoom_GuestRoomRoom" />
+        <AssociationConnector Association="HotelMateWebModel.FK_Item_ItemHotel" />
+        <AssociationConnector Association="HotelMateWebModel.FK_PersonType_PersonTypeHotel" />
+        <AssociationConnector Association="HotelMateWebModel.FK_Room_RoomHotel" />
+        <AssociationConnector Association="HotelMateWebModel.FK_Item_ItemTransaction" />
+        <AssociationConnector Association="HotelMateWebModel.FK_Room_RoomStatus" />
+        <AssociationConnector Association="HotelMateWebModel.FK_Room_RoomType" />
+        <AssociationConnector Association="HotelMateWebModel.RoomPictures" />
+        <AssociationConnector Association="HotelMateWebModel.TransactionItem" />
+        <EntityTypeShape EntityType="HotelMateWebModel.Expense" Width="1.5" PointX="3" PointY="1.125" />
+        <EntityTypeShape EntityType="HotelMateWebModel.ExpensesType" Width="1.5" PointX="0.75" PointY="1" />
+        <AssociationConnector Association="HotelMateWebModel.FK_Expense_ExpensesType" />
+        <EntityTypeShape EntityType="HotelMateWebModel.PaymentMethod" Width="1.5" PointX="5.375" PointY="0.875" />
+        <AssociationConnector Association="HotelMateWebModel.FK_GuestRoomAccount_GuestRoomAccountPaymentMethod" />
+        <EntityTypeShape EntityType="HotelMateWebModel.EmployeeShift" Width="1.5" PointX="7.5" PointY="27" />
+        <EntityTypeShape EntityType="HotelMateWebModel.InvoiceStatusType" Width="1.5" PointX="2.75" PointY="5.75" />
+        <EntityTypeShape EntityType="HotelMateWebModel.Supplier" Width="1.5" PointX="3.375" PointY="8.75" />
+        <EntityTypeShape EntityType="HotelMateWebModel.Invoice" Width="1.5" PointX="10.5" PointY="12.75" />
+        <AssociationConnector Association="HotelMateWebModel.FK_Invoice_InvoiceStatus" />
+        <EntityTypeShape EntityType="HotelMateWebModel.Store" Width="1.5" PointX="7.5" PointY="35.625" />
+        <EntityTypeShape EntityType="HotelMateWebModel.PurchaseOrderItem" Width="1.5" PointX="15" PointY="27.625" />
+        <EntityTypeShape EntityType="HotelMateWebModel.StockItem" Width="1.5" PointX="3" PointY="24" />
+        <AssociationConnector Association="HotelMateWebModel.FK_StockItem_StockItemHotel" />
+        <AssociationConnector Association="HotelMateWebModel.FK_PurchaseOrderItem_PurchaseOrderItemStockItem" />
+        <AssociationConnector Association="HotelMateWebModel.FK_StockItem_StockItemTransaction" />
+        <EntityTypeShape EntityType="HotelMateWebModel.StoreItem" Width="1.5" PointX="12.75" PointY="25.5" />
+        <AssociationConnector Association="HotelMateWebModel.FK_StoteItems_StoteItemsItem" />
+        <AssociationConnector Association="HotelMateWebModel.FK_StoteItems_StoteItemsStore" />
+        <EntityTypeShape EntityType="HotelMateWebModel.DistributionPointItem" Width="1.5" PointX="9.75" PointY="34.125" />
+        <AssociationConnector Association="HotelMateWebModel.FK_DistributionItems_DistributionItemsItem" />
+        <EntityTypeShape EntityType="HotelMateWebModel.POSItem" Width="1.5" PointX="12.75" PointY="35.625" />
+        <AssociationConnector Association="HotelMateWebModel.FK_POSItems_POSItemsStockItem" />
+        <EntityTypeShape EntityType="HotelMateWebModel.DamagedBatchItem" Width="1.5" PointX="5.25" PointY="35.5" />
+        <AssociationConnector Association="HotelMateWebModel.FK_DamagedBatchItem_DamagedBatchItemItem" />
+        <EntityTypeShape EntityType="HotelMateWebModel.TableItem" Width="1.5" PointX="5.375" PointY="4.75" />
+        <EntityTypeShape EntityType="HotelMateWebModel.MovieCategory" Width="1.5" PointX="7.375" PointY="1.125" />
+        <EntityTypeShape EntityType="HotelMateWebModel.Taxi" Width="1.5" PointX="7.375" PointY="4.75" />
+        <EntityTypeShape EntityType="HotelMateWebModel.Adventure" Width="1.5" PointX="5.375" PointY="7.75" />
+        <EntityTypeShape EntityType="HotelMateWebModel.Movie" Width="1.5" PointX="19.75" PointY="16.125" />
+        <AssociationConnector Association="HotelMateWebModel.FK_Movie_MovieCategory" />
+        <EntityTypeShape EntityType="HotelMateWebModel.GuestPlaylist" Width="1.5" PointX="19.75" PointY="29.25" />
+        <AssociationConnector Association="HotelMateWebModel.GuestMovie" />
+        <EntityTypeShape EntityType="HotelMateWebModel.Escort" Width="1.5" PointX="7.375" PointY="7.75" />
+        <EntityTypeShape EntityType="HotelMateWebModel.GuestOrder" Width="1.5" PointX="19.75" PointY="33.5" />
+        <EntityTypeShape EntityType="HotelMateWebModel.GuestOrderItem" Width="1.5" PointX="22" PointY="28.625" />
+        <AssociationConnector Association="HotelMateWebModel.FK_GuestOrderItem_GuestOrder" />
+        <AssociationConnector Association="HotelMateWebModel.FK_GuestOrderItem_GuestOrderItemItem" />
+        <EntityTypeShape EntityType="HotelMateWebModel.Guest" Width="1.5" PointX="8.25" PointY="16.75" />
+        <EntityTypeShape EntityType="HotelMateWebModel.SoldItemsAll" Width="1.5" PointX="18.5" PointY="20.5" />
+        <AssociationConnector Association="HotelMateWebModel.FK_Guest_GuestHotel" />
+        <AssociationConnector Association="HotelMateWebModel.FK_GuestOrder_GuestOrderGuest" />
+        <AssociationConnector Association="HotelMateWebModel.FK_GuestReservation_GuestReservationGuest" />
+        <AssociationConnector Association="HotelMateWebModel.FK_GuestRoom_GuestRoomGuest" />
+        <AssociationConnector Association="HotelMateWebModel.FK_Playlist_PlaylistGuest" />
+        <AssociationConnector Association="HotelMateWebModel.FK_RoomTransferHistory_NewGuest" />
+        <AssociationConnector Association="HotelMateWebModel.FK_SoldItemsAll_SoldItemsAllGuest" />
+        <AssociationConnector Association="HotelMateWebModel.FK_Transaction_TransactionGuest" />
+        <AssociationConnector Association="HotelMateWebModel.FK_SoldItemsAll_SoldItemsAllPaymentMethod" />
+        <AssociationConnector Association="HotelMateWebModel.FK_SoldItemsAll_SoldItemsAllItem" />
+        <EntityTypeShape EntityType="HotelMateWebModel.GuestLedger" Width="1.5" PointX="17.5" PointY="28.375" />
+        <AssociationConnector Association="HotelMateWebModel.FK_GuestLedger_GuestLedgerGuest" />
+        <EntityTypeShape EntityType="HotelMateWebModel.GuestBillItem" Width="1.5" PointX="22.375" PointY="34" />
+        <EntityTypeShape EntityType="HotelMateWebModel.GuestPaidItem" Width="1.5" PointX="0.75" PointY="8.75" />
+        <EntityTypeShape EntityType="HotelMateWebModel.GuestRequestItem" Width="1.5" PointX="25.375" PointY="28.875" />
+        <AssociationConnector Association="HotelMateWebModel.FK_GuestTemporalItem_GuestOrder" />
+        <AssociationConnector Association="HotelMateWebModel.FK_GuestTemporalItem_GuestTemporalItemItem" />
+        <AssociationConnector Association="HotelMateWebModel.FK_GuestRequestItem_GuestRequest" />
+        <AssociationConnector Association="HotelMateWebModel.FK_GuestRequestItem_GuestRequestItemItem" />
+        <EntityTypeShape EntityType="HotelMateWebModel.EscortPicture" Width="1.5" PointX="9.625" PointY="3" />
+        <EntityTypeShape EntityType="HotelMateWebModel.GuestChat" Width="1.5" PointX="10.5" PointY="42.375" />
+        <EntityTypeShape EntityType="HotelMateWebModel.GuestChatMessage" Width="1.5" PointX="10.5" PointY="38.875" />
+        <EntityTypeShape EntityType="HotelMateWebModel.GuestFeedBack" Width="1.5" PointX="10.5" PointY="9.25" />
+        <AssociationConnector Association="HotelMateWebModel.FK_EscortPicture_Escort" />
+        <AssociationConnector Association="HotelMateWebModel.FK_GuestChat_GuestChatGuest" />
+        <AssociationConnector Association="HotelMateWebModel.FK_GuestChatMessages_GuestChatMessagesOwner" />
+        <AssociationConnector Association="HotelMateWebModel.FK_GuestChatMessages_GuestChatMessagesStranger" />
+        <AssociationConnector Association="HotelMateWebModel.FK_GuestFeedBack_Guest" />
+        <EntityTypeShape EntityType="HotelMateWebModel.GuestCredential" Width="1.5" PointX="17.5" PointY="37.125" />
+        <AssociationConnector Association="HotelMateWebModel.FK_TableItem_TableItemStockItem" />
+        <EntityTypeShape EntityType="HotelMateWebModel.PurchaseOrderStoreType" Width="1.5" PointX="5.375" PointY="11.75" />
+        <EntityTypeShape EntityType="HotelMateWebModel.PurchaseOrder" Width="1.5" PointX="13.375" PointY="1" />
+        <AssociationConnector Association="HotelMateWebModel.FK_Invoice_InvoicePO" />
+        <AssociationConnector Association="HotelMateWebModel.FK_PurchaseOrderItem_PurchaseOrderItemPO" />
+        <EntityTypeShape EntityType="HotelMateWebModel.FoodMatrix" Width="1.5" PointX="5.25" PointY="27.5" />
+        <EntityTypeShape EntityType="HotelMateWebModel.PaymentOrder" Width="1.5" PointX="22" PointY="24.5" />
+        <EntityTypeShape EntityType="HotelMateWebModel.SalesDiscount" Width="1.5" PointX="17.5" PointY="33.5" />
+        <EntityTypeShape EntityType="HotelMateWebModel.SchoolPicture" Width="1.5" PointX="7.375" PointY="11.75" />
+        <AssociationConnector Association="HotelMateWebModel.FK_FoodMatrix_FoodMatrixCookedFood" />
+        <AssociationConnector Association="HotelMateWebModel.FK_FoodMatrix_FoodMatrixRawItem" />
+        <AssociationConnector Association="HotelMateWebModel.FK_PaymentOrder_PaymentOrderGuest" />
+        <AssociationConnector Association="HotelMateWebModel.FK_PaymentOrder_PaymentOrderGuestOrder" />
+        <EntityTypeShape EntityType="HotelMateWebModel.GuestMessage" Width="1.5" PointX="9.375" PointY="5.75" />
+        <EntityTypeShape EntityType="HotelMateWebModel.BarTable" Width="1.5" PointX="24.5" PointY="23.875" />
+        <EntityTypeShape EntityType="HotelMateWebModel.Batch" Width="1.5" PointX="19.75" PointY="39.25" />
+        <EntityTypeShape EntityType="HotelMateWebModel.BusinessAccount" Width="1.5" PointX="15.75" PointY="13.875" />
+        <EntityTypeShape EntityType="HotelMateWebModel.BusinessCorporateAccount" Width="1.5" PointX="21" PointY="20.25" />
+        <EntityTypeShape EntityType="HotelMateWebModel.DistributionPoint" Width="1.5" PointX="17.5" PointY="44.5" />
+        <EntityTypeShape EntityType="HotelMateWebModel.Person" Width="1.5" PointX="15.25" PointY="31.625" />
+        <EntityTypeShape EntityType="HotelMateWebModel.PrinterTable" Width="1.5" PointX="26.75" PointY="24.75" />
+        <AssociationConnector Association="HotelMateWebModel.FK_BarTable_BarTableGuest" />
+        <AssociationConnector Association="HotelMateWebModel.FK_BarTable_BarTableStaff" />
+        <AssociationConnector Association="HotelMateWebModel.FK_GuestOrder_GuestOrderTable" />
+        <AssociationConnector Association="HotelMateWebModel.FK_PrinterTable_PrinterTableBarTable" />
+        <AssociationConnector Association="HotelMateWebModel.FK_TableItem_TableItemBarTable" />
+        <AssociationConnector Association="HotelMateWebModel.FK_Batch_BatchDistributionPoint" />
+        <AssociationConnector Association="HotelMateWebModel.FK_Batch_BatchPOI" />
+        <AssociationConnector Association="HotelMateWebModel.FK_DamagedBatchItem_DamagedBatchItemBatch" />
+        <AssociationConnector Association="HotelMateWebModel.FK_DistributionPointItems_DistributionPointItemsBatch" />
+        <AssociationConnector Association="HotelMateWebModel.FK_BusinessAccount_BusinessAccountHotel" />
+        <AssociationConnector Association="HotelMateWebModel.FK_BusinessCorporateAccount_BusinessCorporateAccountCompany" />
+        <AssociationConnector Association="HotelMateWebModel.FK_Guest_CompanyGuest" />
+        <AssociationConnector Association="HotelMateWebModel.FK_SoldItemsAll_SoldItemsAllBA" />
+        <AssociationConnector Association="HotelMateWebModel.FK_BusinessCorporateAccount_BusinessCorporateAccountPaymentMethod" />
+        <AssociationConnector Association="HotelMateWebModel.FK_BusinessCorporateAccount_BusinessCorporateAccountPerson" />
+        <AssociationConnector Association="HotelMateWebModel.FK_DistributionItems_DistributionItemsDistributionPoint" />
+        <AssociationConnector Association="HotelMateWebModel.FK_DistributionPoint_DistributionPointManager" />
+        <AssociationConnector Association="HotelMateWebModel.FK_Person_PersonDistributionPoint" />
+        <AssociationConnector Association="HotelMateWebModel.FK_POSItems_POSItemsDistributionPoint" />
+        <AssociationConnector Association="HotelMateWebModel.FK_SoldItemsAll_SoldItemsAllDistributionPoint" />
+        <AssociationConnector Association="HotelMateWebModel.FK_DistributionPointItems_DistributionPointItemsRecievedBy" />
+        <AssociationConnector Association="HotelMateWebModel.FK_EmployeeShift_EmployeeShiftPerson" />
+        <AssociationConnector Association="HotelMateWebModel.FK_Expense_ExpenseStaff" />
+        <AssociationConnector Association="HotelMateWebModel.FK_Guest_GuestPerson" />
+        <AssociationConnector Association="HotelMateWebModel.FK_GuestCredential_GuestCredentialPerson" />
+        <AssociationConnector Association="HotelMateWebModel.FK_GuestLedger_GuestLedgerCashier" />
+        <AssociationConnector Association="HotelMateWebModel.FK_GuestOrder_GuestOrderWaiter" />
+        <AssociationConnector Association="HotelMateWebModel.FK_GuestRoomAccount_GuestRoomAccountPerson" />
+        <AssociationConnector Association="HotelMateWebModel.FK_Person_PersonHotel" />
+        <AssociationConnector Association="HotelMateWebModel.FK_Invoice_InvoiceAssignedTo" />
+        <AssociationConnector Association="HotelMateWebModel.FK_Invoice_InvoiceCreator" />
+        <AssociationConnector Association="HotelMateWebModel.FK_Person_PersonType" />
+        <AssociationConnector Association="HotelMateWebModel.FK_SalesDiscount_SalesDiscountPerson" />
+        <AssociationConnector Association="HotelMateWebModel.FK_SoldItemsAll_SoldItemsAllPerson" />
+        <AssociationConnector Association="HotelMateWebModel.FK_Store_StoreManager" />
+        <AssociationConnector Association="HotelMateWebModel.FK_StoreItems_StoreItemsRecievedBy" />
+        <AssociationConnector Association="HotelMateWebModel.BusinessRoomAccounts" />
+        <EntityTypeShape EntityType="HotelMateWebModel.Payment" Width="1.5" PointX="23.75" PointY="16" />
+        <EntityTypeShape EntityType="HotelMateWebModel.RoomPaymentType" Width="1.5" PointX="13.5" PointY="15.75" />
+        <AssociationConnector Association="HotelMateWebModel.FK_Payment_PaymentBA" />
+        <AssociationConnector Association="HotelMateWebModel.FK_Payment_PaymentDistributionPoint" />
+        <AssociationConnector Association="HotelMateWebModel.FK_Payment_PaymentGuest" />
+        <AssociationConnector Association="HotelMateWebModel.FK_GuestLedger_GuestLedgerPaymentType" />
+        <AssociationConnector Association="HotelMateWebModel.FK_GuestRoomAccount_GuestRoomAccountPayment" />
+        <AssociationConnector Association="HotelMateWebModel.FK_Payment_PaymentCashier" />
+        <AssociationConnector Association="HotelMateWebModel.FK_Payment_PaymentMethod" />
+        <AssociationConnector Association="HotelMateWebModel.FK_Payment_PaymentPaymentType" />
+        <AssociationConnector Association="HotelMateWebModel.FK_RoomPaymentType_RoomPaymentTypeStatus" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

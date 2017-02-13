@@ -1,0 +1,35 @@
+﻿@model HotelMateWebV1.Models.RoomBookingViewModel
+<link href="~/css/CoolTable.css" rel="stylesheet" />
+
+<div class="eight columns">
+    <h1 class="page-title ci-title" style="margin-bottom:10px;"><span>FUTURE RESERVATIONS</span></h1>
+        <div>
+            <table class="striped fixedlayout">
+                <thead>
+                    <tr>
+                        <th width="20%"></th>
+                        <th width="25%">Guest</th>                   
+                        <th width="20%">Room|Room Type</th>                     
+                        <th width="20%">Checkin Date</th>
+                        <th width="20%">Checkout Date</th>
+                    </tr>
+                </thead>
+                <tbody id="CasesTableBody1">
+                    @foreach (var rm in Model.GuestList)
+                    {
+                        <tr id="@rm.Id">
+                            <td class="tth2">
+                            <a class="erbEditorOpener buttonDevFirst" href="@Url.Action("NewBookingFromFutureReservation", "Booking", new { id = rm.Id })">Checkin</a>
+                            <a class="erbEditorOpener buttonDevFirst" href="@Url.Action("EditFutureBooking", "Booking", new { id = rm.Id })">Edit</a>
+                            </td>
+                            <td class="tth2">@rm.FullName</td>
+                            <td class="tth2">@rm.GuestRooms.FirstOrDefault().Room.RoomNumber | @rm.GuestRooms.FirstOrDefault().Room.RoomType1.Name</td>
+                            <td class="tth2">@rm.GuestRooms.FirstOrDefault().CheckinDate</td>
+                            <td class="tth2">@rm.GuestRooms.FirstOrDefault().CheckoutDate</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+

@@ -1,0 +1,25 @@
+﻿
+@model HotelMateWebV1.Models.RoomViewModel
+           
+
+
+    <section id="content" class=" eight columns">
+        <h1 class="page-title ci-title">
+            <span>Booking</span>
+        </h1>
+
+        <article id="post-16" class="post-16 page type-page status-publish hentry entry group">
+
+            <div class="booking-form-wrap bs bg">
+                @*<form class="booking-form b-form row" action="http://www.academyvista.com/preview/hotelmotel/booking/" method="post">*@
+                    @using (Html.BeginForm("NewRoom", "Booking", FormMethod.Post, new { enctype = "multipart/form-data", @class = "booking-form b-form row" }))
+                    {
+                      @Html.Partial("_HotelRoomEdit")
+                    }
+</div>
+
+        </article>
+
+
+    </section> <!-- #content -->
+

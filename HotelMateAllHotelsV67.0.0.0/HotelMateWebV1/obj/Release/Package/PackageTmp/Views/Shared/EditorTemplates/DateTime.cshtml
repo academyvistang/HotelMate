@@ -1,0 +1,7 @@
+@model DateTime?
+
+@(Model.HasValue && Model.Value > DateTime.Now.AddYears(15) ? Html.TextBox("",String.Format("{0:dd/MM/yyyy}", Model.Value),
+            new { @class = "datepicker" }) :
+    Html.TextBox("",String.Format("{0:dd/MM/yyyy}", DateTime.Now), new {@class = "datepicker"}))
+
+

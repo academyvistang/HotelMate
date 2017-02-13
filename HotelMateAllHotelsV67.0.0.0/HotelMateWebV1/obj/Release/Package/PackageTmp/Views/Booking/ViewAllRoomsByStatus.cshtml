@@ -1,0 +1,29 @@
+﻿@model HotelMateWebV1.Models.RoomBookingViewModel
+
+@{
+    ViewBag.Title = "Booking";
+}
+
+@if (!Model.ComplimentaryRooms)
+{    
+   @Html.Partial("_RoomsDisplayByStatus")
+}
+else
+{
+   @Html.Partial("_RoomsDisplayComplimentary")    
+}
+
+@section SideBarBox
+{
+    @Html.Partial("_CheckAvailabilityNew")
+}
+
+@section PaginationBox
+{
+    @Html.Partial("_Pagination")
+}
+
+
+
+
+

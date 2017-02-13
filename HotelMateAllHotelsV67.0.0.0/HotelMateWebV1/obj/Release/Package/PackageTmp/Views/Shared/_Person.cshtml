@@ -1,0 +1,38 @@
+﻿@using HotelMateWebV1.Helpers
+@model HotelMateWebV1.Models.PersonViewModel
+
+<style>
+    .dropdownDiv {
+        height: 100px;
+        width: 100%;
+        overflow: auto;
+        padding: 2px;
+    }
+</style>
+
+
+@Html.HiddenFor(model => model.GuestId)
+@Html.HiddenFor(model => model.PersonID)
+@Html.HiddenFor(model => model.FirstName)
+@Html.HiddenFor(model => model.LastName)
+
+<div class="twelve columns">
+    <label for="FullName">Name*</label>
+    @Html.TextBoxFor(model => model.GuestName)  
+</div>
+
+<div class="six columns">
+    <label for="email">E-Mail*</label>
+    @Html.TextBoxFor(model => model.Email)
+    @Html.ValidationMessageFor(model => model.Email)
+</div>
+
+<div class="six columns">
+    <label for="email">Password*</label>
+    @Html.PasswordFor(model => model.Password)
+    @Html.ValidationMessageFor(model => model.Password)
+</div>
+
+<div class="twelve columns">
+    <input id="submit" type="submit" value="Update Internet Status" name="send_booking">
+</div>

@@ -1,0 +1,3 @@
+﻿#NoShow, .page-head, .header, .cl-vnavigation { display: none; }
+#cp, .navbar, #sidebar, #lefttop #showCustomerModal, #lefttop #scancode, #botbuttons, #satu, #theTime, #totalTable { display: none !important; }
+ul.cl-vnavigation { display: none; }

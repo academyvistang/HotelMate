@@ -1,0 +1,92 @@
+﻿@model HotelMateWebV1.Models.ProfileViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_PageLayout.cshtml";
+}
+
+@*<script src="@Url.Content("~/Scripts/jquery-1.6.4.js")" type="text/javascript"></script>          
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script> 
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>*@ 
+
+
+<div id="templatemo_content_wrapper">
+    
+    	
+        <div class="templatemo_side_bar margin_right_10">
+        	
+            <div class="header_01">Welcome back!</div>
+            	<ul>                              
+                <li><a>@Model.CurrentUserName</a></li>
+                <li><a><span style="color:Red;text-decoration:blink;"> £@Model.CurrentUserBalance </span></a></li>
+                </ul>
+			
+            <div class="margin_bottom_20 horizontal_divider"></div> 
+			<div class="margin_bottom_20"></div>
+
+            <div class="header_01">Enter Game Pin Number</div>     
+            <form action="@Url.Action("JoinExistingGame", "AgboGame")" method="post">
+            <input type="text" id="search_field" name="search_field" />
+            <input type="submit" value="" id="search_button" />
+            </form>
+            <div class="margin_bottom_20"></div>
+            <img alt="" src="../../Images/kpoker.png" />  
+            <div class="margin_bottom_40"></div>
+            <div class="margin_bottom_40"></div> 
+        </div> <!-- end of left side bar -->
+        
+        <div class="templatemo_content margin_right_10">
+        
+        	<div class="content_section">
+           	  <div class="header_02">BSide21&trade; Game Console</div>
+              <div class="image_wrapper_01"><img src="../../Images/@Model.UserPictureName" alt="image" /></div>             
+
+              @Html.Partial("_ChangeProfile")   
+                                  
+             
+              <div class="margin_bottom_20"></div>
+              <div class="cleaner"></div>
+              </div>
+            
+            <div class="margin_bottom_20 horizontal_divider"></div> 
+			<div class="margin_bottom_20"></div>
+            
+            
+            
+        	<div class="margin_bottom_40"></div>
+        </div> <!-- end of content -->
+        
+        <div class="templatemo_side_bar">
+       		
+            <div class="header_01">Latest News</div>
+            
+            <div class="latest_news border_bottom">
+                <div class="header_03"><a href="#">Highest Earner</a></div>
+                <p>Pallacio is now the top earner on BSide21.com,earning a whopping £10,000 from games in the last week alone.</p>
+			</div>
+                        
+            <div class="margin_bottom_10"></div>
+            
+			<div class="latest_news">
+                <div class="header_03"><a href="#">You can earn as much too</a></div>
+                <p>Play with over 5000 users worldwide to earn big bucks.</p>
+			</div>
+            
+          <div class="margin_bottom_20 horizontal_divider"></div> 
+			<div class="margin_bottom_20"></div>
+            
+            <div class="header_01">Sample Games</div>
+
+            <div class="latest_news">
+            	<div class="image_wrapper_02"><span></span>
+                <a href="#"><img src="../../Images/DESTROYER.png" alt="video" /></a>                
+                </div>
+                <p>You can also play againt the computer to strengthen your skills before you compete against the online community.</p>
+	      </div>
+                        
+          <div class="margin_bottom_10"></div>
+        </div> <!-- end of right side bar -->
+    	
+        <div class="cleaner"></div>    
+    </div> <!-- end of content wrapper -->
+

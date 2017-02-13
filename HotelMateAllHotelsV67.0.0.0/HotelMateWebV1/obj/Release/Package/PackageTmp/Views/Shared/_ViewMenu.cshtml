@@ -1,0 +1,62 @@
+﻿@model HotelMateWebV1.Models.HotelMenuModel
+<link href="~/css/CoolTable.css" rel="stylesheet" />
+
+<style>
+    .question {
+        border: 2px solid green;
+        margin-bottom: 5px;
+        background-color: lightblue;
+    }
+
+    .hover_img a {
+        position: relative;
+    }
+
+        .hover_img a span {
+            position: absolute;
+            display: none;
+            z-index: 99;
+        }
+
+        .hover_img a:hover span {
+            display: block;
+        }
+</style>
+
+
+@if (Model.Menu.Count() > 0)
+{
+    <div>
+        <table class="striped fixedlayout">
+            <thead>
+                <tr>
+                    <th width="80%">Name</th>
+                    <th width="10%">Price (NGN)</th>                    
+                    <th width="10%"></th>
+                </tr>
+            </thead>
+            <tbody id="CasesTableBody1">
+                @foreach (var rm in Model.Menu)
+                {
+                    <tr border="1" bgcolor="#ff4980">
+                        <td align="center" colspan="4">@rm.CategoryName</td>                        
+                    </tr>
+                    foreach (var ac in rm.Items)
+                    {
+                        <tr id="@ac.Id">
+                            <td class="tth2">@ac.StockItem.StockItemName</td>
+                            <td class="tth2" align="center">@ac.StockItem.UnitPrice</td>                            
+                            <td>
+                                <div class="hover_img">
+                                    <a href="@Url.Action("ViewImage", "Guest", new { id = ac.Id })">View<span><img src="~/Products/@ac.StockItem.PicturePath" alt="image" /></span></a>
+                                </div>
+                            </td>
+                           
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+
+    </div>
+}

@@ -1,0 +1,19 @@
+﻿@model HotelMateWebV1.Models.GroupBookingViewModel
+
+@{
+    ViewBag.Title = "Booking";
+}
+
+
+    @using (Html.BeginForm("MakeRefund", "Booking", FormMethod.Post, new { enctype = "multipart/form-data", @class = "booking-form b-form row" }))
+    {
+        @Html.HiddenFor(model => model.CheckinDate)
+        @Html.HiddenFor(model => model.CheckoutDate)
+        @Html.HiddenFor(model => model.GuestId)
+        @Html.Partial("_RoomsDisplayGuestRefund")
+    }
+
+
+
+
+

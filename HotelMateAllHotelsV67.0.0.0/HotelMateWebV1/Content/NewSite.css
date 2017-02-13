@@ -1,0 +1,132 @@
+﻿/*----------------------------------------------------------
+The base color for this template is #5c87b2. If you'd like
+to use a different color start by replacing all instances of
+#5c87b2 with your new color.
+----------------------------------------------------------*/
+body {
+    background-color: #91B4B7;
+    background-color:#5c87b2;
+    font-family: arial, helvetica, sans-serif;
+	font-size: 12px;
+	text-decoration: none;
+	text-align: left;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/*body {
+	background:#fff ;
+	font-family: arial, helvetica, sans-serif;
+	font-size: 12px;
+	text-decoration: none;
+	text-align: left;
+	color: #333;
+	padding: 0;
+	margin: 0;
+}
+html {
+	background:#c9c3ca url("/images/bg.gif") repeat-x 0 0;
+	background:url("/images/bg_overlay.png") no-repeat top center, #c9c3ca url("/images/bg.gif") repeat-x 0 0;
+}*/
+.warning{
+	color:#cc0000 !important;
+}
+
+a:link,
+a:visited,
+a:hover,
+a:link.light-blue:hover,
+a:active,
+.blue
+{
+	color: #1180c7;
+}
+a {
+}
+a:link,
+.link
+{
+	cursor:pointer;
+	text-decoration: none;
+	font-size: 12px;
+}
+.light-blue,
+a:link.light-blue{
+	color:#99b2cc;
+}
+a:visited {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+a:active {
+	text-decoration: underline;
+}
+.blue{
+	border-bottom-color:#1180c7;
+}
+.red{
+  color: #d12c00;
+}
+.gray,
+a:link.gray,
+a:visited.gray{
+  color:#6f6f6f;
+}
+a.link_btn{
+	text-decoration:underline;
+}
+.underlined,
+a.underlined:link,
+a.underlined{
+	text-decoration:underline;
+}
+
+p, ul {
+    margin-bottom: 20px;
+    line-height: 1.6em;
+}
+
+header,
+footer,
+nav,
+section {
+    display: block;
+}
+
+/* HEADINGS   
+----------------------------------------------------------*/
+h1, h2, h3, h4, h5, h6 {
+    font-size: 1.5em;
+    color: #000;
+}
+
+h1 {
+    font-size: 2em;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+h2 {
+    padding: 0 0 10px 0;
+}
+
+h3 {
+    font-size: 1.2em;
+}
+
+h4 {
+    font-size: 1.1em;
+}
+
+h5, h6 {
+    font-size: 1em;
+}
+
+.myComment 
+{
+    display:inline-block;
+    color:red;
+}

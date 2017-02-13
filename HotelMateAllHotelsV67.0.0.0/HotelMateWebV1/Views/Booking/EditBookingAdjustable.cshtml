@@ -1,0 +1,45 @@
+﻿@model HotelMateWebV1.Models.RoomBookingViewModel
+
+<section id="content" class=" eight columns">
+
+    @if (Model.ItemSaved.HasValue && Model.ItemSaved.Value)
+    {
+        @Html.Partial("_EntityUpdated", "Guest details have been updated.")
+    }
+
+    @if (Model.GuestTransferComplete.HasValue && Model.GuestTransferComplete.Value)
+    {
+        @Html.Partial("_EntityUpdated", "Guest/Bill transfer has been completed.")
+    }
+
+
+    <h1 class="page-title ci-title"><span>Edit Guest Reservation</span></h1>
+
+    <article id="post-16" class="post-16 page type-page status-publish hentry entry group">
+
+        <div class="booking-form-wrap bs bg">
+
+            @using (Html.BeginForm("EditBooking", "Booking", FormMethod.Post, new { enctype = "multipart/form-data", @id = "target", @class = "booking-form b-form row" }))
+            {
+                if (@Model.GroupBooking)
+                {
+                    @Html.Partial("_RoomGroup")
+                }
+                else
+                {
+                    @Html.Partial("_RoomAdjustable")
+                }
+            }
+
+        </div>
+
+    </article>
+
+</section>
+<!-- #content -->
+@section SideBarBox
+    {
+    @Html.Partial("_ElokasSidebar")
+}
+
+

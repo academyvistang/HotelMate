@@ -1,0 +1,1240 @@
+﻿@model HotelMateWebV1.Models.IndexViewModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutPos.cshtml";
+}
+
+@*<style>
+    [class^="icon-"],
+    [class*=" icon-"] {
+        display: inline-block;
+        width: 14px;
+        height: 14px;
+        margin-top: 1px;
+        *margin-right: .3em;
+        line-height: 14px;
+        vertical-align: text-top;
+        background-image: url("../../images/glyphicons-halflings-white.png");
+        background-position: 14px 14px;
+        background-repeat: no-repeat;
+    }
+
+   
+    .icon-trashMM {
+        background-color: Red;
+        background-position: -456px 0;
+    }
+</style>*@
+
+@Html.Partial("_WrapperFrontOffice")
+
+@Html.Partial("_ItemsFrontOffice")
+
+@Html.Partial("_PaymentFrontOffice")
+
+@Html.Partial("_CustomerFrontOffice")
+
+@Html.Partial("_SaleFrontOffice")
+
+<div id="gmail_loading" style="display: none;">
+    <div class="blackbg"></div>
+    <div class="gmailLoader"> <img src="~/sma2/assets/InventoryPos/css/images/gmail-loader.gif" alt="Loading ..." /> Loading... </div>
+</div>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('.terminal').click(function () {            
+            SetTerminalLocation($(this).attr('id'));
+        });
+
+        var thisSaleRemainder = 0;
+        var count = 1;
+        var total = 0;
+        var total_discount = 0;
+        var an = 1;
+        var discount_method = 2;
+        var tax_rates = [{ "id": "1", "name": "T.V.A 18%", "rate": "0.00", "type": "1" }, { "id": "2", "name": "VAT", "rate": "0.00", "type": "1" },
+            { "id": "3", "name": "GST", "rate": "0.00", "type": "1" }, { "id": "4", "name": "PVM", "rate": "0.00", "type": "1" },
+            { "id": "5", "name": "54", "rate": "0.00", "type": "2" }, { "id": "6", "name": "IVA", "rate": "0.00", "type": "1" },
+            { "id": "7", "name": "Testing", "rate": "0.00", "type": "2" }, { "id": "8", "name": "abc", "rate": "0.00", "type": "2" },
+            { "id": "9", "name": "Houston", "rate": "0.00", "type": "1" }, { "id": "10", "name": "NS HST", "rate": "0.00", "type": "1" },
+            { "id": "11", "name": "TVA 8%", "rate": "0.00", "type": "1" }, { "id": "12", "name": "No Tax", "rate": "0.00", "type": "1" },
+            { "id": "13", "name": "Moms", "rate": "0.00", "type": "1" }, { "id": "14", "name": "BTW", "rate": "0.00", "type": "1" },
+            { "id": "15", "name": "Service Tax  at 3.09%", "rate": "0.0", "type": "1" },
+            { "id": "16", "name": "Educational Tax", "rate": "0.00", "type": "1" },
+            { "id": "17", "name": "FiveP", "rate": "0.00", "type": "1" }, { "id": "18", "name": "IVA General", "rate": "0.00", "type": "1" },
+            { "id": "19", "name": "income", "rate": "0.00", "type": "1" }, { "id": "20", "name": "QST", "rate": "0.0", "type": "1" },
+            { "id": "21", "name": "GST", "rate": "0.0", "type": "1" }, { "id": "22", "name": "10% Mwst", "rate": "0.00", "type": "1" },
+            { "id": "23", "name": "20% Mwst", "rate": "0.00", "type": "1" }, { "id": "24", "name": "IRPF", "rate": "0.00", "type": "1" },
+            { "id": "25", "name": "More Pay", "rate": "0.00", "type": "1" }];
+        var discounts = [{ "id": "1", "name": "No Discount", "discount": "0.00", "type": "2" }, { "id": "2", "name": "2.5 Percent", "discount": "2.50", "type": "1" }, { "id": "3", "name": "5 Percent", "discount": "5.00", "type": "1" }, { "id": "4", "name": "10 Percent", "discount": "10.00", "type": "1" }, { "id": "5", "name": "Test", "discount": "1.00", "type": "2" }, { "id": "6", "name": "20%", "discount": "20.00", "type": "1" }, { "id": "7", "name": "Gi\u1ea3m ti\u1ec1n", "discount": "99.99", "type": "2" }, { "id": "8", "name": "Prueba", "discount": "20.00", "type": "1" }, { "id": "9", "name": "Flat Rate - INR 500", "discount": "99.99", "type": "2" }, { "id": "10", "name": "nand", "discount": "20.00", "type": "1" }, { "id": "11", "name": "Chrismas discount", "discount": "10.00", "type": "1" }, { "id": "12", "name": "spa", "discount": "50.00", "type": "1" }, { "id": "13", "name": "fd", "discount": "99.99", "type": "1" }, { "id": "14", "name": "asr", "discount": "99.99", "type": "2" }, { "id": "15", "name": "12", "discount": "2.00", "type": "2" }, { "id": "16", "name": "STOKIS", "discount": "50.00", "type": "1" }, { "id": "17", "name": "500", "discount": "99.99", "type": "2" }, { "id": "18", "name": "SPRING10", "discount": "10.00", "type": "1" }, { "id": "19", "name": "test", "discount": "99.99", "type": "2" }];
+        var DT = 2;
+        var pr_tax;
+        var discount2 = 0.00;
+        var discount_type2 = 2;
+        var tax_rate = 0.00;
+        var tax_type = 1;
+        var tax_value = 0;
+        var tax_rate2 = 0.00;
+        var tax_type2 = 1;
+        var tax_value2 = 0;
+        var ids = new Array();
+        var p_page = 0;
+        var page = 0;
+        var cat_id = 1;
+        var sproduct_name;
+        var slast;
+        var old_val;
+        var new_val;
+        var total_cp = 70;
+        var total_cats = 39;
+        var new_tax_rate;
+        var new_tax_type;
+        var old_tax_rate;
+        var old_tax_type;
+        var new_discount_rate;
+        var new_discount_type;
+        var old_discount_rate;
+        var old_discount_type;
+        add_row();
+        loadProducts();
+
+        
+
+        function loadProducts() {
+
+            $('button[id^="category"]').click(function () {
+                if (cat_id != $(this).val()) {
+                    $('#gmail_loading').show();
+                    cat_id = $(this).val();
+                    $.ajax({
+                        type: "get",
+                        url: "/InventoryPos/GetProducts/",
+                        data: { category_id: cat_id, per_page: 'n' },
+                        dataType: "html",
+                        success: function (data) {
+                            $('#proajax').empty();
+                            var newPrs = $('<div></div>');
+                            newPrs.html(data);
+                            newPrs.appendTo("#proajax");
+                        }
+                    }).done(function () {
+                        add_row();
+                        $.ajax({
+                            type: "get",
+                            async: false,
+                            url: "index.php?module=pos&view=total_cp",
+                            data: { category_id: cat_id },
+                            dataType: "html",
+                            success: function (data) {
+                                total_cp = data;
+                            }
+                        });
+                        p_page = 'n';
+                        $('#gmail_loading').hide();
+                    });
+                }
+            });
+        }
+
+        function GetRemainingQuantity(id) {
+            $('#gmail_loading').show();
+
+            $.ajax({
+                type: "get",
+                async: false,
+                url: "/InventoryPos/GetProductCount/",
+                data: { product_id: id },
+                dataType: "json",
+                success: function (data)
+                {
+                    //alert(thisSaleRemainder);
+                    thisSaleRemainder = data.Remainder;
+                    //alert(thisSaleRemainder);
+                }
+            }).done(function () {
+                $('#gmail_loading').hide();
+            });
+
+        }
+
+        function SetTerminalLocation(id) {
+          
+            $('#gmail_loading').show();
+
+            $.ajax({
+                type: "get",
+                url: "/InventoryPos/SetTerminal/",
+                data: { terminal : id },
+                dataType: "json",
+                success: function (data) {
+                    document.getElementById("terminal-setting").innerHTML = data.name;
+                    document.getElementById("payment").style.display = "block";
+                    bootbox.alert('Terminal changed');
+               
+                    $("#s_warehouse").val(data.id);
+                }
+            }).done(function () {
+                $('#gmail_loading').hide();
+            });
+
+        }
+
+        $('#next').click(function () {
+            if (p_page == 'n') {
+                p_page = 0
+            }
+            p_page = p_page + 30;
+            if (total_cp >= 30 && p_page < total_cp) {
+                $('#gmail_loading').show();
+                $.ajax({
+                    type: "get",
+                    url: "/InventoryPos/GetProducts/",
+                    data: { category_id: cat_id, per_page: p_page },
+                    dataType: "html",
+                    success: function (data) {
+                        $('#proajax').empty();
+                        var newPrs = $('<div></div>');
+                        newPrs.html(data);
+
+                        newPrs.appendTo("#proajax");
+                    }
+                }).done(function () {
+                    add_row();
+                    $('#gmail_loading').hide();
+                });
+            } else {
+                p_page = p_page - 30;
+            }
+        });
+
+        $('#previous').click(function () {
+            if (p_page == 'n') {
+                p_page = 0;
+            }
+            if (p_page != 0) {
+                $('#gmail_loading').show();
+                p_page = p_page - 30;
+                if (p_page == 0) {
+                    p_page = 'n'
+                }
+                $.ajax({
+                    type: "get",
+                    url: "/InventoryPos/GetProducts/",
+                    data: { category_id: cat_id, per_page: p_page },
+                    dataType: "html",
+                    success: function (data) {
+                        $('#proajax').empty();
+                        var newPrs = $('<div></div>');
+                        newPrs.html(data);
+
+                        newPrs.appendTo("#proajax");
+                    }
+
+                }).done(function () {
+                    add_row();
+                    $('#gmail_loading').hide();
+                });
+
+            }
+        });
+
+        $("#saletbl").on("click", '.code', function () {
+
+            var delID = $(this).attr('id');
+            var dl_id = delID.split("-");
+            var rw_no = dl_id[1];
+            var q1 = $('#product-' + rw_no);
+            var heading = $(this).text();
+            $('#item_serial_no').val($('#serial-' + rw_no).val());
+            $('#item_serial_no').keyboard({
+                autoAccept: true,
+                alwaysOpen: false,
+                usePreview: false
+            });
+            $('#item_tax').val($('#tax_rate-' + rw_no).val()); $('#item_discount').val($('#discount-' + rw_no).val()); $('#itemRowId').val(rw_no);
+
+            $('#myModalLabel').text(heading);
+
+            $('#itemModal').modal();
+
+            return false;
+        });
+
+
+        $("#updateRow").click(function () {
+            $(this).text('Saving...');
+            var rw_no = $('#itemRowId').val();
+            old_val = $('#tax_rate-' + rw_no).val();
+            old_ds = $('#discount-' + rw_no).val();
+            $('#serial-' + rw_no).val($('#item_serial_no').val()); $('#tax_rate-' + rw_no).val($('#item_tax').val()); $('#discount-' + rw_no).val($('#item_discount').val()); var p = '#price-' + rw_no;
+            var row_price = parseFloat($.trim($(p).val()));
+            new_val = $('#item_tax').val();
+            $.each(tax_rates, function () {
+                if (this.id == new_val) {
+                    new_tax_rate = parseFloat(this.rate);
+                    new_tax_type = parseFloat(this.type);
+                }
+                if (this.id == old_val) {
+                    old_tax_rate = parseFloat(this.rate);
+                    old_tax_type = parseFloat(this.type);
+                }
+            });
+
+            if (new_tax_type == 2) {
+                new_pr_tax_rate = new_tax_rate;
+            }
+            if (new_tax_type == 1) {
+                new_pr_tax_rate = (row_price * new_tax_rate) / 100;
+            }
+            if (old_tax_type == 2) {
+                old_pr_tax_rate = old_tax_rate;
+            }
+            if (old_tax_type == 1) {
+                old_pr_tax_rate = (row_price * old_tax_rate) / 100;
+            }
+            tax_value -= old_pr_tax_rate;
+            tax_value += new_pr_tax_rate;
+            current_tax = Math.abs(tax_value).toFixed(2);
+            new_ds = $('#item_discount').val();
+            $.each(discounts, function () {
+                if (this.id == new_ds) {
+                    new_discount_rate = parseFloat(this.discount);
+                    new_discount_type = parseFloat(this.type);
+                }
+                if (this.id == old_ds) {
+                    old_discount_rate = parseFloat(this.discount);
+                    old_discount_type = parseFloat(this.type);
+                }
+            });
+
+
+            if (new_discount_type == 2) {
+                new_pr_discount = new_discount_rate;
+            }
+            if (new_discount_type == 1) {
+                new_pr_discount = ((row_price + new_pr_tax_rate) * new_discount_rate) / 100;
+            }
+            if (old_discount_type == 2) {
+                old_pr_discount = old_discount_rate;
+            }
+            if (old_discount_type == 1) {
+                old_pr_discount = ((row_price + old_pr_tax_rate) * old_discount_rate) / 100;
+            }
+
+            total_discount -= old_pr_discount;
+            total_discount += new_pr_discount;
+            current_discount = Math.abs(total_discount).toFixed(2);
+            var g_total = (total + tax_value + tax_value2) - total_discount;
+            grand_total = Math.abs(g_total).toFixed(2);
+            $("#total-payable").empty();
+            $("#total-payable").append(grand_total);
+            $('#item_serial_no').val(''); $("#tax").empty();
+            $("#tax").append(current_tax);
+            $('#item_tax').val(''); $("#ds").empty();
+            $("#ds").append(current_discount);
+            $('#item_discount').val('');
+            $(this).text('Save');
+            $('#itemModal').modal('hide');
+            return false;
+        });
+
+        $("#showCustomerModal").click(function () {
+            $('#customerModal').modal('show');
+        });
+
+        $("#add-customer").click(function () {
+
+            //var newCustomer = new Array();
+            //newCustomer[0] = $('#company').val();
+            //newCustomer[1] = $('#name').val();
+            //newCustomer[2] = $('#cusPhone').val();
+            //newCustomer[3] = $('#cusEmail').val();
+            //newCustomer[4] = $('#address').val();
+            //newCustomer[5] = $('#city').val();
+            //newCustomer[6] = $('#state').val();
+            //newCustomer[7] = $('#postal_code').val();
+            //newCustomer[8] = $('#country').val();
+            //$.ajax({
+            //    type: "post",
+            //    async: false,
+            //    url: "index.php?module=pos&view=add_customer",
+            //    data: {csrf_sma: "6aa7582733bc25866cbced3dc5d2c309", data: newCustomer},
+            //    dataType: "html",
+            //    success: function(data) {
+            //        result = data;
+            //    },
+            //    error: function() {
+            //        bootbox.alert('<em>customer_request_failed</em>');
+            //        result = false;
+            //        return false;
+            //    }
+            //});
+
+            var guestId = $('#GuestId').val();
+
+            $.ajax({
+                type: "get",
+                async: false,
+                url: "/InventoryPos/GetGuestDetails/",
+                data: { csrf_sma: "6aa7582733bc25866cbced3dc5d2c309", id: guestId },
+                dataType: "json",
+                success: function (data) {
+
+                    $("#customer").val(data.Details);
+                    $("#HotelGuestId").val(data.Id);
+                    $("#GuestRoomId").val(data.GuestRoomId);
+                    result = data.SuccessText;
+                },
+                error: function () {
+                    bootbox.alert('<em>customer_request_failed</em>');
+                    result = false;
+                    return false;
+                }
+            });
+            if (result == 'Department Successfully Added') {
+                $('#customerModal').modal('hide');
+                $('#company').val('');
+                $('#name').val('');
+                $('#cusPhone').val('');
+                $('#cusEmail').val('');
+                $('#address').val('');
+                $('#city').val('');
+                $('#state').val('');
+                $('#postal_code').val('');
+                $('#country').val('');
+                bootbox.alert('Department Successfully Added');
+            } else {
+                var error = $('<div class=\"alert alert-error\"></div>');
+                error.html("<button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button>" + result);
+                error.appendTo("#customerError");
+                return false;
+            }
+        });
+
+        var pprice;
+        $("#saletbl").on("click", 'input[id^="price"]', function () {
+            var delID = $(this).attr('id');
+            var dl_id = delID.split("-");
+            var rw_no = dl_id[1];
+            pprice = $(this).val();
+            var q1 = $('#quantity-' + rw_no);
+            q1.focus();
+            return false;
+        });
+
+
+        $("#saletbl").on("click", 'button[class^="del_row"]', function () {
+
+            
+            var delID = $(this).attr('id');
+            
+            var dl_id = delID.split("-");
+            var rw_no = dl_id[1];
+
+            var p1 = $('#price-' + rw_no);
+            var q1 = $('#quantity-' + rw_no);
+
+            var t1 = $('#tax_rate-' + rw_no);
+            var t1_val = t1.val();
+            $.each(tax_rates, function () {
+                if (this.id == t1_val) {
+                    new_tax_rate = parseFloat(this.rate);
+                    new_tax_type = parseFloat(this.type);
+                }
+            });
+
+
+            var d1 = $('#discount-' + rw_no);
+            var d1_val = d1.val();
+            $.each(discounts, function () {
+                if (this.id == d1_val) {
+                    new_discount_rate = parseFloat(this.discount);
+                    new_discount_type = parseFloat(this.type);
+                }
+            });
+
+
+            var row_price = parseFloat(p1.val());
+            var row_quantity = parseInt(q1.val());
+
+
+
+            total = total - row_price;
+            current = parseFloat(total).toFixed(2);
+            count = count - row_quantity;
+            if (isNaN(count)) {
+                bootbox.alert('An error occured in the calculation. Please add products again. Thank you!');
+                $('#cancel').trigger('click');
+                return false;
+            }
+            if (isNaN(current)) {
+                bootbox.alert('An error occured in the calculation. Please add products again. Thank you!');
+                $('#cancel').trigger('click');
+                return false;
+            }
+            if (new_tax_type == 2) {
+                new_pr_tax_rate = new_tax_rate;
+            }
+            if (new_tax_type == 1) {
+                new_pr_tax_rate = (row_price * new_tax_rate) / 100;
+            }
+            tax_value = tax_value - new_pr_tax_rate;
+            current_tax = Math.abs(tax_value).toFixed(2);
+
+
+            if (new_discount_type == 2) {
+                new_pr_discount = new_discount_rate;
+            }
+            if (new_discount_type == 1) {
+                new_pr_discount = ((row_price + new_pr_tax_rate) * new_discount_rate) / 100;
+            }
+            total_discount = total_discount - new_pr_discount;
+
+            if (tax_type2 == 2) {
+                tax_value2 = tax_rate2;
+            }
+            if (tax_type2 == 1) {
+                tax_value2 = (total * tax_rate2) / 100;
+            }
+
+            //added code to remove discount for now
+            total_discount = 0;
+            tax_value = 0;
+            tax_value2 = 0;
+
+            current_tax2 = Math.abs(tax_value2).toFixed(2);
+            var g_total = (total + tax_value + tax_value2) - total_discount;
+            current_discount = Math.abs(total_discount).toFixed(2);
+            grand_total = Math.abs(g_total).toFixed(2);
+
+            $("#total-payable").empty();
+            $("#total-payable").append(grand_total);
+            $("#total").empty();
+            $("#total").append(current);
+            $("#count").empty();
+            $("#count").append(count - 1);
+            $("#tax").empty();
+            $("#tax").append(current_tax);
+            $("#tax2").empty();
+            $("#tax2").append(current_tax2);
+            $("#ds").empty();
+            $("#ds").append(current_discount);
+
+            an--;
+            row_id = $("#row_" + rw_no);
+            row_id.remove();
+
+        });
+
+        $("#saletbl").on("focus", ".keyboard", function () {
+            key_pad();
+        });
+
+
+
+
+
+        function add_row() {
+            $('button[id^="product"]').click(function () {
+
+                if (count >= 1000) {
+                    bootbox.alert("You have reached the quantity limit 999.");
+                    return false;
+                }
+                if (an >= 51) {
+                    bootbox.alert("Max Allowed Reached! Please add payment for this and open new bill for all next items. Thank you!");
+                    $('#gmail_loading').hide();
+                    var divElement = document.getElementById('protbldiv');
+                    divElement.scrollTop = divElement.scrollHeight;
+                    return false;
+                }
+
+                $('#gmail_loading').show();
+                var v = $(this).val();
+                $.ajax({
+                    type: "get",
+                    async: false,
+                    url: "/InventoryPos/GetPrice/",
+                    data: { code: v },
+                    dataType: "json",
+                    success: function (data)
+                    {
+                        if (data.available > 0)
+                        {
+                            item_price = parseFloat(data.price);
+                            prod_name = data.name;
+                            prod_code = data.code;
+                            pr_tax = data.tax_rate;
+                        }
+                        else
+                        {
+                            bootbox.alert("Not in stock. Please replace.");
+                            $('#gmail_loading').hide();
+                            return false;
+                        }
+                        
+                    }
+                });
+
+
+                //var leng = $(this).attr('id').length;
+                //var last = $(this).attr('id').substr(leng - 4);
+
+                var last = $(this).attr('id').replace("product-", "");
+
+                var pric = 'price' + last;
+                var quan = 'quantity' + last;
+                var code = 'code' + last;
+
+
+
+                var prod_tax = 0;
+                $.each(tax_rates, function () {
+                    if (pr_tax) {
+                        if (this.id == pr_tax.id) {
+                            prod_tax = this.id;
+                        }
+                    }
+                });
+
+             
+
+                var pt = prod_tax ? prod_tax : DT;
+                var newTr = $('<tr id="row_' + count + last + '"></tr>');
+
+                newTr.html('<td id="satu" style="text-align:center; width: 27px;"><button type="button" class="del_row" id="del-' + count + last + '" value="' + item_price + '"><i class="icon-trash"></i></button></td><td><input type="hidden" name="product' + count + '" value="' + prod_code + '" id="product-' + count + last + '"><input type="hidden" name="serial' + count + '" value="" id="serial-' + count + last + '"><input type="hidden" name="tax_rate' + count + '" value="' + pt + '" id="tax_rate-' + count + last + '"><input type="hidden" name="discount' + count + '" value="2" id="discount-' + count + last + '"><a href="#" id="model-' + count + last + '" class="code">' + prod_name + '</a><input type="hidden" name="price' + count + '" value="' + parseFloat(item_price).toFixed(2) + '" id="oprice-' + count + last + '"></td><td style="text-align:center;"><input class="keyboard" onClick="this.select();" name="quantity' + count + '" type="text" value="1" autocomplete="off" id="quantity-' + count + last + '"></td><td style="padding-right: 10px; text-align:right;"><input type="text" class="price" name="unit_price' + count + '" value="' + parseFloat(item_price).toFixed(2) + '" id="price-' + count + last + '"></td>');
+
+                newTr.appendTo("#saletbl");
+
+                total += item_price;
+                current = parseFloat(total).toFixed(2);
+                if (pr_tax) {
+
+                    if (pr_tax.type == 2) {
+                        pr_tax_rate = parseFloat(pr_tax.rate);
+                    }
+                    if (pr_tax.type == 1) {
+                        pr_tax_rate = (item_price * parseFloat(pr_tax.rate)) / 100;
+                    }
+                    tax_value += pr_tax_rate;
+                }
+                else {
+                    if (tax_type == 2) {
+                        new_tax_value = tax_rate;
+                    }
+                    if (tax_type == 1) {
+                        new_tax_value = (item_price * tax_rate) / 100;
+                    }
+                    tax_value += new_tax_value
+                }
+
+                current_tax = parseFloat(tax_value).toFixed(2);
+                if (tax_type2 == 2) {
+                    tax_value2 = tax_rate2;
+                }
+                if (tax_type2 == 1) {
+                    tax_value2 = (total * tax_rate2) / 100;
+                }
+
+                current_tax2 = parseFloat(tax_value2).toFixed(2);
+
+
+                if (discount_type2 == 2) {
+                    new_discount_value2 = discount2;
+                }
+                if (discount_type2 == 1) {
+                    new_discount_value2 = ((item_price + new_tax_value) * discount2) / 100;
+                }
+                total_discount += new_discount_value2;
+                current_discount = parseFloat(total_discount).toFixed(2);
+                //var g_total = total + tax_value + tax_value2 - total_discount; Taxation is done here, removed for  now set to zero
+               
+
+                total_discount = 0;
+                tax_value = 0;
+                tax_value2 = 0;
+                
+                current_tax2 = 0;
+                current_discount = 0;
+                //alert("KK");
+
+                var g_total = total + tax_value + tax_value2 - total_discount;
+
+                grand_total = parseFloat(g_total).toFixed(2);
+
+                $("#total-payable").empty();
+                $("#total-payable").append(grand_total);
+                $("#total").empty();
+                $("#total").append(current);
+                $("#count").empty();
+                $("#count").append(count);
+                $("#tax").empty();
+                $("#tax").append(current_tax); $("#tax2").empty(); $("#tax2").append(current_tax2); $("#ds").empty(); $("#ds").append(current_discount);
+
+                count++;
+                an++;
+                var divElement = document.getElementById('protbldiv');
+                divElement.scrollTop = divElement.scrollHeight;
+
+                $('#gmail_loading').hide();
+
+
+            });
+
+        }
+
+        function key_pad() {
+            $('.keyboard').keyboard({
+                restrictInput: true,
+                preventPaste: true,
+                autoAccept: true,
+                alwaysOpen: false,
+                openOn: 'click',
+                layout: 'costom',
+                display: {
+                    'a': '\u2714:Accept (Shift-Enter)',
+                    'accept': 'Accept:Accept (Shift-Enter)',
+                    'b': '\u2190:Backspace',
+                    'bksp': 'Bksp:Backspace',
+                    'c': '\u2716:Cancel (Esc)',
+                    'cancel': 'Cancel:Cancel (Esc)',
+                    'clear': 'C:Clear'
+
+                },
+                position: {
+                    of: null,
+                    my: 'center top',
+                    at: 'center top',
+                    at2: 'center bottom'
+                },
+                usePreview: false,
+                customLayout: {
+                    'default': [
+                        '1 2 3 {b}',
+                        '4 5 6 {clear}',
+                        '7 8 9 0',
+                        '{accept} {cancel}'
+                    ]
+                },
+                beforeClose: function (e, keyboard, el, accepted) {
+
+                    var before_qty = parseInt(keyboard.originalContent);
+                    var after_qty = parseInt(el.value);
+
+                    var row_id = $(this).attr('id');
+                    var sp_id = row_id.split("-");
+                    var id_no = sp_id[1];
+                    var productId = '#product-' + id_no;
+
+                    GetRemainingQuantity($(productId).val());
+
+                    //bootbox.alert(thisSaleRemainder);
+                    //bootbox.alert(after_qty);
+
+                    if (thisSaleRemainder < after_qty)
+                    {                     
+                        bootbox.alert("Not enough in stock. Remaining items is : " + thisSaleRemainder);
+                        after_qty = before_qty;
+                        el.value = before_qty;
+                        row_id = $("#row_" + id_no);
+                        row_id.remove();
+                        thisSaleRemainder = 0;
+                        return false;
+                    }
+
+                    var p = '#price-' + id_no;
+                    var row_price = parseFloat($.trim($(p).val()));
+                    if (before_qty == 1) {
+                        product_price = row_price;
+                    }
+                    if (before_qty > 1) {
+                        product_price = (row_price / before_qty);
+                    }
+                    var gross_total = after_qty * product_price;
+                    var b_count = (count - before_qty);
+                    var a_count = (b_count + after_qty);
+                    count = a_count;
+                    var b_total = (total - row_price);
+                    var a_total = (b_total + gross_total);
+                    total = a_total;
+                    gross_total = parseFloat(gross_total).toFixed(2);
+                    $(p).val(gross_total);
+                    current = parseFloat(total).toFixed(2);
+                    var pr_tax_id = $('#tax_rate-' + id_no).val();
+                    $.each(tax_rates, function () {
+                        if (this.id == pr_tax_id) {
+                            new_tax_rate = parseFloat(this.rate);
+                            new_tax_type = parseFloat(this.type);
+                        }
+
+                    });
+
+                    if (new_tax_type == 2) {
+                        new_tax_value = new_tax_rate;
+                    }
+                    if (new_tax_type == 1) {
+                        new_tax_value = (product_price * new_tax_rate) / 100;
+                    }
+                    tax_value = tax_value - (new_tax_value * before_qty);
+                    tax_value = tax_value + (new_tax_value * after_qty);
+                    current_tax = parseFloat(tax_value).toFixed(2);
+
+                    var pr_ds_id = $('#discount-' + id_no).val();
+                    $.each(discounts, function () {
+                        if (this.id == pr_ds_id) {
+                            new_discount_rate = parseFloat(this.discount);
+                            new_discount_type = parseFloat(this.type);
+                        }
+                    });
+
+                    if (new_discount_type == 2) {
+                        new_pr_discount = new_discount_rate;
+                    }
+                    if (new_discount_type == 1) {
+                        new_pr_discount = ((product_price + new_tax_value) * new_discount_rate) / 100;
+                    }
+                    total_discount = total_discount - (new_pr_discount * before_qty);
+                    total_discount = total_discount + (new_pr_discount * after_qty);
+                    current_discount = parseFloat(total_discount).toFixed(2);
+
+                    if (tax_type2 == 2) {
+                        tax_value2 = tax_rate2;
+                    }
+                    if (tax_type2 == 1) {
+                        tax_value2 = (total * tax_rate2) / 100;
+                    }
+                    current_tax2 = parseFloat(tax_value2).toFixed(2);
+
+                    total_discount = 0;
+                    tax_value = 0;
+                    tax_value2 = 0;
+
+                    current_tax2 = 0;
+                    current_discount = 0;
+                    //alert("KK");
+
+
+                    var g_total = (total + tax_value + tax_value2) - total_discount;
+                    grand_total = parseFloat(g_total).toFixed(2);
+
+                    $("#total-payable").empty();
+                    $("#total").empty();
+                    $("#count").empty();
+                    $("#tax").empty();
+                    $("#tax").append(current_tax); $("#tax2").empty(); $("#tax2").append(current_tax2);
+                    $("#ds").empty(); $("#ds").append(current_discount);
+                    $("#total-payable").append(grand_total);
+                    $("#total").append(current);
+                    $("#count").append(count - 1);
+
+                }
+            });
+
+        }
+
+        $("#customer").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "#",
+                    data: { csrf_sma: "6aa7582733bc25866cbced3dc5d2c309", term: $("#customer").val() },
+                    dataType: "json",
+                    type: "get",
+                    success: function (data) {
+                        response(data);
+                    }
+                });
+            },
+            minLength: 2,
+            error: function () {
+                bootbox.alert('Request Failed, Please try again!');
+                $('.ui-autocomplete-loading').removeClass("ui-autocomplete-loading");
+            }
+        });
+
+
+        $('#scancode').keydown(function (e) {
+            if (e.keyCode == 13) {
+
+                if (count >= 1000) {
+                    bootbox.alert("You have reached the quantity limit 999.");
+                    return false;
+                }
+                if (an >= 51) {
+                    bootbox.alert("Max Allowed Reached! Please add payment for this and open new bill for all next items. Thank you!");
+                    $('#gmail_loading').hide();
+                    var divElement = document.getElementById('protbldiv');
+                    divElement.scrollTop = divElement.scrollHeight;
+                    return false;
+                }
+
+                $('#gmail_loading').show();
+                var v = $(this).val();
+                $.ajax({
+                    type: "get",
+                    async: false,
+                    url: "@Url.Action("GetItemByBarCode","Pos")",
+                    data: { csrf_sma: "6aa7582733bc25866cbced3dc5d2c309", code: v },
+                    dataType: "json",
+                    success: function (data) {
+                        if (data != null) {
+                            item_price = parseFloat(data.item_price).toFixed(2);
+                            sproduct_name = data.product_name;
+                            sproduct_code = data.product_code;
+                            //pr_tax = data.tax_rate;
+                            slast = data.last;
+                        } else {
+                            item_price = null;
+                        }
+                    },
+                    error: function () {
+                        bootbox.alert('Request Failed, Please check your code and try again 1!');
+                        item_price = false;
+                    }
+
+                });
+                if (item_price == false) { $(this).val(''); $('#gmail_loading').hide(); return false; }
+                if (item_price == null) { $(this).val(''); bootbox.alert('Request Failed, Please check your code and try again 2!'); $('#gmail_loading').hide(); return false; }
+                var prod_tax = 0;
+                $.each(tax_rates, function () {
+                    if (pr_tax) {
+                        if (this.id == pr_tax.id) {
+                            prod_tax = this.id;
+                        }
+                    }
+                });
+                var pt = prod_tax ? prod_tax : DT;
+                var newTr = $('<tr id="row_' + count + slast + '"></tr>');
+                newTr.html('<td id="satu" style="text-align:center; width: 27px;"><button type="button" class="del_row" id="del-' + count + slast + '" value="' + item_price + '"><i class="icon-trash"></i></button></td><td><input type="hidden" name="product' + count + '" value="' + sproduct_code + '" id="product-' + count + slast + '"><input type="hidden" name="serial' + count + '" value="" id="serial-' + count + slast + '"><input type="hidden" name="tax_rate' + count + '" value="' + pt + '" id="tax_rate-' + count + slast + '"><input type="hidden" name="discount' + count + '" value="2" id="discount-' + count + slast + '"><a href="#" id="model-' + count + slast + '" class="code">' + sproduct_name + '</a><input type="hidden" name="price' + count + '" value="' + parseFloat(item_price).toFixed(2) + '" id="oprice-' + count + slast + '"></td><td style="text-align:center;"><input class="keyboard" onClick="this.select();" name="quantity' + count + '" type="text" value="1" autocomplete="off" id="quantity-' + count + slast + '"></td><td style="padding-right: 10px; text-align:right;"><input type="text" class="price" name="unit_price' + count + '" value="' + parseFloat(item_price).toFixed(2) + '" id="price-' + count + slast + '"></td>');
+                newTr.appendTo("#saletbl");
+                total += parseFloat(item_price);
+                current = parseFloat(total).toFixed(2);
+                if (pr_tax) {
+                    if (pr_tax.type == 2) { pr_tax_rate = parseFloat(pr_tax.rate); }
+                    if (pr_tax.type == 1) { pr_tax_rate = (item_price * parseFloat(pr_tax.rate)) / 100; }
+                    tax_value += pr_tax_rate;
+                } else {
+                    if (tax_type == 2) { new_tax_value = tax_rate; }
+                    if (tax_type == 1) { new_tax_value = (item_price * tax_rate) / 100; }
+                    tax_value += new_tax_value
+                }
+                current_tax = parseFloat(tax_value).toFixed(2);
+                if (tax_type2 == 2) { tax_value2 = tax_rate2; }
+                if (tax_type2 == 1) { tax_value2 = (total * tax_rate2) / 100; }
+                current_tax2 = parseFloat(tax_value2).toFixed(2);
+
+
+                if (discount_type2 == 2) { new_discount_value2 = discount2; }
+                if (discount_type2 == 1) { new_discount_value2 = ((parseFloat(item_price) + new_tax_value) * discount2) / 100; }
+                total_discount += new_discount_value2;
+                current_discount = parseFloat(total_discount).toFixed(2);
+                var g_total = total + tax_value + tax_value2 - total_discount;
+                grand_total = parseFloat(g_total).toFixed(2);
+                $("#total-payable").empty(); $("#total-payable").append(grand_total);
+                $("#total").empty(); $("#total").append(current);
+                $("#count").empty(); $("#count").append(count);
+                $("#tax").empty(); $("#tax").append(current_tax); $("#tax2").empty(); $("#tax2").append(current_tax2); $("#ds").empty(); $("#ds").append(current_discount);
+
+
+                count++;
+                an++;
+
+                var divElement = document.getElementById('protbldiv');
+                divElement.scrollTop = divElement.scrollHeight;
+
+                $(this).val('');
+                $('#gmail_loading').hide();
+                e.preventDefault();
+                return false;
+            }
+
+
+        });
+        $('#scancode').bind('keypress', function (e) {
+            if (e.keyCode == 13) {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        $("#cancel").click(function () {
+            if (count <= 1) {
+                bootbox.alert('There is no product. Thank you!');
+                return false;
+            }
+
+            bootbox.confirm("Are you sure you want to Cancel Distribution?", function (gotit) {
+                if (gotit) {
+
+                    $("#saletbl").empty();
+                    count = 1;
+                    total = 0;
+                    tax_value = 0;
+                    tax_value2 = 0;
+                    an = 1;
+                    total_discount = 0;
+                    current = parseFloat(total).toFixed(2);
+                    current_tax = parseFloat(tax_value).toFixed(2);
+                    var g_total = total + tax_value;
+                    grand_total = parseFloat(g_total).toFixed(2);
+                    $("#total-payable").empty();
+                    $("#total").empty();
+                    $("#count").empty();
+                    $("#tax").empty(); $("#tax").append(current_tax); $("#tax2").empty(); $("#tax2").append(current_tax); $("#ds").empty(); $("#ds").append(current_tax);
+                    $("#total-payable").append(grand_total);
+                    $("#total").append(current);
+                    $("#count").append(count - 1);
+
+                }
+
+            });
+        });
+        $('#paymentModal').on('change', '#s_biller', function () { $('#biller').val($(this).val()); });
+        $('#paymentModal').on('change', '#s_warehouse', function () { $('#warehouse').val($(this).val()); });
+        $('#paymentModal').on('blur', '.pa', function () { $('#paid_val').val($(this).val()); });
+        $('#paymentModal').on('change', '#pcc', function () { $('#cc_no_val').val($(this).val()); });
+        $('#paymentModal').on('change', '#pcc_holder', function () { $('#cc_holder_val').val($(this).val()); });
+        $('#paymentModal').on('change', '#cheque_no', function () { $('#cheque_no_val').val($(this).val()); });
+
+        $("#openTill").click(function ()
+        {
+            $('#openTillModal').modal();
+        });
+
+        $("#payment").click(function () {
+
+            var twt = (total + tax_value + tax_value2) - total_discount;
+            count = count - 1;
+
+            //alert(count);
+
+            if (isNaN(count) || count == 0) {
+                bootbox.alert('Please add product before payment. Thank you!');
+                return false;
+            }
+            twt = parseFloat(twt).toFixed(2);
+
+            $('#twt').text(twt);
+            $('#item_count').text(count);
+            $('#paid-amount').change(function () { $('#paid_val').val($(this).val()); });
+            $('#ptclick').trigger('click');
+            count = count + 1;
+
+            $('#paymentModal').modal();
+
+            $("#paid_by").change(function () {
+                var p_val = $(this).val();
+                $('#rpaidby').val(p_val);
+                if (p_val == 'cash') {
+                    $('.pcheque').hide();
+                    $('.pcc').hide();
+                    $('.pcash').show();
+                    $('input[id^="paid-amount"]').keydown(function (e) {
+                        paid = $(this).val();
+                        if (e.keyCode == 13) {
+                            if (paid < total) {
+                                bootbox.alert('Paid amount is less than the payable amount.');
+                                return false;
+                            }
+                            $("#balance").empty();
+                            var balance = paid - twt;
+                            balance = parseFloat(balance).toFixed(2);
+                            $("#balance").append(balance);
+
+                            e.preventDefault();
+                            return false;
+                        }
+                    });
+                } else if (p_val == 'CC') {
+                    $('.pcheque').hide();
+                    $('.pcash').hide();
+                    $('.pcc').show();
+                } else if (p_val == 'Cheque') {
+                    $('.pcc').hide();
+                    $('.pcash').hide();
+                    $('.pcheque').show();
+                } else {
+                    $('.pcheque').hide();
+                    $('.pcc').hide();
+                    $('.pcash').hide();
+                }
+            });
+
+            $('#paid-amount').keyboard({
+                restrictInput: true,
+                preventPaste: true,
+                autoAccept: true,
+                alwaysOpen: false,
+                openOn: 'click',
+                layout: 'costom',
+                display: {
+                    'a': '\u2714:Accept (Shift-Enter)',
+                    'accept': 'Accept:Accept (Shift-Enter)',
+                    'b': '\u2190:Backspace',
+                    'bksp': 'Bksp:Backspace',
+                    'c': '\u2716:Cancel (Esc)',
+                    'cancel': 'Cancel:Cancel (Esc)',
+                    'clear': 'C:Clear'
+                },
+                position: {
+                    of: null,
+                    my: 'center top',
+                    at: 'center top',
+                    at2: 'center bottom'
+                },
+                usePreview: false,
+                customLayout: {
+                    'default': [
+                        '1 2 3 {clear}',
+                        '4 5 6 .',
+                        '7 8 9 0',
+                        '{accept} {cancel}'
+                    ]
+                },
+                beforeClose: function (e, keyboard, el, accepted) {
+
+                    var paid = parseFloat(el.value);
+                    if (paid < twt) {
+                        bootbox.alert('Paid amount is less than the payable amount.');
+                        $(this).val('');
+                        return false;
+                    }
+                    $("#balance").empty();
+                    var balance = paid - twt;
+                    balance = parseFloat(balance).toFixed(2);
+                    if (balance != "NaN") {
+                        $("#balance").append(balance);
+                    }
+                }
+            });
+
+        });
+
+        $("#paymentModal").on("click", '#submit-sale', function () {
+            $('#total_item').val(count);
+
+            //alert($('#total').html()); 
+            //alert($('#GuestId').val());
+
+            bootbox.confirm("Are you sure you want to Submit Distribution?", function (gotit) {
+                if (gotit) {
+                    $('#submit').trigger('click');
+                }
+            });
+            $('#bootbox-modal').on('shown', function () {
+                $('#paymentModal').css('opacity', .4);
+            });
+            $('#bootbox-modal').on('hidden', function () {
+                $('#paymentModal').css('opacity', 1);
+            });
+
+        });
+
+
+        $('#suspend').click(function () {
+            if (count <= 1) {
+                bootbox.alert('Please add product before suspending the sale. Thank you!');
+                return false;
+            }
+            suspend = $('<span></span>');
+            suspend.html('<input type="hidden" name="suspend" value="yes" />');
+            suspend.appendTo("#hidesuspend");
+            $('#total_item').val(count);
+            bootbox.confirm("Are you sure you want to suspend Distribution?", function (gotit) {
+                if (gotit) {
+                    $('#submit').trigger('click');
+                }
+            });
+
+        });
+
+
+        $('a').each(function () {
+            $(this).click(function () {
+                if (($(this).attr("href") != '#' && an > 1) && $(this).attr("class") != 'external') {
+                    gotit = confirm('You will lose sale data. Press OK to leave and Cancel to Stay on this page.');
+                    if (!gotit) {
+                        return false;
+                    }
+                }
+            });
+        });
+
+        $('#cats').carouFredSel({
+            auto: false,
+            prev: '#prev2',
+            next: '#next2',
+            pagination: "#pager2",
+            mousewheel: true,
+            swipe: {
+                onMouse: true,
+                onTouch: true
+            }
+        });
+
+    });
+
+
+    $(function () {
+        setTimeout(function () {
+            $(".alert").hide('blind', {}, 500)
+        }, 5000);
+    });
+
+    function sivamtime() {
+        now = new Date();
+        var month_names = new Array();
+        month_names[month_names.length] = "January";
+        month_names[month_names.length] = "February";
+        month_names[month_names.length] = "March";
+        month_names[month_names.length] = "April";
+        month_names[month_names.length] = "May";
+        month_names[month_names.length] = "June";
+        month_names[month_names.length] = "July";
+        month_names[month_names.length] = "August";
+        month_names[month_names.length] = "September";
+        month_names[month_names.length] = "October";
+        month_names[month_names.length] = "November";
+        month_names[month_names.length] = "December";
+        var day_names = new Array();
+        day_names[day_names.length] = "Sunday";
+        day_names[day_names.length] = "Monday";
+        day_names[day_names.length] = "Tuesday";
+        day_names[day_names.length] = "Wednesday";
+        day_names[day_names.length] = "Thursday";
+        day_names[day_names.length] = "Friday";
+        day_names[day_names.length] = "Saturday";
+        hour = now.getHours();
+        min = now.getMinutes();
+        sec = now.getSeconds();
+        if (min <= 9) {
+            min = "0" + min;
+        }
+        if (sec <= 9) {
+            sec = "0" + sec;
+        }
+        if (hour > 12) {
+            hour = hour - 12;
+            add = "PM";
+        }
+        else {
+            hour = hour;
+            add = "AM";
+        }
+        if (hour == 12) {
+            add = "PM";
+        }
+        time = day_names[now.getDay()] + ", " + now.getDate() + " " + month_names[now.getMonth()] + " " + now.getFullYear() + ", " + ((hour <= 9) ? "0" + hour : hour) + ":" + min + ":" + sec + " " + add;
+        if (document.getElementById) {
+            document.getElementById('theTime').innerHTML = time;
+        }
+        else if (document.layers) {
+            document.layers.theTime.document.write(time);
+            document.layers.theTime.document.close();
+        }
+        setTimeout("sivamtime()", 1000);
+    }
+    window.onload = sivamtime;
+</script>

@@ -1,0 +1,124 @@
+﻿@using System.Globalization
+@using HotelMateWebV1.Helpers
+@model HotelMateWebV1.Models.GuestRoomAccountViewModel
+
+<link href="~/css/CoolTable.css" rel="stylesheet" />
+
+    <div class="eight columns">
+
+
+        <h3><span style="color:#FF2AB5;">Overall Balance</span></h3>
+        <div>
+            <table class="striped fixedlayout">
+                <thead>
+                </thead>
+                <tbody id="CasesTableBody1">
+                    <tr border="1" bgcolor="#b70000"><td></td><td></td><td></td><td></td><td></td><td bgcolor="#000000">Balance</td><td bgcolor="@Model.Guest.GetGuestBalanceColour()">N/A</td></tr>
+                </tbody>
+            </table>
+            <br />
+
+
+        </div>
+        <br />
+
+        
+        <h3>Payments & Expenses</h3>
+        <div>
+            <table class="striped fixedlayout">
+                <thead>
+                    <tr>
+                        <th width="15%">Room No.</th>
+                        <th width="20%">Room Type</th>
+                        <th width="20%">Type</th>
+                        <th width="20%">Reference</th>
+                        <th width="15%">Date</th>
+                        <th width="17%">Amount</th>
+                    </tr>
+                </thead>
+                <tbody id="CasesTableBody1">
+                    @foreach (var rm in Model.GuestRoomsForCheckout.Where(x => x.GuestRoomAccounts.Sum(y => y.Amount) >= 0))
+                    {
+                        foreach (var ac in rm.GuestRoomAccounts.OrderByDescending(x => x.TransactionDate))
+                        {
+                            <tr id="@ac.Id">
+                                <td class="tth2">@rm.Room.RoomNumber</td>
+                                <td class="tth2">@rm.Room.RoomType1.Name</td>
+                                <td class="tth2">@ac.RoomPaymentType.Name </td>
+                                <td class="tth2">@ac.TransactionId</td>
+                                <td class="tth2">@ac.TransactionDate.ToShortDateString()</td>
+                                <td class="tth2">@ac.Amount</td>
+                            </tr>
+                        }
+                       if (rm.GuestRoomAccounts.Any())
+                       {
+                           <tr><td></td><td></td><td></td><td></td><td>@rm.RoomNumber Balance</td><td>@rm.GuestRoomAccounts.Summation().ToString(CultureInfo.InvariantCulture)</td></tr>                          
+                       }
+                    }
+
+                    <tr><td colspan="7"></td></tr>
+                    <tr><td></td><td></td><td></td><td></td><td>Balance</td><td>N/A</td></tr>
+                   
+                </tbody>
+            </table>
+
+        </div>
+        
+        <br/>
+        <h3>Room(s) Cost</h3>
+        <div>
+            <table class="striped fixedlayout">
+                <thead>
+                    <tr>
+                        <th width="15%">Room No.</th>
+                        <th width="20%">Room Type</th>
+                        <th width="25%">Checkin</th>
+                        <th width="20%">Checkout</th>
+                        <th width="15%">Nights</th>
+                        <th width="20%">Rate </th>
+                        <th width="20%">Total </th>
+                    </tr>
+                </thead>
+                <tbody id="CasesTableBody1">
+                    @foreach (var rm in Model.GuestRoomsForCheckout)
+                    {
+                        <tr id="@rm.Id">
+                            <td class="tth2">@rm.Room.RoomNumber</td>
+                            <td class="tth2">@rm.Room.RoomType1.Name</td>
+                            <td class="tth2">@rm.CheckinDate.ToShortDateString()</td>
+                            <td class="tth2">@DateTime.Now.ToShortDateString()</td>
+                            <td class="tth2">@rm.GetNumberOfNights()</td>
+                            <td class="tth2">@rm.RoomRate</td>
+                            <td class="tth2">@rm.RoomCharge()</td>
+                        </tr>
+                    }
+
+                    <tr><td colspan="7"></td></tr>                  
+                    <tr><td></td><td></td><td></td><td></td><td></td><td>Total</td><td>@Model.Guest.GuestRooms.Summation().ToString(CultureInfo.InvariantCulture)</td></tr>                       
+                    
+                </tbody>
+            </table>
+            <br />
+        <div class="twelve columns">
+            <a class="erbEditorOpener buttonDevFirst" href="@Url.Action("TopUpHalfDay", "GuestAccount", new { id = Model.Guest.Id, roomId = Model.Room.Id, paymentTypeId = (int)HotelMateWebV1.Helpers.Enums.RoomPaymentTypeEnum.HalfDay })">Add Half Day</a>
+            <br />
+            <br />   
+
+            @using (Html.BeginForm("CheckOutIndividualGuest", "GuestAccount", FormMethod.Post, new { enctype = "multipart/form-data", @class = "booking-form b-form row" }))
+            {
+                @Html.HiddenFor(model => model.Guest.Id)
+                @Html.HiddenFor(model => model.GuestRoomId)
+                <input type="submit" value="Checkout Guest" name="send_booking">
+            }
+
+        </div>
+
+        </div>
+        
+
+    </div>
+
+
+
+
+

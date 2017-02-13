@@ -1,0 +1,65 @@
+﻿@model HotelMateWebV1.Models.ItemIndexModel
+
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+
+<div class="page-head">
+    <h2>Items</h2>
+    <ol class="breadcrumb">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Stock Order</a></li>
+        <li class="active">View Only</li>
+    </ol>
+</div>
+<div class="cl-mcont">
+    <div class="row">
+        <div class="col-sm-6 col-md-6">
+            <div class="block-flat">
+                <div class="header">
+                    <h3>Stock Order (In Process)</h3>
+                </div>
+                <div class="content">
+
+                    @using (Html.BeginForm("DistributeToPoint", "Item", FormMethod.Post, new { @class = "form-horizontal" }))
+                    {
+
+                        
+                        @Html.Hidden("Id", Model.DistributionPoint.Id) 
+                        @Html.Hidden("PoId", Model.PoId)  
+                         
+                                           
+
+
+                        @Html.ValidationSummary(true)
+                        
+                        <div class="form-group">
+                            @Html.Label("Distribution Point", new { @class = "col-sm-3 control-label" })
+                            <div class="col-sm-7">
+                                @Html.EditorFor(model => model.DistributionPoint.Name, new { @class = "form-control" })
+                            </div>
+                        </div> 
+                        
+                        
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">                             
+                                <button type="submit" class="btn btn-primary">Distribute To @Model.DistributionPoint.Name</button>
+                            </div>
+                        </div>                     
+
+                        @Html.Partial("_PurchaseOrderItemsStoreItems")
+                        
+
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

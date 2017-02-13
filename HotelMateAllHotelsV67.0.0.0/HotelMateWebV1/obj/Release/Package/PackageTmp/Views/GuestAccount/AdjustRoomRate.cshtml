@@ -1,0 +1,45 @@
+﻿@model HotelMateWebV1.Models.GuestRoomAccountViewModel
+
+
+@{
+    ViewBag.Title = "Booking";
+}
+
+
+<div class="eight columns">
+    <h1 class="page-title ci-title" style="margin-bottom:10px;"><span>ADJUST GUEST ROOM RATE</span></h1>
+
+    <article id="post-16" class="post-16 page type-page status-publish hentry entry group">
+
+        <div class="booking-form-wrap bs bg">
+
+            @using (Html.BeginForm("AdjustRoomRate", "GuestAccount", FormMethod.Post, new { enctype = "multipart/form-data", @class = "booking-form b-form row" }))
+            {
+
+            @Html.Partial("_AdjustRoomRateDisplay")
+            
+            }
+
+        </div>
+
+    </article>
+
+</div>
+
+
+@section SideBarBox
+{
+    @Html.Partial("_ElokasSidebar")
+}
+
+
+
+
+
+
+
+
+
+
+
+

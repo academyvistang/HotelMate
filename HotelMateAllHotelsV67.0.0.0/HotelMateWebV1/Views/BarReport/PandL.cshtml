@@ -1,0 +1,73 @@
+﻿@model HotelMateWebV1.Models.ReportViewModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+
+<div class="page-head">
+    <h2>BarMate</h2>
+    <a style="float:right;" class="btn btn-success hbtn" href="@Url.Action("Index","Home")" id="todaySale">Go Back</a>
+    <ol class="breadcrumb">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Reports</a></li>
+        <li class="active">Balance Sheet Reports</li>
+    </ol>
+</div>
+<div class="cl-mcont">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="block-flat">
+                <div class="header">
+                    <h3>Account Payable Reports</h3>
+                    @Html.Partial("_DateSelector", "Pandl")
+                </div>
+                <div class="content">
+                    <div class="table-responsive">
+                        <table class="table no-border hover">
+                            <thead class="no-border">
+                                <tr>
+                                    <th style="width:15%;"><strong>Date</strong></th>
+                                    <th style="width:25%;"><strong>Amount Pain In</strong></th>
+                                    <th style="width:25%;"><strong>Amount Paid Out (Purchases)</strong></th>
+                                </tr>
+                            </thead>
+                            <tbody class="no-border-y">
+                                @foreach (var item in Model.ConciseBalanceSheetSheet)
+                                {
+
+                                    <tr>
+                                        <td>@item.ActualDate</td>
+                                        <td>@item.TotalRecieveable</td>
+                                        <td>@item.TotalPayaeble</td>
+                                    </tr>
+                                }
+
+                                <tr>
+                                    <td colspan="1">Total</td>
+                                    <td>@Model.ConciseBalanceSheetSheet.Sum(x => x.TotalRecieveable)</td>
+                                    <td colspan="3">@Model.ConciseBalanceSheetSheet.Sum(x => x.TotalPayaeble)</td>
+                                    @if(Model.FullBalance > 0)
+                                    {
+                                       <td style="background-color:green;">@Model.FullBalance</td>
+                                    }
+                                    else
+                                    {
+                                        <td style="background-color:red;">@Model.FullBalance</td>
+                                    }
+                                    
+
+
+                                </tr>
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

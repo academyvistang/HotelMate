@@ -1,0 +1,121 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<div class="page-head">
+    <h2>Data Tables</h2>
+    <ol class="breadcrumb">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Tables</a></li>
+        <li class="active">DataTables</li>
+    </ol>
+</div>
+    <div class="cl-mcont">
+        <div class="row">
+            <div class="col-sm-6 col-md-6">
+                <div class="block-flat">
+                    <div class="header">
+                        <h3>Basic Form</h3>
+                    </div>
+                    <div class="content">
+                        <form class="form-horizontal" role="form" parsley-validate novalidate>
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-3 control-label">Email</label>
+                                <div class="col-sm-7">
+                                    <input type="email" required parsley-type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPassword3" class="col-sm-3 control-label">Password</label>
+                                <div class="col-sm-7">
+                                    <input type="password" required class="form-control" id="inputPassword3" placeholder="Password">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPassword3" class="col-sm-3 control-label">Web Site</label>
+                                <div class="col-sm-7">
+                                    <input type="url" required parsley-type="url" class="form-control" placeholder="URL">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-3 col-sm-7">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="remember_the_fallen"> Remember me
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" class="btn btn-primary">Registrer</button>
+                                    <button class="btn btn-default">Cancel</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-6">
+                <div class="block-flat">
+                    <div class="header">
+                        <h3>Horizontal Form</h3>
+                    </div>
+                    <div class="content">
+                        <form class="form-horizontal" role="form" parsley-validate novalidate>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.OrigPrice, new { @class = "col-sm-3 control-label" })
+                                <div class="col-sm-7">
+                                    @Html.EditorFor(model => model.OrigPrice, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.OrigPrice)
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-3 control-label">Email</label>
+                                <div class="col-sm-7">
+                                    <input type="email" required parsley-type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPassword3" class="col-sm-3 control-label">Password</label>
+                                <div class="col-sm-7">
+                                    <input type="password" required class="form-control" id="inputPassword3" placeholder="Password">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPassword3" class="col-sm-3 control-label">Web Site</label>
+                                <div class="col-sm-7">
+                                    <input type="url" required parsley-type="url" class="form-control" placeholder="URL">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-3 col-sm-7">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="remember_the_fallen"> Remember me
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" class="btn btn-primary">Registrer</button>
+                                    <button class="btn btn-default">Cancel</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+
+    </div>
+
+

@@ -1,0 +1,49 @@
+﻿@using HotelMateWebV1.Helpers
+@model HotelMateWebV1.Models.RoomViewModel
+
+<script src="~/DragnDrop/jquery-1.6.2.min.js"></script>
+
+<style>
+    .dropdownDiv {
+        height: 100px;
+        width: 100%;
+        overflow: auto;
+        padding: 2px;
+    }
+</style>
+
+@Html.HiddenFor(model => model.Id)
+@Html.HiddenFor(model => model.IsActive)
+@Html.HiddenFor(model => model.RoomType)
+@Html.HiddenFor(model => model.RoomNumber)
+@Html.HiddenFor(model => model.NoOfBeds)
+@Html.HiddenFor(model => model.Price)
+@Html.HiddenFor(model => model.Notes)
+@Html.HiddenFor(model => model.ExtNumber)
+
+
+
+
+
+
+
+
+<div class="twelve columns">
+    <label for="comments">Room Status</label>
+    @Html.DropDownListFor(model => model.StatusId, Model.RoomStatusList, new { @name = "room_select", @id = "b-status", @class = "",  })
+    @Html.ValidationMessageFor(model => model.StatusId)
+</div>
+
+
+
+<div class="twelve columns">
+    <input type="submit" value="Save" name="send_booking">
+</div>
+
+
+
+
+
+
+
+

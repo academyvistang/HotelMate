@@ -1,0 +1,12 @@
+﻿@model HotelMateWebV1.Models.SearchViewModel
+
+
+<div class="six columns">
+    <label for="FullName">Name*</label>
+    @Html.TextBoxFor(model => model.Fullname)
+    @Html.ValidationMessageFor(model => model.Fullname)
+</div>
+
+<div class="twelve columns">
+    <input type="submit" value="Search For Guest" name="send_booking">
+</div>

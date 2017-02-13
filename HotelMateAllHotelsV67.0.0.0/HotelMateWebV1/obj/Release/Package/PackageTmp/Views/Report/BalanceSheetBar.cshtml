@@ -1,0 +1,80 @@
+﻿@model HotelMateWebV1.Models.ReportViewModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+
+<div class="page-head">
+    <h2>Hotel</h2>
+    <a style="float:right;" class="btn btn-success hbtn" href="@Url.Action("Index","Home")" id="todaySale">Back To Reservations</a>
+    <ol class="breadcrumb">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Reports</a></li>
+        <li class="active">Balance Sheet Bar Reports</li>
+    </ol>
+</div>
+<div class="cl-mcont">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="block-flat">
+                <div class="header">
+                    <h3>Account Payable Reports</h3>
+                    @Html.Partial("_DateSelector", "BalanceSheetBar")
+                </div>
+                <div class="content">
+                    <div class="table-responsive">
+                        <table class="table no-border hover">
+                            <thead class="no-border">
+                                <tr>
+                                    <th style="width:15%;"><strong>Date</strong></th>
+                                    <th style="width:25%;"><strong>Amount Pain In</strong></th>
+                                    <th style="width:25%;"><strong>Amount Paid Out</strong></th>
+                                    <th style="width:10%;"><strong>Staff</strong></th>
+                                    <th style="width:10%;"><strong>Payment Method</strong></th>
+                                    <th style="width:15%;"></th>
+                                </tr>
+                            </thead>
+                            <tbody class="no-border-y">
+                                @foreach (var item in Model.BalanceSheet)
+                                {
+
+                                    <tr>
+                                        <td>@item.TransactionDate</td>
+                                        <td>@item.AmountPaidIn</td>
+                                        <td>@item.AmountPaidOut</td>
+                                        <td>@item.UserName</td>
+                                        @if (item.PaymentMentMethod != null)
+                                        {
+                                            <td>@item.PaymentMentMethod.Name</td>
+                                        }
+                                        else
+                                        {
+                                            <td>N/A</td>
+                                        }
+
+                                        <td></td>
+
+                                    </tr>
+                                }
+
+                                <tr>
+                                    <td colspan="1">Total</td>
+                                    <td>@Model.BalanceSheet.Sum(x => x.AmountPaidIn)</td>
+                                    <td colspan="3">@Model.BalanceSheet.Sum(x => x.AmountPaidOut)</td>
+                                    <td>@Model.FullBalance</td>
+
+
+                                </tr>
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,10 @@
+﻿@model HotelMateWebV1.Models.IndexViewModel21
+
+<div id="enchant-stage" class="well pull-left">
+
+       @foreach (var c in Model.AllCards.Take(8))
+       {
+         string name = c.Suit.Name + c.Rank.Name + ".gif";
+         <img alt="" src="../../Images/PlayingCards/@name" />
+       }
+</div>

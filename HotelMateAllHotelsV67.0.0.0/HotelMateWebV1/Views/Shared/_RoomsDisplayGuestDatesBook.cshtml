@@ -1,0 +1,97 @@
+﻿@model HotelMateWebV1.Models.GroupBookingViewModel
+
+
+<script type="text/javascript">
+    jQuery(document).ready(function ($) {
+        @foreach (var item in Model.GuestRoomsCheckedIn)
+        {
+         <text>
+        var arrive = '#arrive_' + '@(item.Id)';
+        var depart = '#depart_' + '@(item.Id)';
+
+
+             $(arrive).datepicker({
+                 dateFormat: 'yy/mm/dd', minDate: 0,
+                onSelect: function (dateText, dateObj) {
+                    var minDate = new Date(dateObj.selectedYear, dateObj.selectedMonth, dateObj.selectedDay);
+                    minDate.setDate(minDate.getDate() + 1);
+                    $(depart).datepicker("option", "minDate", minDate);
+                }
+            });
+
+            $(depart).datepicker({
+                dateFormat: 'yy/mm/dd', minDate: 1,
+                onSelect: function (dateText, dateObj) {
+                    //var maxDate = new Date(dateText);
+                    var arrivedDate = $(arrive).datepicker("getDate");
+                    var maxDate = new Date(dateObj.selectedYear, dateObj.selectedMonth, dateObj.selectedDay);
+                    maxDate.setDate(maxDate.getDate() - 1);
+                    $(arrive).datepicker("option", "maxDate", maxDate);
+                    $(arrive).datepicker('setDate', arrivedDate);
+                }
+            });
+
+            </text>
+        }
+
+
+
+
+    });
+
+
+</script>
+
+<link href="~/css/CoolTable.css" rel="stylesheet" />
+<div style="width:98%;padding-left:10px;">
+
+    <table class="striped fixedlayout">
+        <thead>
+            <tr>
+                <th width="25%"></th>
+                <th width="25%">Room Number</th>
+                <th width="25%">Room Type</th>
+                <th width="25%">Rate </th>
+                <th width="25%">Check In</th>
+                <th width="25%">Check Out</th>
+            </tr>
+        </thead>
+        <tbody id="CasesTableBody1">
+            @foreach (var rm in Model.GuestRoomsCheckedIn)
+            {
+                string arrive = "arrive_" + rm.Id;
+                string depart = "depart_" + rm.Id;
+
+                <tr id="@rm.Id">
+                    <td class="tth2">
+                        @if (rm.GuestRoomAccounts.Count == 0)
+                        {
+                            <a class="erbEditorOpener buttonDevFirst" href="@Url.Action("RemoveBookingOnEdit", "Booking", new { id = rm.Id })">Remove  @rm.Room.RoomNumber</a>
+                        }
+                        else
+                        {
+                            <a class="erbEditorOpener buttonDevFirst" href="@Url.Action("MakeRefund", "Booking", new { id = rm.Id })">Refund & Delete</a>
+                        }
+                    </td>
+                    <td class="tth2">@rm.Room.RoomNumber</td>
+                    <td class="tth2">@rm.Room.RoomType1.Name</td>
+                    <td class="tth2">@rm.Room.Price</td>
+                    <td class="tth2"><input id="@arrive" class="datepicker" type="text" name="@arrive" value="@rm.CheckinDate.ToShortDateString()"></td>
+                    <td class="tth2"><input id="@depart" class="datepicker" type="text" name="@depart" value="@rm.CheckoutDate.ToShortDateString()"></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+
+</div>
+
+
+
+ @Html.Partial("_RoomsBookNow", Model.RoomBookingViewModel)
+
+
+
+
+

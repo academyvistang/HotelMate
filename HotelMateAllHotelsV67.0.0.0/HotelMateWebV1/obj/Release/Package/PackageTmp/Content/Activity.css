@@ -1,0 +1,678 @@
+﻿/*main styles*/
+ .sys-template { display:none; }
+ 
+ .t-calendar
+ {
+     z-index:1000;
+ }
+/*.show_tasks_without_end_date
+{
+    position:relative;
+    top:2px;
+}*/
+.filter_parameter__fltrFrHmPgsr{
+	color:#1864a7;
+	text-decoration:underline;
+	cursor:pointer;
+	margin:0 5px 0 2px;
+}
+
+.blue_link{
+	color:#1864a7;
+	text-decoration:underline;
+	cursor:pointer;
+}
+.activity_row__tbltsk___homePage .second_level_table
+{
+    table-layout:auto;
+}
+.activity_row__tbltsk___homePage
+{
+    background:url("images/row_bg_gradient-50px.gif") repeat-x 0 -120px #FFF;
+    
+}
+.activity_row__tbltsk___homePage .block_for_status_timer_and_priority .update_status_block .visibility_container,
+.activity_row__tbltsk___homePage .block_for_status_timer_and_priority .timer_box
+{
+	display:none;
+}
+.activity_row__tbltsk___homePage .block_for_status_timer_and_priority .timer_box.stopTimer
+{
+    display:block;
+}
+.activity_row__tbltsk___homePage.activerRow .block_for_status_timer_and_priority .update_status_block .visibility_container,
+.activity_row__tbltsk___homePage.activerRow .block_for_status_timer_and_priority .timer_box,
+.activity_row__tbltsk___homePage.activerRow .block_for_status_timer_and_priority .timeForTimer_input{
+	display:block;
+}
+.activity_row__tbltsk___homePage .block_for_status_timer_and_priority .timer_box .blue_link.shown { display: block; }
+.activity_row__tbltsk___homePage .block_for_status_timer_and_priority .timer_box .blue_link.hidden { display: none; }
+
+.activity_row__tbltsk___homePage .block_for_status_timer_and_priority .stopTimer .visibility_container,
+.activity_row__tbltsk___homePage .block_for_status_timer_and_priority .stopTimer .timeForTimer_input {
+	display:block;
+}
+
+.activity_row__tbltsk___homePage:not(.activerRow) .block_for_status_timer_and_priority .timerWithValue:not(.stopTimer){ 	display:block; background: none; }
+.activity_row__tbltsk___homePage:not(.activerRow) .block_for_status_timer_and_priority .timerWithValue:not(.stopTimer) .visibility_container{ display:none; }
+
+.favourite_icon{
+	background-image:url("/images/favourite.png");
+	background-position:0 -13px;
+	cursor:pointer;
+	width:14px;
+	height:13px;
+}
+.favourite_icon.setFavourite{
+	background-position:0 0;
+}
+.container_spacer_and_image .favourite_icon{
+	margin:19px 0 0 3px;
+}
+.add_new_activity_button{
+	float: right;
+	line-height:18px;
+    margin:-5px 3px 5px 0;
+}
+.filter_parameter__fltrFrHmPgsr.selected_now{
+	font-weight:bold;
+	text-decoration:none;
+	cursor:default;
+	  
+}
+.filter_parameter__fltrFrHmPgsr.selected_now a
+{
+    color:#333333;    
+}
+.filter_parameter__fltrFrHmPgsr.selected_now a:hover
+{
+    text-decoration:none; 
+    cursor:default;
+}
+
+.table_with_tasks__hmpage{
+	position:relative;
+	table-layout:auto;
+	width:100%;
+	border-collapse:collapse;
+}
+.table_with_tasks__hmpage * {
+	position:relative;
+	}
+.table_with_tasks__hmpage td{
+	padding:0;
+}
+.table_with_tasks__hmpage .menu-line-el{
+	border-bottom: 1px solid #C7D0C9;
+    height: 1px;
+    margin: 0 -9px -1px;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+}
+.table_with_tasks__hmpage .sort-bl{
+	overflow:hidden;
+	margin-left:-11px;
+	padding-top:5px;
+}
+.last_homepage_line_fix{float: left; clear: both; width: 100%; height: 1px; margin-top: -1px; background: #fff;}
+.line_between_filter_and_activity{
+	margin:0;
+	overflow:hidden;
+	height:1px;
+	background-color:#c9d2cb;
+}
+.line_between_activity{
+	background-color:#EFF1EF;
+	overflow:hidden;
+	height:1px;
+}
+.activity_row__tbltsk___homePage.activerRow .activity_name_andEstDate_box .estimateDateContainer{
+	display:block;
+}
+.activity_row__tbltsk___homePage.activerRow .files_and_logs_controls
+{
+    visibility:visible;
+}
+.activity_row__tbltsk___homePage .activity_name_andEstDate_box{
+	margin:0;
+	padding-right:100px;
+	width:auto;
+}
+.activity_row__tbltsk___homePage.activerRow .activity_container{
+	min-height:88px;
+	line-height:10px;
+}
+.activity_row__tbltsk___homePage .activity_container{
+	min-height:46px;
+}
+.activity_row__tbltsk___homePage.activerRow .container_spacer_and_image{
+	margin:0;
+	height:88px;
+}
+.activity_row__tbltsk___homePage .activity_name_container.overdue .tail
+{
+    background-image:url("/images/bluring.png");
+}
+.activity_row__tbltsk___homePage.activerRow .priority{
+	display:block;
+}
+.activity_row__tbltsk___homePage.activerRow .current_status_text{
+	display:block;
+}
+
+.tail{
+	background-image:url("/images/bluring2.png");
+	background-repeat:repeat-y;
+	 background-position:0 0;
+	 position:absolute; 
+	 right:0px;
+	 width:12px; 
+	 height:24px; 
+	 top:0px;
+	 z-index:3;
+}
+.comment_block__plFrCmmnt .tail{
+	background-image:url("/images/bluring2.png");
+}
+.activity_name_container .tail
+{
+    left:100%;
+}
+.overdue .tail{background-position: -24px 0;}
+
+.files_and_logs_controls .good-quick-message-btn,
+.files_and_logs_controls .problem-quick-message-btn,
+.files_and_logs_controls .newdate-quick-message-btn{
+	display:inline-block;
+	width: 21px; 
+	height: 20px; 
+	margin: 0 2px 0 0;
+}
+.files_and_logs_controls .good-quick-message-btn{background: url("/images/quickmessageicon-good.PNG") no-repeat;}
+.files_and_logs_controls .problem-quick-message-btn{background: url("/images/quickmessageicon-problem.PNG") no-repeat;}
+.files_and_logs_controls .newdate-quick-message-btn{background: url("/images/quickmessageicon-newdate.PNG") no-repeat;}
+
+/*======Files and time logs link container======*/
+.files_and_logs_controls{
+	float:right;
+	margin:0 3px 0 0;
+	visibility:hidden;
+}
+.files_and_logs_controls .separator_for__flsttml{
+	color:#cfcdc6;
+	font-size:14px;
+	margin:0 4px;
+}
+.files_and_logs_controls .file_link_container{
+	background-image:url("/images/filesIcon.png");
+	background-repeat:no-repeat;
+	background-position:top left;
+	height:14px;
+	padding-left:15px;
+	margin-right:5px;
+	margin-left:5px;
+}
+.files_and_logs_controls .timelog_link_container,
+.files_and_logs_controls .file_link_container,
+.files_and_logs_controls .messages-icon{
+	display:inline-block;
+	vertical-align: top;
+}
+.files_and_logs_controls .messages-icon{
+	margin-right:17px;
+}
+.files_and_logs_controls .timelog_link_container,
+.files_and_logs_controls .file_link_container{
+	margin-top:3px;
+	line-height:11px;
+}
+.files_and_logs_controls .file_link_container .attachment,
+.files_and_logs_controls .timelog_link_container .timelog{
+	cursor:pointer;
+	vertical-align: top;
+}
+.files_and_logs_controls .file_link_container sup{
+	vertical-align: top;
+	margin-top: -5px;
+	display: inline-block;
+}
+.files_and_logs_controls .timelog_link_container{
+	background-image:url("/images/timeLogsIcon.png");
+	background-repeat:no-repeat;
+	background-position:top left;
+	padding-left:21px;
+	height:15px;
+	padding-bottom:2px;
+}
+/*======ShowTask container======*/
+.container_for_showtsk{
+	margin-left:20px;
+}
+.container_for_showtsk input[type="checkbox"] + label {margin-left:3px;padding:0;}
+.activity_container{
+	margin:14px 1px 14px 0;
+	overflow:hidden;
+	position:relative;
+}
+.activity_name_andEstDate_box{
+	white-space:nowrap;
+	overflow:hidden;
+	padding:0;
+}
+.coompAndProjName_andEstDate_box{
+	margin:0;
+	white-space:normal;
+	float:left;
+	width:100%;
+}
+.activity_name_andEstDate_box .simpleContainer,
+.coompAndProjName_andEstDate_box{
+	float:left;
+	width:100%;
+	position:relative;
+	
+}
+
+.place_for_task_name__actNameBox,
+.place_for_compAndProject{
+	width:100%;
+	float:left;
+}
+.activity_name_andEstDate_box .activity_name_container{
+	float:left;
+	text-decoration:underline;
+	font-size:14px;
+	font-weight:bold;
+	max-width:100%;
+	overflow:hidden;
+	position:relative;
+	z-index:2;
+	line-height:16px;
+}
+
+.activity_name_container.overdue{
+	color:#b62700;
+}
+.activity_name_container .ttaskname{
+    padding:2px;
+    text-decoration:underline;
+}
+.activity_name_container.overdue:hover{text-decoration: none;}
+.activity_name_container.overdue .ttaskname
+{
+    float: left;
+    background-color:#fecaab;
+	border-radius:1px;
+}
+
+
+
+
+.activity_row__tbltsk___homePage .activity_name_container.overdue .tail {
+background-position:0 0;
+}
+.activity_row__tbltsk___homePage.activerRow .activity_name_container.overdue .tail {
+background-position:-24px 0;
+}
+
+
+
+.activity_name_andEstDate_box .estimateDateContainer{
+	float:left;
+	text-transform:uppercase;
+	letter-spacing:0.08em;
+	margin-top:2px;
+	margin-right:-69px;
+	z-index:4;
+	position:relative;
+	display:none;
+	font-size: 11px;
+	color: #333;
+}
+.activity_name_andEstDate_box .estimateDateContainer:hover{text-decoration: none;}
+.activity_name_andEstDate_box .estimateDateContainer .flagIconFinish{
+	background-image:url("/images/finish.gif");
+	width:10px;
+	height:15px;
+	float:left;
+	margin:0 2px;
+}
+.activity_name_andEstDate_box .estimateDateContainer .dateContainer{
+	position:relative;
+	top:-3px;
+	margin-left:3px;
+	line-height:14px;
+}
+.companyname_and_project_box{
+	width:100%;
+	overflow:hidden;
+}
+.pr_and_company_name_text_container{
+	white-space:nowrap;
+	float:left;
+	line-height:14px;
+	width:100%;
+	overflow:hidden;
+	position:relative;
+	color:#a1a1a1;
+}
+.pr_and_company_name_text_container .bg-arrow-icon{
+	vertical-align:top;
+	margin:2px 5px 0 0;
+}
+.pr_and_company_name_text_container .parent-task-ln-el{
+	margin-right:2px;
+}
+.pr_and_company_name_text_container .arrow-left{
+	vertical-align:top;
+	margin-top:4px;
+}
+.pr_and_company_name_text_container .crops-hierarchical{
+	background-color: #F0F0F0;
+    display: inline-block;
+    height: 13px;
+    line-height: 6px;
+    overflow: hidden;
+    padding: 0 4px;
+	vertical-align:top;
+	margin:1px 1px 0 1px;
+	border-radius:2px;
+}
+.comment_block__plFrCmmnt .tail{
+	height:40px;
+}
+.link_prName.blue_link,.link_cmName.blue_link{
+	text-decoration:underline;
+}
+/*======Comments======*/
+.comment_block__plFrCmmnt{
+	margin-top:13px;
+	max-width:100%;
+	overflow:hidden;
+	position:relative;
+}
+.comment_block__plFrCmmnt .comment_words{
+	cursor:pointer;
+	color:#252525;
+	line-height:12px;
+	max-width:100%;
+	overflow:hidden;
+	white-space:normal;
+}
+.comment_block__plFrCmmnt .comment_words > a {
+	display:block;
+	overflow:hidden;
+	height:13px;
+	}
+.comment_block__plFrCmmnt .comment_author{
+	color:#838383;
+	width:100%;
+	overflow:hidden;
+	white-space:nowrap;
+	position:relative;
+	font-size:11px;
+	line-height:12px;
+}
+.common_box_for_comments{
+	overflow:hidden;
+	max-width:96%;
+}
+/*======Comments icon======*/
+.place_for_icon__td
+{
+    width:20px;
+}
+.comments_icon{
+	display:block;
+	background-image:url("/images/comments_icon.png");
+	background-repeat:no-repeat;
+	width:12px;
+	height:11px;
+	margin-top:12px;
+	position: relative;
+}
+.comments_icon span {
+	display: inline-block;
+	position: relative;
+    left: 13px;
+    top: -8px;
+	vertical-align: bottom;
+	line-height: 10px;
+	font-size: 10px;
+}
+/*======Status======*/
+.block_for_status_timer_and_priority{
+	width:100%;
+}
+.activity_row__tbltsk___homePage.activerRow .indented_btn
+{
+	background-color:#F2F2F2;
+    cursor:pointer;
+	border-radius:5px;
+	border:1px solid #EDEDED;
+}
+.activity_row__tbltsk___homePage.activerRow.mouseenter .indented_btn{
+	border:1px solid #ede2aa;
+	background-color:#f2e6aa;
+}
+.activity_row__tbltsk___homePage.activerRow .indented_btn:hover{
+	background-color:#F9F6B0;
+	border-color:#E5D984;
+	box-shadow:0 0 4px 0 rgba(47, 41, 0, 0.1);
+}
+.activity_row__tbltsk___homePage.activerRow .indented_btn.disabled
+{
+    cursor:default;
+}
+.indented_btn_block
+{
+    float:right;
+    position:relative;
+    height:46px;
+    padding:0 14px;
+    
+}
+.indented_btn_block.timerContainer
+{
+}
+.indented_btn_block.update_status
+{
+    margin-right:5px;
+}
+.block_for_status_timer_and_priority .update_status_block,
+.block_for_status_timer_and_priority .timer_box,
+.block_for_green_btn_container,
+.block_for_status_timer_and_priority .priority,
+.block_for_status_timer_and_priority .current_status_text,
+.block_for_status_timer_and_priority .timespent{
+	font-size:11px;
+}
+.block_for_status_timer_and_priority .priority,
+.block_for_status_timer_and_priority .current_status_text{
+	color:#838383;
+}
+.block_for_status_timer_and_priority .update_status_block{
+	background-image:url("/images/status_icon.png");
+	background-repeat:no-repeat;
+	background-position:top center;
+	height:44px;
+	width:100%;
+	text-align:center;
+	line-height:22px;
+	top:4px;
+	position:relative;
+	}
+.block_for_status_timer_and_priority .disabledstatus{
+	background-image:url("/images/status_icon_disabled.png");
+	cursor: default;
+}
+.block_for_status_timer_and_priority .disabledstatus .visibility_container span
+{
+    color: #999;
+    cursor:default;
+}
+.block_for_status_timer_and_priority  .timespent,
+.block_for_status_timer_and_priority .priority,
+.block_for_status_timer_and_priority .current_status_text
+{
+    line-height:16px;
+}
+/*======TimerBlock======*/
+.block_for_status_timer_and_priority .timer_box{
+	width:105px;
+	background-image:url("/images/timer_icon.png");
+	background-repeat:no-repeat;
+	background-position:0 0;
+	height:26px;
+	position:relative;
+	top:6px;
+	
+}
+.block_for_status_timer_and_priority .disabledtimer{
+	background-image:url("/images/timer_icon_disabled.png");
+	height:28px;
+	cursor: default;
+}
+.block_for_status_timer_and_priority .disabledtimer .visibility_container span
+{
+    color: #999;
+    cursor:default;
+}
+.block_for_status_timer_and_priority .timer_box.stopTimer{
+	background-position:0 -28px;
+}
+.activity_row__tbltsk___homePage .timer_box .timeForTimer_input{
+	width:66px;
+	float:right;
+	background:none;
+	border:none;
+	height:21px;
+	font-size:16px;
+	text-align:right;
+}
+.activity_row__tbltsk___homePage.mouseenter{
+	background-color:#fdfac8;
+	
+}
+.activity_row__tbltsk___homePage.activerRow .timer_box .timeForTimer_input
+{   
+	background-color:#fff;
+	height:18px;
+}
+.activity_row__tbltsk___homePage .timer_box .linkForStartStopTimer__tmBox{
+	position:absolute;
+	width:104px;
+	color:#333333;
+	bottom: -36px;
+	left: 50%;
+	font-size:11px;
+    text-decoration:none;
+	text-align:center;
+    visibility:hidden;
+	white-space:nowrap;
+}
+.timer_box.timerWithValue span {
+	margin-left:0px;
+	}
+.linkForStartStopTimer__tmBox.blue_link.tooltip.stop-timer-btn {
+	margin-left: -52px;
+	}	
+.activity_row__tbltsk___homePage.activerRow .timer_box .linkForStartStopTimer__tmBox
+{
+    visibility:visible;
+}
+.timer_box .linkForStartStopTimer__tmBox:hover
+{
+    text-decoration:none;
+}
+/*======green button=======*/
+.done__green_btn
+{
+   background-image:url("/images/green_btn.gif");
+   border-radius:3px;
+   margin-left:5px;
+}
+.done__green_btn:hover{
+   box-shadow:0 0 3px rgba(156, 214, 49, 0.9);
+}
+.block_for_green_btn_container{
+	right:0;
+	margin:0 5px 0 0;
+}
+
+.done__green_btn .disabled{
+	opacity:0.5;
+	filter: alpha(opacity = 50);
+	cursor: default;
+}
+.done__green_btn{
+	background-repeat:repeat-x;
+	background-position:0 0;
+	height:30px;
+	float:right;
+	cursor:pointer;
+	position:relative;
+	padding:0 8px;
+}
+.block_for_green_btn_container .disabledbutton .left_side,
+.block_for_green_btn_container .disabledbutton .right_side,
+.block_for_green_btn_container .disabledbutton
+{
+background-image:url("/images/green_btn_disabled.gif");
+cursor: default;
+}
+.disabledbutton .center_title_part__grbtn
+{
+    color: #fff;
+    opacity: 1.0;
+    text-shadow: none;
+}
+.center_title_part__grbtn{
+	font-size:14px;
+	color:#fff;
+	font-weight:bold;
+	text-shadow: #71a32a 0 1px 0; /* Ïàðàìåòðû òåíè */
+	line-height:30px;
+	text-align:center;
+	height:30px;
+	white-space:nowrap;
+}
+.activity_row_div_box__hmpg
+{
+    overflow:hidden;
+}
+#ctl00_UpdateProgressPanel
+{
+    position:absolute;
+}
+
+.done   
+{
+    background:#F6BC5D none repeat scroll 0 0;
+    padding:5px 20px 5px 20px;
+    font-size:12px;  
+    text-align:center;    
+    margin:20px auto;   
+    display:none;    
+}  
+.done_wrapper
+{
+    width:100%;
+    text-align:center;    
+    z-index:100001;   
+    top: 20px; 
+    position: fixed;
+}
+.done a   
+{
+    font-size:12px;  
+}
+.tab_items_count
+{
+    color: Gray;
+}
+
+.avatar_box__in_message_template img {border:2px #ccc solid;padding:1px;}
+
+

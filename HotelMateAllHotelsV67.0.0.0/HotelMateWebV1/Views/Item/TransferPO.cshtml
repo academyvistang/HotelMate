@@ -1,0 +1,54 @@
+﻿@model HotelMateWebV1.Models.ItemIndexModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="page-head">
+    <h2>Items</h2>
+    <ol class="breadcrumb">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Stock Order</a></li>
+        <li class="active">Transfer Stock Order</li>
+    </ol>
+</div>
+<div class="cl-mcont">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="block-flat">
+                <div class="header">
+                    <h3>Transfer Stock Order</h3><span>@Html.ActionLink("Create New", "CreatePO")</span>
+                </div>
+                <div class="content">
+                    <div class="table-responsive">
+                        <table class="table no-border hover">
+                            <thead class="no-border">
+                                <tr>
+                                    <th style="width:15%;"><strong>Order Date</strong></th>
+                                    <th style="width:15%;"><strong>Description</strong></th>
+                                    <th style="width:10%;"><strong>Value</strong></th>
+                                    <th style="width:15%;"><strong></strong></th>
+                                </tr>
+                            </thead>
+                            <tbody class="no-border-y">
+                                @foreach (var item in Model.POItemList)
+                                {
+                                    <tr>
+                                        <td>@item.OrderDate</td>
+                                        <td>@item.Description</td>
+                                        <td>@item.NetValue</td>
+                                        <td class="text-center">
+                                        <a class="label label-danger" href="@Url.Action("Distribute", "Item", new { id = item.Id })"><i class="fa fa-briefcase"></i>Transfer Stock</a>
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,104 @@
+﻿@model HotelMateWeb.Dal.DataCore.Adventure
+
+
+<div class="row">
+    <div class="four columns">
+        <a href="@Url.Action("CompleteViewAdventure","Guest", new { id = Model.Id})"> <img src="~/Products/@Model.PicturePath" alt="image" height="300" width="300" /> </a>
+    </div>
+    <div class="eight columns">
+
+        <div class="row">
+            <div class="four columns">
+                <label for="email">Name</label>
+            </div>
+            <div class="four columns">
+                <label for="email">@Model.Name</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="four columns">
+                <label for="email">Description</label>
+            </div>
+            <div class="four columns">
+                <label for="email">@Model.Description</label>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="four columns">
+                <label for="email">Address</label>
+            </div>
+            <div class="four columns">
+                <label for="email">@Model.Address</label>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="four columns">
+                <label for="email">Telephone</label>
+            </div>
+            <div class="four columns">
+                <label for="email">@Model.Telephones</label>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="four columns">
+                <label for="email">Opening/Closing Times</label>
+            </div>
+            <div class="four columns">
+                <label for="email">@Model.OpeningClosing</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="four columns">
+                <label for="email">Website</label>
+            </div>
+            <div class="four columns">
+                <label for="email">@Model.Website</label>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="four columns">
+                <label for="email">Directions</label>
+            </div>
+            <div class="four columns">
+                <a class="erbEditorOpener buttonDevFirst" href="@Url.Action("CompleteViewAdventure", "Guest", new { id = Model.Id })">Get Directions</a>
+            </div>
+        </div>
+        <br />
+       
+
+
+
+        @if(!Model.IsPlaceOfInterest)
+        {
+            <div class="row">
+            <div class="four columns">
+                <label for="email">Book Flight</label>
+            </div>
+            <div class="four columns">
+                <a class="erbEditorOpener buttonDevFirst" href="http://@Model.Website">Book Flight</a>
+            </div>
+        </div>
+            
+            
+            <div class="row">
+            <div class="four columns">
+                <label for="email">Flight Booking Agent</label>
+            </div>
+            <div class="four columns">
+                <a class="erbEditorOpener buttonDevFirst" href="@Url.Action("ContactAgent", "Guest", new { id = Model.Id })">Book Flight Through An Agent</a>
+            </div>
+        </div>
+        }
+     </div>
+</div>
+<hr />

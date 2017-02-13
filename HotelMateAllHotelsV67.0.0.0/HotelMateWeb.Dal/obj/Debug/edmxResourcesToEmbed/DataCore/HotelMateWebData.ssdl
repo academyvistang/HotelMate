@@ -1,0 +1,2666 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HotelMateWebModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Adventure">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Telephones" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="PicturePath" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Latitude" Type="decimal" Precision="18" Scale="8" Nullable="false" />
+    <Property Name="Longitude" Type="decimal" Precision="18" Scale="8" Nullable="false" />
+    <Property Name="OpeningClosing" Type="nvarchar" MaxLength="500" />
+    <Property Name="Website" Type="nvarchar" MaxLength="500" />
+    <Property Name="IsPlaceOfInterest" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BarTable">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TableName" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="TableAlias" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="GuestId" Type="int" Nullable="false" />
+    <Property Name="TableId" Type="int" Nullable="false" />
+    <Property Name="StaffId" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Batch">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BatchDate" Type="date" Nullable="false" />
+    <Property Name="DistributionPointId" Type="int" Nullable="false" />
+    <Property Name="PurchaseOrderItemId" Type="int" Nullable="false" />
+    <Property Name="QuantityTransferred" Type="int" Nullable="false" />
+    <Property Name="POSItemId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BusinessAccount">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ContactName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Telephone" Type="varchar" MaxLength="50" />
+    <Property Name="Mobile" Type="varchar" MaxLength="50" />
+    <Property Name="ContactNumber" Type="varchar" MaxLength="50" />
+    <Property Name="Address" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CompanyName" Type="varchar" MaxLength="50" />
+    <Property Name="CompanyAddress" Type="varchar" MaxLength="50" />
+    <Property Name="CompanyTelephone" Type="varchar" MaxLength="50" />
+    <Property Name="NatureOfBusiness" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="Status" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="HotelId" Type="int" Nullable="false" />
+    <Property Name="Debtor" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BusinessCorporateAccount">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Amount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="TransactionDate" Type="datetime" Nullable="false" />
+    <Property Name="TransactionId" Type="int" />
+    <Property Name="PaymentMethodId" Type="int" Nullable="false" />
+    <Property Name="PaymentMethodNote" Type="nvarchar" MaxLength="500" />
+    <Property Name="BusinessAccountId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BusinessRoomAccounts">
+    <Key>
+      <PropertyRef Name="BusinessAccountId" />
+      <PropertyRef Name="GuestRoomId" />
+    </Key>
+    <Property Name="BusinessAccountId" Type="int" Nullable="false" />
+    <Property Name="GuestRoomId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DamagedBatchItem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NumberDamaged" Type="int" Nullable="false" />
+    <Property Name="ItemId" Type="int" Nullable="false" />
+    <Property Name="BatchId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DistributionPoint">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="DistributionPointManager" Type="int" Nullable="false" />
+    <Property Name="IsSales" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DistributionPointItems">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DistributionPointId" Type="int" Nullable="false" />
+    <Property Name="ItemId" Type="int" Nullable="false" />
+    <Property Name="Quantity" Type="int" Nullable="false" />
+    <Property Name="DateAdded" Type="datetime" Nullable="false" />
+    <Property Name="RecievedBy" Type="int" Nullable="false" />
+    <Property Name="Remaining" Type="int" Nullable="false" />
+    <Property Name="BatchId" Type="int" />
+    <Property Name="PreviousRemaining" Type="int" Nullable="false" />
+    <Property Name="Damaged" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EmployeeShift">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ShiftDate" Type="datetime" Nullable="false" />
+    <Property Name="StartTime" Type="datetime" Nullable="false" />
+    <Property Name="EndTime" Type="datetime" />
+    <Property Name="PersonId" Type="int" Nullable="false" />
+    <Property Name="TotalHotelSalesRecievable" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="TotalSales" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="CloseMethod" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="TotalBarSalesRecievable" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Escort">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Telephone" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Mobile" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="PicturePath" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="EscortPicture">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EscortId" Type="int" Nullable="false" />
+    <Property Name="PicturePath" Type="nvarchar" MaxLength="500" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Expense">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ExpenseDate" Type="datetime" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="Amount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="StaffId" Type="int" Nullable="false" />
+    <Property Name="RoomId" Type="int" />
+    <Property Name="GuestSignature" Type="nvarchar" MaxLength="500" />
+    <Property Name="ExpenseTypeId" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="ExpensesType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="SortOrder" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
+    <Property Name="LastUpdatedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="LastUpdatedDateTime" Type="datetime" />
+    <Property Name="UpdateId" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="500" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FoodMatrix">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RawItemId" Type="int" Nullable="false" />
+    <Property Name="FoodItemId" Type="int" Nullable="false" />
+    <Property Name="Qty" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Guest">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="500" />
+    <Property Name="Address" Type="nvarchar" MaxLength="500" />
+    <Property Name="Telephone" Type="nvarchar" MaxLength="500" />
+    <Property Name="Mobile" Type="nvarchar" MaxLength="500" />
+    <Property Name="CountryId" Type="int" Nullable="false" />
+    <Property Name="CarDetails" Type="nvarchar" MaxLength="500" />
+    <Property Name="Status" Type="nvarchar" MaxLength="500" />
+    <Property Name="Notes" Type="nvarchar" MaxLength="500" />
+    <Property Name="Email" Type="nvarchar" MaxLength="500" />
+    <Property Name="PassportNumber" Type="nvarchar" MaxLength="500" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CompanyId" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="IsFutureReservation" Type="bit" Nullable="false" />
+    <Property Name="HotelId" Type="int" Nullable="false" />
+    <Property Name="PersonId" Type="int" />
+    <Property Name="RoomNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="GuestRoomId" Type="int" />
+    <Property Name="IsChild" Type="bit" Nullable="false" />
+    <Property Name="IsPresent" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GuestBillItem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ItemId" Type="int" Nullable="false" />
+    <Property Name="Quantity" Type="int" Nullable="false" />
+    <Property Name="Price" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="Confirmed" Type="bit" Nullable="false" />
+    <Property Name="Delivered" Type="bit" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="Paid" Type="bit" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="GuestOrderId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GuestChat">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GuestId" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GuestChatMessages">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OwnerId" Type="int" Nullable="false" />
+    <Property Name="StrangerId" Type="int" Nullable="false" />
+    <Property Name="Message" Type="varchar(max)" />
+    <Property Name="DateCreated" Type="datetime" Nullable="false" />
+    <Property Name="MessageBy" Type="varchar" MaxLength="500" />
+    <Property Name="PicturePath" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="GuestCredential">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PersonId" Type="int" Nullable="false" />
+    <Property Name="StartDate" Type="datetime" Nullable="false" />
+    <Property Name="EndDate" Type="datetime" Nullable="false" />
+    <Property Name="PinCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="GuestName" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GuestFeedBack">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Comments" Type="varchar(max)" Nullable="false" />
+    <Property Name="GuestId" Type="int" Nullable="false" />
+    <Property Name="DateCreated" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GuestLedger">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DateCreated" Type="datetime" Nullable="false" />
+    <Property Name="GuestId" Type="int" Nullable="false" />
+    <Property Name="Amount" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="Cashier" Type="int" Nullable="false" />
+    <Property Name="Telephone" Type="varchar" MaxLength="500" />
+    <Property Name="Email" Type="nvarchar" MaxLength="500" />
+    <Property Name="RoomPaymentTypeId" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GuestMessage">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MessageDate" Type="datetime" Nullable="false" />
+    <Property Name="Message" Type="nvarchar" MaxLength="2000" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="TableName" Type="nvarchar" MaxLength="500" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GuestMovie">
+    <Key>
+      <PropertyRef Name="PlaylistId" />
+      <PropertyRef Name="MovieId" />
+    </Key>
+    <Property Name="PlaylistId" Type="int" Nullable="false" />
+    <Property Name="MovieId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GuestOrder">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TableId" Type="int" Nullable="false" />
+    <Property Name="PersonId" Type="int" />
+    <Property Name="Name" Type="nvarchar" MaxLength="500" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="Paid" Type="bit" Nullable="false" />
+    <Property Name="GuestId" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="PreparedByWaitress" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GuestOrderItem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ItemId" Type="int" Nullable="false" />
+    <Property Name="Quantity" Type="int" Nullable="false" />
+    <Property Name="Price" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="Confirmed" Type="bit" Nullable="false" />
+    <Property Name="Delivered" Type="bit" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="Paid" Type="bit" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="GuestOrderId" Type="int" Nullable="false" />
+    <Property Name="WaitreesCanSee" Type="bit" Nullable="false" />
+    <Property Name="GuestCanSee" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GuestPaidItem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ItemId" Type="int" Nullable="false" />
+    <Property Name="Quantity" Type="int" Nullable="false" />
+    <Property Name="Price" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="Confirmed" Type="bit" Nullable="false" />
+    <Property Name="Delivered" Type="bit" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="Paid" Type="bit" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="GuestOrderId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GuestPlaylist">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="500" />
+    <Property Name="GuestId" Type="int" Nullable="false" />
+    <Property Name="DateCreated" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GuestRequestItem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ItemId" Type="int" Nullable="false" />
+    <Property Name="Quantity" Type="int" Nullable="false" />
+    <Property Name="Price" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="Confirmed" Type="bit" Nullable="false" />
+    <Property Name="Delivered" Type="bit" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="Paid" Type="bit" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="GuestOrderId" Type="int" Nullable="false" />
+    <Property Name="RequestBy" Type="varchar" MaxLength="500" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GuestReservation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoomId" Type="int" Nullable="false" />
+    <Property Name="StartDate" Type="datetime" Nullable="false" />
+    <Property Name="EndDate" Type="datetime" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="GuestId" Type="int" Nullable="false" />
+    <Property Name="FutureBooking" Type="bit" Nullable="false" />
+    <Property Name="ForDelete" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GuestRoom">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GuestId" Type="int" Nullable="false" />
+    <Property Name="RoomId" Type="int" Nullable="false" />
+    <Property Name="CheckinDate" Type="datetime" Nullable="false" />
+    <Property Name="CheckoutDate" Type="datetime" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="Notes" Type="nvarchar(max)" />
+    <Property Name="RoomRate" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Occupants" Type="int" Nullable="false" />
+    <Property Name="Children" Type="int" Nullable="false" />
+    <Property Name="GroupBooking" Type="bit" Nullable="false" />
+    <Property Name="GroupBookingMainRoom" Type="bit" Nullable="false" />
+    <Property Name="RoomNumber" Type="nvarchar" MaxLength="500" />
+    <Property Name="SameDayTransfer" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GuestRoomAccount">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GuestRoomId" Type="int" Nullable="false" />
+    <Property Name="Amount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="PaymentTypeId" Type="int" Nullable="false" />
+    <Property Name="TransactionDate" Type="datetime" Nullable="false" />
+    <Property Name="TransactionId" Type="int" />
+    <Property Name="PaymentMethodId" Type="int" Nullable="false" />
+    <Property Name="PaymentMethodNote" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="Hotel">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HotelName" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Telephone" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ContactName" Type="nvarchar" MaxLength="500" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Invoice">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StatusType" Type="int" Nullable="false" />
+    <Property Name="RaisedBy" Type="int" Nullable="false" />
+    <Property Name="AssignedTo" Type="int" Nullable="false" />
+    <Property Name="Supplier" Type="int" />
+    <Property Name="TotalAmount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="InvoiceDate" Type="datetime" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="PurchaseOrderId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="InvoiceStatusType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Item">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UnitPrice" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Description" Type="varchar" MaxLength="50" />
+    <Property Name="Status" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="Quantity" Type="int" Nullable="false" />
+    <Property Name="Category" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="OrigPrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="NotNumber" Type="int" Nullable="false" />
+    <Property Name="NotStatus" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="Picture" Type="image" />
+    <Property Name="ItemName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Checker" Type="timestamp" StoreGeneratedPattern="Computed" />
+    <Property Name="TotalQuantity" Type="int" Nullable="false" />
+    <Property Name="Barcode" Type="varchar" MaxLength="50" />
+    <Property Name="OrderStatus" Type="varchar" MaxLength="50" />
+    <Property Name="DISCOUNT" Type="char" MaxLength="10" />
+    <Property Name="DISCOUNTSTARTDATE" Type="datetime" />
+    <Property Name="DISCOUNTENDDATE" Type="datetime" />
+    <Property Name="DISCOUNTEDPERCENTAGE" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="SubCategory" Type="varchar" MaxLength="50" />
+    <Property Name="HotelId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Movie">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="CategoryId" Type="int" Nullable="false" />
+    <Property Name="Starring" Type="nvarchar" MaxLength="4000" />
+    <Property Name="Year" Type="nvarchar" MaxLength="500" />
+    <Property Name="Filename" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="AdultOnly" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MovieCategory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="Payment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PaymentDate" Type="datetime" Nullable="false" />
+    <Property Name="PaymentMethodId" Type="int" Nullable="false" />
+    <Property Name="Total" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="SubTotal" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="Tax" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="TaxAmount" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="Discount" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DiscountAmount" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="ServiceCharge" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ServiceChargeAmount" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="Resident" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ResidentAmount" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="CashierId" Type="int" Nullable="false" />
+    <Property Name="GuestId" Type="int" />
+    <Property Name="Notes" Type="nvarchar(max)" />
+    <Property Name="ReceiptNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Paid" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="Outstanding" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="Type" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="DistributionPointId" Type="int" />
+    <Property Name="BusinessAccountId" Type="int" />
+    <Property Name="PaymentTypeId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PaymentMethod">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PaymentOrder">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="PaymentDate" Type="datetime" Nullable="false" />
+    <Property Name="TransactionRef" Type="nvarchar" MaxLength="50" />
+    <Property Name="PaymentRef" Type="nvarchar" MaxLength="50" />
+    <Property Name="ResponseCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="TransactionStatus" Type="bit" Nullable="false" />
+    <Property Name="TotalAmount" Type="decimal" Precision="18" Scale="4" />
+    <Property Name="GuestId" Type="int" Nullable="false" />
+    <Property Name="GuestOrderId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Person">
+    <Key>
+      <PropertyRef Name="PersonID" />
+    </Key>
+    <Property Name="PersonID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="MiddleName" Type="nvarchar" MaxLength="300" />
+    <Property Name="Title" Type="nvarchar" MaxLength="300" />
+    <Property Name="BirthDate" Type="datetime" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" MaxLength="600" Nullable="false" />
+    <Property Name="HotelId" Type="int" Nullable="false" />
+    <Property Name="PersonTypeId" Type="int" Nullable="false" />
+    <Property Name="DisplayName" Type="nvarchar" MaxLength="500" />
+    <Property Name="Username" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="StartDate" Type="datetime" />
+    <Property Name="EndDate" Type="datetime" />
+    <Property Name="Guardian" Type="nvarchar" MaxLength="500" />
+    <Property Name="GuardianAddress" Type="nvarchar" MaxLength="500" />
+    <Property Name="PreviousEmployer" Type="nvarchar(max)" />
+    <Property Name="PreviousEmployerStartDate" Type="datetime" />
+    <Property Name="PreviousEmployerEndDate" Type="datetime" />
+    <Property Name="ReasonForLeaving" Type="nvarchar(max)" />
+    <Property Name="Notes" Type="nvarchar(max)" />
+    <Property Name="Telephone" Type="nvarchar" MaxLength="50" />
+    <Property Name="Mobile" Type="nvarchar" MaxLength="50" />
+    <Property Name="JobTitle" Type="nvarchar" MaxLength="500" />
+    <Property Name="CityState" Type="nvarchar" MaxLength="500" />
+    <Property Name="WorkAddress" Type="nvarchar" MaxLength="500" />
+    <Property Name="MaritalStatus" Type="nvarchar" MaxLength="50" />
+    <Property Name="NoOfChildren" Type="nvarchar" MaxLength="500" />
+    <Property Name="PlaceOfBirth" Type="nvarchar" MaxLength="500" />
+    <Property Name="IdNumber" Type="nvarchar" MaxLength="500" />
+    <Property Name="BankDetails" Type="nvarchar" MaxLength="500" />
+    <Property Name="AccountNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="Salary" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Department" Type="nvarchar" MaxLength="50" />
+    <Property Name="Gender" Type="nvarchar" MaxLength="50" />
+    <Property Name="Qualification" Type="nvarchar" MaxLength="500" />
+    <Property Name="PicturePath" Type="nvarchar" MaxLength="500" />
+    <Property Name="FullMember" Type="bit" Nullable="false" />
+    <Property Name="DistributionPointId" Type="int" />
+  </EntityType>
+  <EntityType Name="PersonType">
+    <Key>
+      <PropertyRef Name="PersonTypeId" />
+    </Key>
+    <Property Name="PersonTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="HotelId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Pictural">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DateCreated" Type="datetime" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="PicturePath" Type="nvarchar" MaxLength="1000" Nullable="false" />
+  </EntityType>
+  <EntityType Name="POSItems">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ItemId" Type="int" Nullable="false" />
+    <Property Name="Quantity" Type="int" Nullable="false" />
+    <Property Name="Remaining" Type="int" Nullable="false" />
+    <Property Name="DistributionPointId" Type="int" Nullable="false" />
+    <Property Name="Invinsible" Type="bit" Nullable="false" />
+    <Property Name="PreviousQty" Type="int" />
+    <Property Name="PreviousRemaining" Type="int" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="Damaged" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PrinterTable">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TableId" Type="int" Nullable="false" />
+    <Property Name="DateTime" Type="datetime" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PurchaseOrder">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="OrderDate" Type="datetime" Nullable="false" />
+    <Property Name="RaisedBy" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="NetValue" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="BaseNetValue" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="InvoiceRaised" Type="bit" Nullable="false" />
+    <Property Name="GoodsRecieved" Type="bit" Nullable="false" />
+    <Property Name="GoodsBought" Type="bit" Nullable="false" />
+    <Property Name="Completed" Type="bit" Nullable="false" />
+    <Property Name="Notes" Type="nvarchar(max)" />
+    <Property Name="SupplierInvoice" Type="nvarchar" MaxLength="500" />
+    <Property Name="InvoicePath" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="PurchaseOrderItem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ItemId" Type="int" Nullable="false" />
+    <Property Name="PurchaseOrderId" Type="int" Nullable="false" />
+    <Property Name="Qty" Type="int" Nullable="false" />
+    <Property Name="TotalPrice" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="QtyRecieved" Type="int" Nullable="false" />
+    <Property Name="Returns" Type="int" Nullable="false" />
+    <Property Name="ReturnValue" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PurchaseOrderStoreType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Room">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoomNumber" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="NoOfBeds" Type="int" Nullable="false" />
+    <Property Name="StatusId" Type="int" Nullable="false" />
+    <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Smoking" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="RoomType" Type="int" Nullable="false" />
+    <Property Name="ExtNumber" Type="varchar" MaxLength="50" />
+    <Property Name="Notes" Type="varchar" MaxLength="5000" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="BusinessPrice" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="HotelId" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RoomPaymentType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="PaymentStatusId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RoomPaymentTypeStatus">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RoomPictures">
+    <Key>
+      <PropertyRef Name="PicturalId" />
+      <PropertyRef Name="RoomId" />
+    </Key>
+    <Property Name="PicturalId" Type="int" Nullable="false" />
+    <Property Name="RoomId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RoomStatus">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RoomTransferHistory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Notes" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="OldRoomId" Type="int" Nullable="false" />
+    <Property Name="NewRoomId" Type="int" Nullable="false" />
+    <Property Name="OldGuestId" Type="int" Nullable="false" />
+    <Property Name="NewGuestId" Type="int" Nullable="false" />
+    <Property Name="TransferDate" Type="datetime" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="OldRoomNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="OldGuestName" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="RoomType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="HotelId" Type="int" />
+  </EntityType>
+  <EntityType Name="SalesDiscount">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DiscountDate" Type="datetime" Nullable="false" />
+    <Property Name="ReceiptNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Amount" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+    <Property Name="PersonId" Type="int" Nullable="false" />
+    <Property Name="ActualCashierId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SchoolPictures">
+    <Key>
+      <PropertyRef Name="SchoolPicturesId" />
+    </Key>
+    <Property Name="SchoolPicturesId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ContentType" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Filename" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="ModifiedDate" Type="datetime" />
+    <Property Name="Binary" Type="varbinary(max)" />
+    <Property Name="Caption" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="SoldItemsAll">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ItemId" Type="int" Nullable="false" />
+    <Property Name="Qty" Type="int" Nullable="false" />
+    <Property Name="TotalPrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="TransactionId" Type="int" Nullable="false" />
+    <Property Name="DateSold" Type="datetime" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="PersonId" Type="int" Nullable="false" />
+    <Property Name="TillOpen" Type="bit" Nullable="false" />
+    <Property Name="PaymentTypeId" Type="int" />
+    <Property Name="GuestId" Type="int" />
+    <Property Name="PaymentMethodId" Type="int" Nullable="false" />
+    <Property Name="PaymentMethodNote" Type="nvarchar" MaxLength="500" />
+    <Property Name="TimeOfSale" Type="datetime" Nullable="false" />
+    <Property Name="DistributionPointId" Type="int" Nullable="false" />
+    <Property Name="BusinessAccountId" Type="int" />
+    <Property Name="RecieptNumber" Type="nvarchar" MaxLength="500" />
+    <Property Name="ReasonForVoid" Type="nvarchar" MaxLength="3000" />
+  </EntityType>
+  <EntityType Name="StockItem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UnitPrice" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Description" Type="varchar" MaxLength="500" />
+    <Property Name="PicturePath" Type="varchar" MaxLength="500" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="Status" Type="char" MaxLength="20" Nullable="false" />
+    <Property Name="Quantity" Type="int" Nullable="false" />
+    <Property Name="CategoryId" Type="int" Nullable="false" />
+    <Property Name="OrigPrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="NotNumber" Type="int" Nullable="false" />
+    <Property Name="NotStatus" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="StockItemName" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="Checker" Type="timestamp" StoreGeneratedPattern="Computed" />
+    <Property Name="TotalQuantity" Type="int" Nullable="false" />
+    <Property Name="Barcode" Type="varchar" MaxLength="500" />
+    <Property Name="OrderStatus" Type="varchar" MaxLength="500" />
+    <Property Name="DISCOUNT" Type="char" MaxLength="10" />
+    <Property Name="DISCOUNTSTARTDATE" Type="datetime" />
+    <Property Name="DISCOUNTENDDATE" Type="datetime" />
+    <Property Name="DISCOUNTEDPERCENTAGE" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="HotelId" Type="int" Nullable="false" />
+    <Property Name="ForSale" Type="bit" Nullable="false" />
+    <Property Name="CookedFood" Type="bit" Nullable="false" />
+    <Property Name="KitchenOnly" Type="bit" Nullable="false" />
+    <Property Name="Discounted" Type="bit" Nullable="false" />
+    <Property Name="RawItem" Type="bit" Nullable="false" />
+    <Property Name="StarBuy" Type="bit" Nullable="false" />
+    <Property Name="ClubPrice" Type="decimal" Precision="18" Scale="4" />
+  </EntityType>
+  <EntityType Name="Store">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="StoreManager" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StoreItems">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StoreId" Type="int" Nullable="false" />
+    <Property Name="ItemId" Type="int" Nullable="false" />
+    <Property Name="Quantity" Type="int" Nullable="false" />
+    <Property Name="DateAdded" Type="datetime" Nullable="false" />
+    <Property Name="RecievedBy" Type="int" Nullable="false" />
+    <Property Name="Remaining" Type="int" Nullable="false" />
+    <Property Name="Damaged" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Supplier">
+    <Key>
+      <PropertyRef Name="SupplierID" />
+    </Key>
+    <Property Name="SupplierID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="MiddleName" Type="nvarchar" MaxLength="300" />
+    <Property Name="Title" Type="nvarchar" MaxLength="300" />
+    <Property Name="BirthDate" Type="datetime" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" MaxLength="600" Nullable="false" />
+    <Property Name="HotelId" Type="int" Nullable="false" />
+    <Property Name="SupplierTypeId" Type="int" Nullable="false" />
+    <Property Name="DisplayName" Type="nvarchar" MaxLength="500" />
+    <Property Name="Username" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="StartDate" Type="datetime" />
+    <Property Name="EndDate" Type="datetime" />
+    <Property Name="Guardian" Type="nvarchar" MaxLength="500" />
+    <Property Name="GuardianAddress" Type="nvarchar" MaxLength="500" />
+    <Property Name="PreviousEmployer" Type="nvarchar(max)" />
+    <Property Name="PreviousEmployerStartDate" Type="datetime" />
+    <Property Name="PreviousEmployerEndDate" Type="datetime" />
+    <Property Name="ReasonForLeaving" Type="nvarchar(max)" />
+    <Property Name="Notes" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="TableItem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TableId" Type="int" Nullable="false" />
+    <Property Name="ItemId" Type="int" Nullable="false" />
+    <Property Name="Qty" Type="int" Nullable="false" />
+    <Property Name="DateSold" Type="datetime" Nullable="false" />
+    <Property Name="Cashier" Type="int" Nullable="false" />
+    <Property Name="GuestOrderItemId" Type="int" />
+    <Property Name="Fulfilled" Type="bit" Nullable="false" />
+    <Property Name="Collected" Type="bit" Nullable="false" />
+    <Property Name="CompletedTime" Type="datetime" />
+    <Property Name="CollectedTime" Type="datetime" />
+    <Property Name="Completed" Type="bit" Nullable="false" />
+    <Property Name="StoreFulfilled" Type="bit" Nullable="false" />
+    <Property Name="StoreFulfilledTime" Type="datetime" />
+    <Property Name="SentToPOS" Type="bit" Nullable="false" />
+    <Property Name="Note" Type="nvarchar" MaxLength="2000" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="SentToPrinter" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Taxi">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Telephone" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Mobile" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="PicturePath" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="Transaction">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TranscationDate" Type="datetime" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="Amount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="StaffId" Type="int" Nullable="false" />
+    <Property Name="GuestSignature" Type="nvarchar" MaxLength="500" />
+    <Property Name="GuestId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TransactionItem">
+    <Key>
+      <PropertyRef Name="TransactionId" />
+      <PropertyRef Name="ItemId" />
+    </Key>
+    <Property Name="TransactionId" Type="int" Nullable="false" />
+    <Property Name="ItemId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_BarTable_BarTableGuest">
+    <End Role="Guest" Type="Self.Guest" Multiplicity="1" />
+    <End Role="BarTable" Type="Self.BarTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Guest">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BarTable">
+        <PropertyRef Name="GuestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BarTable_BarTableStaff">
+    <End Role="Person" Type="Self.Person" Multiplicity="1" />
+    <End Role="BarTable" Type="Self.BarTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="BarTable">
+        <PropertyRef Name="StaffId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Batch_BatchDistributionPoint">
+    <End Role="DistributionPoint" Type="Self.DistributionPoint" Multiplicity="1" />
+    <End Role="Batch" Type="Self.Batch" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DistributionPoint">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Batch">
+        <PropertyRef Name="DistributionPointId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Batch_BatchPOI">
+    <End Role="PurchaseOrderItem" Type="Self.PurchaseOrderItem" Multiplicity="1" />
+    <End Role="Batch" Type="Self.Batch" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PurchaseOrderItem">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Batch">
+        <PropertyRef Name="PurchaseOrderItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BusinessAccount_BusinessAccountHotel">
+    <End Role="Hotel" Type="Self.Hotel" Multiplicity="1" />
+    <End Role="BusinessAccount" Type="Self.BusinessAccount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BusinessAccount">
+        <PropertyRef Name="HotelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BusinessAccounts_GuestRooms">
+    <End Role="GuestRoom" Type="Self.GuestRoom" Multiplicity="1" />
+    <End Role="BusinessRoomAccounts" Type="Self.BusinessRoomAccounts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GuestRoom">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BusinessRoomAccounts">
+        <PropertyRef Name="GuestRoomId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BusinessAccounts_Trans">
+    <End Role="BusinessAccount" Type="Self.BusinessAccount" Multiplicity="1" />
+    <End Role="BusinessRoomAccounts" Type="Self.BusinessRoomAccounts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessAccount">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BusinessRoomAccounts">
+        <PropertyRef Name="BusinessAccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BusinessCorporateAccount_BusinessCorporateAccountCompany">
+    <End Role="BusinessAccount" Type="Self.BusinessAccount" Multiplicity="1" />
+    <End Role="BusinessCorporateAccount" Type="Self.BusinessCorporateAccount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessAccount">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BusinessCorporateAccount">
+        <PropertyRef Name="BusinessAccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BusinessCorporateAccount_BusinessCorporateAccountPaymentMethod">
+    <End Role="PaymentMethod" Type="Self.PaymentMethod" Multiplicity="1" />
+    <End Role="BusinessCorporateAccount" Type="Self.BusinessCorporateAccount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PaymentMethod">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BusinessCorporateAccount">
+        <PropertyRef Name="PaymentMethodId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BusinessCorporateAccount_BusinessCorporateAccountPerson">
+    <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+    <End Role="BusinessCorporateAccount" Type="Self.BusinessCorporateAccount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="BusinessCorporateAccount">
+        <PropertyRef Name="TransactionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DamagedBatchItem_DamagedBatchItemBatch">
+    <End Role="Batch" Type="Self.Batch" Multiplicity="1" />
+    <End Role="DamagedBatchItem" Type="Self.DamagedBatchItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Batch">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DamagedBatchItem">
+        <PropertyRef Name="BatchId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DamagedBatchItem_DamagedBatchItemItem">
+    <End Role="StockItem" Type="Self.StockItem" Multiplicity="1" />
+    <End Role="DamagedBatchItem" Type="Self.DamagedBatchItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StockItem">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DamagedBatchItem">
+        <PropertyRef Name="ItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DistributionItems_DistributionItemsDistributionPoint">
+    <End Role="DistributionPoint" Type="Self.DistributionPoint" Multiplicity="1" />
+    <End Role="DistributionPointItems" Type="Self.DistributionPointItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DistributionPoint">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DistributionPointItems">
+        <PropertyRef Name="DistributionPointId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DistributionItems_DistributionItemsItem">
+    <End Role="StockItem" Type="Self.StockItem" Multiplicity="1" />
+    <End Role="DistributionPointItems" Type="Self.DistributionPointItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StockItem">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DistributionPointItems">
+        <PropertyRef Name="ItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DistributionPoint_DistributionPointManager">
+    <End Role="Person" Type="Self.Person" Multiplicity="1" />
+    <End Role="DistributionPoint" Type="Self.DistributionPoint" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="DistributionPoint">
+        <PropertyRef Name="DistributionPointManager" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DistributionPointItems_DistributionPointItemsBatch">
+    <End Role="Batch" Type="Self.Batch" Multiplicity="0..1" />
+    <End Role="DistributionPointItems" Type="Self.DistributionPointItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Batch">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DistributionPointItems">
+        <PropertyRef Name="BatchId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DistributionPointItems_DistributionPointItemsRecievedBy">
+    <End Role="Person" Type="Self.Person" Multiplicity="1" />
+    <End Role="DistributionPointItems" Type="Self.DistributionPointItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="DistributionPointItems">
+        <PropertyRef Name="RecievedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EmployeeShift_EmployeeShiftPerson">
+    <End Role="Person" Type="Self.Person" Multiplicity="1" />
+    <End Role="EmployeeShift" Type="Self.EmployeeShift" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="EmployeeShift">
+        <PropertyRef Name="PersonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EscortPicture_Escort">
+    <End Role="Escort" Type="Self.Escort" Multiplicity="1" />
+    <End Role="EscortPicture" Type="Self.EscortPicture" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Escort">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EscortPicture">
+        <PropertyRef Name="EscortId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Expense_ExpenseStaff">
+    <End Role="Person" Type="Self.Person" Multiplicity="1" />
+    <End Role="Expense" Type="Self.Expense" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="Expense">
+        <PropertyRef Name="StaffId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Expense_ExpensesType">
+    <End Role="ExpensesType" Type="Self.ExpensesType" Multiplicity="1" />
+    <End Role="Expense" Type="Self.Expense" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ExpensesType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Expense">
+        <PropertyRef Name="ExpenseTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FoodMatrix_FoodMatrixCookedFood">
+    <End Role="StockItem" Type="Self.StockItem" Multiplicity="1" />
+    <End Role="FoodMatrix" Type="Self.FoodMatrix" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StockItem">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FoodMatrix">
+        <PropertyRef Name="FoodItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FoodMatrix_FoodMatrixRawItem">
+    <End Role="StockItem" Type="Self.StockItem" Multiplicity="1" />
+    <End Role="FoodMatrix" Type="Self.FoodMatrix" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StockItem">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FoodMatrix">
+        <PropertyRef Name="RawItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GuesRoomAccount_GuestRoom">
+    <End Role="GuestRoom" Type="Self.GuestRoom" Multiplicity="1" />
+    <End Role="GuestRoomAccount" Type="Self.GuestRoomAccount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GuestRoom">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GuestRoomAccount">
+        <PropertyRef Name="GuestRoomId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Guest_CompanyGuest">
+    <End Role="BusinessAccount" Type="Self.BusinessAccount" Multiplicity="0..1" />
+    <End Role="Guest" Type="Self.Guest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessAccount">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Guest">
+        <PropertyRef Name="CompanyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Guest_GuestHotel">
+    <End Role="Hotel" Type="Self.Hotel" Multiplicity="1" />
+    <End Role="Guest" Type="Self.Guest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Guest">
+        <PropertyRef Name="HotelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Guest_GuestPerson">
+    <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+    <End Role="Guest" Type="Self.Guest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="Guest">
+        <PropertyRef Name="PersonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GuestChat_GuestChatGuest">
+    <End Role="Guest" Type="Self.Guest" Multiplicity="1" />
+    <End Role="GuestChat" Type="Self.GuestChat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Guest">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GuestChat">
+        <PropertyRef Name="GuestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GuestChatMessages_GuestChatMessagesOwner">
+    <End Role="Guest" Type="Self.Guest" Multiplicity="1" />
+    <End Role="GuestChatMessages" Type="Self.GuestChatMessages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Guest">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GuestChatMessages">
+        <PropertyRef Name="OwnerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GuestChatMessages_GuestChatMessagesStranger">
+    <End Role="Guest" Type="Self.Guest" Multiplicity="1" />
+    <End Role="GuestChatMessages" Type="Self.GuestChatMessages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Guest">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GuestChatMessages">
+        <PropertyRef Name="StrangerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GuestCredential_GuestCredentialPerson">
+    <End Role="Person" Type="Self.Person" Multiplicity="1" />
+    <End Role="GuestCredential" Type="Self.GuestCredential" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="GuestCredential">
+        <PropertyRef Name="PersonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GuestFeedBack_Guest">
+    <End Role="Guest" Type="Self.Guest" Multiplicity="1" />
+    <End Role="GuestFeedBack" Type="Self.GuestFeedBack" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Guest">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GuestFeedBack">
+        <PropertyRef Name="GuestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GuestLedger_GuestLedgerCashier">
+    <End Role="Person" Type="Self.Person" Multiplicity="1" />
+    <End Role="GuestLedger" Type="Self.GuestLedger" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="GuestLedger">
+        <PropertyRef Name="Cashier" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GuestLedger_GuestLedgerGuest">
+    <End Role="Guest" Type="Self.Guest" Multiplicity="1" />
+    <End Role="GuestLedger" Type="Self.GuestLedger" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Guest">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GuestLedger">
+        <PropertyRef Name="GuestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GuestLedger_GuestLedgerPaymentType">
+    <End Role="RoomPaymentType" Type="Self.RoomPaymentType" Multiplicity="1" />
+    <End Role="GuestLedger" Type="Self.GuestLedger" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoomPaymentType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GuestLedger">
+        <PropertyRef Name="RoomPaymentTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GuestMovieYear_Guest">
+    <End Role="GuestPlaylist" Type="Self.GuestPlaylist" Multiplicity="1" />
+    <End Role="GuestMovie" Type="Self.GuestMovie" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GuestPlaylist">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GuestMovie">
+        <PropertyRef Name="PlaylistId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GuestMovieYear_Movie">
+    <End Role="Movie" Type="Self.Movie" Multiplicity="1" />
+    <End Role="GuestMovie" Type="Self.GuestMovie" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Movie">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GuestMovie">
+        <PropertyRef Name="MovieId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GuestOrder_GuestOrderGuest">
+    <End Role="Guest" Type="Self.Guest" Multiplicity="1" />
+    <End Role="GuestOrder" Type="Self.GuestOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Guest">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GuestOrder">
+        <PropertyRef Name="GuestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GuestOrder_GuestOrderTable">
+    <End Role="BarTable" Type="Self.BarTable" Multiplicity="1" />
+    <End Role="GuestOrder" Type="Self.GuestOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BarTable">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GuestOrder">
+        <PropertyRef Name="TableId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GuestOrder_GuestOrderWaiter">
+    <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+    <End Role="GuestOrder" Type="Self.GuestOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="GuestOrder">
+        <PropertyRef Name="PersonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GuestOrderItem_GuestOrder">
+    <End Role="GuestOrder" Type="Self.GuestOrder" Multiplicity="1" />
+    <End Role="GuestOrderItem" Type="Self.GuestOrderItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GuestOrder">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GuestOrderItem">
+        <PropertyRef Name="GuestOrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GuestOrderItem_GuestOrderItemItem">
+    <End Role="StockItem" Type="Self.StockItem" Multiplicity="1" />
+    <End Role="GuestOrderItem" Type="Self.GuestOrderItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StockItem">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GuestOrderItem">
+        <PropertyRef Name="ItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GuestRequestItem_GuestRequest">
+    <End Role="GuestOrder" Type="Self.GuestOrder" Multiplicity="1" />
+    <End Role="GuestRequestItem" Type="Self.GuestRequestItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GuestOrder">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GuestRequestItem">
+        <PropertyRef Name="GuestOrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GuestRequestItem_GuestRequestItemItem">
+    <End Role="StockItem" Type="Self.StockItem" Multiplicity="1" />
+    <End Role="GuestRequestItem" Type="Self.GuestRequestItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StockItem">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GuestRequestItem">
+        <PropertyRef Name="ItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GuestReservation_GuestReservationGuest">
+    <End Role="Guest" Type="Self.Guest" Multiplicity="1" />
+    <End Role="GuestReservation" Type="Self.GuestReservation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Guest">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GuestReservation">
+        <PropertyRef Name="GuestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GuestReservation_GuestReservationRoom">
+    <End Role="Room" Type="Self.Room" Multiplicity="1" />
+    <End Role="GuestReservation" Type="Self.GuestReservation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Room">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GuestReservation">
+        <PropertyRef Name="RoomId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GuestRoom_GuestRoomGuest">
+    <End Role="Guest" Type="Self.Guest" Multiplicity="1" />
+    <End Role="GuestRoom" Type="Self.GuestRoom" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Guest">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GuestRoom">
+        <PropertyRef Name="GuestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GuestRoom_GuestRoomRoom">
+    <End Role="Room" Type="Self.Room" Multiplicity="1" />
+    <End Role="GuestRoom" Type="Self.GuestRoom" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Room">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GuestRoom">
+        <PropertyRef Name="RoomId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GuestRoomAccount_GuestRoomAccountPayment">
+    <End Role="RoomPaymentType" Type="Self.RoomPaymentType" Multiplicity="1" />
+    <End Role="GuestRoomAccount" Type="Self.GuestRoomAccount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoomPaymentType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GuestRoomAccount">
+        <PropertyRef Name="PaymentTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GuestRoomAccount_GuestRoomAccountPaymentMethod">
+    <End Role="PaymentMethod" Type="Self.PaymentMethod" Multiplicity="1" />
+    <End Role="GuestRoomAccount" Type="Self.GuestRoomAccount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PaymentMethod">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GuestRoomAccount">
+        <PropertyRef Name="PaymentMethodId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GuestRoomAccount_GuestRoomAccountPerson">
+    <End Role="Person" Type="Self.Person" Multiplicity="0..1" />
+    <End Role="GuestRoomAccount" Type="Self.GuestRoomAccount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="GuestRoomAccount">
+        <PropertyRef Name="TransactionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GuestTemporalItem_GuestOrder">
+    <End Role="GuestOrder" Type="Self.GuestOrder" Multiplicity="1" />
+    <End Role="GuestBillItem" Type="Self.GuestBillItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GuestOrder">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GuestBillItem">
+        <PropertyRef Name="GuestOrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GuestTemporalItem_GuestTemporalItemItem">
+    <End Role="StockItem" Type="Self.StockItem" Multiplicity="1" />
+    <End Role="GuestBillItem" Type="Self.GuestBillItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StockItem">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GuestBillItem">
+        <PropertyRef Name="ItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Invoice_InvoiceAssignedTo">
+    <End Role="Person" Type="Self.Person" Multiplicity="1" />
+    <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="Invoice">
+        <PropertyRef Name="AssignedTo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Invoice_InvoiceCreator">
+    <End Role="Person" Type="Self.Person" Multiplicity="1" />
+    <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="Invoice">
+        <PropertyRef Name="RaisedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Invoice_InvoicePO">
+    <End Role="PurchaseOrder" Type="Self.PurchaseOrder" Multiplicity="1" />
+    <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PurchaseOrder">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Invoice">
+        <PropertyRef Name="PurchaseOrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Invoice_InvoiceStatus">
+    <End Role="InvoiceStatusType" Type="Self.InvoiceStatusType" Multiplicity="1" />
+    <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InvoiceStatusType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Invoice">
+        <PropertyRef Name="StatusType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Item_ItemHotel">
+    <End Role="Hotel" Type="Self.Hotel" Multiplicity="1" />
+    <End Role="Item" Type="Self.Item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Item">
+        <PropertyRef Name="HotelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Item_ItemTransaction">
+    <End Role="Item" Type="Self.Item" Multiplicity="1" />
+    <End Role="Item1" Type="Self.Item" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Item">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Item1">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Movie_MovieCategory">
+    <End Role="MovieCategory" Type="Self.MovieCategory" Multiplicity="1" />
+    <End Role="Movie" Type="Self.Movie" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MovieCategory">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Movie">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Payment_PaymentBA">
+    <End Role="BusinessAccount" Type="Self.BusinessAccount" Multiplicity="0..1" />
+    <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessAccount">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="BusinessAccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Payment_PaymentCashier">
+    <End Role="Person" Type="Self.Person" Multiplicity="1" />
+    <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="CashierId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Payment_PaymentDistributionPoint">
+    <End Role="DistributionPoint" Type="Self.DistributionPoint" Multiplicity="0..1" />
+    <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DistributionPoint">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="DistributionPointId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Payment_PaymentGuest">
+    <End Role="Guest" Type="Self.Guest" Multiplicity="0..1" />
+    <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Guest">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="GuestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Payment_PaymentMethod">
+    <End Role="PaymentMethod" Type="Self.PaymentMethod" Multiplicity="1" />
+    <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PaymentMethod">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="PaymentMethodId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Payment_PaymentPaymentType">
+    <End Role="RoomPaymentType" Type="Self.RoomPaymentType" Multiplicity="1" />
+    <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoomPaymentType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Payment">
+        <PropertyRef Name="PaymentTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PaymentOrder_PaymentOrderGuest">
+    <End Role="Guest" Type="Self.Guest" Multiplicity="1" />
+    <End Role="PaymentOrder" Type="Self.PaymentOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Guest">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PaymentOrder">
+        <PropertyRef Name="GuestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PaymentOrder_PaymentOrderGuestOrder">
+    <End Role="GuestOrder" Type="Self.GuestOrder" Multiplicity="1" />
+    <End Role="PaymentOrder" Type="Self.PaymentOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GuestOrder">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PaymentOrder">
+        <PropertyRef Name="GuestOrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Person_PersonDistributionPoint">
+    <End Role="DistributionPoint" Type="Self.DistributionPoint" Multiplicity="0..1" />
+    <End Role="Person" Type="Self.Person" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DistributionPoint">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Person">
+        <PropertyRef Name="DistributionPointId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Person_PersonHotel">
+    <End Role="Hotel" Type="Self.Hotel" Multiplicity="1" />
+    <End Role="Person" Type="Self.Person" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Person">
+        <PropertyRef Name="HotelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Person_PersonType">
+    <End Role="PersonType" Type="Self.PersonType" Multiplicity="1" />
+    <End Role="Person" Type="Self.Person" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PersonType">
+        <PropertyRef Name="PersonTypeId" />
+      </Principal>
+      <Dependent Role="Person">
+        <PropertyRef Name="PersonTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PersonType_PersonTypeHotel">
+    <End Role="Hotel" Type="Self.Hotel" Multiplicity="1" />
+    <End Role="PersonType" Type="Self.PersonType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PersonType">
+        <PropertyRef Name="HotelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Picturals_Rooms">
+    <End Role="Room" Type="Self.Room" Multiplicity="1" />
+    <End Role="RoomPictures" Type="Self.RoomPictures" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Room">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RoomPictures">
+        <PropertyRef Name="RoomId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Picturals_Trans">
+    <End Role="Pictural" Type="Self.Pictural" Multiplicity="1" />
+    <End Role="RoomPictures" Type="Self.RoomPictures" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pictural">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RoomPictures">
+        <PropertyRef Name="PicturalId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Playlist_PlaylistGuest">
+    <End Role="Guest" Type="Self.Guest" Multiplicity="1" />
+    <End Role="GuestPlaylist" Type="Self.GuestPlaylist" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Guest">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GuestPlaylist">
+        <PropertyRef Name="GuestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_POSItems_POSItemsDistributionPoint">
+    <End Role="DistributionPoint" Type="Self.DistributionPoint" Multiplicity="1" />
+    <End Role="POSItems" Type="Self.POSItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DistributionPoint">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="POSItems">
+        <PropertyRef Name="DistributionPointId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_POSItems_POSItemsStockItem">
+    <End Role="StockItem" Type="Self.StockItem" Multiplicity="1" />
+    <End Role="POSItems" Type="Self.POSItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StockItem">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="POSItems">
+        <PropertyRef Name="ItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PrinterTable_PrinterTableBarTable">
+    <End Role="BarTable" Type="Self.BarTable" Multiplicity="1" />
+    <End Role="PrinterTable" Type="Self.PrinterTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BarTable">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PrinterTable">
+        <PropertyRef Name="TableId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PurchaseOrderItem_PurchaseOrderItemPO">
+    <End Role="PurchaseOrder" Type="Self.PurchaseOrder" Multiplicity="1" />
+    <End Role="PurchaseOrderItem" Type="Self.PurchaseOrderItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PurchaseOrder">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PurchaseOrderItem">
+        <PropertyRef Name="PurchaseOrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PurchaseOrderItem_PurchaseOrderItemStockItem">
+    <End Role="StockItem" Type="Self.StockItem" Multiplicity="1" />
+    <End Role="PurchaseOrderItem" Type="Self.PurchaseOrderItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StockItem">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PurchaseOrderItem">
+        <PropertyRef Name="ItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Room_RoomHotel">
+    <End Role="Hotel" Type="Self.Hotel" Multiplicity="1" />
+    <End Role="Room" Type="Self.Room" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Room">
+        <PropertyRef Name="HotelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Room_RoomStatus">
+    <End Role="RoomStatus" Type="Self.RoomStatus" Multiplicity="1" />
+    <End Role="Room" Type="Self.Room" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoomStatus">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Room">
+        <PropertyRef Name="StatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Room_RoomType">
+    <End Role="RoomType" Type="Self.RoomType" Multiplicity="1" />
+    <End Role="Room" Type="Self.Room" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoomType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Room">
+        <PropertyRef Name="RoomType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RoomPaymentType_RoomPaymentTypeStatus">
+    <End Role="RoomPaymentTypeStatus" Type="Self.RoomPaymentTypeStatus" Multiplicity="1" />
+    <End Role="RoomPaymentType" Type="Self.RoomPaymentType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoomPaymentTypeStatus">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RoomPaymentType">
+        <PropertyRef Name="PaymentStatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RoomTransferHistory_NewGuest">
+    <End Role="Guest" Type="Self.Guest" Multiplicity="1" />
+    <End Role="RoomTransferHistory" Type="Self.RoomTransferHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Guest">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="RoomTransferHistory">
+        <PropertyRef Name="NewGuestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalesDiscount_SalesDiscountPerson">
+    <End Role="Person" Type="Self.Person" Multiplicity="1" />
+    <End Role="SalesDiscount" Type="Self.SalesDiscount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="SalesDiscount">
+        <PropertyRef Name="PersonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SoldItemsAll_SoldItemsAllBA">
+    <End Role="BusinessAccount" Type="Self.BusinessAccount" Multiplicity="0..1" />
+    <End Role="SoldItemsAll" Type="Self.SoldItemsAll" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessAccount">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SoldItemsAll">
+        <PropertyRef Name="BusinessAccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SoldItemsAll_SoldItemsAllDistributionPoint">
+    <End Role="DistributionPoint" Type="Self.DistributionPoint" Multiplicity="1" />
+    <End Role="SoldItemsAll" Type="Self.SoldItemsAll" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DistributionPoint">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SoldItemsAll">
+        <PropertyRef Name="DistributionPointId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SoldItemsAll_SoldItemsAllGuest">
+    <End Role="Guest" Type="Self.Guest" Multiplicity="0..1" />
+    <End Role="SoldItemsAll" Type="Self.SoldItemsAll" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Guest">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SoldItemsAll">
+        <PropertyRef Name="GuestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SoldItemsAll_SoldItemsAllItem">
+    <End Role="StockItem" Type="Self.StockItem" Multiplicity="1" />
+    <End Role="SoldItemsAll" Type="Self.SoldItemsAll" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StockItem">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SoldItemsAll">
+        <PropertyRef Name="ItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SoldItemsAll_SoldItemsAllPaymentMethod">
+    <End Role="PaymentMethod" Type="Self.PaymentMethod" Multiplicity="1" />
+    <End Role="SoldItemsAll" Type="Self.SoldItemsAll" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PaymentMethod">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SoldItemsAll">
+        <PropertyRef Name="PaymentMethodId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SoldItemsAll_SoldItemsAllPerson">
+    <End Role="Person" Type="Self.Person" Multiplicity="1" />
+    <End Role="SoldItemsAll" Type="Self.SoldItemsAll" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="SoldItemsAll">
+        <PropertyRef Name="PersonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StockItem_StockItemHotel">
+    <End Role="Hotel" Type="Self.Hotel" Multiplicity="1" />
+    <End Role="StockItem" Type="Self.StockItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hotel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StockItem">
+        <PropertyRef Name="HotelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StockItem_StockItemTransaction">
+    <End Role="StockItem" Type="Self.StockItem" Multiplicity="1" />
+    <End Role="StockItem1" Type="Self.StockItem" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="StockItem">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StockItem1">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Store_StoreManager">
+    <End Role="Person" Type="Self.Person" Multiplicity="1" />
+    <End Role="Store" Type="Self.Store" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="Store">
+        <PropertyRef Name="StoreManager" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StoreItems_StoreItemsRecievedBy">
+    <End Role="Person" Type="Self.Person" Multiplicity="1" />
+    <End Role="StoreItems" Type="Self.StoreItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="StoreItems">
+        <PropertyRef Name="RecievedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StoteItems_StoteItemsItem">
+    <End Role="StockItem" Type="Self.StockItem" Multiplicity="1" />
+    <End Role="StoreItems" Type="Self.StoreItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StockItem">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StoreItems">
+        <PropertyRef Name="ItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StoteItems_StoteItemsStore">
+    <End Role="Store" Type="Self.Store" Multiplicity="1" />
+    <End Role="StoreItems" Type="Self.StoreItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Store">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StoreItems">
+        <PropertyRef Name="StoreId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TableItem_TableItemBarTable">
+    <End Role="BarTable" Type="Self.BarTable" Multiplicity="1" />
+    <End Role="TableItem" Type="Self.TableItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BarTable">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TableItem">
+        <PropertyRef Name="TableId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TableItem_TableItemStockItem">
+    <End Role="StockItem" Type="Self.StockItem" Multiplicity="1" />
+    <End Role="TableItem" Type="Self.TableItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StockItem">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TableItem">
+        <PropertyRef Name="ItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transaction_TransactionGuest">
+    <End Role="Guest" Type="Self.Guest" Multiplicity="1" />
+    <End Role="Transaction" Type="Self.Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Guest">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Transaction">
+        <PropertyRef Name="GuestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransactionItems_Attachment">
+    <End Role="Item" Type="Self.Item" Multiplicity="1" />
+    <End Role="TransactionItem" Type="Self.TransactionItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Item">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransactionItem">
+        <PropertyRef Name="ItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TransactionItems_Contribution">
+    <End Role="Transaction" Type="Self.Transaction" Multiplicity="1" />
+    <End Role="TransactionItem" Type="Self.TransactionItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Transaction">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TransactionItem">
+        <PropertyRef Name="TransactionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="HotelMateWebModelStoreContainer">
+    <EntitySet Name="Adventure" EntityType="Self.Adventure" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BarTable" EntityType="Self.BarTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Batch" EntityType="Self.Batch" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BusinessAccount" EntityType="Self.BusinessAccount" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BusinessCorporateAccount" EntityType="Self.BusinessCorporateAccount" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BusinessRoomAccounts" EntityType="Self.BusinessRoomAccounts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DamagedBatchItem" EntityType="Self.DamagedBatchItem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DistributionPoint" EntityType="Self.DistributionPoint" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DistributionPointItems" EntityType="Self.DistributionPointItems" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmployeeShift" EntityType="Self.EmployeeShift" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Escort" EntityType="Self.Escort" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EscortPicture" EntityType="Self.EscortPicture" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Expense" EntityType="Self.Expense" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ExpensesType" EntityType="Self.ExpensesType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FoodMatrix" EntityType="Self.FoodMatrix" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Guest" EntityType="Self.Guest" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GuestBillItem" EntityType="Self.GuestBillItem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GuestChat" EntityType="Self.GuestChat" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GuestChatMessages" EntityType="Self.GuestChatMessages" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GuestCredential" EntityType="Self.GuestCredential" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GuestFeedBack" EntityType="Self.GuestFeedBack" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GuestLedger" EntityType="Self.GuestLedger" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GuestMessage" EntityType="Self.GuestMessage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GuestMovie" EntityType="Self.GuestMovie" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GuestOrder" EntityType="Self.GuestOrder" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GuestOrderItem" EntityType="Self.GuestOrderItem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GuestPaidItem" EntityType="Self.GuestPaidItem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GuestPlaylist" EntityType="Self.GuestPlaylist" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GuestRequestItem" EntityType="Self.GuestRequestItem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GuestReservation" EntityType="Self.GuestReservation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GuestRoom" EntityType="Self.GuestRoom" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GuestRoomAccount" EntityType="Self.GuestRoomAccount" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Hotel" EntityType="Self.Hotel" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Invoice" EntityType="Self.Invoice" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="InvoiceStatusType" EntityType="Self.InvoiceStatusType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Item" EntityType="Self.Item" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Movie" EntityType="Self.Movie" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MovieCategory" EntityType="Self.MovieCategory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PaymentMethod" EntityType="Self.PaymentMethod" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PaymentOrder" EntityType="Self.PaymentOrder" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PersonType" EntityType="Self.PersonType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pictural" EntityType="Self.Pictural" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="POSItems" EntityType="Self.POSItems" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PrinterTable" EntityType="Self.PrinterTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PurchaseOrder" EntityType="Self.PurchaseOrder" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PurchaseOrderItem" EntityType="Self.PurchaseOrderItem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PurchaseOrderStoreType" EntityType="Self.PurchaseOrderStoreType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Room" EntityType="Self.Room" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RoomPaymentType" EntityType="Self.RoomPaymentType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RoomPaymentTypeStatus" EntityType="Self.RoomPaymentTypeStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RoomPictures" EntityType="Self.RoomPictures" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RoomStatus" EntityType="Self.RoomStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RoomTransferHistory" EntityType="Self.RoomTransferHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RoomType" EntityType="Self.RoomType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SalesDiscount" EntityType="Self.SalesDiscount" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SchoolPictures" EntityType="Self.SchoolPictures" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SoldItemsAll" EntityType="Self.SoldItemsAll" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StockItem" EntityType="Self.StockItem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Store" EntityType="Self.Store" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StoreItems" EntityType="Self.StoreItems" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Supplier" EntityType="Self.Supplier" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TableItem" EntityType="Self.TableItem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Taxi" EntityType="Self.Taxi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Transaction" EntityType="Self.Transaction" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TransactionItem" EntityType="Self.TransactionItem" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_BarTable_BarTableGuest" Association="Self.FK_BarTable_BarTableGuest">
+      <End Role="Guest" EntitySet="Guest" />
+      <End Role="BarTable" EntitySet="BarTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BarTable_BarTableStaff" Association="Self.FK_BarTable_BarTableStaff">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="BarTable" EntitySet="BarTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Batch_BatchDistributionPoint" Association="Self.FK_Batch_BatchDistributionPoint">
+      <End Role="DistributionPoint" EntitySet="DistributionPoint" />
+      <End Role="Batch" EntitySet="Batch" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Batch_BatchPOI" Association="Self.FK_Batch_BatchPOI">
+      <End Role="PurchaseOrderItem" EntitySet="PurchaseOrderItem" />
+      <End Role="Batch" EntitySet="Batch" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BusinessAccount_BusinessAccountHotel" Association="Self.FK_BusinessAccount_BusinessAccountHotel">
+      <End Role="Hotel" EntitySet="Hotel" />
+      <End Role="BusinessAccount" EntitySet="BusinessAccount" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BusinessAccounts_GuestRooms" Association="Self.FK_BusinessAccounts_GuestRooms">
+      <End Role="GuestRoom" EntitySet="GuestRoom" />
+      <End Role="BusinessRoomAccounts" EntitySet="BusinessRoomAccounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BusinessAccounts_Trans" Association="Self.FK_BusinessAccounts_Trans">
+      <End Role="BusinessAccount" EntitySet="BusinessAccount" />
+      <End Role="BusinessRoomAccounts" EntitySet="BusinessRoomAccounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BusinessCorporateAccount_BusinessCorporateAccountCompany" Association="Self.FK_BusinessCorporateAccount_BusinessCorporateAccountCompany">
+      <End Role="BusinessAccount" EntitySet="BusinessAccount" />
+      <End Role="BusinessCorporateAccount" EntitySet="BusinessCorporateAccount" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BusinessCorporateAccount_BusinessCorporateAccountPaymentMethod" Association="Self.FK_BusinessCorporateAccount_BusinessCorporateAccountPaymentMethod">
+      <End Role="PaymentMethod" EntitySet="PaymentMethod" />
+      <End Role="BusinessCorporateAccount" EntitySet="BusinessCorporateAccount" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BusinessCorporateAccount_BusinessCorporateAccountPerson" Association="Self.FK_BusinessCorporateAccount_BusinessCorporateAccountPerson">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="BusinessCorporateAccount" EntitySet="BusinessCorporateAccount" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DamagedBatchItem_DamagedBatchItemBatch" Association="Self.FK_DamagedBatchItem_DamagedBatchItemBatch">
+      <End Role="Batch" EntitySet="Batch" />
+      <End Role="DamagedBatchItem" EntitySet="DamagedBatchItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DamagedBatchItem_DamagedBatchItemItem" Association="Self.FK_DamagedBatchItem_DamagedBatchItemItem">
+      <End Role="StockItem" EntitySet="StockItem" />
+      <End Role="DamagedBatchItem" EntitySet="DamagedBatchItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DistributionItems_DistributionItemsDistributionPoint" Association="Self.FK_DistributionItems_DistributionItemsDistributionPoint">
+      <End Role="DistributionPoint" EntitySet="DistributionPoint" />
+      <End Role="DistributionPointItems" EntitySet="DistributionPointItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DistributionItems_DistributionItemsItem" Association="Self.FK_DistributionItems_DistributionItemsItem">
+      <End Role="StockItem" EntitySet="StockItem" />
+      <End Role="DistributionPointItems" EntitySet="DistributionPointItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DistributionPoint_DistributionPointManager" Association="Self.FK_DistributionPoint_DistributionPointManager">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="DistributionPoint" EntitySet="DistributionPoint" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DistributionPointItems_DistributionPointItemsBatch" Association="Self.FK_DistributionPointItems_DistributionPointItemsBatch">
+      <End Role="Batch" EntitySet="Batch" />
+      <End Role="DistributionPointItems" EntitySet="DistributionPointItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DistributionPointItems_DistributionPointItemsRecievedBy" Association="Self.FK_DistributionPointItems_DistributionPointItemsRecievedBy">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="DistributionPointItems" EntitySet="DistributionPointItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EmployeeShift_EmployeeShiftPerson" Association="Self.FK_EmployeeShift_EmployeeShiftPerson">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="EmployeeShift" EntitySet="EmployeeShift" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EscortPicture_Escort" Association="Self.FK_EscortPicture_Escort">
+      <End Role="Escort" EntitySet="Escort" />
+      <End Role="EscortPicture" EntitySet="EscortPicture" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Expense_ExpenseStaff" Association="Self.FK_Expense_ExpenseStaff">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="Expense" EntitySet="Expense" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Expense_ExpensesType" Association="Self.FK_Expense_ExpensesType">
+      <End Role="ExpensesType" EntitySet="ExpensesType" />
+      <End Role="Expense" EntitySet="Expense" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FoodMatrix_FoodMatrixCookedFood" Association="Self.FK_FoodMatrix_FoodMatrixCookedFood">
+      <End Role="StockItem" EntitySet="StockItem" />
+      <End Role="FoodMatrix" EntitySet="FoodMatrix" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FoodMatrix_FoodMatrixRawItem" Association="Self.FK_FoodMatrix_FoodMatrixRawItem">
+      <End Role="StockItem" EntitySet="StockItem" />
+      <End Role="FoodMatrix" EntitySet="FoodMatrix" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GuesRoomAccount_GuestRoom" Association="Self.FK_GuesRoomAccount_GuestRoom">
+      <End Role="GuestRoom" EntitySet="GuestRoom" />
+      <End Role="GuestRoomAccount" EntitySet="GuestRoomAccount" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Guest_CompanyGuest" Association="Self.FK_Guest_CompanyGuest">
+      <End Role="BusinessAccount" EntitySet="BusinessAccount" />
+      <End Role="Guest" EntitySet="Guest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Guest_GuestHotel" Association="Self.FK_Guest_GuestHotel">
+      <End Role="Hotel" EntitySet="Hotel" />
+      <End Role="Guest" EntitySet="Guest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Guest_GuestPerson" Association="Self.FK_Guest_GuestPerson">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="Guest" EntitySet="Guest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GuestChat_GuestChatGuest" Association="Self.FK_GuestChat_GuestChatGuest">
+      <End Role="Guest" EntitySet="Guest" />
+      <End Role="GuestChat" EntitySet="GuestChat" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GuestChatMessages_GuestChatMessagesOwner" Association="Self.FK_GuestChatMessages_GuestChatMessagesOwner">
+      <End Role="Guest" EntitySet="Guest" />
+      <End Role="GuestChatMessages" EntitySet="GuestChatMessages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GuestChatMessages_GuestChatMessagesStranger" Association="Self.FK_GuestChatMessages_GuestChatMessagesStranger">
+      <End Role="Guest" EntitySet="Guest" />
+      <End Role="GuestChatMessages" EntitySet="GuestChatMessages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GuestCredential_GuestCredentialPerson" Association="Self.FK_GuestCredential_GuestCredentialPerson">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="GuestCredential" EntitySet="GuestCredential" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GuestFeedBack_Guest" Association="Self.FK_GuestFeedBack_Guest">
+      <End Role="Guest" EntitySet="Guest" />
+      <End Role="GuestFeedBack" EntitySet="GuestFeedBack" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GuestLedger_GuestLedgerCashier" Association="Self.FK_GuestLedger_GuestLedgerCashier">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="GuestLedger" EntitySet="GuestLedger" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GuestLedger_GuestLedgerGuest" Association="Self.FK_GuestLedger_GuestLedgerGuest">
+      <End Role="Guest" EntitySet="Guest" />
+      <End Role="GuestLedger" EntitySet="GuestLedger" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GuestLedger_GuestLedgerPaymentType" Association="Self.FK_GuestLedger_GuestLedgerPaymentType">
+      <End Role="RoomPaymentType" EntitySet="RoomPaymentType" />
+      <End Role="GuestLedger" EntitySet="GuestLedger" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GuestMovieYear_Guest" Association="Self.FK_GuestMovieYear_Guest">
+      <End Role="GuestPlaylist" EntitySet="GuestPlaylist" />
+      <End Role="GuestMovie" EntitySet="GuestMovie" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GuestMovieYear_Movie" Association="Self.FK_GuestMovieYear_Movie">
+      <End Role="Movie" EntitySet="Movie" />
+      <End Role="GuestMovie" EntitySet="GuestMovie" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GuestOrder_GuestOrderGuest" Association="Self.FK_GuestOrder_GuestOrderGuest">
+      <End Role="Guest" EntitySet="Guest" />
+      <End Role="GuestOrder" EntitySet="GuestOrder" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GuestOrder_GuestOrderTable" Association="Self.FK_GuestOrder_GuestOrderTable">
+      <End Role="BarTable" EntitySet="BarTable" />
+      <End Role="GuestOrder" EntitySet="GuestOrder" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GuestOrder_GuestOrderWaiter" Association="Self.FK_GuestOrder_GuestOrderWaiter">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="GuestOrder" EntitySet="GuestOrder" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GuestOrderItem_GuestOrder" Association="Self.FK_GuestOrderItem_GuestOrder">
+      <End Role="GuestOrder" EntitySet="GuestOrder" />
+      <End Role="GuestOrderItem" EntitySet="GuestOrderItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GuestOrderItem_GuestOrderItemItem" Association="Self.FK_GuestOrderItem_GuestOrderItemItem">
+      <End Role="StockItem" EntitySet="StockItem" />
+      <End Role="GuestOrderItem" EntitySet="GuestOrderItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GuestRequestItem_GuestRequest" Association="Self.FK_GuestRequestItem_GuestRequest">
+      <End Role="GuestOrder" EntitySet="GuestOrder" />
+      <End Role="GuestRequestItem" EntitySet="GuestRequestItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GuestRequestItem_GuestRequestItemItem" Association="Self.FK_GuestRequestItem_GuestRequestItemItem">
+      <End Role="StockItem" EntitySet="StockItem" />
+      <End Role="GuestRequestItem" EntitySet="GuestRequestItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GuestReservation_GuestReservationGuest" Association="Self.FK_GuestReservation_GuestReservationGuest">
+      <End Role="Guest" EntitySet="Guest" />
+      <End Role="GuestReservation" EntitySet="GuestReservation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GuestReservation_GuestReservationRoom" Association="Self.FK_GuestReservation_GuestReservationRoom">
+      <End Role="Room" EntitySet="Room" />
+      <End Role="GuestReservation" EntitySet="GuestReservation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GuestRoom_GuestRoomGuest" Association="Self.FK_GuestRoom_GuestRoomGuest">
+      <End Role="Guest" EntitySet="Guest" />
+      <End Role="GuestRoom" EntitySet="GuestRoom" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GuestRoom_GuestRoomRoom" Association="Self.FK_GuestRoom_GuestRoomRoom">
+      <End Role="Room" EntitySet="Room" />
+      <End Role="GuestRoom" EntitySet="GuestRoom" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GuestRoomAccount_GuestRoomAccountPayment" Association="Self.FK_GuestRoomAccount_GuestRoomAccountPayment">
+      <End Role="RoomPaymentType" EntitySet="RoomPaymentType" />
+      <End Role="GuestRoomAccount" EntitySet="GuestRoomAccount" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GuestRoomAccount_GuestRoomAccountPaymentMethod" Association="Self.FK_GuestRoomAccount_GuestRoomAccountPaymentMethod">
+      <End Role="PaymentMethod" EntitySet="PaymentMethod" />
+      <End Role="GuestRoomAccount" EntitySet="GuestRoomAccount" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GuestRoomAccount_GuestRoomAccountPerson" Association="Self.FK_GuestRoomAccount_GuestRoomAccountPerson">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="GuestRoomAccount" EntitySet="GuestRoomAccount" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GuestTemporalItem_GuestOrder" Association="Self.FK_GuestTemporalItem_GuestOrder">
+      <End Role="GuestOrder" EntitySet="GuestOrder" />
+      <End Role="GuestBillItem" EntitySet="GuestBillItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GuestTemporalItem_GuestTemporalItemItem" Association="Self.FK_GuestTemporalItem_GuestTemporalItemItem">
+      <End Role="StockItem" EntitySet="StockItem" />
+      <End Role="GuestBillItem" EntitySet="GuestBillItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Invoice_InvoiceAssignedTo" Association="Self.FK_Invoice_InvoiceAssignedTo">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="Invoice" EntitySet="Invoice" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Invoice_InvoiceCreator" Association="Self.FK_Invoice_InvoiceCreator">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="Invoice" EntitySet="Invoice" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Invoice_InvoicePO" Association="Self.FK_Invoice_InvoicePO">
+      <End Role="PurchaseOrder" EntitySet="PurchaseOrder" />
+      <End Role="Invoice" EntitySet="Invoice" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Invoice_InvoiceStatus" Association="Self.FK_Invoice_InvoiceStatus">
+      <End Role="InvoiceStatusType" EntitySet="InvoiceStatusType" />
+      <End Role="Invoice" EntitySet="Invoice" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Item_ItemHotel" Association="Self.FK_Item_ItemHotel">
+      <End Role="Hotel" EntitySet="Hotel" />
+      <End Role="Item" EntitySet="Item" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Item_ItemTransaction" Association="Self.FK_Item_ItemTransaction">
+      <End Role="Item" EntitySet="Item" />
+      <End Role="Item1" EntitySet="Item" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Movie_MovieCategory" Association="Self.FK_Movie_MovieCategory">
+      <End Role="MovieCategory" EntitySet="MovieCategory" />
+      <End Role="Movie" EntitySet="Movie" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Payment_PaymentBA" Association="Self.FK_Payment_PaymentBA">
+      <End Role="BusinessAccount" EntitySet="BusinessAccount" />
+      <End Role="Payment" EntitySet="Payment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Payment_PaymentCashier" Association="Self.FK_Payment_PaymentCashier">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="Payment" EntitySet="Payment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Payment_PaymentDistributionPoint" Association="Self.FK_Payment_PaymentDistributionPoint">
+      <End Role="DistributionPoint" EntitySet="DistributionPoint" />
+      <End Role="Payment" EntitySet="Payment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Payment_PaymentGuest" Association="Self.FK_Payment_PaymentGuest">
+      <End Role="Guest" EntitySet="Guest" />
+      <End Role="Payment" EntitySet="Payment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Payment_PaymentMethod" Association="Self.FK_Payment_PaymentMethod">
+      <End Role="PaymentMethod" EntitySet="PaymentMethod" />
+      <End Role="Payment" EntitySet="Payment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Payment_PaymentPaymentType" Association="Self.FK_Payment_PaymentPaymentType">
+      <End Role="RoomPaymentType" EntitySet="RoomPaymentType" />
+      <End Role="Payment" EntitySet="Payment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PaymentOrder_PaymentOrderGuest" Association="Self.FK_PaymentOrder_PaymentOrderGuest">
+      <End Role="Guest" EntitySet="Guest" />
+      <End Role="PaymentOrder" EntitySet="PaymentOrder" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PaymentOrder_PaymentOrderGuestOrder" Association="Self.FK_PaymentOrder_PaymentOrderGuestOrder">
+      <End Role="GuestOrder" EntitySet="GuestOrder" />
+      <End Role="PaymentOrder" EntitySet="PaymentOrder" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Person_PersonDistributionPoint" Association="Self.FK_Person_PersonDistributionPoint">
+      <End Role="DistributionPoint" EntitySet="DistributionPoint" />
+      <End Role="Person" EntitySet="Person" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Person_PersonHotel" Association="Self.FK_Person_PersonHotel">
+      <End Role="Hotel" EntitySet="Hotel" />
+      <End Role="Person" EntitySet="Person" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Person_PersonType" Association="Self.FK_Person_PersonType">
+      <End Role="PersonType" EntitySet="PersonType" />
+      <End Role="Person" EntitySet="Person" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PersonType_PersonTypeHotel" Association="Self.FK_PersonType_PersonTypeHotel">
+      <End Role="Hotel" EntitySet="Hotel" />
+      <End Role="PersonType" EntitySet="PersonType" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Picturals_Rooms" Association="Self.FK_Picturals_Rooms">
+      <End Role="Room" EntitySet="Room" />
+      <End Role="RoomPictures" EntitySet="RoomPictures" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Picturals_Trans" Association="Self.FK_Picturals_Trans">
+      <End Role="Pictural" EntitySet="Pictural" />
+      <End Role="RoomPictures" EntitySet="RoomPictures" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Playlist_PlaylistGuest" Association="Self.FK_Playlist_PlaylistGuest">
+      <End Role="Guest" EntitySet="Guest" />
+      <End Role="GuestPlaylist" EntitySet="GuestPlaylist" />
+    </AssociationSet>
+    <AssociationSet Name="FK_POSItems_POSItemsDistributionPoint" Association="Self.FK_POSItems_POSItemsDistributionPoint">
+      <End Role="DistributionPoint" EntitySet="DistributionPoint" />
+      <End Role="POSItems" EntitySet="POSItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_POSItems_POSItemsStockItem" Association="Self.FK_POSItems_POSItemsStockItem">
+      <End Role="StockItem" EntitySet="StockItem" />
+      <End Role="POSItems" EntitySet="POSItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PrinterTable_PrinterTableBarTable" Association="Self.FK_PrinterTable_PrinterTableBarTable">
+      <End Role="BarTable" EntitySet="BarTable" />
+      <End Role="PrinterTable" EntitySet="PrinterTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PurchaseOrderItem_PurchaseOrderItemPO" Association="Self.FK_PurchaseOrderItem_PurchaseOrderItemPO">
+      <End Role="PurchaseOrder" EntitySet="PurchaseOrder" />
+      <End Role="PurchaseOrderItem" EntitySet="PurchaseOrderItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PurchaseOrderItem_PurchaseOrderItemStockItem" Association="Self.FK_PurchaseOrderItem_PurchaseOrderItemStockItem">
+      <End Role="StockItem" EntitySet="StockItem" />
+      <End Role="PurchaseOrderItem" EntitySet="PurchaseOrderItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Room_RoomHotel" Association="Self.FK_Room_RoomHotel">
+      <End Role="Hotel" EntitySet="Hotel" />
+      <End Role="Room" EntitySet="Room" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Room_RoomStatus" Association="Self.FK_Room_RoomStatus">
+      <End Role="RoomStatus" EntitySet="RoomStatus" />
+      <End Role="Room" EntitySet="Room" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Room_RoomType" Association="Self.FK_Room_RoomType">
+      <End Role="RoomType" EntitySet="RoomType" />
+      <End Role="Room" EntitySet="Room" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RoomPaymentType_RoomPaymentTypeStatus" Association="Self.FK_RoomPaymentType_RoomPaymentTypeStatus">
+      <End Role="RoomPaymentTypeStatus" EntitySet="RoomPaymentTypeStatus" />
+      <End Role="RoomPaymentType" EntitySet="RoomPaymentType" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RoomTransferHistory_NewGuest" Association="Self.FK_RoomTransferHistory_NewGuest">
+      <End Role="Guest" EntitySet="Guest" />
+      <End Role="RoomTransferHistory" EntitySet="RoomTransferHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalesDiscount_SalesDiscountPerson" Association="Self.FK_SalesDiscount_SalesDiscountPerson">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="SalesDiscount" EntitySet="SalesDiscount" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SoldItemsAll_SoldItemsAllBA" Association="Self.FK_SoldItemsAll_SoldItemsAllBA">
+      <End Role="BusinessAccount" EntitySet="BusinessAccount" />
+      <End Role="SoldItemsAll" EntitySet="SoldItemsAll" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SoldItemsAll_SoldItemsAllDistributionPoint" Association="Self.FK_SoldItemsAll_SoldItemsAllDistributionPoint">
+      <End Role="DistributionPoint" EntitySet="DistributionPoint" />
+      <End Role="SoldItemsAll" EntitySet="SoldItemsAll" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SoldItemsAll_SoldItemsAllGuest" Association="Self.FK_SoldItemsAll_SoldItemsAllGuest">
+      <End Role="Guest" EntitySet="Guest" />
+      <End Role="SoldItemsAll" EntitySet="SoldItemsAll" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SoldItemsAll_SoldItemsAllItem" Association="Self.FK_SoldItemsAll_SoldItemsAllItem">
+      <End Role="StockItem" EntitySet="StockItem" />
+      <End Role="SoldItemsAll" EntitySet="SoldItemsAll" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SoldItemsAll_SoldItemsAllPaymentMethod" Association="Self.FK_SoldItemsAll_SoldItemsAllPaymentMethod">
+      <End Role="PaymentMethod" EntitySet="PaymentMethod" />
+      <End Role="SoldItemsAll" EntitySet="SoldItemsAll" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SoldItemsAll_SoldItemsAllPerson" Association="Self.FK_SoldItemsAll_SoldItemsAllPerson">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="SoldItemsAll" EntitySet="SoldItemsAll" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StockItem_StockItemHotel" Association="Self.FK_StockItem_StockItemHotel">
+      <End Role="Hotel" EntitySet="Hotel" />
+      <End Role="StockItem" EntitySet="StockItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StockItem_StockItemTransaction" Association="Self.FK_StockItem_StockItemTransaction">
+      <End Role="StockItem" EntitySet="StockItem" />
+      <End Role="StockItem1" EntitySet="StockItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Store_StoreManager" Association="Self.FK_Store_StoreManager">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="Store" EntitySet="Store" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StoreItems_StoreItemsRecievedBy" Association="Self.FK_StoreItems_StoreItemsRecievedBy">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="StoreItems" EntitySet="StoreItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StoteItems_StoteItemsItem" Association="Self.FK_StoteItems_StoteItemsItem">
+      <End Role="StockItem" EntitySet="StockItem" />
+      <End Role="StoreItems" EntitySet="StoreItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StoteItems_StoteItemsStore" Association="Self.FK_StoteItems_StoteItemsStore">
+      <End Role="Store" EntitySet="Store" />
+      <End Role="StoreItems" EntitySet="StoreItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TableItem_TableItemBarTable" Association="Self.FK_TableItem_TableItemBarTable">
+      <End Role="BarTable" EntitySet="BarTable" />
+      <End Role="TableItem" EntitySet="TableItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TableItem_TableItemStockItem" Association="Self.FK_TableItem_TableItemStockItem">
+      <End Role="StockItem" EntitySet="StockItem" />
+      <End Role="TableItem" EntitySet="TableItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transaction_TransactionGuest" Association="Self.FK_Transaction_TransactionGuest">
+      <End Role="Guest" EntitySet="Guest" />
+      <End Role="Transaction" EntitySet="Transaction" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransactionItems_Attachment" Association="Self.FK_TransactionItems_Attachment">
+      <End Role="Item" EntitySet="Item" />
+      <End Role="TransactionItem" EntitySet="TransactionItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TransactionItems_Contribution" Association="Self.FK_TransactionItems_Contribution">
+      <End Role="Transaction" EntitySet="Transaction" />
+      <End Role="TransactionItem" EntitySet="TransactionItem" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

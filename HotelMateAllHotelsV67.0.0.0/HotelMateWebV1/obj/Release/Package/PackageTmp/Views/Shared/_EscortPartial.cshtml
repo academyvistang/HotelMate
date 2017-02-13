@@ -1,0 +1,63 @@
+﻿@model HotelMateWeb.Dal.DataCore.Escort
+
+
+
+<div class="row">
+    <div class="four columns">
+        <a href="#"> <img src="~/Products/@Model.PicturePath" alt="image" height="300" width="300" /> </a>
+    </div>
+    <div class="eight columns">
+
+        <div class="row">
+            <div class="four columns">
+                <label for="email">Escort/Model</label>
+            </div>
+            <div class="four columns">
+                <label for="email">@Model.Name</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="four columns">
+                <label for="email">Description</label>
+            </div>
+            <div class="four columns">
+                <label for="email">@Model.Description</label>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="four columns">
+                <label for="email">Telephone</label>
+            </div>
+            <div class="four columns">
+                <label for="email">@Model.Telephone</label>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="four columns">
+                <label for="email">Mobile</label>
+            </div>
+            <div class="four columns">
+                <label for="email">@Model.Mobile</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="four columns">
+                <label for="email">Contact Escort</label>
+            </div>
+            <div class="four columns">
+                <a class="erbEditorDirty buttonDevFirst" href="@Url.Action("BookEscort", "Guest", new { id = Model.Id })">Contact Escort</a>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+<hr />
+

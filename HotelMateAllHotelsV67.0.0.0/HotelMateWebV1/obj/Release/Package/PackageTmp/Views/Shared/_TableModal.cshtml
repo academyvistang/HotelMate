@@ -1,0 +1,92 @@
+﻿@*@model HotelMateWebV1.Models.IndexViewModel
+
+<script type="text/javascript">
+    $(function ()
+    {
+        $('.numberCircle').click(function () {
+            var id = $(this).attr('id');
+
+            if (id == 0)
+            {
+                location.href = "/POS";
+            }
+            else
+            {
+                location.href = "/POS/Table/" + id;
+            }
+                      
+        });
+    });
+</script>
+
+
+<style>
+    .numberCircle {
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+        width: 100px;
+        padding: 8px;
+        font-size: 32px;
+        border: 2px solid #666;
+        position: relative;
+        background-color: blue;
+        float: left;
+        margin-left:25px;
+        cursor:pointer;
+    }
+
+        .numberCircle .height_fixMine {
+            margin-top: 40%;
+        }
+
+        .numberCircle .contented {
+            position: absolute;
+            left: 0;
+            top: 90%;
+            height: 100%;
+            width: 100%;
+            text-align: center;
+            margin-top: -16px;
+        }
+</style>
+
+
+
+
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <i class="fa fa-edit"></i>
+        </div>
+
+
+        <div class="panel-body">
+            <div class="row">
+
+
+                @for(int i = 1; i < 5; i++)
+                {
+                    <div class="numberCircle" id="@i.ToString()" >
+                        <div class="height_fixMine" style="height:30px;"></div>
+                    <div class="contented">@i.ToString()</div>
+                    </div>
+                }
+
+                <div class="numberCircle" style="background-color:red;" id="0">
+                    <div class="height_fixMine" style="height:30px;"></div>
+                    <div class="contented">Clear</div>
+                </div>
+
+            </div>
+        </div>
+        <div class="panel-footer">   
+        </div>
+    </div>*@
+    
+
+
+
+
+
+

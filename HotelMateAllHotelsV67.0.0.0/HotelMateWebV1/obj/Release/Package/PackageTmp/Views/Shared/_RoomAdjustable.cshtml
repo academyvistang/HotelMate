@@ -1,0 +1,200 @@
+﻿@using HotelMateWebV1.Helpers
+@model HotelMateWebV1.Models.RoomBookingViewModel
+
+<style>
+    .dropdownDiv {
+        height: 100px;
+        width: 100%;
+        overflow: auto;
+        padding: 2px;
+    }
+</style>
+
+@Html.HiddenFor(model => model.Room.Id)
+@Html.HiddenFor(model => model.Guest.IsActive)
+@Html.HiddenFor(model => model.Guest.Status)
+@Html.HiddenFor(model => model.GuestRoom.RoomId)
+@Html.HiddenFor(model => model.Guest.Id)
+@Html.HiddenFor(model => model.Room.Id)
+@Html.HiddenFor(model => model.Room.RoomNumber)
+@Html.HiddenFor(model => model.Room.RoomType)
+@Html.HiddenFor(model => model.Room.Price)
+@Html.HiddenFor(model => model.Room.BusinessPrice)
+@Html.HiddenFor(model => model.GuestRoom.CheckinDate)
+@Html.HiddenFor(model => model.GuestRoom.RoomRate)
+@Html.HiddenFor(model => model.Guest.CompanyId)
+
+
+
+<div id="gmail_loading" style="display: none;">
+    <div class="blackbg"></div>
+    <div class="gmailLoader"> <img src="~/sma2/assets/pos/css/images/gmail-loader.gif" alt="Loading ..." /> Loading... </div>
+</div>
+<span style="color:red;">@Html.ValidationSummary(true)</span>
+
+<div class="six columns">
+    <label for="email">Telephone*</label>
+    @Html.TextBoxFor(model => model.Guest.Telephone)
+    @Html.ValidationMessageFor(model => model.Guest.Telephone)
+</div>
+
+<div class="six columns">
+    <label for="FullName">Name*</label>
+    @Html.TextBoxFor(model => model.Guest.FullName)
+    @Html.ValidationMessageFor(model => model.Guest.FullName)
+</div>
+
+<div class="six columns">
+    <label for="email">E-Mail*</label>
+    @Html.TextBoxFor(model => model.Guest.Email)
+    @Html.ValidationMessageFor(model => model.Guest.Email)
+</div>
+
+<div class="six columns">
+    <label for="car">Car Details</label>
+    @Html.TextBoxFor(model => model.Guest.CarDetails)
+</div>
+
+<div class="twelve columns">
+    <label for="comments">Address</label>
+    @Html.TextAreaFor(model => model.Guest.Address, new { @cols = "30", @rows = "1" })
+    @Html.ValidationMessageFor(model => model.Guest.Address)
+</div>
+
+<div class="six columns">
+    <label for="arrive">Check In*</label>
+    <input readonly="readonly" disabled="disabled" type="text" id="arrive" class="datepicker" name="arrive" value="@Model.GuestRoom.CheckinDate.ToShortDateString()">
+</div>
+
+<div class="six columns">
+    <label for="depart">Check Out*</label>
+    @if (Model.Guest.Id > 0)
+    {
+        <input readonly="readonly" disabled="disabled" id="depart" class="datepicker" type="text" name="depart" value="@Model.GuestRoom.CheckoutDate.ToShortDateString()">
+    }
+    else
+    {
+        <input id="depart" class="datepicker" type="text" name="depart" value="@Model.GuestRoom.CheckoutDate.ToShortDateString()">
+        @Html.ValidationMessageFor(model => model.CheckoutDate)
+    }
+
+</div>
+
+<div class="six columns">
+    <label for="adults">Guests*</label>
+    <input type="number" min="1" max="6" id="GuestRoom.Occupants" name="GuestRoom.Occupants" value="@Model.GuestRoom.Occupants">
+</div>
+
+<div class="six columns">
+    <label for="children">Children</label>
+    <input type="number" min="0" max="4" id="GuestRoom.Occupants" name="GuestRoom.Occupants" value="@Model.GuestRoom.Occupants">
+</div>
+
+<div class="six columns">
+    <label id="lblRoomRate" for="roomRate">Room Rate</label>
+    <input type="number" readonly="readonly" disabled="disabled" min="1" max="90000000" id="GuestRoom.RoomRate" name="GuestRoom.RoomRate" value="@Model.Room.Price">
+</div>
+
+<div class="six columns">
+    <label id="lbldiscountedRate" for="discountedRate">Discounted Rate</label>
+    @if (Model.Guest.Id > 0)
+    {
+   <input type="number" min="0" max="90000000" id="DiscountedRate" name="DiscountedRate" value="@Model.DiscountedRate">   }
+    else
+    {
+        <input type="number" min="0" max="90000000" id="DiscountedRate" name="DiscountedRate" value="@Model.DiscountedRate">
+    }
+</div>
+
+
+<div class="six columns">
+    <label for="discountedRate">Initial Deposit</label>
+
+    @if (Model.Guest.Id > 0)
+    {
+        <input type="number" readonly="readonly" min="0" max="90000000" id="InitialDeposit" name="InitialDeposit" value="@Model.InitialDeposit">
+    }
+    else
+    {
+        <input type="number" min="0" max="90000000" id="InitialDeposit" name="InitialDeposit" value="@Model.InitialDeposit">
+    }
+
+</div>
+
+<div class="six columns">
+    <label for="b-room">Nationality</label>
+
+    <select name='room_select' id='b-nationality' class=''>
+        <option class="level-0" value="1" selected="selected">Nigerian</option>
+        <option class="level-0" value="2">British</option>
+        <option class="level-0" value="3">American</option>
+        <option class="level-0" value="4">Ghanaian</option>
+        <option class="level-0" value="5">African</option>
+        <option class="level-0" value="6">Other</option>
+    </select>
+</div>
+
+<div class="twelve columns">
+    <label for="comments">REMINDERS/NOTES</label>
+    @Html.TextAreaFor(model => model.Guest.Notes, new { @cols = "30", @rows = "1" })
+</div>
+
+<div class="six columns">
+    <label for="comments">COMPLIMENTARY ROOM</label>
+    @Html.CheckBox("ComplimentaryRoom")
+</div>
+
+
+
+<div class="six columns">
+    <label for="comments">BUSINESS/COMPANY GUEST</label>
+    @Html.CheckBox("CompanyGuest")
+</div>
+
+@{string strDisplay = "display:none;"; if (Model.Guest.CompanyId > 0) { strDisplay = string.Empty; }}
+
+<div style="@strDisplay" id="ShowCompany">
+    <div class="twelve columns">
+        <label for="comments">BUSINESS/COMPANY NAME</label><br />
+        @Html.DropDownListFor(model => model.Guest.CompanyId, Model.BusinessAccounts, new { @name = "room_select", @id = "b-company", @style = "width:310px;" })
+    </div>
+</div>
+
+@Html.Partial("_PaymentMethodSelector", Model)
+
+<div style="margin-top:5px; padding-top:5px;">
+
+</div>
+
+
+
+<div class="six columns">
+    <label for="email">Amount Paid For Taxi </label>
+    <input type="number" min="0" max="90000000" id="TaxiAmount" name="TaxiAmount" value="@Model.TaxiAmount">
+</div>
+
+<div class="six columns">
+    <label for="FullName">Reservation Note</label>
+    @Html.TextBoxFor(model => model.TaxiReg)
+    @Html.ValidationMessageFor(model => model.TaxiReg)
+</div>
+
+<div class="twelve columns">
+    @if (Model.Guest.Id == 0)
+    {
+        <input id="submit" type="submit" value="Book @Model.Room.RoomNumber" name="send_booking">
+    }
+    else
+    {
+        <input id="submit" type="submit" value="Update Booking @Model.Room.RoomNumber" name="send_booking">
+    }
+</div>
+
+
+
+
+
+
+
+
+

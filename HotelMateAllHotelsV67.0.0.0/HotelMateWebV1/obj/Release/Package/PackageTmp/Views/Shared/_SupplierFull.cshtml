@@ -1,0 +1,90 @@
+﻿@using HotelMateWebV1.Helpers
+@model HotelMateWebV1.Models.PersonViewModel
+
+<style>
+    .dropdownDiv {
+        height: 100px;
+        width: 100%;
+        overflow: auto;
+        padding: 2px;
+    }
+</style>
+
+
+@Html.HiddenFor(model => model.SupplierId)
+
+<div class="six columns">
+    <label for="email">Type of Business*</label>
+    @Html.TextBoxFor(model => model.Title)
+</div>
+
+<div class="six columns">
+    <label for="FullName">Business Name*</label>
+    @Html.TextBoxFor(model => model.FirstName)
+</div>
+
+<div class="six columns">
+    <label for="FullName">Contact Name*</label>
+    @Html.TextBoxFor(model => model.LastName)
+</div>
+
+<div class="six columns">
+    <label for="email">E-Mail*</label>
+    @Html.TextBoxFor(model => model.Email)
+    @Html.ValidationMessageFor(model => model.Email)
+</div>
+
+<div class="six columns">
+    <label for="email">Password*</label>
+    @Html.PasswordFor(model => model.Password)
+    @Html.ValidationMessageFor(model => model.Password)
+</div>
+
+<div class="twelve columns">
+    <label for="email">Address*</label>
+    @Html.TextAreaFor(model => model.Address)
+</div>
+
+<div class="six columns">
+    <label for="email">Telephone*</label>
+    @Html.TextBoxFor(model => model.MiddleName)
+</div>
+
+<div class="six columns">
+    <label for="email">Start Date*</label>
+    <input readonly="readonly" type="text" id="arrive" class="datepicker" name="StartDate" value="@Model.StartDate.ToShortDateString()">
+</div>
+
+<div class="six columns">
+    <label for="email">End Date*</label>
+    <input readonly id="depart" class="datepicker" type="text" name="EndDate" value="@Model.EndDate.ToShortDateString()">
+</div>
+
+<div class="twelve columns">
+    <label for="email">Referee*</label>
+    @Html.TextAreaFor(model => model.Guardian)
+
+</div>
+
+<div class="twelve columns">
+    <label for="email">Referee Address*</label>
+    @Html.TextAreaFor(model => model.GuardianAddress)
+
+</div>
+
+<div class="twelve columns">
+    <label for="email">Referee Telephone</label>
+    @Html.TextAreaFor(model => model.PreviousEmployer)
+
+</div>
+
+<div class="twelve columns">
+    <label for="email">Notes*</label>
+    @Html.TextAreaFor(model => model.Notes)
+</div>
+
+
+<div class="twelve columns">
+    <input id="submit" type="submit" value="Save" name="send_booking">
+</div>
+

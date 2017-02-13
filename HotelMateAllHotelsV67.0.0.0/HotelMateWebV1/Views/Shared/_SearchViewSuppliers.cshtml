@@ -1,0 +1,51 @@
+﻿@model HotelMateWebV1.Models.SearchViewModel
+<link href="~/css/CoolTable.css" rel="stylesheet" />
+
+
+<div class="eight columns">
+    <h1 class="page-title ci-title" style="margin-bottom:10px;"><span>Hotel Supplier</span></h1>
+
+    <div class="twelve columns">
+        <a class="erbEditorOpener buttonDevFirst" href="@Url.Action("NewSupplier", "GuestAccount")">Create New Supplier</a>
+    </div>
+    <br />
+    <br />
+
+    <div>
+        <table class="striped fixedlayout">
+            <thead>
+                <tr>
+                    <th width="25%"></th>
+                    <th width="20%">Supplier</th>
+                    <th width="15%">Mobile Number</th>
+                    <th width="20%">Email</th>
+                    <th width="20%">Contact Number </th>
+                </tr>
+            </thead>
+            <tbody id="CasesTableBody1">
+                @foreach (var rm in Model.SuppliersList)
+                {
+                    <tr id="@rm.SupplierID">
+                        <td class="tth2">
+                            <a class="erbEditorOpener buttonDevFirst" href="@Url.Action("EditSupplier", "GuestAccount", new { id = rm.SupplierID })">Edit Supplier</a>
+                        </td>
+                        <td class="tth2">@rm.DisplayName</td>
+                        <td class="tth2">@rm.LastName</td>
+                        <td class="tth2">@rm.Email</td>
+                        <td class="tth2">@rm.MiddleName</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+

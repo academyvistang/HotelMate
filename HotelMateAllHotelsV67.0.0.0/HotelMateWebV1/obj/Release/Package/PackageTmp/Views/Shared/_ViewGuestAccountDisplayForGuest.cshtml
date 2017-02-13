@@ -1,0 +1,211 @@
+﻿@using System.Globalization
+@using HotelMateWebV1.Helpers
+@model HotelMateWebV1.Models.GuestRoomAccountViewModel
+
+<link href="~/css/CoolTable.css" rel="stylesheet" />
+
+<div class="twelve columns">
+    <h1 class="page-title ci-title" style="margin-bottom:10px;"><span>Guest Account Details</span></h1>
+
+    @if (Model.Guest.TotalAccounts() < 0)
+    {
+        <br />
+        <table><tr><td><a class="erbEditorOpener buttonDevFirst" href="@Url.Action("ExpressCheckout", "Guest")">Express Checkout</a></td></tr></table>
+    }
+    
+    <h3><span style="color:#FF2AB5;">Overall Balance</span></h3>
+    <div>
+        <table class="striped fixedlayout">
+            <thead>
+            </thead>
+            <tbody id="CasesTableBody1">
+
+                @{ var balance = Model.Guest.GetGuestBalance();}
+
+                @if (balance > 0)
+                {
+                    <tr border="1" bgcolor="#ff4980"><td></td><td></td><td></td><td></td><td>Refund</td><td bgcolor="@Model.Guest.GetGuestBalanceColour()">@balance</td></tr>
+                }
+                else
+                {
+                    <tr border="1" bgcolor="#ff4980"><td></td><td></td><td></td><td></td><td>Balance</td><td bgcolor="@Model.Guest.GetGuestBalanceColour()">@balance</td></tr>
+                }
+
+            </tbody>
+        </table>
+        <br />
+
+
+    </div>
+    <br />
+
+    @if (Model.Guest.RoomTransferHistories.Any())
+    {
+        <h3><span style="color: #24D07C">Room Transfer History</span></h3>
+        <div>
+            <table class="striped fixedlayout">
+                <thead>
+                    <tr>
+                        <th width="20%">Room No.</th>
+                        <th width="20%">Previous Guest</th>
+                        <th width="60%">Notes</th>
+                        <th width="20%">Date</th>
+                    </tr>
+                </thead>
+                <tbody id="CasesTableBody1">
+                    @foreach (var rth in Model.Guest.RoomTransferHistories.OrderByDescending(x => x.TransferDate))
+                    {
+                        <tr id="@rth.Id">
+                            <td class="tth2">@rth.OldRoomNumber</td>
+                            <td class="tth2">@rth.OldGuestName</td>
+                            <td class="tth2">@rth.Notes</td>
+                            <td class="tth2">@rth.TransferDate </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    }
+
+    <br />
+    <h3><span style="color: #24D07C">Payments & Expenses</span></h3>
+    <div>
+        <table class="striped fixedlayout">
+            <thead>
+                <tr>
+                    <th width="15%">Room No.</th>
+                    <th width="20%">Room Type</th>
+                    <th width="20%">Type</th>
+                    <th width="20%">Reference</th>
+                    <th width="15%">Date</th>
+                    <th width="10%">Status</th>                    
+                    <th width="17%">Amount</th>
+                </tr>
+            </thead>
+            <tbody id="CasesTableBody1">
+                @foreach (var rm in Model.Guest.GuestRooms.Where(x => x.GuestRoomAccounts.Sum(y => y.Amount) >= 0))
+                {
+                    foreach (var ac in rm.GuestRoomAccounts.Where(x => (x.PaymentMethodId == (int)HotelMateWebV1.Helpers.Enums.PaymentMethodEnum.POSTBILL) || (x.PaymentTypeId == (int)HotelMateWebV1.Helpers.Enums.RoomPaymentTypeEnum.CashDeposit || x.PaymentTypeId == (int)HotelMateWebV1.Helpers.Enums.RoomPaymentTypeEnum.InitialDeposit || x.PaymentTypeId == (int)HotelMateWebV1.Helpers.Enums.RoomPaymentTypeEnum.ReservationDeposit)).OrderByDescending(x => x.TransactionDate))
+                    {
+                        <tr id="@ac.Id">
+                            <td class="tth2">@rm.Room.RoomNumber</td>
+                            <td class="tth2">@rm.Room.RoomType1.Name</td>
+                            <td class="tth2">@ac.RoomPaymentType.Name </td>
+                            <td class="tth2">@ac.TransactionId</td>
+                            <td class="tth2">@ac.TransactionDate.ToShortDateString()</td>
+
+                            <td class="tth2"></td>
+                            <td class="tth2">@ac.Amount</td>
+                        </tr>
+                    }
+                    if (rm.GuestRoomAccounts.Where(x => (x.PaymentMethodId == (int)HotelMateWebV1.Helpers.Enums.PaymentMethodEnum.POSTBILL) || (x.PaymentTypeId == (int)HotelMateWebV1.Helpers.Enums.RoomPaymentTypeEnum.CashDeposit || x.PaymentTypeId == (int)HotelMateWebV1.Helpers.Enums.RoomPaymentTypeEnum.InitialDeposit || x.PaymentTypeId == (int)HotelMateWebV1.Helpers.Enums.RoomPaymentTypeEnum.ReservationDeposit)).Any())
+                    {
+                        <tr><td></td><td></td><td></td><td></td><td></td><td>@rm.Room.RoomNumber Balance</td><td>@rm.GuestRoomAccounts.Summation().ToString(CultureInfo.InvariantCulture)</td></tr>
+                    }
+                }
+
+                <tr><td colspan="7"></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td>Balance</td><td>@Model.Guest.TotalAccounts().ToString(CultureInfo.InvariantCulture)</td></tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+    <br />
+    <h3><span style="color:#FF2AB5;">Room(s) Cost</span></h3>
+    <div>
+        <table class="striped fixedlayout">
+            <thead>
+                <tr>
+                    <th width="15%">Room No.</th>
+                    <th width="20%">Room Type</th>
+                    <th width="25%">Checkin</th>
+                    <th width="20%">Checkout</th>
+                    <th width="15%">Nights</th>
+                    <th width="20%">Rate </th>
+                    <th width="20%">Total </th>
+                </tr>
+            </thead>
+            <tbody id="CasesTableBody1">
+                @foreach (var rm in Model.Guest.GuestRooms)
+                {
+                    <tr id="@rm.Id">
+                        <td class="tth2">@rm.Room.RoomNumber</td>
+                        <td class="tth2">@rm.Room.RoomType1.Name</td>
+                        <td class="tth2">@rm.CheckinDate.ToShortDateString()</td>
+                        <td class="tth2">@DateTime.Now.ToShortDateString()</td>
+                        <td class="tth2">@rm.GetNumberOfNights()</td>
+                        <td class="tth2">@rm.RoomRate</td>
+                        <td class="tth2">@rm.RoomCharge()</td>
+                    </tr>
+                }
+
+                <tr><td colspan="8"></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td>Total</td><td>@Model.Guest.GuestRooms.Summation().ToString(CultureInfo.InvariantCulture)</td></tr>
+
+       </tbody>
+        </table>
+        <br />
+    </div>
+
+    <br />
+    <h3><span style="color:#FF2AB5;">Itemised Bill</span></h3>
+    <div>
+        <table class="striped fixedlayout">
+            <thead>
+                <tr>
+                    <th width="20%">Date</th>
+                    <th width="40%">Item</th>
+                    <th width="5%">Qty</th>
+                    <th width="10%">Price</th>
+                    <th width="10%">Total</th>
+                    <th width="15%">Cashier</th>
+                </tr>
+            </thead>
+            <tbody id="CasesTableBody1">
+                @foreach (var rm in Model.ItemmisedItems)
+                {
+                    <tr id="@rm.Id">
+                        <td class="tth2">@rm.DateSold</td>
+                        <td class="tth2" title="@rm.StockItem.StockItemName">@rm.StockItem.StockItemName</td>
+                        <td class="tth2">@rm.Qty</td>
+                        <td class="tth2">@rm.StockItem.UnitPrice</td>
+                        <td class="tth2">@rm.TotalPrice</td>
+                        <td class="tth2" title="@rm.Person.DisplayName">@rm.Person.DisplayName</td>
+                    </tr>
+                }
+
+                <tr><td colspan="6"></td></tr>
+                <tr border="1" bgcolor="#ff4980">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>Total</td>
+                    <td>@Model.ItemmisedItems.Sum(x => x.TotalPrice).ToString(CultureInfo.InvariantCulture)</td>
+                    <td></td>
+                </tr>
+
+            </tbody>
+        </table>
+        <br />
+
+
+    </div>
+
+   
+   
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

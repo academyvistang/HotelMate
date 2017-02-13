@@ -1,0 +1,82 @@
+﻿@model HotelMateWebV1.Models.RoomBookingViewModel
+<link href="~/css/CoolTable.css" rel="stylesheet" />
+   
+
+<div class="eight columns">
+   
+    <h1 class="page-title ci-title" style="margin-bottom:10px;"><span>Vacant Guest Rooms</span></h1>
+
+        <div>
+            <table class="striped fixedlayout">
+                <thead>
+                    <tr>
+                        <th width="20%"></th>
+                        <th width="10%">Reserved</th>
+                        <th width="15%">Room Number</th>
+                        <th width="15%">Room Type</th>
+                        <th width="20%">Rate </th>
+                        <th width="20%">Business Rate </th>                    
+                    </tr>
+                </thead>
+                <tbody id="CasesTableBody1">
+
+                    @foreach (var rm in Model.RoomsList)
+                    {
+                        
+                        <tr id="@rm.Id">
+                            
+                            @if (@rm.RoomStatu.Id == (int)HotelMateWebV1.Helpers.Enums.RoomStatusEnum.Vacant)
+                            {
+                            <td class="tth2"> <a class="erbEditorOpener buttonDevFirst" href="@Url.Action("NewBooking", "Booking", new { id = rm.Id,Model.CheckinDate,Model.CheckoutDate })">Book Room  @rm.RoomNumber</a></td>
+                            }
+                            else if (@rm.RoomStatu.Id == (int)HotelMateWebV1.Helpers.Enums.RoomStatusEnum.Dirty)
+                            {
+                                <td class="tth2"><a class="erbEditorDirty buttonDevFirst" href="@Url.Action("EditRoomChangeStatus", "HotelAdmin", new { id = rm.Id})">@rm.RoomStatu.Name</a></td> 
+                            }
+                            else
+                            {
+                                if (@rm.RoomStatu.Id == (int)HotelMateWebV1.Helpers.Enums.RoomStatusEnum.Occupied)
+                                {
+                                    if(User.IsInRole("ADMIN"))
+                                    {
+                                        <td class="tth2">
+                                        <a class="erbEditorRepair buttonDevFirst" href="@Url.Action("EditRoomChangeStatus", "HotelAdmin", new { id = rm.Id })">@rm.RoomStatu.Name</a>
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        
+                                    }
+                                  <td class="tth2"><a class="erbEditorRepair buttonDevFirst" href="#">@rm.RoomStatu.Name</a></td>                                      
+                                }
+                                else
+                                {                                    
+                                  <td class="tth2">
+                                  <a class="erbEditorRepair buttonDevFirst" href="@Url.Action("EditRoomChangeStatus", "HotelAdmin", new { id = rm.Id })">@rm.RoomStatu.Name</a>
+                                  </td>                                       
+                                }                              
+                            }
+
+                            @if (@rm.GuestReservations.Any(x => x.IsActive && x.FutureBooking))
+                            {                                
+                            <td class="tth2">@Html.CheckBox("CheckBox1", @rm.GuestReservations.Any(x => x.IsActive && x.FutureBooking)) |
+                                <a class="erbEditorRepair buttonDevFirst" href="@Url.Action("FutureBookingShow", "Home", new { id = rm.Id })">View</a>  </td>                                 
+                            }
+                            else
+                            {                                
+                               <td class="tth2">@Html.CheckBox("CheckBox1", @rm.GuestReservations.Any(x => x.IsActive && x.FutureBooking))</td>
+                            } 
+                                                                                         
+                            <td class="tth2">@rm.RoomNumber</td>
+                            <td class="tth2">@rm.RoomType1.Name</td>
+                            <td class="tth2">@rm.Price</td>
+                            <td class="tth2">@rm.Price</td>
+                           
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+

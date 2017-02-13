@@ -1,0 +1,65 @@
+﻿
+@model HotelMateWebV1.Models.SearchViewModel
+
+<div id="hero" class="row">
+    <div class="eight columns">
+        
+        <article id="post-16" class="post-16 page type-page status-publish hentry entry group">
+
+            <div class="booking-form-wrap bs bg">
+
+                @using (Html.BeginForm("SearchByName", "Booking", FormMethod.Post, new { enctype = "multipart/form-data", @class = "booking-form b-form row" }))
+                {
+                    @Html.Partial("_RoomsBlockSearch")
+                }
+
+            </div>
+
+        </article>
+       
+    </div>
+
+    <div class="four columns">
+        <div class="b-form widget bg bs">
+            <form class="booking-form" action="/booking/" method="post">
+                <h3>MAKE A NEW RESERVATION</h3>
+
+                <fieldset class="group">
+                    <p>
+                        <label for="arrive">Check In</label>
+                        <input readonly type="text" id="arrive" class="datepicker" name="arrive">
+                    </p>
+
+                    <p>
+                        <label for="depart">Check Out</label>
+                        <input readonly id="depart" class="datepicker" type="text" name="depart">
+                    </p>
+                </fieldset>
+
+                <fieldset class="group">
+                    <p>
+                        <label for="adults">Guests</label>
+                        <input type="number" min="1" max="6" id="adults" name="guests" value="1">
+                    </p>
+
+                    <p>
+                        <label for="b-room">Room</label>
+                        <select name='room_select' id='b-room' class=''>
+                            <option class="level-0" value="90">Standard Room</option>
+                            <option class="level-0" value="82">Deluxe Double</option>
+                            <option class="level-0" value="72">King Suite</option>
+                            <option class="level-0" value="64">Queen Suite</option>
+                            <option class="level-0" value="56">Honeymoon Suite</option>
+                            <option class="level-0" value="46">Standard Deluxe</option>
+                        </select>
+                    </p>
+                </fieldset>
+
+                <fieldset>
+                    <button class="btn b-book" type="submit">Check Availability</button>
+                    <small class="booking-note">%40 Discount on all bookings</small>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div> <!-- #hero -->

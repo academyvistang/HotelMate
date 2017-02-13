@@ -1,0 +1,45 @@
+﻿@model HotelMateWebV1.Models.PurchaseOrderModel
+
+
+<div class="cl-mcont">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="block-flat">
+                <div class="header">
+                </div>
+                <div class="content">
+                    <div class="table-responsive">
+                        <table class="table no-border hover">
+                            <thead class="no-border">
+                                <tr>
+
+                                    <th style="width:15%;"><strong>Name</strong></th>
+                                    <th style="width:15%;"><strong>Qty</strong></th>
+                            </thead>
+                            <tbody class="no-border-y">
+                                @foreach (var item in Model.Items.Where(x => x.Qty > 0).OrderBy(x => x.StockItem.StockItemName))
+                                {
+                                    <tr>
+                                        <td>@item.StockItem.StockItemName</td>
+                                        <td>@Html.TextBox("POItem_" + item.ItemId.ToString(), item.Qty, new { @type = "number" })</td>
+                                    </tr>
+                                }
+                                <tr>
+                                    <td colspan="2"><hr /></td>
+                                </tr>
+                                @foreach (var item in Model.Items.Where(x => x.Qty == 0).OrderBy(x => x.StockItem.StockItemName))
+                                {
+                                    <tr>
+                                        <td>@item.StockItem.StockItemName</td>
+                                        <td>@Html.TextBox("POItem_" + item.ItemId.ToString(), item.Qty, new { @type = "number" })</td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

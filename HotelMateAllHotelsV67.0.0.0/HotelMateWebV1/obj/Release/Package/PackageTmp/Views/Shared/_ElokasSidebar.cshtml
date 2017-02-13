@@ -1,0 +1,79 @@
+﻿@using HotelMateWebV1.Helpers.Enums
+
+<div id="sidebar" class="four columns">
+    <div id="ci_galleries_widget-2" class="widget widget_ci_galleries_widget group">
+        <h3 class="widget-title"><span>Guest Navigation</span></h3><div class="row">
+            <div class="six columns ci-gallery">
+                <div class="g-wrap bs">
+                    <img width="740" height="420" src="~/images/SidebarImages/NewRestaurant.CHECKOUT.jpg" class="attachment-gallery_thumb wp-post-image"
+                         alt="Please use this utility to check out a guest, view guest bill and print guest bill" />
+                    <div class="mask">
+                        <h3><a href="@Url.Action("CheckOutGuest", "GuestAccount", new { id = Model.Guest.Id, roomId = Model.Room.Id, checkout = true })">Checkout</a></h3>
+                        <h3><a href="@Url.Action("ViewGuestAccount", "GuestAccount", new { id = Model.Guest.Id, roomId = Model.Room.Id })">View</a></h3>
+                        <h3><a href="@Url.Action("PrintGuestAccount", "Printing", new { id = Model.Guest.Id, roomId = Model.Room.Id })">Print</a></h3>
+                        <p>Please use this utility to check out a guest, view guest bill and print guest bill. Please note once a guest is checked out only management can see his/her bill.</p>
+                        <a class="read-more btn" href="@Url.Action("CheckOutGuest", "GuestAccount", new { id = Model.Guest.Id, roomId = Model.Room.Id })">Checkout</a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="six columns ci-gallery">
+                <div class="g-wrap bs">
+                    <img width="740" height="420" src="~/images/SidebarImages/NewRestaurant.TOPUPACCOUNT.jpg" class="attachment-gallery_thumb wp-post-image" alt="Banking" /><div class="mask">
+                        <h3><a href="@Url.Action("TopUpAccount", "GuestAccount", new { id = Model.Guest.Id, roomId = Model.Room.Id })">Banking</a></h3>
+                        @if (Request.IsAuthenticated && ((User.IsInRole("Admin") || (User.IsInRole("SENIOR MANAGER")))))
+                        {
+                             <h3><a href="@Url.Action("AdjustRoomRate", "GuestAccount", new { id = Model.Guest.Id, roomId = Model.Room.Id })">Adjust Room Rate</a></h3>
+                        }
+                        <p>Please use this utility to top up a guest account. Please note that only mangaement can edit an entry made.</p>
+                        <a class="read-more btn" href="@Url.Action("TopUpAccount", "GuestAccount", new { id = Model.Guest.Id, roomId = Model.Room.Id })">Banking</a>
+                    </div>
+                </div>
+            </div>
+            <div class="six columns ci-gallery">
+                <div class="g-wrap bs">
+                    <img width="740" height="420" src="~/images/SidebarImages/NewRestaurant.BARLOUNGE.jpg" class="attachment-gallery_thumb wp-post-image" alt="Bar && Restaurant" /><div class="mask">
+                        <h3><a href="@Url.Action("TopUpRestaurant", "GuestAccount", new { id = Model.Guest.Id, roomId = Model.Room.Id, paymentTypeId = (int)RoomPaymentTypeEnum.Restuarant })">Restaurant</a></h3>
+                        <h3><a href="@Url.Action("TopUpRestaurant", "GuestAccount", new { id = Model.Guest.Id, roomId = Model.Room.Id, paymentTypeId = (int)RoomPaymentTypeEnum.Bar })">Bar</a></h3>
+                        <p>Please use this utility to record bar and restaurant entries. Please note that only mangaement can edit an entry made.</p>
+                        <a class="read-more btn" href="@Url.Action("TopUpRestaurant", "GuestAccount", new { id = Model.Guest.Id, roomId = Model.Room.Id, paymentTypeId = (int)RoomPaymentTypeEnum.Restuarant })">Restaurant</a>
+                    </div>
+                </div>
+            </div>
+            <div class="six columns ci-gallery">
+                <div class="g-wrap bs">
+                    <img width="740" height="420" src="~/images/SidebarImages/NewRestaurant.EXTENDSTAY.jpg" class="attachment-gallery_thumb wp-post-image" alt="Please use this utility to extend a guest stay" /><div class="mask">
+                        <h3><a href="@Url.Action("ExtendGuestStay", "GuestAccount", new { id = Model.Guest.Id, roomId = Model.Room.Id })">Extend Guest Stay</a></h3>
+                        <h3><a href="@Url.Action("TopUpHalfDay", "GuestAccount", new { id = Model.Guest.Id, roomId = Model.Room.Id, paymentTypeId = (int)RoomPaymentTypeEnum.HalfDay })">Half Day</a></h3>
+                        <p>Please use this utility to extend a guest stay. Please note that a guest can only be extended if the room is available for the exteded dates. Also note that only mangaement can edit an entry made.</p>
+                        <a class="read-more btn" href="@Url.Action("ExtendGuestStay", "GuestAccount", new { id = Model.Guest.Id, roomId = Model.Room.Id })">Extend Guest Stay</a>
+                    </div>
+                </div>
+            </div>
+            <div class="six columns ci-gallery">
+                <div class="g-wrap bs">
+                    <img width="740" height="420" src="~/images/SidebarImages/NewRestaurant.LAUNDRYCAFETEL.jpg" class="attachment-gallery_thumb wp-post-image" alt="Laundry,Cafe nguid Telephone" /><div class="mask">
+                        <h3><a href="@Url.Action("TopUpRestaurant", "GuestAccount", new { id = Model.Guest.Id, roomId = Model.Room.Id, paymentTypeId = (int)RoomPaymentTypeEnum.Laundry })">Laundry</a></h3>
+                        @*<h3><a href="@Url.Action("TopUpRestaurant", "GuestAccount", new { id = Model.Guest.Id,roomId = Model.Room.Id, paymentTypeId = (int)RoomPaymentTypeEnum.Laundry })"></a>Cafe</h3>
+                        <h3><a href="@Url.Action("TopUpRestaurant", "GuestAccount", new { id = Model.Guest.Id,roomId = Model.Room.Id,paymentTypeId = (int)RoomPaymentTypeEnum.Laundry})">Tel</a></h3>*@
+                        <p>Please use this utility to record Laundry,Cafe and Telephone entries. Please note that only mangaement can edit an entry made.</p>
+                        <a class="read-more btn" href="@Url.Action("TopUpRestaurant", "GuestAccount", new { id = Model.Guest.Id,roomId = Model.Room.Id,paymentTypeId = (int)RoomPaymentTypeEnum.Laundry})">Laundry</a>
+                    </div>
+                </div>
+            </div>
+           
+            <div class="six columns ci-gallery">
+                <div class="g-wrap bs">
+                    <img width="740" height="420" src="~/images/SidebarImages/NewRestaurant.AVAILABILITY.jpg" class="attachment-gallery_thumb wp-post-image" alt="Transfer Guest & Bill" /><div class="mask">
+                        <h3><a href="@Url.Action("TransferGuest", "GuestAccount", new { id = Model.Guest.Id, roomId = Model.Room.Id })">Transfer Guest</a></h3>
+					    <h3><a href="@Url.Action("TransferGuest", "GuestAccount", new { id = Model.Guest.Id, roomId = Model.Room.Id })">Transfer Bill</a></h3>		                                                                                                                                                                                                                            
+                        <p>This menu allows you to transfer a guest from one room to another. You can also transfer a guest bill from one guest to another guest.</p>
+                        <a class="read-more btn" href="@Url.Action("TransferGuest", "GuestAccount", new { id = Model.Guest.Id, roomId = Model.Room.Id })">Transfer Guest</a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+<!-- #sidebar -->

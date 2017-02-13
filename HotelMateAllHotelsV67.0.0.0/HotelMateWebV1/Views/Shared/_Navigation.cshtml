@@ -1,0 +1,150 @@
+﻿@model HotelMateWebV1.Models.RoomBookingViewModel
+<link href="~/css/LoginPopUp.css" rel="stylesheet" />
+
+<div id="login-box" class="login-popup">
+    <a href="#" class="close"><img src="~/images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
+    <form method="post" class="signin" action="@Url.Action("LogOn","Account")">
+        <fieldset class="textbox">
+            <label class="username">
+                <span>Username or email</span>
+                <input id="UserName" name="UserName" value="" type="text" autocomplete="on" placeholder="Username">
+            </label>
+
+            <label class="password">
+                <span>Password</span>
+                <input id="Password" name="Password" value="" type="password" placeholder="Password">
+            </label>
+
+            <input class="submit button" type="submit" value="Sign in" />
+
+            @*<button class="submit button" type="button">Sign in</button>*@
+
+            <p>
+                <a class="forgot" href="#">Forgot your password?</a>
+            </p>
+
+        </fieldset>
+    </form>
+</div>
+
+<ul id="navigation" class="">
+    @if (Request.IsAuthenticated && ((User.IsInRole("Admin") || (User.IsInRole("SENIOR MANAGER")) || User.IsInRole("Staff"))))
+    {        
+        <li id="menu-item-221" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-6 current_page_item menu-item-221">
+            <a href="@Url.Action("Booking","Home")">Home</a>
+            <ul class="sub-menu">
+                <li id="menu-item-345" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-345"><a href="@Url.Action("Booking","Home")">New Booking</a></li>
+                <li id="menu-item-345" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-345"><a href="@Url.Action("GuestCheckin", "Report")">Room Reports</a></li>
+                <li id="menu-item-345" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-345"><a href="@Url.Action("Index", "InventoryPos")">Inventory Manager</a></li>
+            </ul>
+        </li>
+        <li id="menu-item-314" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-314"><a href="@Url.Action("Booking","Home")">Rooms</a>
+            <ul class="sub-menu">
+                <li id="menu-item-308" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-308"><a href="@Url.Action("Search","Booking")">Guest Rooms</a></li>
+                <li id="menu-item-345" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-345"><a href="@Url.Action("Booking","Home")">Vacant Rooms</a></li>
+                <li id="menu-item-345" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-345"><a href="@Url.Action("ViewRoomsByStatus", "Booking")">View Rooms By Status</a></li>
+                <li id="menu-item-345" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-345"><a href="@Url.Action("ViewRooms","Home")">View Rooms</a></li>
+                <li id="menu-item-345" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-345"><a href="@Url.Action("MatrixRooms", "Home")">Room Matrix</a></li>
+                
+
+                @if (User.IsInRole("Admin"))
+                { 
+                <li id="menu-item-378" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-377"><a href="@Url.Action("CreateRooms","Booking")">CREATE ROOMS</a></li>
+                <li id="menu-item-378" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-377"><a href="@Url.Action("ViewRooms","Booking")">EDIT ROOMS</a></li>
+                    
+                <li id="menu-item-379" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-377"><a href="@Url.Action("CreateRoomTypes","Booking")">CREATE ROOM TYPES</a></li>
+                <li id="menu-item-379" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-377"><a href="@Url.Action("ViewRoomTypes","Booking")">EDIT ROOM TYPES</a></li>
+                }
+            </ul>
+        </li>
+        <li id="menu-item-336" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-336">
+            <a href="@Url.Action("Booking","Home")">RESERVATIONS</a>
+            <ul class="sub-menu">
+                <li id="menu-item-347" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-346"><a href="@Url.Action("NewFutureBooking","Home")">New Reservation</a></li>
+                <li id="menu-item-345" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-345"><a href="@Url.Action("FutureBooking","Home")">View Reservations</a></li>
+            </ul>
+        </li>
+        <li id="menu-item-214" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-214">
+            <a href="@Url.Action("RoomGroupBooking", "Booking")">Groups</a>
+            <ul class="sub-menu">
+                @*<li id="menu-item-346" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-345"><a href="@Url.Action("RoomGroupBooking", "Booking")">Group Booking</a></li>*@
+                <li id="menu-item-347" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-345"><a href="@Url.Action("GroupBooking","Home")">New GROUP RESERVATION</a></li>
+                <li id="menu-item-333" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-333"><a href="@Url.Action("AmendGroupBooking","Home")">View GROUP RESERVATIONS</a></li>
+                @*<li id="menu-item-333" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-333"><a href="@Url.Action("Booking","Home")">Checkout Groups</a></li>*@
+            </ul>
+        </li>
+        if (User.IsInRole("Admin") || User.IsInRole("Accountant") || (User.IsInRole("SENIOR MANAGER")))
+        { 
+        <li id="menu-item-375" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-375"><a href="@Url.Action("Booking","Home")">Management</a>
+            <ul class="sub-menu">
+                <li id="menu-item-376" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-376"><a href="@Url.Action("Index","HotelAdmin")">Admin Zone</a></li> 
+                <li id="menu-item-377" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-377"><a href="@Url.Action("AdjustGuestBill","GuestAccount")">Guest BillS</a></li>
+                <li id="menu-item-378" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-377"><a href="@Url.Action("ManageSuppliers","GuestAccount")">Manage Suppliers</a></li>
+                <li id="menu-item-378" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-377"><a href="@Url.Action("Index","CompanyAccount")">Corporate Accounts</a></li>
+                <li id="menu-item-378" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-377"><a href="@Url.Action("IndexLedger","CompanyAccount")">Ledger Accounts</a></li>
+
+                <li id="menu-item-378" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-377"><a href="@Url.Action("IndexTransfer","CompanyAccount")">Transfer Guest Bill To Ledger</a></li>
+            </ul>
+        </li>       
+        }
+        
+        @*<li id="menu-item-377" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-377"><a href="@Url.Action("Booking","Home")">Reports</a></li>*@
+        <li id="menu-item-314" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-314"><a href="@Url.Action("Search","Booking")">Search</a></li>
+        
+    }
+    
+        @*@if (Request.IsAuthenticated && ((User.IsInRole("SALES ASSISTANT")) || (User.IsInRole("Admin"))))
+        {
+            <li id="menu-item-314" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-314"><a href="@Url.Action("Index","Pos")">Sales</a>
+                        <ul class="sub-menu">
+                        <li id="menu-item-345" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-345"><a href="@Url.Action("Index","Pos")">Pos Terminal</a></li>
+                        <li id="menu-item-345" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-345"><a href="@Url.Action("TotalSales", "Report")">Pos Sales</a></li>
+                    </ul>
+                </li>
+        }*@
+
+    @if (Request.IsAuthenticated && ((User.IsInRole("STORE MANAGER"))))
+    {
+        <li id="menu-item-314" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-314">
+            <a href="@Url.Action("IndexStore", "Item")">Manage Store</a>           
+        </li>
+    }
+
+   
+    
+    @if (Request.IsAuthenticated && ((User.IsInRole("SECURITY")) || (User.IsInRole("Admin"))))
+    {
+    <li id="menu-item-375" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-375">
+        <a href="@Url.Action("Index","Home")">HR</a>
+        <ul class="sub-menu">
+            <li id="menu-item-378" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-377"><a href="@Url.Action("ManageUsers","GuestAccount")">Manage Users</a></li>
+        </ul>
+    </li>
+    }
+
+    <li id="menu-item-375" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-375"><a href="@Url.Action("Index","Home")"><img src="~/images/Gnome-System-Lock-Screen-32.png" /></a>  
+        @*<a href="@Url.Action("Booking","Home")">Security</a>*@
+              
+        <ul class="sub-menu">
+            @if (!Request.IsAuthenticated)
+            {
+            <li id="menu-item-377" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-377"><a href="#login-box" class="login-window">Login</a></li>
+            }
+
+            @if (Request.IsAuthenticated)
+            {
+                <li id="menu-item-377" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-377"><a href="@Url.Action("LogOff", "Account")">Log Out</a></li>
+            }
+
+
+</ul>
+    </li>
+
+
+
+
+
+
+    
+
+</ul>

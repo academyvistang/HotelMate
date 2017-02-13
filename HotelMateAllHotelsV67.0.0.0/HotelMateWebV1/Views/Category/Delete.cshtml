@@ -1,0 +1,83 @@
+﻿@model HotelMateWebV1.Models.CategoryModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+
+
+<div class="page-head">
+    <h2>Categories</h2>
+    <ol class="breadcrumb">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Category</a></li>
+        <li class="active">Delete</li>
+    </ol>
+</div>
+<div class="cl-mcont">
+    <div class="row">
+        <div class="col-sm-6 col-md-6">
+            <div class="block-flat">
+                <div class="header">
+                    <h3>Category Delete</h3>
+                   
+                    <div class="alert alert-warning alert-white rounded">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <div class="icon"><i class="fa fa-warning"></i></div>
+                        <strong>Alert!</strong> Are you sure you want to delete this?
+                    </div>
+                        <span>@Html.ActionLink("Back to List", "Index")</span>
+                </div>
+                <div class="content">
+
+                    @using (Html.BeginForm("DELETE", "CATEGORY", FormMethod.Post, new { @class = "form-horizontal" }))
+                    {
+                        //@Html.AntiForgeryToken()
+
+                        @Html.HiddenFor(model => model.Id)
+                        @Html.ValidationSummary(true)
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Name, new { @class = "col-sm-3 control-label" })
+                            <div class="col-sm-7">
+                                @Html.DisplayFor(model => model.Name, new { @class = "form-control", @id = "Name", @placeholder = "Name" })
+                                @Html.ValidationMessageFor(model => model.Name)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Description, new { @class = "col-sm-3 control-label" })
+                            <div class="col-sm-7">
+                                @Html.DisplayFor(model => model.Description, new { @class = "form-control", @id = "Description", @placeholder = "Description" })
+                                @Html.ValidationMessageFor(model => model.Description)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                @{string stringValue = (Model.Id == 0) ? "Create" : "Delete";}
+                                <button type="submit" class="btn btn-primary">@stringValue</button>
+
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+</div>
+
+
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+

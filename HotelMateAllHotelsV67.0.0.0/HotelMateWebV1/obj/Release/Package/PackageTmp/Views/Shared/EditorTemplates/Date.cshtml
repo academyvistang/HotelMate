@@ -1,0 +1,6 @@
+@model DateTime?
+
+@(Html.Telerik().DatePickerFor(m => m)
+      .Value(DateTime.Now)
+      .HtmlAttributes(new { id = ViewData.TemplateInfo.GetFullHtmlFieldName(string.Empty) + "_wrapper" })
+)

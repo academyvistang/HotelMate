@@ -1,0 +1,162 @@
+﻿@model HotelMateWebV1.Models.IndexViewModel21
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_PageLayout.cshtml";
+}
+
+
+<script src="../../Scripts/jquery-1.6.4.min.js" type="text/javascript"></script>
+<script src="../../Scripts/jquery.signalR-1.0.1.min.js" type="text/javascript"></script>
+<script src="../../Scripts/history.js" type="text/javascript"></script>
+<script src="@Url.Content("~/signalr/hubs")" type="text/javascript"></script>
+<script src="../../Scripts/jquery.playSound.js" type="text/javascript"></script>
+<script src="../../Scripts/agbo21connection.js" type="text/javascript"></script>
+@*<script src="signalr/hubs" type="text/javascript"></script>*@
+
+
+
+<div class="info message">
+     <img style="float:right; cursor:pointer;" src="../../Images/list-remove.png" alt="close" />
+     <h3>You can now pick from the floor cards!</h3>
+     <p style="font-size:13px; font-weight:bold;"><span style="color:Red;text-decoration:blink;">Please click on the Done! button if you have finished picking your floor cards or if you do not intend to pick.</span></p>
+</div>
+
+<div class="error message">
+     <img style="float:right; cursor:pointer;" src="../../Images/list-remove.png" alt="close" />
+     <h3>Sorry, You lost! Better luck next time! You no even sabi play.</h3>
+     <p style="font-size:13px; font-weight:bold;"><span style="color:Green;text-decoration:blink;">Please click on Start New Game button to continue playing.</span></p>
+</div>
+
+<div class="warning message">
+      <img style="float:right; cursor:pointer;" src="../../Images/list-remove.png" alt="close" />
+      <h3>Congrats, you did it! Your game don dey improve!</h3>
+      <p style="font-size:13px; font-weight:bold;"><span style="color:Red;text-decoration:blink;">Please click on Start New Game button to continue playing.</span></p>  
+</div>
+
+<div class="success message">
+     <img style="float:right; cursor:pointer;" src="../../Images/list-remove.png" alt="close" />
+     <h3>It's a tie. I been think say you be expect! You just dey learn.</h3>
+     <p style="font-size:13px; font-weight:bold;"><span style="color:Red;text-decoration:blink;">Please click on Start New Game button to continue playing.</span></p>
+    @* <h3>User Message Recieved</h3>
+     <div style="width:95%; border:1px Solid Green; overflow:auto; height:40px; background-color:White; padding:10px;" id="discussion"></div>
+*@
+</div>
+
+<div class="mutu message">
+      <img style="float:right; cursor:pointer;" src="../../Images/list-remove.png" alt="close" />
+      <h3>You did not answer the calling card. You have muttued!</h3>
+      <p style="font-size:13px; font-weight:bold;"><span style="color:Red;text-decoration:blink;">Please click on Start New Game button to continue playing.</span></p>  
+</div>
+
+<div class="otherplayermutu message">
+      <img style="float:right; cursor:pointer;" src="../../Images/list-remove.png" alt="close" />
+      <h3>Your contest was valid as the other player did not answer your calling card. You are the winner!</h3>
+      <p style="font-size:13px; font-weight:bold;"><span style="color:Red;text-decoration:blink;">Please click on Start New Game button to continue playing.</span></p>  
+</div>
+
+<div class="nomutu message">
+      <img style="float:right; cursor:pointer;" src="../../Images/list-remove.png" alt="close" />
+      <h3>Your contest was invalid as the other player did answer your calling card.The winner is unchanged!</h3>
+      <p style="font-size:13px; font-weight:bold;"><span style="color:Red;text-decoration:blink;">Please click on Start New Game button to continue playing.</span></p>  
+</div>
+
+
+
+
+<div id="templatemo_content_wrapper"> 
+
+ 
+
+@if (Model.CardOwners != null)
+{
+@Html.Hidden("UserCount", Model.CardOwners.Count)
+}
+else
+{
+@Html.Hidden("UserCount", 1)    
+}
+
+@Html.HiddenFor(model => model.GameId)
+@Html.HiddenFor(model => model.GlobalUrlAction)
+@Html.Hidden("CurrentUserName", Model.CurrentUserName)
+@Html.Hidden("NewGameId", Model.GameId)
+
+    	
+           <div class="templatemo_side_bar margin_right_10">
+
+           <div>
+        	
+            <div class="header_01">Game Members</div>
+            	<ul>
+
+                @if (Model.GameUsers != null)
+                {
+                    foreach (var g in Model.GameUsers.Where(x => x.User.UserName != "AGBO FLOOR" || x.User.UserName != "CLOUD"))
+                   {                    
+                	<li><a><span style="color:Red;text-decoration:blink;"> £@g.User.RealMoneyBalance </span></a></li>
+                   }
+                }
+
+                </ul>
+			
+            <div class="margin_bottom_20 horizontal_divider"></div> 
+			<div class="margin_bottom_20"></div>
+
+            <div class="header_01">BSide21&trade; Game Console</div>     
+            @*<input type="text" id="search_field" name="search_field" />
+            <div style=" cursor:pointer;" class="rc_btn_01 fl">  <a class="clickmessage">Send</a></div>*@
+            
+            <div class="margin_bottom_40"></div>
+            <img alt="" src="../../Images/kpoker.png" />
+            <div class="margin_bottom_40"></div>
+            <div class="margin_bottom_40"></div>
+           
+            </div>
+            <a class="open_chat1" style=" padding-left:20px; margin-bottom:10px; cursor:pointer;"><img  src="../../Images/telephone.png" alt="Click To Open Chat"  title="Click To Open Chat" /></a>  
+            <a class="open_chat1m" style=" padding-left:10px; cursor:pointer;"><img  src="../../Images/Music.png" alt="Click To Play Music"  title="Click To Play Music" /></a>             
+            </div> 
+            
+            <!-- end of left side bar -->
+        
+        <div class="templatemo_contentLarge margin_right_10">
+
+        <div id="agbo21gamecontainer">
+        
+
+        @if (Model.CardOwners != null && Model.CardOwners.Count > 1)
+        {          
+          @Html.Partial("_AggaraCardSharer", Model.CardOwners)
+        }
+        else
+        {
+                <div style="display:table-cell; vertical-align:middle; text-align:center; background-color:White; height:150px; width:150px; float:left; margin-bottom: 231px; ">
+                <img alt="Please wait for a user to join this game" title="Please wait for a user to join this game" src="../../Images/thumbnailWait.gif" />
+                </div>
+                <div style="float:left; margin-left:20px; width:500px;">
+                <p><span style="color:Red;">Please wait as we search for a player to join you. As soon as a player becomes available, you will be notified and your game will start. Thanks for your patience. </span></p>
+                <p><span style="color:Red;">Whilst you are waiting for an online user, you can decide to play against the computer. You will be notified when someone joins your game.Please click button below if you so choose.</span></p>
+                 
+                
+                <p>You can also give your friends your pin number, they can enter this into the search box on the home page and instantly they can play with you.</p>
+                <h3>Your Pin number is : @Model.GameId.ToString()</h3>
+                
+                <div style="float:right;" class="rc_btn_01 fl"><a href="@Url.Action("PlayAgainstComputer", "Aggara")">Play Computer</a></div>  
+                </div>
+        }
+        
+        </div>         
+        </div> <!-- end of content -->
+    	
+        <div class="cleaner"></div>
+    </div> 
+
+
+
+@Html.Partial("_ChatDialog")
+
+
+
+
+
+

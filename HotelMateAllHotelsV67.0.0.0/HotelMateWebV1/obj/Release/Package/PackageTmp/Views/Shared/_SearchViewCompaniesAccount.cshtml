@@ -1,0 +1,197 @@
+﻿@model HotelMateWebV1.Models.SearchViewModel
+<link href="~/css/CoolTable.css" rel="stylesheet" />
+
+<div class="eight columns">
+    <h1 class="page-title ci-title" style="margin-bottom:10px;"><span>@Model.Company.Name</span></h1>
+
+    <table class="striped fixedlayout">
+        <thead></thead>
+        <tbody id="CasesTableBody1">
+            <tr border="1" bgcolor="#ff4980"><td></td><td></td><td></td><td></td><td></td><td bgcolor="#000000">Balance</td><td bgcolor="@Model.Company.GetCompanyBalanceColour()">@Model.Company.GetCompanyBalance()</td></tr>
+    </tbody>
+    </table>
+
+    <br />
+            <h3><span style="color: #24D07C">Payments To Accounts Department</span></h3>
+            <div>
+                <table class="striped fixedlayout">
+                    <thead>
+                        <tr>
+                            <th width="10%"></th>
+                            <th width="10%">Status</th>
+                            <th width="10%">Reference</th>
+                            <th width="15%">Date</th>
+                            <th width="15%">Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody id="CasesTableBody1">
+                        @foreach (var ac in Model.AllPaymentsMade)
+                        {
+                            <tr id="@ac.Id">
+
+                                <td class="tth2">
+                                    <a class="erbEditorOpener buttonDevFirst" href="@Url.Action("TopUpAccountEdit", "CompanyAccount", new { id = ac.Id })">Edit</a>
+                                </td>
+
+                                <td class="tth2">@ac.PaymentMethod.Name </td>
+                                <td class="tth2">@ac.Person.DisplayName</td>
+                                <td class="tth2">@ac.TransactionDate.ToShortDateString()</td>
+                                <td class="tth2">@ac.Amount</td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+
+            </div>
+
+            <h3><span style="color: #24D07C">Hotel Expenses</span></h3>
+            <div>
+                <table class="striped fixedlayout">
+                    <thead>
+                        <tr>
+                            <th width="15%">Room No.</th>
+                            <th width="15%">Room Type</th>
+                            <th width="20%">Type</th>
+                            <th width="10%">Reference</th>
+                            <th width="15%">Date</th>
+                            <th width="15%">Status</th>
+                            <th width="15%">Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody id="CasesTableBody1">
+                        @foreach (var rm in Model.Company.GuestRooms.Where(x => x.GuestRoomAccounts.Sum(y => y.Amount) >= 0))
+                        {
+                            foreach (var ac in rm.GuestRoomAccounts.Where(x => ((x.PaymentMethodId == (int)HotelMateWebV1.Helpers.Enums.PaymentMethodEnum.POSTBILL) || (x.PaymentTypeId == (int)HotelMateWebV1.Helpers.Enums.RoomPaymentTypeEnum.CashDeposit || x.PaymentTypeId == (int)HotelMateWebV1.Helpers.Enums.RoomPaymentTypeEnum.InitialDeposit || x.PaymentTypeId == (int)HotelMateWebV1.Helpers.Enums.RoomPaymentTypeEnum.ReservationDeposit)) || (x.PaymentTypeId == (int)HotelMateWebV1.Helpers.Enums.RoomPaymentTypeEnum.CashDeposit || x.PaymentTypeId == (int)HotelMateWebV1.Helpers.Enums.RoomPaymentTypeEnum.InitialDeposit)).OrderByDescending(x => x.TransactionDate))
+                            {
+                                <tr id="@ac.Id">
+                                    <td class="tth2">@rm.Room.RoomNumber</td>
+                                    <td class="tth2">@rm.Room.RoomType1.Name</td>
+                                    <td class="tth2">@ac.RoomPaymentType.Name </td>
+                                    <td class="tth2">@ac.TransactionId</td>
+                                    <td class="tth2">@ac.TransactionDate.ToShortDateString()</td>
+                                    <td class="tth2"></td>
+                                    <td class="tth2">@ac.Amount</td>
+                                </tr>
+                            }
+                            if (rm.GuestRoomAccounts.Where(x => (x.PaymentMethodId == (int)HotelMateWebV1.Helpers.Enums.PaymentMethodEnum.POSTBILL) || (x.PaymentTypeId == (int)HotelMateWebV1.Helpers.Enums.RoomPaymentTypeEnum.CashDeposit || x.PaymentTypeId == (int)HotelMateWebV1.Helpers.Enums.RoomPaymentTypeEnum.InitialDeposit || x.PaymentTypeId == (int)HotelMateWebV1.Helpers.Enums.RoomPaymentTypeEnum.ReservationDeposit)).Any())
+                            {
+                                <tr><td></td><td></td><td></td><td></td><td></td><td>@rm.Room.RoomNumber Balance</td><td>@rm.GuestRoomAccounts.Summation().ToString(System.Globalization.CultureInfo.InvariantCulture)</td></tr>
+                            }
+                        }
+
+                        <tr><td colspan="7"></td></tr>
+                        <tr><td></td><td></td><td></td><td></td><td></td><td>Balance</td><td>@Model.Company.TotalAccounts().ToString(System.Globalization.CultureInfo.InvariantCulture)</td></tr>
+
+                    </tbody>
+                </table>
+
+            </div>
+
+            <br />
+            <h3><span style="color:#FF2AB5;">Room(s) Cost</span></h3>
+            <div>
+                <table class="striped fixedlayout">
+                    <thead>
+                        <tr>
+                            <th width="15%">Room No.</th>
+                            <th width="20%">Room Type</th>
+                            <th width="25%">Checkin</th>
+                            <th width="20%">Checkout</th>
+                            <th width="15%">Nights</th>
+                            <th width="20%">Rate </th>
+                            <th width="20%">Total </th>
+                        </tr>
+                    </thead>
+                    <tbody id="CasesTableBody1">
+                        @foreach (var rm in Model.Company.GuestRooms)
+                        {
+                            <tr id="@rm.Id">
+                                <td class="tth2">@rm.Room.RoomNumber</td>
+                                <td class="tth2">@rm.Room.RoomType1.Name</td>
+                                <td class="tth2">@rm.CheckinDate.ToShortDateString()</td>
+                                <td class="tth2">@DateTime.Now.ToShortDateString()</td>
+                                <td class="tth2">@rm.GetNumberOfNights()</td>
+                                <td class="tth2">@rm.RoomRate</td>
+                                <td class="tth2">@rm.RoomCharge()</td>
+                            </tr>
+                        }
+
+                        <tr><td colspan="8"></td></tr>
+                        <tr><td></td><td></td><td></td><td></td><td></td><td>Total</td><td>@Model.Company.GuestRooms.Summation().ToString(System.Globalization.CultureInfo.InvariantCulture)</td></tr>
+
+
+                    </tbody>
+                </table>
+                <br />
+
+
+            </div>
+
+
+            <br />
+            <h3><span style="color:#FF2AB5;">Itemised Bill</span></h3>
+            <div>
+                <table class="striped fixedlayout">
+                    <thead>
+                        <tr>
+                            <th width="20%">Date</th>
+                            <th width="40%">Item</th>
+                            <th width="5%">Qty</th>
+                            <th width="10%">Price</th>
+                            <th width="10%">Total</th>
+                            <th width="15%">Cashier</th>
+                        </tr>
+                    </thead>
+                    <tbody id="CasesTableBody1">
+                        @foreach (var rm in Model.ItemmisedItems)
+                        {
+                            <tr id="@rm.Id">
+                                <td class="tth2">@rm.DateSold</td>
+                                <td class="tth2" title="@rm.StockItem.StockItemName">@rm.StockItem.StockItemName</td>
+                                <td class="tth2">@rm.Qty</td>
+                                <td class="tth2">@rm.StockItem.UnitPrice</td>
+                                <td class="tth2">@rm.TotalPrice</td>
+                                <td class="tth2" title="@rm.Person.DisplayName">@rm.Person.DisplayName</td>
+                            </tr>
+                        }
+
+                        <tr><td colspan="6"></td></tr>
+                        <tr border="1" bgcolor="#ff4980">
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Total</td>
+                            <td>@Model.ItemmisedItems.Sum(x => x.TotalPrice).ToString(System.Globalization.CultureInfo.InvariantCulture)</td>
+                            <td></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <br />
+
+
+            </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

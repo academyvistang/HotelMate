@@ -1,0 +1,72 @@
+﻿@model HotelMateWebV1.Models.RoomBookingViewModel
+<link href="~/css/CoolTable.css" rel="stylesheet" />
+
+
+<div class="eight columns">
+    <h1 class="page-title ci-title" style="margin-bottom:10px;"><span>FUTURE RESERVATIONS</span></h1>
+
+    <div>
+        @using (Html.BeginForm("RoomFutureBookingFromDialog", "Booking", FormMethod.Post, new { enctype = "multipart/form-data", @class = "booking-formTT" }))
+        {
+            //DateTime? arrive, DateTime? depart, int? room_select
+            @Html.Hidden("arrive", Model.CheckinDate)
+            @Html.Hidden("depart", Model.CheckoutDate)
+            @Html.Hidden("room_select", 0)
+
+            <input id="submit" type="submit" value="Select Multiple Rooms" name="send_booking">
+        }
+    </div>
+
+    <div>
+        <table class="striped fixedlayout">
+            <thead>
+                <tr>
+                    <th width="20%"></th>
+                    <th width="20%">Room Number</th>
+                    <th width="20%">Room Type</th>
+                    <th width="20%">Rate </th>
+                    <th width="20%">Business Rate </th>
+                </tr>
+            </thead>
+            <tbody id="CasesTableBody1">
+                @foreach (var rm in Model.RoomsList)
+                {
+                    <tr id="@rm.Id">
+
+                        @if (@rm.RoomStatu.Id == (int)HotelMateWebV1.Helpers.Enums.RoomStatusEnum.Vacant)
+                        {
+                            <td class="tth2"> <a class="erbEditorOpener buttonDevFirst" href="@Url.Action("RoomFutureBookingBookSingle", "Booking", new { id = rm.Id, Model.CheckinDate, Model.CheckoutDate })">Book Room  @rm.RoomNumber</a></td>
+                        }
+                        else if (@rm.RoomStatu.Id == (int)HotelMateWebV1.Helpers.Enums.RoomStatusEnum.Dirty)
+                        {
+                            <td class="tth2">
+                                <a class="erbEditorDirty buttonDevFirst" href="@Url.Action("EditRoomChangeStatus", "HotelAdmin", new { id = rm.Id })">@rm.RoomStatu.Name</a>
+                                <span style="padding-left:5px;"><a class="erbEditorOpener buttonDevFirst" href="@Url.Action("RoomFutureBookingBookSingle", "Booking", new { id = rm.Id, Model.CheckinDate, Model.CheckoutDate })">Book Room  @rm.RoomNumber</a></span>
+                            </td>
+                        }
+                        else
+                        {
+                           if (@rm.RoomStatu.Id == (int)HotelMateWebV1.Helpers.Enums.RoomStatusEnum.Occupied)
+                                {
+                                  <td class="tth2"><a class="erbEditorRepair buttonDevFirst" href="#">@rm.RoomStatu.Name</a></td>                                      
+                                }
+                                else
+                                {                                    
+                                  <td class="tth2"><a class="erbEditorRepair buttonDevFirst" href="@Url.Action("EditRoomChangeStatus", "HotelAdmin", new { id = rm.Id })">@rm.RoomStatu.Name</a></td>                                       
+                                }  
+                        }
+
+                        <td class="tth2">@rm.RoomNumber</td>
+                        <td class="tth2">@rm.RoomType1.Name</td>
+                        <td class="tth2">@rm.Price</td>
+                        <td class="tth2">@rm.Price</td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+    
+</div>
+

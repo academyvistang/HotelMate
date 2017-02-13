@@ -1,0 +1,48 @@
+﻿@model HotelMateWebV1.Models.GuestRoomAccountViewModel
+
+
+@{
+    ViewBag.Title = "Booking";
+}
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+<script>
+    $(function () {
+        $("#searchSubmit").click(function ()
+        {
+            var searchEntry = $("#SearchName").val();
+           
+            $.ajax({
+                url: "@Url.Action("GetMoviesList", "Guest")",
+                data: { movie: searchEntry },
+            dataType: "html",
+            type: "POST",
+            error: function() {
+                alert("An error occurred.");
+            },
+            success: function (data)
+            {
+                $("#MovieList").html("");
+                $("#MovieList").html(data);
+            }
+        });
+        });
+    });
+</script>
+
+@Html.Partial("_SearchBox")
+
+<div id="MovieList">
+
+    @Html.Partial("_MovieCategory")
+
+</div>
+
+@section SideBarBox
+{
+
+}
+
+
+
+

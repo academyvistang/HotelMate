@@ -1,0 +1,34 @@
+﻿@model HotelMateWebV1.Models.GuestRoomAccountViewModel
+
+
+@Html.HiddenFor(x => x.GuestRoom.Id)
+
+<div class="six columns">
+    <label for="FullName">Name*</label>
+    @Html.TextBoxFor(model => model.Guest.FullName)
+    @Html.ValidationMessageFor(model => model.Guest.FullName)
+</div>
+
+
+<div class="six columns">
+    <label for="discountedRate">Previous Amount</label>
+    <input type="number" min="1" max="90000000" id="GuestRoom.RoomRate" name="GuestRoom.RoomRate" value="@Model.GuestRoom.RoomRate">
+</div>
+
+<div class="six columns">
+    <label for="discountedRate">Amended Amount</label>
+    <input type="number" min="1" max="90000000" id="AdjustedAmount" name="AdjustedAmount" value="AdjustedAmount">
+</div>
+
+
+<div class="six columns">
+    <label for="comments">Reference No.</label>
+    @Html.TextBoxFor(model => model.Notes)
+</div>
+
+<div class="twelve columns">
+    <input type="submit" value="Adjust @Model.Guest.FullName Room Rate" name="send_booking">
+</div>
+
+
+

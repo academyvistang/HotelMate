@@ -1,0 +1,31 @@
+﻿@using HotelMateWebV1.Helpers
+@model HotelMateWebV1.Models.RoomViewModel
+<script src="~/DragnDrop/jquery-1.6.2.min.js"></script>
+
+<style>
+    .dropdownDiv {
+        height: 100px;
+        width: 100%;
+        overflow: auto;
+        padding: 2px;
+    }
+</style>
+
+<div class="six columns">
+    <label for="comments">Room Status</label>
+    @Html.DropDownListFor(model => model.StatusId, Model.RoomStatusList)
+    @Html.ValidationMessageFor(model => model.StatusId)
+</div>
+
+
+<div class="twelve columns">
+    <input type="submit" value="View" name="send_booking">
+</div>
+
+
+
+
+
+
+
+

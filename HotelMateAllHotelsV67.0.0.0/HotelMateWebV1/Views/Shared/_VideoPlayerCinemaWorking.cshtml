@@ -1,0 +1,31 @@
+﻿<link href="@Url.Content("~/Content/video-js.css")" rel="stylesheet" type="text/css" />
+<link href="@Url.Content("~/Content/video-js-skins/hu.css")" rel="stylesheet" type="text/css" />
+<link href="@Url.Content("~/Content/video-js-skins/tube.css")" rel="stylesheet" type="text/css" />
+<link href="@Url.Content("~/Content/video-js-skins/vim.css")" rel="stylesheet" type="text/css" />
+
+
+<!-- Begin VideoJS -->
+<div class="video-js-box">
+    <video class="video-js" width="640" height="264" controls preload poster="@Url.Content("~/Content/video/oceans-clip.png")">
+        <source src="@Url.Action("OceansClip", "Home", new { @type = "mp4" })" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+        @*<source src="@Url.Action("OceansClip", new { @type = "webm" })" type='video/webm; codecs="vp8, vorbis"' />
+        <source src="@Url.Action("OceansClip", new { @type = "ogg" })" type='video/ogg; codecs="theora, vorbis"' />*@
+        <!-- Flash Fallback. Use any flash video player here. Make sure to keep the vjs-flash-fallback class. -->
+        <object class="vjs-flash-fallback" width="640" height="264" type="application/x-shockwave-flash" data="@Url.Content("~/Swf/flowplayer-3.2.7.swf")">
+            <param name="movie" value="@Url.Content("~/Swf/flowplayer-3.2.7.swf")" />
+            <param name="allowfullscreen" value="true" />
+            <param name="flashvars" value='config={"playlist":["@Url.Content("~/Content/video/oceans-clip.png")", {"url": "@Url.Content("~/Content/videos/The.Theory.of.Everything.2014.720p.BluRay.x264.YIFY.mp4")","autoPlay":false,"autoBuffering":true}]}' />
+            <!-- Image Fallback. Typically the same as the poster image. -->
+            <img src="@Url.Content("~/Content/video/oceans-clip.png")" width="640" height="264" alt="Poster Image" title="No video playback capabilities." />
+        </object>
+    </video>
+</div>
+<!-- End VideoJS -->
+
+    <script src="@Url.Content("~/Scripts/video.js")" type="text/javascript"></script>
+    <script type="text/javascript">
+        // Add VideoJS to all video tags on the page when the DOM is ready
+        VideoJS.setupAllWhenReady();
+    </script>
+
+

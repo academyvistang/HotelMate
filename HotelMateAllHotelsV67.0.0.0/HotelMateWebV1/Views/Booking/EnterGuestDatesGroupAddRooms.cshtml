@@ -1,0 +1,35 @@
+﻿@model HotelMateWebV1.Models.GroupBookingViewModel
+
+@{
+    ViewBag.Title = "Booking";
+}
+
+<section id="content" class=" eight columns">
+    <h1 class="page-title ci-title">
+        <span>Booking</span>
+    </h1>
+
+    <article id="post-16" class="post-16 page type-page status-publish hentry entry group">
+
+        <div class="booking-form-wrap bs bg">
+
+            @using (Html.BeginForm("GroupReservationAddToBooking", "Booking", FormMethod.Post, new { enctype = "multipart/form-data", @id = "target", @class = "booking-form b-form row" }))
+            {
+                @Html.HiddenFor(model => model.selectedRoomIds)
+                @Html.HiddenFor(model => model.CheckinDate)
+                @Html.HiddenFor(model => model.CheckoutDate)
+                @Html.HiddenFor(model => model.GuestId)
+                @Html.Partial("_RoomsDisplayGuestDatesGroup")
+            }
+
+        </div>
+
+    </article>
+
+</section>
+
+
+@section SideBarBox
+{
+    @Html.Partial("_CheckAvailabilityGroupBooking")
+}

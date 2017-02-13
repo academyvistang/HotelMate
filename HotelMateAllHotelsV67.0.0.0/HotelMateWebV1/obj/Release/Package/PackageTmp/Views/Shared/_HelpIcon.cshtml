@@ -1,0 +1,14 @@
+﻿@model string
+           
+
+<link href="~/css/tooltipster.css" rel="stylesheet" />
+<script type="text/javascript" src="~/js/jquery.tooltipster.js"></script>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.tooltip').tooltipster();
+    });
+</script>
+
+<img style="float:right;" src="~/images/Help.png" class="tooltip" title="@Model" />

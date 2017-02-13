@@ -1,0 +1,44 @@
+﻿
+.glyphColumn
+{
+	width: 20px;
+	text-align: center;
+}
+
+/* Table striping & hover */
+.striped
+{
+	width: 100%;
+	border: thin solid #AAAAAA;
+}
+.striped th
+{
+	border-bottom-style: double;
+	border-bottom-width: medium;
+	border-color: #7D983F;
+	background-color: #803F98;
+	color: #DDDDDD;
+}
+tr.alt td
+{
+	background-color: #FF99FF;
+}
+tr.over td
+{
+	color: #DDDDDD;
+	background-color: #3D184B;
+}
+
+.display-label
+{
+	margin-top: 10px;
+	font-weight: bold;
+}
+
+.display-field
+{
+	font-style: italic;
+}
+
+
+#galleria{height:520px}

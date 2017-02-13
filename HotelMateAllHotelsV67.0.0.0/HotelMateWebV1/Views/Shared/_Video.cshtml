@@ -1,0 +1,53 @@
+﻿@model HotelMateWebV1.Models.CinemaModel
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/list-handler.js"></script>
+
+
+
+@using (Html.BeginForm("AddVideo", "Guest", FormMethod.Post, new { enctype = "multipart/form-data", @class = "bottom-margin" }))
+{
+
+    
+    @Html.ValidationSummary()
+
+
+    <div class="six columns">
+        <label for="email">Name*</label>
+        @Html.TextBoxFor(model => model.VideoName)
+        @*@Html.ValidationMessageFor(model => model.PlaylistName)*@
+    </div>
+
+    <div class="six columns">
+        <label for="email">Adult Only</label>
+        @Html.CheckBoxFor(model => model.AdultOnly)
+    </div>
+
+    <div class="six columns">
+
+        <div class="form-group has-iconed">
+            <label>Category</label>
+            <div class="iconed-input">
+                @Html.DropDownListFor(model => model.CategoryId, Model.Categories, new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+    
+     <div class="six columns">
+
+        <div class="form-group has-iconed">
+            <label>Film</label>
+            <div class="iconed-input">
+                <input type="file" name="files" multiple="multiple" />
+            </div>
+        </div>
+    </div>
+
+   
+
+    <div class="form-group">
+        <button style="float:right;" id="edit" type="submit" class="btn btn-primary"><i class="fa fa-ok"></i>Submit</button>
+    </div>
+
+}
+

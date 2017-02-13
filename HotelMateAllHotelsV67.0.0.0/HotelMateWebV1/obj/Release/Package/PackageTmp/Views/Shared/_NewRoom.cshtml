@@ -1,0 +1,95 @@
+﻿@using HotelMateWebV1.Helpers
+@model HotelMateWebV1.Models.RoomViewModel
+
+<style>
+    .dropdownDiv {
+        height: 100px;
+        width: 100%;
+        overflow: auto;
+        padding: 2px;
+    }
+</style>
+
+@Html.HiddenFor(model => model.HotelId)
+@Html.HiddenFor(model => model.IsActive)
+
+@if(Model.Id == 0)
+{
+    
+  @Html.HiddenFor(model => model.StatusId)
+    
+}
+@Html.HiddenFor(model => model.Smoking)
+@Html.HiddenFor(model => model.Id)
+
+<div class="six columns">
+    <label for="FullName">Room Number*</label>
+    @Html.TextBoxFor(model => model.RoomNumber)
+    @Html.ValidationMessageFor(model => model.RoomNumber)
+</div>
+
+<div class="six columns">
+    <label for="email">Extension Number</label>
+    @Html.TextBoxFor(model => model.ExtNumber)
+    @Html.ValidationMessageFor(model => model.ExtNumber)
+</div>
+
+<div class="six columns">
+    <label for="adults">No. Of Beds*</label>
+    <input type="number" min="1" max="6" id="NoOfBeds" name="NoOfBeds" value="@Model.NoOfBeds">
+</div>
+
+<div class="six columns">
+    <label for="comments">Room Type</label>
+    @Html.DropDownListFor(model => model.RoomType, Model.RoomTypeList, new { @name = "room_select", @id = "b-company" })
+    @Html.ValidationMessageFor(model => model.RoomType)
+</div>
+
+<div class="twelve columns">
+    <label for="comments">Description</label>
+    @Html.TextAreaFor(model => model.Description, new { @cols = "30", @rows = "1" })
+    @Html.ValidationMessageFor(model => model.Description)
+</div>
+
+<div class="six columns">
+    <label id="lblRoomRate" for="roomRate">Room Rate</label>
+    <input type="number" min="1" max="90000000" id="Price" name="Price" value="@Model.Price">
+</div>
+
+<div class="six columns">
+    <label for="discountedRate">Business Rate</label>
+    <input type="number" min="0" max="90000000" id="BusinessPrice" name="BusinessPrice" value="@Model.BusinessPrice">
+</div>
+
+@if (Model.Id > 0)
+{
+    
+<div class="twelve columns">
+    <label for="comments">Room Status</label>
+    @Html.DropDownListFor(model => model.StatusId, Model.RoomStatusList, new { @name = "room_select", @id = "b-status", @class = "",  })
+    @Html.ValidationMessageFor(model => model.StatusId)
+</div>
+    
+    <div class="twelve columns">
+        <input type="file" name="file" />
+    </div>
+}
+
+<div class="six columns">
+    <input id="submit" type="submit" value="Save" name="send_booking">
+</div>
+
+@if(Model.Id > 0)
+{
+    <div class="six columns">
+    <input type="submit" value="Delete Room" name="send_booking">
+   </div>
+}
+
+
+
+
+
+
+
+

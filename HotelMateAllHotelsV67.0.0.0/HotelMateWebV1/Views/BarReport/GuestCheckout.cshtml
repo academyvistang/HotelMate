@@ -1,0 +1,105 @@
+﻿@model HotelMateWebV1.Models.ReportViewModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+
+<script type="text/javascript">
+
+    $(function () {
+
+        $("#Expander").click(function () {
+            $(".ACCSUBTABLE").toggle();
+        });
+
+    });
+
+
+
+</script>
+
+<div class="page-head">
+    <h2>BarMate</h2>
+    <a style="float:right;" class="btn btn-success hbtn" href="@Url.Action("Index","Home")" id="todaySale">Go Back</a>
+    <ol class="breadcrumb">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Reports</a></li>
+        <li class="active">Guest Checkout Reports</li>
+    </ol>
+</div>
+<div class="cl-mcont">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="block-flat">
+                <div class="header">
+                    <h3>Guest Checkout Reports</h3>
+                    <a style="float:right;" class="btn btn-danger" href="#" id="Expander">Expand +</a>
+                    @Html.Partial("_DateSelector", "GuestCheckout")
+                </div>
+                <div class="content">
+                    <div class="table-responsive">
+                        <table class="table no-border hover">
+                            <thead class="no-border">
+                                <tr>
+                                    <th style="width:10%;"><strong>Date</strong></th>
+                                    <th style="width:15%;"><strong>Guest</strong></th>
+                                    <th style="width:10%;"><strong>Telephone</strong></th>
+                                    <th style="width:10%;"><strong>Room No.</strong></th>
+                                    <th style="width:10%;"><strong>Checkin Date</strong></th>
+                                    <th style="width:10%;"><strong>Checkout</strong></th>
+                                    <th style="width:10%;"><strong>Paid</strong></th>
+                                    <th style="width:10%;" align="right"><strong>Balance</strong></th>
+                                </tr>
+                            </thead>
+                            <tbody class="no-border-y">
+
+                                @foreach (var item in Model.GroupByList.ToList())
+                                {
+                                    <tr>
+                                        <td>@item.CheckingDate</td>
+                                        <td colspan="7"></td>
+                                    </tr>
+
+                                    foreach (var lst in item.ItemList.OrderBy(x => x.GuestId))
+                                    {
+
+                                        <tr>
+                                            <td></td>
+                                            <td>@lst.Guest.FullName</td>
+                                            <td>@lst.Guest.Telephone</td>
+                                            <td>@lst.Guest.GuestRooms.Select(x => x.Room.RoomNumber).ToList().ToDelimitedString(",")</td>
+                                            <td>@lst.CheckinDate.ToShortDateString()</td>
+                                            <td>@lst.CheckoutDate.ToShortDateString()</td>
+                                            <td>@lst.Guest.TotalPaidSoFar()</td>
+                                            <td align="right">@lst.Guest.GetGuestBalance().ToString()</td>
+
+                                        </tr>
+                                        <tr class="ACCSUBTABLE" style="display:none;">
+                                            <td colspan="7"></td>
+                                            <td>
+                                                @Html.Partial("_SubTableGuest", lst)
+                                            </td>
+                                        </tr>
+
+                                    }
+
+                                    <tr>
+                                        <td colspan="7">Total</td>
+                                        <td align="right">@item.ItemList.Sum(x => x.Guest.GetGuestBalance())</td>
+                                    </tr>
+
+                                }
+
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

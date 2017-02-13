@@ -1,0 +1,21 @@
+﻿@model HotelMateWebV1.Models.GuestRoomAccountViewModel
+
+
+@{
+    ViewBag.Title = "Booking";
+}
+
+
+@Html.Partial("_BarRestauarantFullDisplay")
+
+@section SideBarBox
+{
+    @Html.Partial("_ElokasSidebar")
+}
+
+@section PaginationBox
+{
+@Html.Partial("_GuestRoomAccountPagination", Model.PaginatedList)
+}
+
+

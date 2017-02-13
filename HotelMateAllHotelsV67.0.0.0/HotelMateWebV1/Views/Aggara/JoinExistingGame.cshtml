@@ -1,0 +1,62 @@
+﻿@model HotelMateWebV1.Models.IndexViewModel21
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_PageLayout.cshtml";
+}
+
+
+
+
+<div id="agbo21gamecontainer">
+
+<div id="templatemo_content_wrapper">    
+    	
+        <div class="templatemo_side_bar margin_right_10">
+        	
+            <div class="header_01">Join A Game</div>
+            	<ul>
+                	<li><a href="#">Benghazzi</a></li>
+                    @*<li><a href="#">PLAYSTATION&reg; 3</a></li>*@
+                    <li><a href="#">Edo vs Delta</a></li>
+                    <li><a href="#">Edo vs Lagos</a></li>
+                    @*<li><a href="#">GAMECUBE&trade;</a></li>*@
+                    <li><a href="#">Guitar Boyz</a></li>
+                    <li><a href="#">419 Crew</a></li>
+                    <li><a href="#">Igbo Traders</a></li>
+                    <li><a href="#">Kalokalo</a></li>
+                    <li><a href="#">Grenada Crew</a></li>
+
+                </ul>
+			
+            <div class="margin_bottom_20 horizontal_divider"></div> 
+			<div class="margin_bottom_20"></div>
+
+            <div class="header_01">Search Any Game</div>     
+            <form action="" method="post">
+                  <input type="text" id="search_field" name="search_field" />
+                  <input type="submit" value="" id="search_button" />
+            </form>
+            <div class="margin_bottom_20"></div>
+        </div> <!-- end of left side bar -->
+        
+        <div class="templatemo_contentLarge margin_right_10">
+
+        @if (Model.GameUsers.Count > 1)
+        {
+
+        foreach (var gu in Model.GameUsers)
+        {
+            @Html.Partial("ShareForEachPlayer",gu)
+        }
+        
+        }
+            
+        <div class="margin_bottom_40"></div>
+        </div> <!-- end of content -->
+    	
+        <div class="cleaner"></div>    
+    </div> <!-- end of content wrapper -->
+
+
+</div>

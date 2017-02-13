@@ -1,0 +1,19 @@
+﻿@model HotelMateWebV1.Models.RoomBookingViewModel
+
+@{
+    ViewBag.Title = "Booking";
+}
+
+@Html.Partial("_RoomsDisplayTransferGuest")
+
+@section SideBarBox
+{
+    @Html.Partial("_CheckAvailabilityNew")
+}
+
+@section PaginationBox
+{
+    @Html.Partial("_Pagination")
+}
+
+

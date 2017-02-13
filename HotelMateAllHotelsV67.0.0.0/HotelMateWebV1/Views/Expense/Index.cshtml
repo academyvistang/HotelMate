@@ -1,0 +1,74 @@
+﻿@model HotelMateWebV1.Models.ExpenseIndexModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+
+<div class="page-head">
+    <h2>Expenses</h2>
+    <ol class="breadcrumb">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Expense</a></li>
+        <li class="active">Expenses List</li>
+    </ol>
+</div>
+<div class="cl-mcont">
+    <div class="row">
+
+
+
+        <div class="col-md-12">
+            <div class="block-flat">
+                <div class="header">
+                    <h3>Items</h3><span>@Html.ActionLink("Create New", "Create")</span>
+                    @Html.Partial("_DateSelectorExpense", "Index")
+                </div>
+                <div class="content">
+                    <div class="table-responsive">
+                        <table class="table no-border hover">
+                            <thead class="no-border">
+                                <tr>
+
+                                    <th style="width:15%;"><strong>Amount(NGN)</strong></th>
+                                    <th style="width:15%;"><strong>Date</strong></th>
+                                    
+                                    <th style="width:15%;"><strong>Description</strong></th>
+                                    <th style="width:15%;"><strong>Type</strong></th>
+                                    <th style="width:15%;" class="text-center"><strong>Action</strong></th>
+                                </tr>
+                            </thead>
+                            <tbody class="no-border-y">
+                                @foreach (var item in Model.ExpenseList)
+                                {
+                                    <tr>
+                                        <td>@item.Amount</td>
+                                        <td>@item.ExpenseDate</td>
+                                        
+                                        <td>@item.Description</td>
+                                        <td>@item.ExpenseTypeId</td>
+
+
+                                        @*<td class="color-success"><div class="progress"><div class="progress-bar progress-bar-success" style="width: 40%">40%</div></div></td>*@
+                                        <td class="text-center">
+                                            <a class="label label-default" href="@Url.Action("Edit", "Expense", new {id = item.Id })">
+                                                <i class="fa fa-pencil"></i>
+                                            </a> 
+                                        </td>
+                                    </tr>
+                                }
+
+                                <tr>
+                                    <td>@Model.ExpenseList.Sum(x => x.Amount)</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

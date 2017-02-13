@@ -1,0 +1,86 @@
+﻿@model HotelMateWebV1.Models.BaseViewModel
+
+@{
+    ViewBag.Title = "Booking";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+ }
+
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+
+
+<div id="MemberLogin" class="twelve  columns">
+
+    <form method="post" class="signin" action="@Url.Action("AdminLogOn", "Account")">
+        
+        <div class="row">
+            <div class="two columns">
+                <label class="username">
+                    <span>Username or email</span>
+                    <input id="UserName" name="UserName" value="" type="text" autocomplete="on" placeholder="">
+                </label>
+
+            </div>
+            <div class="two columns">
+                <label class="password">
+                    <span>Password</span>
+                    <input id="Password" name="Password" value="" type="password" placeholder="">
+                </label>
+
+            </div>
+
+            <div class="five columns">
+                <br />                
+                <input class="submit button" name="SignIn" id="SignIn" type="submit" value="Sign in" />
+            </div>
+
+           
+
+        </div>
+
+
+    </form>
+
+</div>
+
+<div class="eight columns">
+
+    <div id="home-slider" class="bs flexslider">
+        <ul class="slides">
+            <li>
+                <a href="#">
+                    <img width="830" height="420" src="~/images/slide0-830x420.jpg" class="attachment-slider_half wp-post-image" alt="Island view" />							<h3>Island view</h3>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img width="830" height="420" src="~/images/slide1-830x420.jpg" class="attachment-slider_half wp-post-image" alt="Room balcony view" />							<h3>Room balcony view</h3>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img width="830" height="420" src="~/images/slide2-830x420.jpg" class="attachment-slider_half wp-post-image" alt="Beautiful Sunset" />							<h3>Beautiful Sunset</h3>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img width="830" height="420" src="~/images/slide3-830x420.jpg" class="attachment-slider_half wp-post-image" alt="Amazing view" />							<h3>Amazing View</h3>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- #content -->
+@section SideBarBox
+{
+    @Html.Partial("_CheckAvailabilityNew")
+}
+
+@section PaginationBox
+{
+    @Html.Partial("_Pagination")
+}
+
+
+
+

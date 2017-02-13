@@ -1,0 +1,94 @@
+﻿@model HotelMateWebV1.Models.IncomeModel
+
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+
+
+<div class="page-head">
+    <h2>Items</h2>
+    <ol class="breadcrumb">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Item</a></li>
+        <li class="active">Create/Edit</li>
+    </ol>
+</div>
+<div class="cl-mcont">
+    <div class="row">
+        <div class="col-sm-6 col-md-6">
+            <div class="block-flat">
+                <div class="header">
+                    <h3>Income Create</h3>
+                    @if (Model.Saved.HasValue && Model.Saved.Value)
+                    {
+                        <div class="alert alert-success alert-white rounded">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <div class="icon"><i class="fa fa-check"></i></div>
+                            <strong>Success!</strong> Changes has been saved successfully!
+                        </div>
+                        <span>@Html.ActionLink("Create New", "Create")</span>
+                    }
+                </div>
+                <div class="content">
+
+                    @using (Html.BeginForm("CREATE", "Income", FormMethod.Post, new { @class = "form-horizontal" }))
+                    {
+                        
+                            @Html.HiddenFor(model => model.Id)
+                            @Html.ValidationSummary(true)
+                        
+                              
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, new { @class = "col-sm-3 control-label" })
+            <div class="col-sm-7">
+                @Html.EditorFor(model => model.Description, new { @class = "form-control", @id = "Description", @placeholder = "Description" })
+                @Html.ValidationMessageFor(model => model.Description)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Amount, new { @class = "col-sm-3 control-label" })
+            <div class="col-sm-7">
+                @Html.EditorFor(model => model.Amount, new { @class = "form-control", @id = "Amount", @placeholder = "Amount" })
+                @Html.ValidationMessageFor(model => model.Amount)
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IncomeTypeId, new { @class = "col-sm-3 control-label" })
+            <div class="col-sm-7">
+                @Html.DropDownListFor(model => model.IncomeTypeId, Model.selectList)
+                @Html.ValidationMessageFor(model => model.IncomeTypeId)
+            </div>
+        </div>
+
+      
+
+       <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    @{string stringValue = (Model.Id == 0) ? "Create" : "Update";}
+                                    <button type="submit" class="btn btn-primary">@stringValue</button>
+                                </div>
+                            </div>
+
+     
+        
+                        
+
+                    }
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+

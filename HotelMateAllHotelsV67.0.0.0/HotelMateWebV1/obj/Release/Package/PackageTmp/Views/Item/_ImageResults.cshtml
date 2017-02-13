@@ -1,0 +1,14 @@
+﻿@model IEnumerable<HotelMateWebV1.Models.GoogleImageClass>
+
+
+
+@foreach (var item in Model)
+{
+    <div  style="float:left;margin-right:5px;padding:5px;">
+        <img src="@item.Url" alt="alt" height="100" width="100" />
+        <input name="orderNumbers" type="checkbox" value="@item.Url" />
+    </div>
+}
+
+<br />
+

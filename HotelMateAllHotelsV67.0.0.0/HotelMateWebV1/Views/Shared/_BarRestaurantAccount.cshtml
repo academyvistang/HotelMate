@@ -1,0 +1,46 @@
+﻿@model HotelMateWebV1.Models.GuestRoomAccountViewModel
+
+
+@Html.HiddenFor(x => x.Guest.Id)
+@Html.HiddenFor(x => x.PaymentTypeId)
+
+
+
+<div class="six columns">
+    <label for="FullName">Name*</label>
+    @Html.TextBoxFor(model => model.Guest.FullName)
+    @Html.ValidationMessageFor(model => model.Guest.FullName)
+</div>
+
+<div class="six columns">
+    <label for="email">E-Mail*</label>
+    @Html.TextBoxFor(model => model.Guest.Email)
+    @Html.ValidationMessageFor(model => model.Guest.Email)
+</div>
+
+<div class="six columns">
+    <label for="discountedRate">Amount Spent</label>
+    <input type="number" min="1" max="90000000" id="GuestRoomAccount.Amount" name="GuestRoomAccount.Amount" value="@Model.GuestRoomAccount.Amount">
+</div>
+
+<div class="six columns">
+    <label for="b-room">Venue</label>
+    @Html.DropDownListFor(x => x.PaymentTypeId,
+            new SelectList(Model.PaymentTypeList, "Id", "Name", Model.PaymentTypeId))
+</div>
+
+
+<div class="twelve columns">
+    <label for="b-room">Room</label>
+    @Html.DropDownListFor(x => x.RoomId,
+            new SelectList(Model.Rooms, "Id", "RoomNumber", Model.RoomId))
+</div>
+
+@Html.Partial("_PaymentMethodSelectorBarRestaurant", new HotelMateWebV1.Models.RoomBookingViewModel { ShowDialog = true })
+
+
+
+<div class="twelve columns">
+    <input type="submit" value="Add To @Model.Guest.FullName account" name="send_booking">
+</div>
+

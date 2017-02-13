@@ -1,0 +1,421 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<section class="grid_4">
+			<!--<div class="block-border"><div class="block-content">-->
+				<h1>Favourites</h1>
+				
+				<ul class="favorites no-margin with-tip" title="Context menu available!">
+					
+					<li>
+						<img src="~/Admin/images/icons/web-app/48/Info.png" width="48" height="48">
+						<a href="#">Settings<br>
+						<small>System &gt; Settings</small></a>
+						<ul class="mini-menu">
+							<li><a href="#" title="Move down"><img src="~/Admin/images/icons/fugue/arrow-270.png" width="16" height="16"></a></li>
+							<li><a href="#" title="Delete"><img src="~/Admin/images/icons/fugue/cross-circle.png" width="16" height="16"> Delete</a></li>
+						</ul>
+					</li>
+					
+					<li>
+						<img src="~/Admin/images/icons/web-app/48/Line-Chart.png" width="48" height="48">
+						<a href="#">Bandwidth usage<br>
+						<small>Stats &gt; Server &gt; Bandwidth usage</small></a>
+						<ul class="mini-menu">
+							<li><a href="#" title="Move up"><img src="~/Admin/images/icons/fugue/arrow-090.png" width="16" height="16"></a></li>
+							<li><a href="#" title="Move down"><img src="~/Admin/images/icons/fugue/arrow-270.png" width="16" height="16"></a></li>
+							<li><a href="#" title="Delete"><img src="~/Admin/images/icons/fugue/cross-circle.png" width="16" height="16"> Delete</a></li>
+						</ul>
+					</li>
+					
+					<li>
+						<img src="~/Admin/images/icons/web-app/48/Modify.png" width="48" height="48">
+						<a href="#">New post<br>
+						<small>Write &gt; New post</small></a>
+						<ul class="mini-menu">
+							<li><a href="#" title="Move up"><img src="~/Admin/images/icons/fugue/arrow-090.png" width="16" height="16"></a></li>
+							<li><a href="#" title="Move down"><img src="~/Admin/images/icons/fugue/arrow-270.png" width="16" height="16"></a></li>
+							<li><a href="#" title="Delete"><img src="~/Admin/images/icons/fugue/cross-circle.png" width="16" height="16"> Delete</a></li>
+						</ul>
+					</li>
+					
+					<li>
+						<img src="~/Admin/images/icons/web-app/48/Pie-Chart.png" width="48" height="48">
+						<a href="#">Browsers stats<br>
+						<small>Stats &gt; Sites &gt; Browsers stats</small></a>
+						<ul class="mini-menu">
+							<li><a href="#" title="Move up"><img src="~/Admin/images/icons/fugue/arrow-090.png" width="16" height="16"></a></li>
+							<li><a href="#" title="Move down"><img src="~/Admin/images/icons/fugue/arrow-270.png" width="16" height="16"></a></li>
+							<li><a href="#" title="Delete"><img src="~/Admin/images/icons/fugue/cross-circle.png" width="16" height="16"> Delete</a></li>
+						</ul>
+					</li>
+					
+					<li>
+						<img src="~/Admin/images/icons/web-app/48/Comment.png" width="48" height="48">
+						<a href="#">Manage comments<br>
+						<small>Comments &gt; Manage comments</small></a>
+						<ul class="mini-menu">
+							<li><a href="#" title="Move up"><img src="~/Admin/images/icons/fugue/arrow-090.png" width="16" height="16"></a></li>
+							<li><a href="#" title="Delete"><img src="~/Admin/images/icons/fugue/cross-circle.png" width="16" height="16"> Delete</a></li>
+						</ul>
+					</li>
+					
+				</ul>
+				
+				<form class="form" name="stats_options" id="stats_options" method="post" action="">
+					<fieldset class="grey-bg no-margin">
+						<legend>Add favourite</legend>
+						<p class="input-with-button">
+							<label for="simple-action">Select page</label>
+							<select name="simple-action" id="simple-action">
+								<option value=""></option>
+								<option value="1">Page 1</option>
+								<option value="2">Page 2</option>
+							</select>
+							<button type="button">Add</button>
+						</p>
+					</fieldset>
+				</form>
+				
+			<!--</div></div>-->
+		</section>
+
+<section class="grid_8">
+			<div class="block-border"><form class="block-content form" id="table_form" method="post" action="">
+				<h1>Sortable table</h1>
+				
+				<table class="table sortable no-margin" cellspacing="0" width="100%">
+				
+					<thead>
+						<tr>
+							<th class="black-cell"><span class="loading"></span></th>
+							<th scope="col">
+								<span class="column-sort">
+									<a href="#" title="Sort up" class="sort-up"></a>
+									<a href="#" title="Sort down" class="sort-down"></a>
+								</span>
+								Title
+							</th>
+							<th scope="col">Keywords</th>
+							<th scope="col">
+								<span class="column-sort">
+									<a href="#" title="Sort up" class="sort-up"></a>
+									<a href="#" title="Sort down" class="sort-down"></a>
+								</span>
+								Preview
+							</th>
+							<th scope="col">
+								<span class="column-sort">
+									<a href="#" title="Sort up" class="sort-up"></a>
+									<a href="#" title="Sort down" class="sort-down"></a>
+								</span>
+								Date
+							</th>
+							<th scope="col">
+								<span class="column-sort">
+									<a href="#" title="Sort up" class="sort-up"></a>
+									<a href="#" title="Sort down" class="sort-down"></a>
+								</span>
+								Size
+							</th>
+							<th scope="col" class="table-actions">Actions</th>
+						</tr>
+					</thead>
+					
+					<tbody>
+						
+						<tr>
+							<td class="th table-check-cell"><input type="checkbox" name="selected[]" id="table-selected-1" value="1"></td>
+							<td>Lorem ipsum sit amet</td>
+							<td><ul class="keywords">
+								<li><a href="#">Ocean</a></li>
+								<li class="orange-keyword"><a href="#">Sun</a></li>
+							</ul></td>
+							<td>12</td>
+							<td>2010-05-02</td>
+							<td>320.240</td>
+							<td class="table-actions">
+								<a href="#" title="Edit" class="with-tip"><img src="images/icons/fugue/pencil.png" width="16" height="16"></a>
+								<a href="#" title="Delete" class="with-tip"><img src="images/icons/fugue/cross-circle.png" width="16" height="16"></a>
+							</td>
+						</tr>
+						
+						<tr>
+							<td class="th table-check-cell"><input type="checkbox" name="selected[]" id="table-selected-2" value="2"></td>
+							<td>Consectetur adipisicing elit</td>
+							<td><ul class="keywords">
+								<li class="purple-keyword">People</li>
+							</ul></td>
+							<td>14</td>
+							<td>2010-10-10</td>
+							<td>640.480</td>
+							<td class="table-actions">
+								<a href="#" title="Edit" class="with-tip"><img src="images/icons/fugue/pencil.png" width="16" height="16"></a>
+								<a href="#" title="Delete" class="with-tip"><img src="images/icons/fugue/cross-circle.png" width="16" height="16"></a>
+							</td>
+						</tr>
+						
+						<tr>
+							<td class="th table-check-cell"><input type="checkbox" name="selected[]" id="table-selected-3" value="3"></td>
+							<td>Sed do eiusmod tempor</td>
+							<td><ul class="keywords">
+								<li>Sea</li>
+								<li>Fish</li>
+								<li>Bubble</li>
+							</ul></td>
+							<td>9</td>
+							<td>2010-03-24</td>
+							<td>320.240</td>
+							<td class="table-actions">
+								<a href="#" title="Edit" class="with-tip"><img src="images/icons/fugue/pencil.png" width="16" height="16"></a>
+								<a href="#" title="Delete" class="with-tip"><img src="images/icons/fugue/cross-circle.png" width="16" height="16"></a>
+							</td>
+						</tr>
+						
+						<tr>
+							<td class="th table-check-cell"><input type="checkbox" name="selected[]" id="table-selected-4" value="4"></td>
+							<td>Incididunt</td>
+							<td class="empty">(none)</td>
+							<td>21</td>
+							<td>2010-10-02</td>
+							<td>320.240</td>
+							<td class="table-actions">
+								<a href="#" title="Edit" class="with-tip"><img src="images/icons/fugue/pencil.png" width="16" height="16"></a>
+								<a href="#" title="Delete" class="with-tip"><img src="images/icons/fugue/cross-circle.png" width="16" height="16"></a>
+							</td>
+						</tr>
+						
+						<tr>
+							<td class="th table-check-cell"><input type="checkbox" name="selected[]" id="table-selected-5" value="5"></td>
+							<td>Ut labore et dolore magna</td>
+							<td><ul class="keywords">
+								<li>Ocean</li>
+							</ul></td>
+							<td>20</td>
+							<td>2010-07-21</td>
+							<td>320.240</td>
+							<td class="table-actions">
+								<a href="#" title="Edit" class="with-tip"><img src="images/icons/fugue/pencil.png" width="16" height="16"></a>
+								<a href="#" title="Delete" class="with-tip"><img src="images/icons/fugue/cross-circle.png" width="16" height="16"></a>
+							</td>
+						</tr>
+						
+						<tr>
+							<td class="th table-check-cell"><input type="checkbox" name="selected[]" id="table-selected-1" value="1"></td>
+							<td>Aliqua</td>
+							<td><ul class="keywords">
+								<li><a href="#">Ocean</a></li>
+								<li class="orange-keyword"><a href="#">Sun</a></li>
+							</ul></td>
+							<td>12</td>
+							<td>2010-08-17</td>
+							<td>640.480</td>
+							<td class="table-actions">
+								<a href="#" title="Edit" class="with-tip"><img src="images/icons/fugue/pencil.png" width="16" height="16"></a>
+								<a href="#" title="Delete" class="with-tip"><img src="images/icons/fugue/cross-circle.png" width="16" height="16"></a>
+							</td>
+						</tr>
+						
+						<tr>
+							<td class="th table-check-cell"><input type="checkbox" name="selected[]" id="table-selected-2" value="2"></td>
+							<td>Ut enim ad minim</td>
+							<td><ul class="keywords">
+								<li class="purple-keyword">People</li>
+							</ul></td>
+							<td>15</td>
+							<td>2010-04-14</td>
+							<td>320.240</td>
+							<td class="table-actions">
+								<a href="#" title="Edit" class="with-tip"><img src="images/icons/fugue/pencil.png" width="16" height="16"></a>
+								<a href="#" title="Delete" class="with-tip"><img src="images/icons/fugue/cross-circle.png" width="16" height="16"></a>
+							</td>
+						</tr>
+						
+						<tr>
+							<td class="th table-check-cell"><input type="checkbox" name="selected[]" id="table-selected-3" value="3"></td>
+							<td>Veniam</td>
+							<td><ul class="keywords">
+								<li>Sea</li>
+								<li>Fish</li>
+							</ul></td>
+							<td>18</td>
+							<td>2010-02-02</td>
+							<td>320.240</td>
+							<td class="table-actions">
+								<a href="#" title="Edit" class="with-tip"><img src="images/icons/fugue/pencil.png" width="16" height="16"></a>
+								<a href="#" title="Delete" class="with-tip"><img src="images/icons/fugue/cross-circle.png" width="16" height="16"></a>
+							</td>
+						</tr>
+						
+						<tr>
+							<td class="th table-check-cell"><input type="checkbox" name="selected[]" id="table-selected-4" value="4"></td>
+							<td>Quis nostrud exercitation ullamco</td>
+							<td class="empty">(none)</td>
+							<td>9</td>
+							<td>2010-09-07</td>
+							<td>320.240</td>
+							<td class="table-actions">
+								<a href="#" title="Edit" class="with-tip"><img src="images/icons/fugue/pencil.png" width="16" height="16"></a>
+								<a href="#" title="Delete" class="with-tip"><img src="images/icons/fugue/cross-circle.png" width="16" height="16"></a>
+							</td>
+						</tr>
+						
+						<tr>
+							<td class="th table-check-cell"><input type="checkbox" name="selected[]" id="table-selected-5" value="5"></td>
+							<td>Laboris nisi ut aliquip</td>
+							<td><ul class="keywords">
+								<li>Ocean</li>
+								<li>Bubble</li>
+							</ul></td>
+							<td>8</td>
+							<td>2010-03-12</td>
+							<td>320.240</td>
+							<td class="table-actions">
+								<a href="#" title="Edit" class="with-tip"><img src="images/icons/fugue/pencil.png" width="16" height="16"></a>
+								<a href="#" title="Delete" class="with-tip"><img src="images/icons/fugue/cross-circle.png" width="16" height="16"></a>
+							</td>
+						</tr>
+						
+						<tr>
+							<td class="th table-check-cell"><input type="checkbox" name="selected[]" id="table-selected-2" value="2"></td>
+							<td>Ex ea commodo consequat</td>
+							<td><ul class="keywords">
+								<li class="purple-keyword">People</li>
+								<li>Fish</li>
+							</ul></td>
+							<td>14</td>
+							<td>2010-03-14</td>
+							<td>640.480</td>
+							<td class="table-actions">
+								<a href="#" title="Edit" class="with-tip"><img src="images/icons/fugue/pencil.png" width="16" height="16"></a>
+								<a href="#" title="Delete" class="with-tip"><img src="images/icons/fugue/cross-circle.png" width="16" height="16"></a>
+							</td>
+						</tr>
+						
+						<tr>
+							<td class="th table-check-cell"><input type="checkbox" name="selected[]" id="table-selected-3" value="3"></td>
+							<td>Duis aute irure</td>
+							<td><ul class="keywords">
+								<li>Sea</li>
+								<li>Bubble</li>
+							</ul></td>
+							<td>14</td>
+							<td>2010-05-01</td>
+							<td>640.480</td>
+							<td class="table-actions">
+								<a href="#" title="Edit" class="with-tip"><img src="images/icons/fugue/pencil.png" width="16" height="16"></a>
+								<a href="#" title="Delete" class="with-tip"><img src="images/icons/fugue/cross-circle.png" width="16" height="16"></a>
+							</td>
+						</tr>
+						
+						<tr>
+							<td class="th table-check-cell"><input type="checkbox" name="selected[]" id="table-selected-4" value="4"></td>
+							<td>Dolor in reprehenderit</td>
+							<td class="empty">(none)</td>
+							<td>54</td>
+							<td>2010-06-18</td>
+							<td>1024.768</td>
+							<td class="table-actions">
+								<a href="#" title="Edit" class="with-tip"><img src="images/icons/fugue/pencil.png" width="16" height="16"></a>
+								<a href="#" title="Delete" class="with-tip"><img src="images/icons/fugue/cross-circle.png" width="16" height="16"></a>
+							</td>
+						</tr>
+						
+						<tr>
+							<td class="th table-check-cell"><input type="checkbox" name="selected[]" id="table-selected-5" value="5"></td>
+							<td>In voluptate velit </td>
+							<td><ul class="keywords">
+								<li>Ocean</li>
+							</ul></td>
+							<td>22</td>
+							<td>2010-06-30</td>
+							<td>320.240</td>
+							<td class="table-actions">
+								<a href="#" title="Edit" class="with-tip"><img src="images/icons/fugue/pencil.png" width="16" height="16"></a>
+								<a href="#" title="Delete" class="with-tip"><img src="images/icons/fugue/cross-circle.png" width="16" height="16"></a>
+							</td>
+						</tr>
+						
+						<tr>
+							<td class="th table-check-cell"><input type="checkbox" name="selected[]" id="table-selected-1" value="1"></td>
+							<td>Esse cillum</td>
+							<td><ul class="keywords">
+								<li><a href="#">Ocean</a></li>
+								<li class="orange-keyword"><a href="#">Sun</a></li>
+							</ul></td>
+							<td>12</td>
+							<td>2010-02-27</td>
+							<td>640.480</td>
+							<td class="table-actions">
+								<a href="#" title="Edit" class="with-tip"><img src="images/icons/fugue/pencil.png" width="16" height="16"></a>
+								<a href="#" title="Delete" class="with-tip"><img src="images/icons/fugue/cross-circle.png" width="16" height="16"></a>
+							</td>
+						</tr>
+						
+						<tr>
+							<td class="th table-check-cell"><input type="checkbox" name="selected[]" id="table-selected-2" value="2"></td>
+							<td>Dolore eu fugiat nulla pariatur</td>
+							<td><ul class="keywords">
+								<li class="purple-keyword">People</li>
+							</ul></td>
+							<td>16</td>
+							<td>2010-04-14</td>
+							<td>640.480</td>
+							<td class="table-actions">
+								<a href="#" title="Edit" class="with-tip"><img src="images/icons/fugue/pencil.png" width="16" height="16"></a>
+								<a href="#" title="Delete" class="with-tip"><img src="images/icons/fugue/cross-circle.png" width="16" height="16"></a>
+							</td>
+						</tr>
+						
+						<tr>
+							<td class="th table-check-cell"><input type="checkbox" name="selected[]" id="table-selected-3" value="3"></td>
+							<td>Excepteur sint occaecat</td>
+							<td><ul class="keywords">
+								<li>Sea</li>
+								<li>Fish</li>
+								<li>Bubble</li>
+							</ul></td>
+							<td>19</td>
+							<td>2010-07-12</td>
+							<td>320.240</td>
+							<td class="table-actions">
+								<a href="#" title="Edit" class="with-tip"><img src="images/icons/fugue/pencil.png" width="16" height="16"></a>
+								<a href="#" title="Delete" class="with-tip"><img src="images/icons/fugue/cross-circle.png" width="16" height="16"></a>
+							</td>
+						</tr>
+						
+						<tr>
+							<td class="th table-check-cell"><input type="checkbox" name="selected[]" id="table-selected-4" value="4"></td>
+							<td>Cupidatat non proident</td>
+							<td class="empty">(none)</td>
+							<td>18</td>
+							<td>2010-08-21</td>
+							<td>320.240</td>
+							<td class="table-actions">
+								<a href="#" title="Edit" class="with-tip"><img src="images/icons/fugue/pencil.png" width="16" height="16"></a>
+								<a href="#" title="Delete" class="with-tip"><img src="images/icons/fugue/cross-circle.png" width="16" height="16"></a>
+							</td>
+						</tr>
+						
+						<tr>
+							<td class="th table-check-cell"><input type="checkbox" name="selected[]" id="table-selected-5" value="5"></td>
+							<td>Sunt in culpa</td>
+							<td><ul class="keywords">
+								<li>Ocean</li>
+							</ul></td>
+							<td>17</td>
+							<td>2010-10-04</td>
+							<td>640.480</td>
+							<td class="table-actions">
+								<a href="#" title="Edit" class="with-tip"><img src="images/icons/fugue/pencil.png" width="16" height="16"></a>
+								<a href="#" title="Delete" class="with-tip"><img src="images/icons/fugue/cross-circle.png" width="16" height="16"></a>
+							</td>
+						</tr>
+						
+					</tbody>
+				
+				</table>
+					
+			</form></div>
+		</section>

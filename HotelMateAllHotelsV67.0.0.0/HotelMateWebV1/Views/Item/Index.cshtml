@@ -1,0 +1,71 @@
+﻿@model HotelMateWebV1.Models.ItemIndexModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="page-head">
+    <h2>Items</h2>
+    <ol class="breadcrumb">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Item</a></li>
+        <li class="active">Items List</li>
+    </ol>
+</div>
+<div class="cl-mcont">
+    <div class="row">
+
+
+
+        <div class="col-md-12">
+            <div class="block-flat">
+                <div class="header">
+                    <h3>Items</h3><span>@Html.ActionLink("Create New", "Create")</span>
+                </div>
+                <div class="content">
+                    <div class="table-responsive">
+                        <table class="table no-border hover">
+                            <thead class="no-border">
+                                <tr>
+
+                                    <th style="width:15%;"><strong>Name</strong></th>
+                                    <th style="width:10%;"><strong>Qty</strong></th>
+                                    <th style="width:10%;"><strong>Buying Price</strong></th>
+                                    <th style="width:10%;"><strong>Selling Price</strong></th>
+                                    <th style="width:10%;"><strong>Notification Number</strong></th>
+                                    <th style="width:10%;"><strong>Qty</strong></th>
+                                    <th style="width:10%;"><strong>Cooked</strong></th>
+                                    <th style="width:10%;"><strong>Kitchen</strong></th>
+                                    <th style="width:15%;" class="text-center"><strong>Action</strong></th>
+                                </tr>
+                            </thead>
+                            <tbody class="no-border-y">
+                                @foreach (var item in Model.ItemList.OrderBy(x => x.StockItemName).ToList())
+                                {
+                                    <tr>
+
+                                        <td>@item.StockItemName</td>
+                                        <td>@item.Quantity</td>
+                                        <td>@item.OrigPrice</td>
+                                        <td>@item.UnitPrice</td>
+                                        <td>@item.NotNumber</td>
+                                        <td>@item.Quantity</td>
+                                        <td>@item.CookedFood.ToString()</td>
+                                        <td>@item.KitchenOnly.ToString()</td>
+                                        <td class="text-center">
+                                            <a class="label label-default" href="@Url.Action("Edit", "Item", new {id = item.Id })">
+                                                <i class="fa fa-pencil"></i>
+                                            </a> <a class="label label-danger" href="@Url.Action("Delete", "Item", new {id = item.Id })"><i class="fa fa-times"></i></a>
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

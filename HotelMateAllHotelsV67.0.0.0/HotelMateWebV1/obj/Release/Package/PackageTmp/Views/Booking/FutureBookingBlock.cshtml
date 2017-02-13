@@ -1,0 +1,24 @@
+﻿@model HotelMateWebV1.Models.RoomBookingViewModel
+
+
+@{
+    ViewBag.Title = "Booking";
+}
+
+
+    
+        <div class="twelve columns">
+            <h1 class="page-title ci-title"> <span>Future Reservations</span> </h1>
+            @using (Html.BeginForm("RoomFutureGroupBooking", "Booking", FormMethod.Post, new { enctype = "multipart/form-data", @class = "booking-form b-form row" }))
+            {
+                @Html.HiddenFor(model => model.CheckinDate)
+                @Html.HiddenFor(model => model.CheckoutDate)
+                @Html.Partial("_GroupBookingFutureDisplay")
+            }
+        </div>
+   
+
+
+
+
+

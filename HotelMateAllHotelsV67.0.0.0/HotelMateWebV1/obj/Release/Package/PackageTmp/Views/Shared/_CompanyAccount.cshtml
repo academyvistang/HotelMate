@@ -1,0 +1,34 @@
+﻿@model HotelMateWebV1.Models.CorporateModel
+
+
+@Html.HiddenFor(x => x.Company.Id)
+@Html.HiddenFor(x => x.PaymentTypeId)
+@Html.HiddenFor(x => x.BusinessCorporateAccount.Id)
+
+
+
+
+<div class="six columns">
+    <label for="FullName">Name*</label>
+    @Html.TextBoxFor(model => model.Company.Name)
+    @Html.ValidationMessageFor(model => model.Company.Name)
+</div>
+
+<div class="six columns">
+    <label for="email">E-Mail*</label>
+    @Html.TextBoxFor(model => model.Company.Email)
+    @Html.ValidationMessageFor(model => model.Company.Email)
+</div>
+
+<div class="six columns">
+    <label for="discountedRate">Amount Paid</label>
+    <input type="number" min="0" max="200000000" id="BusinessCorporateAccount.Amount" name="BusinessCorporateAccount.Amount" value="@Model.BusinessCorporateAccount.Amount">
+</div>
+
+
+@Html.Partial("_PaymentMethodSelectorTopUp", new HotelMateWebV1.Models.RoomBookingViewModel { ShowDialog = true })
+
+<div class="twelve columns">
+    <input type="submit" value="Add To @Model.Company.Name account" name="send_booking">
+</div>
+
