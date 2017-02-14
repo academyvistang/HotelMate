@@ -126,3 +126,7 @@ C:\NewProjects\HotelMateAllHotelsV67.0.0.0\HotelMate.DataWrapper\bin\Debug\Hotel
 C:\NewProjects\HotelMateAllHotelsV67.0.0.0\HotelMate.DataWrapper\obj\Debug\HotelMate.DataWrapper.dll
 C:\NewProjects\HotelMateAllHotelsV67.0.0.0\HotelMate.DataWrapper\obj\Debug\HotelMate.DataWrapper.pdb
 C:\NewProjects\HotelMateAllHotelsV67.0.0.0\HotelMate.DataWrapper\obj\Debug\HotelMate.DataWrapper.csprojResolveAssemblyReference.cache
+C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\HotelMate.DataWrapper\bin\Debug\HotelMate.DataWrapper.dll
+C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\HotelMate.DataWrapper\bin\Debug\HotelMate.DataWrapper.pdb
+C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\HotelMate.DataWrapper\obj\Debug\HotelMate.DataWrapper.dll
+C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\HotelMate.DataWrapper\obj\Debug\HotelMate.DataWrapper.pdb

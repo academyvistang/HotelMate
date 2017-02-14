@@ -171,3 +171,9 @@ C:\NewProjects\HotelMateAllHotelsV67.0.0.0\Entitities\bin\Debug\Entitities.pdb
 C:\NewProjects\HotelMateAllHotelsV67.0.0.0\Entitities\obj\Debug\Entitities.csprojResolveAssemblyReference.cache
 C:\NewProjects\HotelMateAllHotelsV67.0.0.0\Entitities\obj\Debug\Entitities.dll
 C:\NewProjects\HotelMateAllHotelsV67.0.0.0\Entitities\obj\Debug\Entitities.pdb
+C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\Entitities\bin\Debug\Entitities.dll.config
+C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\Entitities\bin\Debug\Entitities.dll
+C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\Entitities\bin\Debug\Entitities.pdb
+C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\Entitities\obj\Debug\Entitities.dll
+C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\Entitities\obj\Debug\Entitities.pdb
+C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\Entitities\obj\Debug\Entitities.csprojResolveAssemblyReference.cache

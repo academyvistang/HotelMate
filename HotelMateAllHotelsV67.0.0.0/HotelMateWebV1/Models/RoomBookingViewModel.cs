@@ -179,5 +179,6 @@ namespace HotelMateWebV1.Models
          public SelectList languanges { get; set; }
 
          public IEnumerable<SelectListItem> TitleDropDown { get; set; }
+        public string FilePath { get; internal set; }
     }
 }

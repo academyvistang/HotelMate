@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelMateWebV1", "HotelMateWebV1\HotelMateWebV1.csproj", "{F632B5C9-DB22-4F88-9C53-2007CB07845C}"
 EndProject
@@ -22,6 +22,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agbo21.Dal", "Agbo21.Dal\Agbo21.Dal.csproj", "{60879C0D-2E57-4A04-B2E2-E869AB1648DB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entitities", "Entitities\Entitities.csproj", "{D257EEBD-454E-4C8F-A259-29AE74D22DED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Invoicer", "Invoicer\Invoicer.csproj", "{E5BA227E-4AFE-448A-B879-A2784B3FC97C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +71,10 @@ Global
 		{D257EEBD-454E-4C8F-A259-29AE74D22DED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D257EEBD-454E-4C8F-A259-29AE74D22DED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D257EEBD-454E-4C8F-A259-29AE74D22DED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5BA227E-4AFE-448A-B879-A2784B3FC97C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5BA227E-4AFE-448A-B879-A2784B3FC97C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5BA227E-4AFE-448A-B879-A2784B3FC97C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5BA227E-4AFE-448A-B879-A2784B3FC97C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -496,3 +496,17 @@ C:\NewProjects\HotelMateAllHotelsV67.0.0.0\POSService\POSService\bin\Debug\Entit
 C:\NewProjects\HotelMateAllHotelsV67.0.0.0\POSService\POSService\obj\Debug\POSService.csprojResolveAssemblyReference.cache
 C:\NewProjects\HotelMateAllHotelsV67.0.0.0\POSService\POSService\obj\Debug\POSService.dll
 C:\NewProjects\HotelMateAllHotelsV67.0.0.0\POSService\POSService\obj\Debug\POSService.pdb
+C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\POSService\POSService\bin\Debug\POSService.dll.config
+C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\POSService\POSService\bin\Debug\POSService.dll
+C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\POSService\POSService\bin\Debug\POSService.pdb
+C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\POSService\POSService\bin\Debug\EntityFramework.dll
+C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\POSService\POSService\bin\Debug\EntityFramework.SqlServer.dll
+C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\POSService\POSService\bin\Debug\HotelMate.DataWrapper.dll
+C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\POSService\POSService\bin\Debug\POSService.Entities.dll
+C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\POSService\POSService\bin\Debug\HotelMate.DataWrapper.pdb
+C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\POSService\POSService\bin\Debug\POSService.Entities.pdb
+C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\POSService\POSService\bin\Debug\EntityFramework.xml
+C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\POSService\POSService\bin\Debug\EntityFramework.SqlServer.xml
+C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\POSService\POSService\obj\Debug\POSService.csprojResolveAssemblyReference.cache
+C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\POSService\POSService\obj\Debug\POSService.dll
+C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\POSService\POSService\obj\Debug\POSService.pdb

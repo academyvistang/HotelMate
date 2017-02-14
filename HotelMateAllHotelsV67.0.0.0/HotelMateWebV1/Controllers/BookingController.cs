@@ -2995,7 +2995,96 @@ namespace HotelMateWebV1.Controllers
 
             return RedirectToAction("PrintLandingForGuest", "Home", new { id });
         }
-        public ActionResult EmailGuest(int? id)
+
+        //<a class="erbEditorOpener buttonDevFirst" href="@Url.Action("PrintGuestPayment", "Booking", new { id = Model.GuestAccountId, filename = Model.DownloadFilename })">Print Receipt</a>
+        public ActionResult PrintGuestPayment(int? id)
+        {
+            var guestAccount = _guestRoomAccountService.GetById(id.Value);
+
+            var path1 = Path.Combine(Server.MapPath("~/Products/Receipt/"));
+
+            var filename = PDFReceiptPrinter.PrintInvoiceChecking(path1, guestAccount);
+
+            var path = Path.Combine(Server.MapPath("~/Products/Receipt/"), filename + ".pdf");
+
+
+            var fileNameNew = filename + "_" + "Receipt.pdf";
+
+            EmailAttachmentToGuest(guestAccount.GuestRoom.Guest, path);
+
+            return File(path, "application/ms-excel", fileNameNew);
+        }
+
+        public ActionResult EmailGuest(int? id, string fileName, int? mode)
+        {
+            var guestCreated = _guestService.GetById(id.Value);
+            
+            var gr = guestCreated.GuestRooms.FirstOrDefault();
+
+            var guestAccount = gr.GuestRoomAccounts.FirstOrDefault();
+
+            if (gr != null && !gr.IsActive)
+            {
+                return RedirectToAction("EmailGuestCheckout", new { id });
+            }
+
+            var path = Path.Combine(Server.MapPath("~/Products/Receipt/"), fileName + ".pdf");
+            var fileNameNew = fileName + "_" + "Receipt.pdf";
+
+            if (mode.HasValue && mode.Value == 0)
+            {
+                EmailAttachmentToGuest(guestCreated, path);
+            }
+
+            //var path = Path.Combine(Server.MapPath("~/Products/Receipt/"), fileName + ".pdf");
+            //var fileNameNew = fileName + "_" + "Receipt.pdf";
+
+            return File(path, "application/ms-excel", fileNameNew);
+        }
+
+        private void EmailAttachmentToGuest(Guest guestCreated, string path, string strName = "Checking Receipt")
+        {
+           
+
+            var emailTemplate = @"<p style='margin:0px;padding:0px;font-size:12px;font-family:Arial, Helvetica, sans-serif;color:#555;' id='yui_3_16_0_ym19_1_1463261898755_4224'>Warm Greetings #FULLNAME#,<br>
+                                <br>This is to kindly inform you of your receipt, the details are listed in the attachment : <br>
+                                <br>Please see attached file for your statement<br><br>
+                                </p>";
+
+
+            emailTemplate = emailTemplate.Replace("#FULLNAME#", guestCreated.FullName);
+
+
+            try
+            {
+
+                var dest = guestCreated.Email;
+
+                var emails = dest.Split(',').ToList();
+
+                foreach (var email in emails)
+                {
+
+                    MailMessage mail = new MailMessage("academyvistang@gmail.com", email, "Your Receipt", emailTemplate);
+                    mail.From = new MailAddress("academyvistang@gmail.com", strName);
+                    mail.IsBodyHtml = true; // necessary if you're using html email
+                    NetworkCredential credential = new NetworkCredential("academyvistang@gmail.com", "Lauren280701");
+                    SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+                    smtp.EnableSsl = true;
+                    smtp.UseDefaultCredentials = false;
+                    smtp.Credentials = credential;
+                    if (path != null)
+                        mail.Attachments.Add(new Attachment(path));
+                    smtp.Send(mail);
+                }
+            }
+            catch
+            {
+
+            }
+        }
+
+        public ActionResult EmailGuestOld(int? id)
         {
             var guestCreated = _guestService.GetById(id.Value);
             //

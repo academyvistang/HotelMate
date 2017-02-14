@@ -21,6 +21,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -88,17 +89,15 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
@@ -139,6 +138,7 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="Telerik.Web.Mvc">
       <HintPath>..\..\..\LIVEDISCOUNTHOTELMOTELS30062014\bin\Telerik.Web.Mvc.dll</HintPath>
     </Reference>
@@ -209,7 +209,6 @@
     <Compile Include="Controllers\IncomeController.cs" />
     <Compile Include="Controllers\InventoryPosController.cs" />
     <Compile Include="Controllers\ItemController.cs" />
-    <Compile Include="Controllers\PosController.cs" />
     <Compile Include="Controllers\PrintingController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Extensions\CheckBoxExtensions.cs" />
@@ -225,6 +224,7 @@
     <Compile Include="Helpers\MultiUserStackOfCardsAggara.cs" />
     <Compile Include="Helpers\MySingleton .cs" />
     <Compile Include="Helpers\PaginatedList.cs" />
+    <Compile Include="Helpers\PDFReceiptPrinter.cs" />
     <Compile Include="Helpers\StackOfCards.cs" />
     <Compile Include="Helpers\TerminalExtensions.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -3610,6 +3610,7 @@
     <Content Include="images\user8.png" />
     <Content Include="images\user9.png" />
     <Content Include="images\user_anonymous.png" />
+    <Content Include="images\vodafone.jpg" />
     <Content Include="images\wood_pattern.jpg" />
     <Content Include="images\wufoo-600x600-red.png" />
     <Content Include="js\circle.player.js" />
@@ -4913,6 +4914,7 @@
     <Folder Include="Content\themes\base\minified\images\" />
     <Folder Include="Content\Videos\" />
     <Folder Include="panel\widgets\scripts\" />
+    <Folder Include="Products\Receipt\" />
     <Folder Include="Videos\Movies\" />
     <Folder Include="Views\Printing\" />
   </ItemGroup>
@@ -4939,6 +4941,10 @@
     <ProjectReference Include="..\HotelMateWeb.Services\HotelMateWeb.Services.csproj">
       <Project>{356180d5-064b-4f5e-9c90-780b7ec93af4}</Project>
       <Name>HotelMateWeb.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Invoicer\Invoicer.csproj">
+      <Project>{e5ba227e-4afe-448a-b879-a2784b3fc97c}</Project>
+      <Name>Invoicer</Name>
     </ProjectReference>
     <ProjectReference Include="..\PdfReportGenerator\PdfReportGenerator.csproj">
       <Project>{df00196a-3b96-4bcd-8c4e-879db8edfe95}</Project>

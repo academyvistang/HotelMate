@@ -8,7 +8,7 @@
     @if (Model.ItemSaved.HasValue && Model.ItemSaved.Value)
     {
         @Html.Partial("_EntityUpdated", "Guest account has been updated.")
-        <a class="erbEditorOpener buttonDevFirst" href="@Url.Action("PrintGuestPayment", "Printing", new { id = Model.GuestAccountId })">Print Receipt</a>
+        <a class="erbEditorOpener buttonDevFirst" href="@Url.Action("PrintGuestPayment", "Booking", new { id = Model.GuestAccountId })">Print Receipt</a>
         <br />
         <br />
 

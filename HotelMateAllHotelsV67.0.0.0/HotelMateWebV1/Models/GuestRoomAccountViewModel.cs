@@ -142,6 +142,7 @@ namespace HotelMateWebV1.Models
         public bool GroupCheckout { get; internal set; }
         public int? CompanyGuest { get; internal set; }
         public int RememberToChangeMainRoom { get; set; }
+        public string DownloadFilename { get; set; }
     }
 }
 
