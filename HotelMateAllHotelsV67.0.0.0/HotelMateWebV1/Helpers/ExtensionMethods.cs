@@ -667,6 +667,11 @@ namespace HotelMateWebV1.Helpers
             return guest.GetGuestBalanceWithFullTax();
         }
 
+        public static IList<GuestRoomAccount> GetGuestItems(this Guest guest)
+        {
+           return guest.GuestRooms.SelectMany(x => x.GuestRoomAccounts).Where(x => x.Amount > 0 && x.PaymentMethodId == (int)HotelMateWebV1.Helpers.Enums.PaymentMethodEnum.POSTBILL).ToList();
+        }
+
         public static decimal GetGuestTotalPaid(this Guest guest)
         {
             var totalRooms = guest.GuestRooms.Summation();

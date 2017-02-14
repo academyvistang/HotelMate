@@ -2350,6 +2350,10 @@ namespace HotelMateWebV1.Controllers
                 GuestRoomAccount = new GuestRoomAccount { Amount = decimal.Zero }
             };
 
+            var path1 = Path.Combine(Server.MapPath("~/Products/Receipt/"));
+
+            gravm.DownloadFilename = PDFReceiptPrinter.PrintInvoiceCheckout(path1, guest);
+
             return View("CheckOutGuestPOS",gravm);
         }
 

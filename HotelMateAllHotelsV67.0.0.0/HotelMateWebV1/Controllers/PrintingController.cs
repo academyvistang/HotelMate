@@ -13,6 +13,7 @@ using System.Collections;
 using System.Configuration;
 using HotelMateWebV1.Helpers.Enums;
 using System.Collections.Generic;
+using System.IO;
 
 namespace HotelMateWebV1.Controllers
 {
@@ -135,12 +136,24 @@ namespace HotelMateWebV1.Controllers
             string url = string.Format("{0}://{1}{2}", Request.Url.Scheme, Request.Url.Authority, Url.Content("~"));
             gravm.ImageUrl = url + "images/" + "LakehouseLogoNEW4.png";
 
-            if(gravm.DisplayList.Any())
-            {
-                return this.ViewPdf("Guest  Bill", "_GuestBillPrinterGodsyn", gravm);
-            }
+            var path1 = Path.Combine(Server.MapPath("~/Products/Receipt/"));
 
-            return this.ViewPdf("Guest  Bill", "_GuestBillPrinter", gravm);
+            var filename = PDFReceiptPrinter.PrintInvoiceCheckout(path1, gravm, gravm.ImageUrl);
+
+            var path = Path.Combine(Server.MapPath("~/Products/Receipt/"), filename + ".pdf");
+
+            var fileNameNew = filename + "_" + "Receipt.pdf";
+
+            return File(path, "application/ms-excel", fileNameNew);
+
+            //if (gravm.DisplayList.Any())
+            //{
+            //    return this.ViewPdf("Guest  Bill", "_GuestBillPrinterGodsyn", gravm);
+            //}
+
+
+
+            //return this.ViewPdf("Guest  Bill", "_GuestBillPrinter", gravm);
         }
 
         private List<CheckOutDisplayModel> GetDisplayList(GuestRoomAccountViewModel gravm)

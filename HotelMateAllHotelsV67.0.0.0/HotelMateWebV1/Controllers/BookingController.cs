@@ -3029,6 +3029,7 @@ namespace HotelMateWebV1.Controllers
             }
 
             var path = Path.Combine(Server.MapPath("~/Products/Receipt/"), fileName + ".pdf");
+
             var fileNameNew = fileName + "_" + "Receipt.pdf";
 
             if (mode.HasValue && mode.Value == 0)
@@ -3038,6 +3039,7 @@ namespace HotelMateWebV1.Controllers
 
             //var path = Path.Combine(Server.MapPath("~/Products/Receipt/"), fileName + ".pdf");
             //var fileNameNew = fileName + "_" + "Receipt.pdf";
+            //08057276803
 
             return File(path, "application/ms-excel", fileNameNew);
         }

@@ -372,7 +372,7 @@ namespace HotelMateWebV1.Controllers
                })
                .Footer("http://www.vodafone.co.uk")
                //.Save();
-               .Save(@"C:\NewProjects\Juju\");
+               .Save(@"C:\NewProjects\Juju\",0);
         }
 
        
