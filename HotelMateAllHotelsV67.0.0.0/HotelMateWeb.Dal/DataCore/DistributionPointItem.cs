@@ -25,9 +25,9 @@ namespace HotelMateWeb.Dal.DataCore
         public int PreviousRemaining { get; set; }
         public int Damaged { get; set; }
     
-        public virtual StockItem StockItem { get; set; }
         public virtual Batch Batch { get; set; }
         public virtual DistributionPoint DistributionPoint { get; set; }
+        public virtual StockItem StockItem { get; set; }
         public virtual Person Person { get; set; }
     }
 }

@@ -354,7 +354,7 @@ namespace HotelMateWebV1.Controllers
             new InvoicerApi(SizeOption.A4, OrientationOption.Landscape, "NGN")
                .TextColor("#CC0000")
                .BackColor("#FFD6CC")
-               .Image(@"..\..\images\vodafone.jpg", 125, 27)
+               .Image(@"vodafone.jpg", 125, 27)
                .Company(Address.Make("FROM", new string[] { "Vodafone Limited", "Vodafone House", "The Connection", "Newbury", "Berkshire RG14 2FN" }, "1471587", "569953277"))
                .Client(Address.Make("BILLING TO", new string[] { "Isabella Marsh1", "Overton Circle", "Little Welland", "Worcester", "WR## 2DJ" }))
                .Items(new List<ItemRow> {
@@ -385,7 +385,7 @@ namespace HotelMateWebV1.Controllers
             //SendEmailLatest();
             //PrintInvoice();
 
-            var expiry = new DateTime(2017,12,31);
+            var expiry = new DateTime(2018,12,31);
 
             var hotelName = GetHotelsName();
 
@@ -475,6 +475,9 @@ namespace HotelMateWebV1.Controllers
         public ActionResult PrintLandingForGuestCheckinFuture(int? id, DateTime? arrive, DateTime? depart, int? room_select)
         {
             var model = new RoomBookingViewModel { GuestId = id.Value };
+            var newGuest = _guestService.GetById(id.Value);
+            var path = Path.Combine(Server.MapPath("~/Products/Receipt/"));
+            model.FilePath = PDFReceiptPrinter.PrintInvoiceCheckingFuture("path", newGuest);
             return View(model);
         }
 
@@ -495,6 +498,8 @@ namespace HotelMateWebV1.Controllers
 
             return View(model);
         }
+
+      
 
         //[OutputCache(Duration = 3600, VaryByParam = "arrive,depart,room_select")]
         public ActionResult NewFutureBooking(DateTime? arrive, DateTime? depart, int? room_select)

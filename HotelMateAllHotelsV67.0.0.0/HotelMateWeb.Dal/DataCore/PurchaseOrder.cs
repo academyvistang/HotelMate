@@ -35,6 +35,9 @@ namespace HotelMateWeb.Dal.DataCore
         public string Notes { get; set; }
         public string SupplierInvoice { get; set; }
         public string InvoicePath { get; set; }
+        public bool IsRawItem { get; set; }
+        public bool TransferDone { get; set; }
+        public Nullable<int> TotalNumberOfItems { get; set; }
     
         public virtual ICollection<Invoice> Invoices { get; set; }
         public virtual ICollection<PurchaseOrderItem> PurchaseOrderItems { get; set; }

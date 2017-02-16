@@ -2645,26 +2645,22 @@ namespace HotelMateWebV1.Controllers
                     
                     var newGuest = _guestService.Create(guest);
 
-                    if (newGuest != null)
-                    {
-                        CreateGuestCredentials(newGuest.Id,"");
-                    }
 
-                    try
-                    {
+                    //try
+                    //{
 
-                        eModel.Guest = newGuest;
+                    //    eModel.Guest = newGuest;
 
-                        var strMsg = "Dear " + newGuest.FullName + ", Thank you for choosing to stay at with us. Your reservation has been confirmed and your check-in date is " + checkingDateFuture.ToShortDateString();
+                    //    var strMsg = "Dear " + newGuest.FullName + ", Thank you for choosing to stay at with us. Your reservation has been confirmed and your check-in date is " + checkingDateFuture.ToShortDateString();
 
-                        SendSMS(newGuest.Telephone, strMsg);
+                    //    SendSMS(newGuest.Telephone, strMsg);
 
-                        SendEmailToGuestReservation(eModel);
-                    }
-                    catch
-                    {
+                    //    SendEmailToGuestReservation(eModel);
+                    //}
+                    //catch
+                    //{
 
-                    }
+                    //}
 
                     return RedirectToAction("PrintLandingForGuestCheckinFuture", "Home", new { id = guest.Id });
 
@@ -2996,7 +2992,25 @@ namespace HotelMateWebV1.Controllers
             return RedirectToAction("PrintLandingForGuest", "Home", new { id });
         }
 
-        //<a class="erbEditorOpener buttonDevFirst" href="@Url.Action("PrintGuestPayment", "Booking", new { id = Model.GuestAccountId, filename = Model.DownloadFilename })">Print Receipt</a>
+
+        
+        public ActionResult PrintGuestPaymentCredit(int? id)
+        {
+            var guestAccount = _guestRoomAccountService.GetById(id.Value);
+
+            var path1 = Path.Combine(Server.MapPath("~/Products/Receipt/"));
+
+            var filename = PDFReceiptPrinter.PrintInvoicePayment(path1, guestAccount);
+
+            var path = Path.Combine(Server.MapPath("~/Products/Receipt/"), filename + ".pdf");
+
+            var fileNameNew = filename + "_" + "Receipt.pdf";
+
+            EmailAttachmentToGuest(guestAccount.GuestRoom.Guest, path);
+
+            return File(path, "application/ms-excel", fileNameNew);
+        }
+
         public ActionResult PrintGuestPayment(int? id)
         {
             var guestAccount = _guestRoomAccountService.GetById(id.Value);
@@ -3007,10 +3021,30 @@ namespace HotelMateWebV1.Controllers
 
             var path = Path.Combine(Server.MapPath("~/Products/Receipt/"), filename + ".pdf");
 
-
             var fileNameNew = filename + "_" + "Receipt.pdf";
 
             EmailAttachmentToGuest(guestAccount.GuestRoom.Guest, path);
+
+            return File(path, "application/ms-excel", fileNameNew);
+        }
+
+
+        public ActionResult EmailGuestCheckoutNew(int? id, string fileName, int? mode)
+        {
+            var guestCreated = _guestService.GetById(id.Value);
+
+            var gr = guestCreated.GuestRooms.FirstOrDefault();
+
+            var guestAccount = gr.GuestRoomAccounts.FirstOrDefault();
+
+            var path = Path.Combine(Server.MapPath("~/Products/Receipt/"), fileName + ".pdf");
+
+            var fileNameNew = fileName + "_" + "Receipt.pdf";
+
+            if (mode.HasValue && mode.Value == 0)
+            {
+                EmailAttachmentToGuest(guestCreated, path);
+            }
 
             return File(path, "application/ms-excel", fileNameNew);
         }
@@ -3023,11 +3057,6 @@ namespace HotelMateWebV1.Controllers
 
             var guestAccount = gr.GuestRoomAccounts.FirstOrDefault();
 
-            if (gr != null && !gr.IsActive)
-            {
-                return RedirectToAction("EmailGuestCheckout", new { id });
-            }
-
             var path = Path.Combine(Server.MapPath("~/Products/Receipt/"), fileName + ".pdf");
 
             var fileNameNew = fileName + "_" + "Receipt.pdf";
@@ -3037,14 +3066,10 @@ namespace HotelMateWebV1.Controllers
                 EmailAttachmentToGuest(guestCreated, path);
             }
 
-            //var path = Path.Combine(Server.MapPath("~/Products/Receipt/"), fileName + ".pdf");
-            //var fileNameNew = fileName + "_" + "Receipt.pdf";
-            //08057276803
-
             return File(path, "application/ms-excel", fileNameNew);
         }
 
-        private void EmailAttachmentToGuest(Guest guestCreated, string path, string strName = "Checking Receipt")
+        private void EmailAttachmentToGuest(Guest guestCreated, string path, string strName = "Checkin Receipt")
         {
            
 
@@ -3093,11 +3118,6 @@ namespace HotelMateWebV1.Controllers
             var gr = guestCreated.GuestRooms.FirstOrDefault();
 
             var guestAccount = gr.GuestRoomAccounts.FirstOrDefault();
-
-            if(gr != null && !gr.IsActive)
-            {
-                return RedirectToAction("EmailGuestCheckout", new { id });
-            }
 
             int? paymentMethodId = 1;
 

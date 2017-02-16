@@ -101,7 +101,17 @@
                     <li><a href="@Url.Action("CorporateGuestReport","Report")">Corporate Guest Report</a></li>
                 </ul>
               </li>
-                  
+
+            <li>
+                <a href=""><i class="fa fa-dashboard"></i><span>Stock Control</span></a>
+                <ul class="sub-menu">
+                    <li><a href="@Url.Action("Index","Stock")">Items</a></li>
+                    <li><a href="@Url.Action("Delivery","Stock")">Delivery</a></li>
+                    <li><a href="@Url.Action("Usage","Stock")">Usage</a></li>
+                    <li><a href="@Url.Action("Inventory","Stock")">Inventory</a></li>
+                </ul>
+            </li>
+
                 <li><a href="@Url.Action("AccountRecievable","BarReport")"><i class="fa fa-retweet"></i><span>Account Recievables</span></a>
                 <ul class="sub-menu">
                     <li><a href="@Url.Action("AccountRecievable","BarReport")">Account Receivable (All)</a></li>

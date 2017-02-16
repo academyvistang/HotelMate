@@ -626,11 +626,11 @@ C:\NewProjects\HotelMateAllHotelsV67.0.0.0\HotelMateWeb.Services\bin\Debug\Hotel
 C:\NewProjects\HotelMateAllHotelsV67.0.0.0\HotelMateWeb.Services\obj\Debug\HotelMateWeb.Services.csprojResolveAssemblyReference.cache
 C:\NewProjects\HotelMateAllHotelsV67.0.0.0\HotelMateWeb.Services\obj\Debug\HotelMateWeb.Services.dll
 C:\NewProjects\HotelMateAllHotelsV67.0.0.0\HotelMateWeb.Services\obj\Debug\HotelMateWeb.Services.pdb
+C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\HotelMateWeb.Services\obj\Debug\HotelMateWeb.Services.csprojResolveAssemblyReference.cache
 C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\HotelMateWeb.Services\bin\Debug\HotelMateWeb.Services.dll
 C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\HotelMateWeb.Services\bin\Debug\HotelMateWeb.Services.pdb
 C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\HotelMateWeb.Services\bin\Debug\HotelMateWeb.Dal.dll
 C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\HotelMateWeb.Services\bin\Debug\EntityFramework.dll
 C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\HotelMateWeb.Services\bin\Debug\HotelMateWeb.Dal.pdb
-C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\HotelMateWeb.Services\obj\Debug\HotelMateWeb.Services.csprojResolveAssemblyReference.cache
 C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\HotelMateWeb.Services\obj\Debug\HotelMateWeb.Services.dll
 C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\HotelMateWeb.Services\obj\Debug\HotelMateWeb.Services.pdb

@@ -14,6 +14,8 @@ using System.Configuration;
 using HotelMateWebV1.Helpers.Enums;
 using System.Collections.Generic;
 using System.IO;
+using System.Net.Mail;
+using System.Net;
 
 namespace HotelMateWebV1.Controllers
 {
@@ -113,7 +115,7 @@ namespace HotelMateWebV1.Controllers
 
         [HttpGet]
         //[OutputCache(Duration = 3600, VaryByParam = "id")]
-        public ActionResult PrintGuestAccount(int? id, bool checkout = false)
+        public ActionResult PrintGuestAccount(int? id, bool checkout = false, bool? email = false)
         {
             var guest = _guestService.GetById(id.Value);
 
@@ -134,6 +136,7 @@ namespace HotelMateWebV1.Controllers
             gravm.DisplayList = GetDisplayList(gravm);
 
             string url = string.Format("{0}://{1}{2}", Request.Url.Scheme, Request.Url.Authority, Url.Content("~"));
+
             gravm.ImageUrl = url + "images/" + "LakehouseLogoNEW4.png";
 
             var path1 = Path.Combine(Server.MapPath("~/Products/Receipt/"));
@@ -142,18 +145,56 @@ namespace HotelMateWebV1.Controllers
 
             var path = Path.Combine(Server.MapPath("~/Products/Receipt/"), filename + ".pdf");
 
+            if(email.HasValue && email.Value)
+            {
+                EmailAttachmentToGuest(guest, path);
+            }
+
             var fileNameNew = filename + "_" + "Receipt.pdf";
 
             return File(path, "application/ms-excel", fileNameNew);
+        }
 
-            //if (gravm.DisplayList.Any())
-            //{
-            //    return this.ViewPdf("Guest  Bill", "_GuestBillPrinterGodsyn", gravm);
-            //}
-
+        private void EmailAttachmentToGuest(Guest guestCreated, string path, string strName = "Checkout Receipt")
+        {
 
 
-            //return this.ViewPdf("Guest  Bill", "_GuestBillPrinter", gravm);
+            var emailTemplate = @"<p style='margin:0px;padding:0px;font-size:12px;font-family:Arial, Helvetica, sans-serif;color:#555;' id='yui_3_16_0_ym19_1_1463261898755_4224'>Warm Greetings #FULLNAME#,<br>
+                                <br>This is to kindly inform you of your receipt, the details are listed in the attachment : <br>
+                                <br>Please see attached file for your statement<br><br>
+                                </p>";
+
+
+            emailTemplate = emailTemplate.Replace("#FULLNAME#", guestCreated.FullName);
+
+
+            try
+            {
+
+                var dest = guestCreated.Email;
+
+                var emails = dest.Split(',').ToList();
+
+                foreach (var email in emails)
+                {
+
+                    MailMessage mail = new MailMessage("academyvistang@gmail.com", email, "Your Receipt", emailTemplate);
+                    mail.From = new MailAddress("academyvistang@gmail.com", strName);
+                    mail.IsBodyHtml = true; // necessary if you're using html email
+                    NetworkCredential credential = new NetworkCredential("academyvistang@gmail.com", "Lauren280701");
+                    SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+                    smtp.EnableSsl = true;
+                    smtp.UseDefaultCredentials = false;
+                    smtp.Credentials = credential;
+                    if (path != null)
+                        mail.Attachments.Add(new Attachment(path));
+                    smtp.Send(mail);
+                }
+            }
+            catch
+            {
+
+            }
         }
 
         private List<CheckOutDisplayModel> GetDisplayList(GuestRoomAccountViewModel gravm)

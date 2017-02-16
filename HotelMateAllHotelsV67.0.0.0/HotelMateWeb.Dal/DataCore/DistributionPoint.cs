@@ -17,11 +17,13 @@ namespace HotelMateWeb.Dal.DataCore
         public DistributionPoint()
         {
             this.Batches = new HashSet<Batch>();
+            this.DamagedBatchItems = new HashSet<DamagedBatchItem>();
             this.DistributionPointItems = new HashSet<DistributionPointItem>();
-            this.People = new HashSet<Person>();
+            this.Payments = new HashSet<Payment>();
             this.POSItems = new HashSet<POSItem>();
             this.SoldItemsAlls = new HashSet<SoldItemsAll>();
-            this.Payments = new HashSet<Payment>();
+            this.UsedItemsByHotels = new HashSet<UsedItemsByHotel>();
+            this.People = new HashSet<Person>();
         }
     
         public int Id { get; set; }
@@ -31,11 +33,13 @@ namespace HotelMateWeb.Dal.DataCore
         public bool IsSales { get; set; }
     
         public virtual ICollection<Batch> Batches { get; set; }
+        public virtual ICollection<DamagedBatchItem> DamagedBatchItems { get; set; }
         public virtual ICollection<DistributionPointItem> DistributionPointItems { get; set; }
-        public virtual Person Person { get; set; }
-        public virtual ICollection<Person> People { get; set; }
+        public virtual ICollection<Payment> Payments { get; set; }
         public virtual ICollection<POSItem> POSItems { get; set; }
         public virtual ICollection<SoldItemsAll> SoldItemsAlls { get; set; }
-        public virtual ICollection<Payment> Payments { get; set; }
+        public virtual ICollection<UsedItemsByHotel> UsedItemsByHotels { get; set; }
+        public virtual Person Person { get; set; }
+        public virtual ICollection<Person> People { get; set; }
     }
 }

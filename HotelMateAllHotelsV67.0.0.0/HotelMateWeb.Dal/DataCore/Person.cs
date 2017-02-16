@@ -29,11 +29,13 @@ namespace HotelMateWeb.Dal.DataCore
             this.GuestRoomAccounts = new HashSet<GuestRoomAccount>();
             this.Invoices = new HashSet<Invoice>();
             this.Invoices1 = new HashSet<Invoice>();
+            this.Payments = new HashSet<Payment>();
             this.SalesDiscounts = new HashSet<SalesDiscount>();
             this.SoldItemsAlls = new HashSet<SoldItemsAll>();
             this.Stores = new HashSet<Store>();
             this.StoreItems = new HashSet<StoreItem>();
-            this.Payments = new HashSet<Payment>();
+            this.StorePoints = new HashSet<StorePoint>();
+            this.UsedItemsByHotels = new HashSet<UsedItemsByHotel>();
         }
     
         public int PersonID { get; set; }
@@ -93,11 +95,13 @@ namespace HotelMateWeb.Dal.DataCore
         public virtual Hotel Hotel { get; set; }
         public virtual ICollection<Invoice> Invoices { get; set; }
         public virtual ICollection<Invoice> Invoices1 { get; set; }
+        public virtual ICollection<Payment> Payments { get; set; }
         public virtual PersonType PersonType { get; set; }
         public virtual ICollection<SalesDiscount> SalesDiscounts { get; set; }
         public virtual ICollection<SoldItemsAll> SoldItemsAlls { get; set; }
         public virtual ICollection<Store> Stores { get; set; }
         public virtual ICollection<StoreItem> StoreItems { get; set; }
-        public virtual ICollection<Payment> Payments { get; set; }
+        public virtual ICollection<StorePoint> StorePoints { get; set; }
+        public virtual ICollection<UsedItemsByHotel> UsedItemsByHotels { get; set; }
     }
 }

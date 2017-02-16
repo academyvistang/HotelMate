@@ -2022,7 +2022,7 @@ namespace HotelMateWebV1.Controllers
 
         [HttpGet]
         //[OutputCache(Duration = 3600, VaryByParam = "id,roomId,paymentTypeId,itemSaved")]
-        public ActionResult TopUpRestaurant(int? id, int? roomId, int? paymentTypeId, bool? itemSaved, int? paymentMethodId, string paymentMethodNote)
+        public ActionResult TopUpRestaurant(int? id, int? roomId, int? paymentTypeId, bool? itemSaved, int? paymentMethodId, string paymentMethodNote, DateTime? paymentDate)
         {
             var guest = _guestService.GetById(id.Value);
 
@@ -2059,6 +2059,16 @@ namespace HotelMateWebV1.Controllers
                 PaymentMethodNote = paymentMethodNote
             };
 
+            if(paymentDate.HasValue)
+            {
+                var actualPayment = _guestRoomAccountService.GetAll(HotelID).FirstOrDefault(x => x.TransactionDate == paymentDate.Value);
+
+                if(actualPayment != null)
+                {
+                    gravm.GuestAccountId = actualPayment.Id;
+                }
+            }
+
             return View(gravm);
         }
 
@@ -2092,6 +2102,8 @@ namespace HotelMateWebV1.Controllers
         {
             var guest = _guestService.GetById(model.Guest.Id);
 
+            var paymentDate = DateTime.Now;
+
             if (ModelState.IsValid)
             {
                 var guestRoom = guest.GuestRooms.FirstOrDefault(x => x.RoomId == model.RoomId);
@@ -2103,7 +2115,7 @@ namespace HotelMateWebV1.Controllers
                     {
                         Amount = model.GuestRoomAccount.Amount,
                         PaymentTypeId = model.PaymentTypeId,
-                        TransactionDate = DateTime.Now,
+                        TransactionDate = paymentDate,
                         TransactionId = _personService.GetAllForLogin().Where(x => x.Username.ToUpper().Equals(User.Identity.Name.ToUpper())).FirstOrDefault().PersonID,
                         PaymentMethodId = paymentMethodId.HasValue ? paymentMethodId.Value : 1, PaymentMethodNote = paymentMethodNote
                     });
@@ -2112,7 +2124,7 @@ namespace HotelMateWebV1.Controllers
 
                 _guestService.Update(guest);
 
-                return RedirectToAction("TopUpRestaurant", "GuestAccount", new { id = model.Guest.Id, paymentTypeId = model.PaymentTypeId, itemSaved = true, paymentMethodId, paymentMethodNote });
+                return RedirectToAction("TopUpRestaurant", "GuestAccount", new { id = model.Guest.Id, paymentTypeId = model.PaymentTypeId, itemSaved = true, paymentMethodId, paymentMethodNote, paymentDate });
             }
 
             var pt = GetPaymentType(model.PaymentTypeId);

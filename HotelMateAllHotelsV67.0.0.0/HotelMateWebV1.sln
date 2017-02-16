@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelMateWebV1", "HotelMate
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelMateWebV1.Tests", "HotelMateWebV1.Tests\HotelMateWebV1.Tests.csproj", "{C90D822F-4178-4F35-B013-CF70C30F0576}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelMateWeb.Dal", "HotelMateWeb.Dal\HotelMateWeb.Dal.csproj", "{67752C1D-EAF8-42D5-8EB7-879DE5CD59FD}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelMateWeb.Services", "HotelMateWeb.Services\HotelMateWeb.Services.csproj", "{356180D5-064B-4F5E-9C90-780B7EC93AF4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PdfReportGenerator", "PdfReportGenerator\PdfReportGenerator.csproj", "{DF00196A-3B96-4BCD-8C4E-879DB8EDFE95}"
@@ -25,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entitities", "Entitities\En
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Invoicer", "Invoicer\Invoicer.csproj", "{E5BA227E-4AFE-448A-B879-A2784B3FC97C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelMateWeb.Dal", "HotelMateWeb.Dal\HotelMateWeb.Dal.csproj", "{67752C1D-EAF8-42D5-8EB7-879DE5CD59FD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,10 +39,6 @@ Global
 		{C90D822F-4178-4F35-B013-CF70C30F0576}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C90D822F-4178-4F35-B013-CF70C30F0576}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C90D822F-4178-4F35-B013-CF70C30F0576}.Release|Any CPU.Build.0 = Release|Any CPU
-		{67752C1D-EAF8-42D5-8EB7-879DE5CD59FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{67752C1D-EAF8-42D5-8EB7-879DE5CD59FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{67752C1D-EAF8-42D5-8EB7-879DE5CD59FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{67752C1D-EAF8-42D5-8EB7-879DE5CD59FD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{356180D5-064B-4F5E-9C90-780B7EC93AF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{356180D5-064B-4F5E-9C90-780B7EC93AF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{356180D5-064B-4F5E-9C90-780B7EC93AF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -75,6 +71,10 @@ Global
 		{E5BA227E-4AFE-448A-B879-A2784B3FC97C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E5BA227E-4AFE-448A-B879-A2784B3FC97C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E5BA227E-4AFE-448A-B879-A2784B3FC97C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67752C1D-EAF8-42D5-8EB7-879DE5CD59FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67752C1D-EAF8-42D5-8EB7-879DE5CD59FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67752C1D-EAF8-42D5-8EB7-879DE5CD59FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67752C1D-EAF8-42D5-8EB7-879DE5CD59FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

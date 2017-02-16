@@ -21,13 +21,7 @@ namespace HotelMateWeb.Dal.DataCore
     
         public int Id { get; set; }
         public string Name { get; set; }
-        public int SortOrder { get; set; }
         public bool IsActive { get; set; }
-        public string CreatedBy { get; set; }
-        public System.DateTime CreatedDateTime { get; set; }
-        public string LastUpdatedBy { get; set; }
-        public Nullable<System.DateTime> LastUpdatedDateTime { get; set; }
-        public int UpdateId { get; set; }
         public string Description { get; set; }
     
         public virtual ICollection<Expense> Expenses { get; set; }

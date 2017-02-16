@@ -25,7 +25,7 @@ namespace HotelMateWeb.Dal.DataCore
         public bool IsActive { get; set; }
     
         public virtual Guest Guest { get; set; }
-        public virtual Person Person { get; set; }
         public virtual RoomPaymentType RoomPaymentType { get; set; }
+        public virtual Person Person { get; set; }
     }
 }

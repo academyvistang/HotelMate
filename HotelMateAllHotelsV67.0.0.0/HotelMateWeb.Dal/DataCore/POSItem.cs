@@ -24,8 +24,9 @@ namespace HotelMateWeb.Dal.DataCore
         public Nullable<int> PreviousRemaining { get; set; }
         public bool IsActive { get; set; }
         public int Damaged { get; set; }
+        public int LastTransfer { get; set; }
     
-        public virtual StockItem StockItem { get; set; }
         public virtual DistributionPoint DistributionPoint { get; set; }
+        public virtual StockItem StockItem { get; set; }
     }
 }

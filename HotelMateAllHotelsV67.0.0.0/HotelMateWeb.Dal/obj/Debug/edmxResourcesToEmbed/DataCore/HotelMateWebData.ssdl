@@ -35,10 +35,11 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="BatchDate" Type="date" Nullable="false" />
-    <Property Name="DistributionPointId" Type="int" Nullable="false" />
-    <Property Name="PurchaseOrderItemId" Type="int" Nullable="false" />
+    <Property Name="DistributionPointId" Type="int" />
     <Property Name="QuantityTransferred" Type="int" Nullable="false" />
-    <Property Name="POSItemId" Type="int" Nullable="false" />
+    <Property Name="StorePointId" Type="int" />
+    <Property Name="ItemId" Type="int" Nullable="false" />
+    <Property Name="PreviousRemaining" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="BusinessAccount">
     <Key>
@@ -87,7 +88,10 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="NumberDamaged" Type="int" Nullable="false" />
     <Property Name="ItemId" Type="int" Nullable="false" />
-    <Property Name="BatchId" Type="int" Nullable="false" />
+    <Property Name="StorePointId" Type="int" />
+    <Property Name="DistributionPointId" Type="int" />
+    <Property Name="DateReported" Type="datetime" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="DistributionPoint">
     <Key>
@@ -167,13 +171,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
-    <Property Name="SortOrder" Type="int" Nullable="false" />
     <Property Name="IsActive" Type="bit" Nullable="false" />
-    <Property Name="CreatedBy" Type="nvarchar" MaxLength="100" Nullable="false" />
-    <Property Name="CreatedDateTime" Type="datetime" Nullable="false" />
-    <Property Name="LastUpdatedBy" Type="nvarchar" MaxLength="100" />
-    <Property Name="LastUpdatedDateTime" Type="datetime" />
-    <Property Name="UpdateId" Type="int" Nullable="false" />
     <Property Name="Description" Type="nvarchar" MaxLength="500" Nullable="false" />
   </EntityType>
   <EntityType Name="FoodMatrix">
@@ -629,6 +627,7 @@
     <Property Name="PreviousRemaining" Type="int" />
     <Property Name="IsActive" Type="bit" Nullable="false" />
     <Property Name="Damaged" Type="int" Nullable="false" />
+    <Property Name="LastTransfer" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="PrinterTable">
     <Key>
@@ -658,6 +657,9 @@
     <Property Name="Notes" Type="nvarchar(max)" />
     <Property Name="SupplierInvoice" Type="nvarchar" MaxLength="500" />
     <Property Name="InvoicePath" Type="nvarchar" MaxLength="500" />
+    <Property Name="IsRawItem" Type="bit" Nullable="false" />
+    <Property Name="TransferDone" Type="bit" Nullable="false" />
+    <Property Name="TotalNumberOfItems" Type="int" />
   </EntityType>
   <EntityType Name="PurchaseOrderItem">
     <Key>
@@ -842,6 +844,21 @@
     <Property Name="StarBuy" Type="bit" Nullable="false" />
     <Property Name="ClubPrice" Type="decimal" Precision="18" Scale="4" />
   </EntityType>
+  <EntityType Name="StockItemHotel">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UnitPrice" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Description" Type="varchar" MaxLength="500" />
+    <Property Name="PicturePath" Type="varchar" MaxLength="500" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="Quantity" Type="int" Nullable="false" />
+    <Property Name="NotNumber" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="TotalQuantity" Type="int" Nullable="false" />
+    <Property Name="Barcode" Type="varchar" MaxLength="500" />
+  </EntityType>
   <EntityType Name="Store">
     <Key>
       <PropertyRef Name="Id" />
@@ -863,6 +880,32 @@
     <Property Name="RecievedBy" Type="int" Nullable="false" />
     <Property Name="Remaining" Type="int" Nullable="false" />
     <Property Name="Damaged" Type="int" Nullable="false" />
+    <Property Name="Usage" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StorePoint">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="StorePointManager" Type="int" Nullable="false" />
+    <Property Name="IsSales" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StorePointItems">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Quantity" Type="int" Nullable="false" />
+    <Property Name="Remaining" Type="int" Nullable="false" />
+    <Property Name="StorePointId" Type="int" Nullable="false" />
+    <Property Name="Invinsible" Type="bit" Nullable="false" />
+    <Property Name="PreviousQty" Type="int" />
+    <Property Name="PreviousRemaining" Type="int" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="Damaged" Type="int" Nullable="false" />
+    <Property Name="PurchaseOrderItemId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Supplier">
     <Key>
@@ -946,6 +989,26 @@
     <Property Name="TransactionId" Type="int" Nullable="false" />
     <Property Name="ItemId" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="UsedItemsByHotel">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ItemId" Type="int" Nullable="false" />
+    <Property Name="Qty" Type="int" Nullable="false" />
+    <Property Name="TotalPrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="TransactionId" Type="int" Nullable="false" />
+    <Property Name="DateSold" Type="datetime" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="PersonId" Type="int" Nullable="false" />
+    <Property Name="TillOpen" Type="bit" Nullable="false" />
+    <Property Name="PaymentTypeId" Type="int" />
+    <Property Name="GuestId" Type="int" />
+    <Property Name="PaymentMethodId" Type="int" Nullable="false" />
+    <Property Name="PaymentMethodNote" Type="nvarchar" MaxLength="500" />
+    <Property Name="TimeOfSale" Type="datetime" Nullable="false" />
+    <Property Name="DistributionPointId" Type="int" Nullable="false" />
+  </EntityType>
   <Association Name="FK_BarTable_BarTableGuest">
     <End Role="Guest" Type="Self.Guest" Multiplicity="1" />
     <End Role="BarTable" Type="Self.BarTable" Multiplicity="*" />
@@ -971,7 +1034,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Batch_BatchDistributionPoint">
-    <End Role="DistributionPoint" Type="Self.DistributionPoint" Multiplicity="1" />
+    <End Role="DistributionPoint" Type="Self.DistributionPoint" Multiplicity="0..1" />
     <End Role="Batch" Type="Self.Batch" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="DistributionPoint">
@@ -982,15 +1045,27 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Batch_BatchPOI">
-    <End Role="PurchaseOrderItem" Type="Self.PurchaseOrderItem" Multiplicity="1" />
+  <Association Name="FK_Batch_BatchItem">
+    <End Role="StockItem" Type="Self.StockItem" Multiplicity="1" />
     <End Role="Batch" Type="Self.Batch" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="PurchaseOrderItem">
+      <Principal Role="StockItem">
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="Batch">
-        <PropertyRef Name="PurchaseOrderItemId" />
+        <PropertyRef Name="ItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Batch_BatchStore">
+    <End Role="StorePoint" Type="Self.StorePoint" Multiplicity="0..1" />
+    <End Role="Batch" Type="Self.Batch" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StorePoint">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Batch">
+        <PropertyRef Name="StorePointId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1066,15 +1141,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_DamagedBatchItem_DamagedBatchItemBatch">
-    <End Role="Batch" Type="Self.Batch" Multiplicity="1" />
+  <Association Name="FK_DamagedBatchItem_DamagedBatchItemDistribution">
+    <End Role="DistributionPoint" Type="Self.DistributionPoint" Multiplicity="0..1" />
     <End Role="DamagedBatchItem" Type="Self.DamagedBatchItem" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Batch">
+      <Principal Role="DistributionPoint">
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="DamagedBatchItem">
-        <PropertyRef Name="BatchId" />
+        <PropertyRef Name="DistributionPointId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1087,6 +1162,18 @@
       </Principal>
       <Dependent Role="DamagedBatchItem">
         <PropertyRef Name="ItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DamagedBatchItem_DamagedBatchItemStore">
+    <End Role="StorePoint" Type="Self.StorePoint" Multiplicity="0..1" />
+    <End Role="DamagedBatchItem" Type="Self.DamagedBatchItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StorePoint">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="DamagedBatchItem">
+        <PropertyRef Name="StorePointId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -2086,6 +2173,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_StoreItems_StoreItemsHotel">
+    <End Role="StockItemHotel" Type="Self.StockItemHotel" Multiplicity="1" />
+    <End Role="StoreItems" Type="Self.StoreItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StockItemHotel">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StoreItems">
+        <PropertyRef Name="ItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_StoreItems_StoreItemsRecievedBy">
     <End Role="Person" Type="Self.Person" Multiplicity="1" />
     <End Role="StoreItems" Type="Self.StoreItems" Multiplicity="*" />
@@ -2098,15 +2197,39 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_StoteItems_StoteItemsItem">
-    <End Role="StockItem" Type="Self.StockItem" Multiplicity="1" />
-    <End Role="StoreItems" Type="Self.StoreItems" Multiplicity="*" />
+  <Association Name="FK_StorePoint_StorePointManager">
+    <End Role="Person" Type="Self.Person" Multiplicity="1" />
+    <End Role="StorePoint" Type="Self.StorePoint" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="StockItem">
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="StorePoint">
+        <PropertyRef Name="StorePointManager" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StorePointItems_StorePointItemsPurchaseOI">
+    <End Role="PurchaseOrderItem" Type="Self.PurchaseOrderItem" Multiplicity="1" />
+    <End Role="StorePointItems" Type="Self.StorePointItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PurchaseOrderItem">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="StoreItems">
-        <PropertyRef Name="ItemId" />
+      <Dependent Role="StorePointItems">
+        <PropertyRef Name="PurchaseOrderItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StorePointItems_StorePointItemsStorePoint">
+    <End Role="StorePoint" Type="Self.StorePoint" Multiplicity="1" />
+    <End Role="StorePointItems" Type="Self.StorePointItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StorePoint">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="StorePointItems">
+        <PropertyRef Name="StorePointId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -2182,6 +2305,54 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_UsedItemsByHotel_UsedItemsByHotelDistributionPoint">
+    <End Role="DistributionPoint" Type="Self.DistributionPoint" Multiplicity="1" />
+    <End Role="UsedItemsByHotel" Type="Self.UsedItemsByHotel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DistributionPoint">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UsedItemsByHotel">
+        <PropertyRef Name="DistributionPointId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsedItemsByHotel_UsedItemsByHotelItem">
+    <End Role="StockItem" Type="Self.StockItem" Multiplicity="1" />
+    <End Role="UsedItemsByHotel" Type="Self.UsedItemsByHotel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StockItem">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UsedItemsByHotel">
+        <PropertyRef Name="ItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsedItemsByHotel_UsedItemsByHotelPaymentMethod">
+    <End Role="PaymentMethod" Type="Self.PaymentMethod" Multiplicity="1" />
+    <End Role="UsedItemsByHotel" Type="Self.UsedItemsByHotel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PaymentMethod">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UsedItemsByHotel">
+        <PropertyRef Name="PaymentMethodId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UsedItemsByHotel_UsedItemsByHotelPerson">
+    <End Role="Person" Type="Self.Person" Multiplicity="1" />
+    <End Role="UsedItemsByHotel" Type="Self.UsedItemsByHotel" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="UsedItemsByHotel">
+        <PropertyRef Name="PersonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="HotelMateWebModelStoreContainer">
     <EntitySet Name="Adventure" EntityType="Self.Adventure" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BarTable" EntityType="Self.BarTable" Schema="dbo" store:Type="Tables" />
@@ -2243,13 +2414,17 @@
     <EntitySet Name="SchoolPictures" EntityType="Self.SchoolPictures" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SoldItemsAll" EntityType="Self.SoldItemsAll" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="StockItem" EntityType="Self.StockItem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StockItemHotel" EntityType="Self.StockItemHotel" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Store" EntityType="Self.Store" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="StoreItems" EntityType="Self.StoreItems" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StorePoint" EntityType="Self.StorePoint" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StorePointItems" EntityType="Self.StorePointItems" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Supplier" EntityType="Self.Supplier" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TableItem" EntityType="Self.TableItem" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Taxi" EntityType="Self.Taxi" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Transaction" EntityType="Self.Transaction" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TransactionItem" EntityType="Self.TransactionItem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UsedItemsByHotel" EntityType="Self.UsedItemsByHotel" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_BarTable_BarTableGuest" Association="Self.FK_BarTable_BarTableGuest">
       <End Role="Guest" EntitySet="Guest" />
       <End Role="BarTable" EntitySet="BarTable" />
@@ -2262,8 +2437,12 @@
       <End Role="DistributionPoint" EntitySet="DistributionPoint" />
       <End Role="Batch" EntitySet="Batch" />
     </AssociationSet>
-    <AssociationSet Name="FK_Batch_BatchPOI" Association="Self.FK_Batch_BatchPOI">
-      <End Role="PurchaseOrderItem" EntitySet="PurchaseOrderItem" />
+    <AssociationSet Name="FK_Batch_BatchItem" Association="Self.FK_Batch_BatchItem">
+      <End Role="StockItem" EntitySet="StockItem" />
+      <End Role="Batch" EntitySet="Batch" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Batch_BatchStore" Association="Self.FK_Batch_BatchStore">
+      <End Role="StorePoint" EntitySet="StorePoint" />
       <End Role="Batch" EntitySet="Batch" />
     </AssociationSet>
     <AssociationSet Name="FK_BusinessAccount_BusinessAccountHotel" Association="Self.FK_BusinessAccount_BusinessAccountHotel">
@@ -2290,12 +2469,16 @@
       <End Role="Person" EntitySet="Person" />
       <End Role="BusinessCorporateAccount" EntitySet="BusinessCorporateAccount" />
     </AssociationSet>
-    <AssociationSet Name="FK_DamagedBatchItem_DamagedBatchItemBatch" Association="Self.FK_DamagedBatchItem_DamagedBatchItemBatch">
-      <End Role="Batch" EntitySet="Batch" />
+    <AssociationSet Name="FK_DamagedBatchItem_DamagedBatchItemDistribution" Association="Self.FK_DamagedBatchItem_DamagedBatchItemDistribution">
+      <End Role="DistributionPoint" EntitySet="DistributionPoint" />
       <End Role="DamagedBatchItem" EntitySet="DamagedBatchItem" />
     </AssociationSet>
     <AssociationSet Name="FK_DamagedBatchItem_DamagedBatchItemItem" Association="Self.FK_DamagedBatchItem_DamagedBatchItemItem">
       <End Role="StockItem" EntitySet="StockItem" />
+      <End Role="DamagedBatchItem" EntitySet="DamagedBatchItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DamagedBatchItem_DamagedBatchItemStore" Association="Self.FK_DamagedBatchItem_DamagedBatchItemStore">
+      <End Role="StorePoint" EntitySet="StorePoint" />
       <End Role="DamagedBatchItem" EntitySet="DamagedBatchItem" />
     </AssociationSet>
     <AssociationSet Name="FK_DistributionItems_DistributionItemsDistributionPoint" Association="Self.FK_DistributionItems_DistributionItemsDistributionPoint">
@@ -2630,13 +2813,25 @@
       <End Role="Person" EntitySet="Person" />
       <End Role="Store" EntitySet="Store" />
     </AssociationSet>
+    <AssociationSet Name="FK_StoreItems_StoreItemsHotel" Association="Self.FK_StoreItems_StoreItemsHotel">
+      <End Role="StockItemHotel" EntitySet="StockItemHotel" />
+      <End Role="StoreItems" EntitySet="StoreItems" />
+    </AssociationSet>
     <AssociationSet Name="FK_StoreItems_StoreItemsRecievedBy" Association="Self.FK_StoreItems_StoreItemsRecievedBy">
       <End Role="Person" EntitySet="Person" />
       <End Role="StoreItems" EntitySet="StoreItems" />
     </AssociationSet>
-    <AssociationSet Name="FK_StoteItems_StoteItemsItem" Association="Self.FK_StoteItems_StoteItemsItem">
-      <End Role="StockItem" EntitySet="StockItem" />
-      <End Role="StoreItems" EntitySet="StoreItems" />
+    <AssociationSet Name="FK_StorePoint_StorePointManager" Association="Self.FK_StorePoint_StorePointManager">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="StorePoint" EntitySet="StorePoint" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StorePointItems_StorePointItemsPurchaseOI" Association="Self.FK_StorePointItems_StorePointItemsPurchaseOI">
+      <End Role="PurchaseOrderItem" EntitySet="PurchaseOrderItem" />
+      <End Role="StorePointItems" EntitySet="StorePointItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StorePointItems_StorePointItemsStorePoint" Association="Self.FK_StorePointItems_StorePointItemsStorePoint">
+      <End Role="StorePoint" EntitySet="StorePoint" />
+      <End Role="StorePointItems" EntitySet="StorePointItems" />
     </AssociationSet>
     <AssociationSet Name="FK_StoteItems_StoteItemsStore" Association="Self.FK_StoteItems_StoteItemsStore">
       <End Role="Store" EntitySet="Store" />
@@ -2661,6 +2856,22 @@
     <AssociationSet Name="FK_TransactionItems_Contribution" Association="Self.FK_TransactionItems_Contribution">
       <End Role="Transaction" EntitySet="Transaction" />
       <End Role="TransactionItem" EntitySet="TransactionItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsedItemsByHotel_UsedItemsByHotelDistributionPoint" Association="Self.FK_UsedItemsByHotel_UsedItemsByHotelDistributionPoint">
+      <End Role="DistributionPoint" EntitySet="DistributionPoint" />
+      <End Role="UsedItemsByHotel" EntitySet="UsedItemsByHotel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsedItemsByHotel_UsedItemsByHotelItem" Association="Self.FK_UsedItemsByHotel_UsedItemsByHotelItem">
+      <End Role="StockItem" EntitySet="StockItem" />
+      <End Role="UsedItemsByHotel" EntitySet="UsedItemsByHotel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsedItemsByHotel_UsedItemsByHotelPaymentMethod" Association="Self.FK_UsedItemsByHotel_UsedItemsByHotelPaymentMethod">
+      <End Role="PaymentMethod" EntitySet="PaymentMethod" />
+      <End Role="UsedItemsByHotel" EntitySet="UsedItemsByHotel" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UsedItemsByHotel_UsedItemsByHotelPerson" Association="Self.FK_UsedItemsByHotel_UsedItemsByHotelPerson">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="UsedItemsByHotel" EntitySet="UsedItemsByHotel" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

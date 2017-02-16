@@ -211,6 +211,7 @@
     <Compile Include="Controllers\ItemController.cs" />
     <Compile Include="Controllers\PrintingController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
+    <Compile Include="Controllers\StockController.cs" />
     <Compile Include="Extensions\CheckBoxExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -3289,6 +3290,8 @@
     <Content Include="images\barak_obama256.png" />
     <Content Include="images\bed_guestsleep_hotel_motel_lodging-24.png" />
     <Content Include="images\bed_sleep_hotel_motel_lodging-24.png" />
+    <Content Include="images\berkshire.jpg" />
+    <Content Include="images\berkshire.png" />
     <Content Include="images\bg.jpg" />
     <Content Include="images\bg2.jpg" />
     <Content Include="images\bg3.jpg" />
@@ -4409,6 +4412,7 @@
     <Content Include="Videos\Posters\7.jpg" />
     <Content Include="Videos\Posters\8.jpg" />
     <Content Include="Videos\Posters\9.jpg" />
+    <Content Include="vodafone.jpg" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -4907,6 +4911,12 @@
     <Content Include="Views\GuestAccount\SwitchGuestAccount.cshtml" />
     <Content Include="Views\Shared\_EditGuestAccountDisplaySwitch.cshtml" />
     <Content Include="Views\Shared\_AdjustBillAccountSwitch.cshtml" />
+    <Content Include="Views\Stock\Index.cshtml" />
+    <Content Include="Views\Stock\Create.cshtml" />
+    <Content Include="Views\Stock\Delete.cshtml" />
+    <Content Include="Views\Stock\Delivery.cshtml" />
+    <Content Include="Views\Stock\Usage.cshtml" />
+    <Content Include="Views\Stock\Inventory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Admin\html\js\bootstrap\examples\navbar-fixed-top\" />

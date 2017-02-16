@@ -40,10 +40,10 @@ namespace HotelMateWeb.Dal.DataCore
         public int PaymentTypeId { get; set; }
     
         public virtual BusinessAccount BusinessAccount { get; set; }
-        public virtual DistributionPoint DistributionPoint { get; set; }
         public virtual Guest Guest { get; set; }
-        public virtual Person Person { get; set; }
         public virtual PaymentMethod PaymentMethod { get; set; }
         public virtual RoomPaymentType RoomPaymentType { get; set; }
+        public virtual DistributionPoint DistributionPoint { get; set; }
+        public virtual Person Person { get; set; }
     }
 }

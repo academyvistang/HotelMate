@@ -175,8 +175,6 @@ namespace HotelMateWebV1.Controllers
                                 Remainder = remainder,
                                 TotalPrice = totalPrice,
                                 UnitPrice = unitPrice
-
-
                             };
 
                         }
@@ -455,7 +453,7 @@ namespace HotelMateWebV1.Controllers
 
                     if (lastBtch != null)
                     {
-                        var existingdbi = _damagedBatchItemService.GetAll().FirstOrDefault(x => x.BatchId == lastBtch.Id && x.ItemId == itemId);
+                        var existingdbi = _damagedBatchItemService.GetAll().FirstOrDefault(x => x.ItemId == itemId);
 
                         if (existingdbi != null)
                         {
@@ -467,7 +465,6 @@ namespace HotelMateWebV1.Controllers
                             DamagedBatchItem dbi = new DamagedBatchItem();
                             dbi.NumberDamaged = qty;
                             dbi.ItemId = itemId;
-                            dbi.BatchId = lastBtch.Id;
                             _damagedBatchItemService.Create(dbi);
                         }
 

@@ -25,7 +25,7 @@ namespace HotelMateWeb.Dal.DataCore
     
         public virtual GuestRoom GuestRoom { get; set; }
         public virtual PaymentMethod PaymentMethod { get; set; }
-        public virtual Person Person { get; set; }
         public virtual RoomPaymentType RoomPaymentType { get; set; }
+        public virtual Person Person { get; set; }
     }
 }

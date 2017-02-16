@@ -31,9 +31,9 @@ namespace HotelMateWeb.Dal.DataCore
         public System.DateTime CreatedDate { get; set; }
     
         public virtual Guest Guest { get; set; }
-        public virtual Person Person { get; set; }
         public virtual ICollection<GuestOrder> GuestOrders { get; set; }
         public virtual ICollection<PrinterTable> PrinterTables { get; set; }
         public virtual ICollection<TableItem> TableItems { get; set; }
+        public virtual Person Person { get; set; }
     }
 }

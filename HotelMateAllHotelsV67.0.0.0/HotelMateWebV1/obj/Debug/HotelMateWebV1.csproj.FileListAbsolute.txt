@@ -1079,6 +1079,7 @@ C:\NewProjects\HotelMateAllHotelsV67.0.0.0\HotelMateWebV1\bin\Microsoft.Owin.Sec
 C:\NewProjects\HotelMateAllHotelsV67.0.0.0\HotelMateWebV1\obj\Debug\HotelMateWebV1.csprojResolveAssemblyReference.cache
 C:\NewProjects\HotelMateAllHotelsV67.0.0.0\HotelMateWebV1\obj\Debug\HotelMateWebV1.dll
 C:\NewProjects\HotelMateAllHotelsV67.0.0.0\HotelMateWebV1\obj\Debug\HotelMateWebV1.pdb
+C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\HotelMateWebV1\obj\Debug\HotelMateWebV1.csprojResolveAssemblyReference.cache
 C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\HotelMateWebV1\bin\HotelMateWebV1.dll.config
 C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\HotelMateWebV1\bin\HotelMateWebV1.dll
 C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\HotelMateWebV1\bin\HotelMateWebV1.pdb
@@ -1157,6 +1158,5 @@ C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\HotelMateWebV1\bin\de\Migr
 C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\HotelMateWebV1\bin\de\MigraDoc.Rendering.resources.dll
 C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\HotelMateWebV1\bin\de\PdfSharp.resources.dll
 C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\HotelMateWebV1\bin\de\PdfSharp.Charting.resources.dll
-C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\HotelMateWebV1\obj\Debug\HotelMateWebV1.csprojResolveAssemblyReference.cache
 C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\HotelMateWebV1\obj\Debug\HotelMateWebV1.dll
 C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\HotelMateWebV1\obj\Debug\HotelMateWebV1.pdb

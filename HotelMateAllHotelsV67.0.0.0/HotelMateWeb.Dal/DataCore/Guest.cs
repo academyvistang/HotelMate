@@ -71,7 +71,7 @@ namespace HotelMateWeb.Dal.DataCore
         public virtual ICollection<PaymentOrder> PaymentOrders { get; set; }
         public virtual ICollection<BarTable> BarTables { get; set; }
         public virtual BusinessAccount BusinessAccount { get; set; }
-        public virtual Person Person { get; set; }
         public virtual ICollection<Payment> Payments { get; set; }
+        public virtual Person Person { get; set; }
     }
 }

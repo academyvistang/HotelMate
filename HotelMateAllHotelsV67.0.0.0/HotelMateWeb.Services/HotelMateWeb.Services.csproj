@@ -71,6 +71,7 @@
     <Compile Include="Core\IRoomStatuService.cs" />
     <Compile Include="Core\IRoomTypeService.cs" />
     <Compile Include="Core\ISoldItemService.cs" />
+    <Compile Include="Core\IStockItemHotelService.cs" />
     <Compile Include="Core\IStockItemService.cs" />
     <Compile Include="Core\IStoreItemService.cs" />
     <Compile Include="Core\IStoreService.cs" />
@@ -105,6 +106,7 @@
     <Compile Include="ServiceApi\PurchaseOrderService.cs" />
     <Compile Include="ServiceApi\SoldItemService.cs" />
     <Compile Include="ServiceApi\StockActualItemService.cs" />
+    <Compile Include="ServiceApi\StockItemHotelService.cs" />
     <Compile Include="ServiceApi\StoreItemService.cs" />
     <Compile Include="ServiceApi\StoreService.cs" />
     <Compile Include="ServiceApi\ItemService.cs" />
@@ -119,7 +121,6 @@
     <Compile Include="ServiceApi\TaxiService.cs" />
     <Compile Include="ServiceApi\TransactionService.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\HotelMateWeb.Dal\HotelMateWeb.Dal.csproj">
       <Project>{67752c1d-eaf8-42d5-8eb7-879de5cd59fd}</Project>

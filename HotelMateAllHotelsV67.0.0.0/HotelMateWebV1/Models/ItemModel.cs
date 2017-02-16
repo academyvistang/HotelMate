@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using HotelMateWeb.Dal.DataCore;
 
 namespace HotelMateWebV1.Models
 {
@@ -37,7 +38,39 @@ namespace HotelMateWebV1.Models
 
         public bool Recieved { get; set; }
     }
-    public class ItemModel
+
+    public class HotelItemModel
+    {
+        public bool? Saved { get; set; }
+        public int Id { get; set; }
+
+        [Required(ErrorMessage = "Please enter a Name")]
+
+        public string Name { get; set; }
+
+
+        [Required(ErrorMessage = "Please enter a description")]
+        public string Description { get; set; }
+
+        public bool IsActive { get; set; }
+
+        [Required(ErrorMessage = "Please enter a buying price")]
+        [Range(1, 99999999.99, ErrorMessage = "Value must be between 0 - 9,9999999.99")]
+        public decimal UnitPrice { get; set; }
+
+        public string PicturePath { get; set; }
+
+        [Required(ErrorMessage = "Please enter a Notification Number")]
+        [Range(0, 999999.99, ErrorMessage = "Value must be between 0 - 9,9999999.99")]
+        public int NotNumber { get; set; }
+
+        public int TotalQuantity { get; set; }
+
+        public int Quantity { get; set; }
+
+        public string Barcode { get; set; }
+    }
+        public class ItemModel
     {
         public int Id { get; set; }       
 
@@ -95,6 +128,24 @@ namespace HotelMateWebV1.Models
         public bool KitchenOnly { get; set; }
     }
 
+    public class ItemInventoryGroupModel
+    {
+        public int Delivered { get; set; }
+
+        public int ItemUsage { get; set; }
+        
+        public string Name { get; set; }
+        public int Remaining { get; internal set; }
+    }
+
+    public class ItemInventoryModel
+    {
+        public int ItemId { get;  set; }
+        public string ItemName { get;  set; }
+        public int Quantity { get;  set; }
+        public int QuantityUsed { get; set; }
+    }
+
     public class ItemIndexModel
     {
         public IEnumerable<ItemModel> ItemList { get; set; }
@@ -125,5 +176,8 @@ namespace HotelMateWebV1.Models
         public bool CanRecordDamages { get; set; }
 
         public int PoId { get; set; }
+        public List<StockItemHotel> HotelItemsList { get; internal set; }
+        public List<StoreItem> StoreItems { get; internal set; }
+        public List<ItemInventoryGroupModel> ModelledItemList { get; internal set; }
     }
 }

@@ -9,6 +9,9 @@
     @if (Model.ItemSaved.HasValue && Model.ItemSaved.Value)
     {
         @Html.Partial("_EntityUpdated", @Model.PaymentTypeString + " entry has been saved.")
+        <a class="erbEditorOpener buttonDevFirst" href="@Url.Action("PrintGuestPaymentCredit", "Booking", new { id = Model.GuestAccountId })">Print Receipt</a>
+        <br />
+        <br />
     }
     
     <h1 class="page-title ci-title" style="margin-bottom:10px;"><span>@Model.PaymentTypeString</span></h1>

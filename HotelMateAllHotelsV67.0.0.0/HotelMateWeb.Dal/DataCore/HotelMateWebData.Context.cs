@@ -39,19 +39,13 @@ namespace HotelMateWeb.Dal.DataCore
         public virtual DbSet<RoomType> RoomTypes { get; set; }
         public virtual DbSet<Transaction> Transactions { get; set; }
         public virtual DbSet<Expense> Expenses { get; set; }
-        public virtual DbSet<ExpensesType> ExpensesTypes { get; set; }
         public virtual DbSet<PaymentMethod> PaymentMethods { get; set; }
         public virtual DbSet<EmployeeShift> EmployeeShifts { get; set; }
         public virtual DbSet<InvoiceStatusType> InvoiceStatusTypes { get; set; }
         public virtual DbSet<Supplier> Suppliers { get; set; }
         public virtual DbSet<Invoice> Invoices { get; set; }
-        public virtual DbSet<Store> Stores { get; set; }
-        public virtual DbSet<PurchaseOrderItem> PurchaseOrderItems { get; set; }
-        public virtual DbSet<StockItem> StockItems { get; set; }
-        public virtual DbSet<StoreItem> StoreItems { get; set; }
         public virtual DbSet<DistributionPointItem> DistributionPointItems { get; set; }
         public virtual DbSet<POSItem> POSItems { get; set; }
-        public virtual DbSet<DamagedBatchItem> DamagedBatchItems { get; set; }
         public virtual DbSet<TableItem> TableItems { get; set; }
         public virtual DbSet<MovieCategory> MovieCategories { get; set; }
         public virtual DbSet<Taxi> Taxis { get; set; }
@@ -73,20 +67,30 @@ namespace HotelMateWeb.Dal.DataCore
         public virtual DbSet<GuestFeedBack> GuestFeedBacks { get; set; }
         public virtual DbSet<GuestCredential> GuestCredentials { get; set; }
         public virtual DbSet<PurchaseOrderStoreType> PurchaseOrderStoreTypes { get; set; }
-        public virtual DbSet<PurchaseOrder> PurchaseOrders { get; set; }
         public virtual DbSet<FoodMatrix> FoodMatrices { get; set; }
         public virtual DbSet<PaymentOrder> PaymentOrders { get; set; }
         public virtual DbSet<SalesDiscount> SalesDiscounts { get; set; }
         public virtual DbSet<SchoolPicture> SchoolPictures { get; set; }
         public virtual DbSet<GuestMessage> GuestMessages { get; set; }
         public virtual DbSet<BarTable> BarTables { get; set; }
-        public virtual DbSet<Batch> Batches { get; set; }
         public virtual DbSet<BusinessAccount> BusinessAccounts { get; set; }
         public virtual DbSet<BusinessCorporateAccount> BusinessCorporateAccounts { get; set; }
-        public virtual DbSet<DistributionPoint> DistributionPoints { get; set; }
-        public virtual DbSet<Person> People { get; set; }
         public virtual DbSet<PrinterTable> PrinterTables { get; set; }
         public virtual DbSet<Payment> Payments { get; set; }
         public virtual DbSet<RoomPaymentType> RoomPaymentTypes { get; set; }
+        public virtual DbSet<Batch> Batches { get; set; }
+        public virtual DbSet<PurchaseOrder> PurchaseOrders { get; set; }
+        public virtual DbSet<PurchaseOrderItem> PurchaseOrderItems { get; set; }
+        public virtual DbSet<StorePoint> StorePoints { get; set; }
+        public virtual DbSet<StorePointItem> StorePointItems { get; set; }
+        public virtual DbSet<DamagedBatchItem> DamagedBatchItems { get; set; }
+        public virtual DbSet<DistributionPoint> DistributionPoints { get; set; }
+        public virtual DbSet<UsedItemsByHotel> UsedItemsByHotels { get; set; }
+        public virtual DbSet<ExpensesType> ExpensesTypes { get; set; }
+        public virtual DbSet<StockItem> StockItems { get; set; }
+        public virtual DbSet<StockItemHotel> StockItemHotels { get; set; }
+        public virtual DbSet<Store> Stores { get; set; }
+        public virtual DbSet<StoreItem> StoreItems { get; set; }
+        public virtual DbSet<Person> People { get; set; }
     }
 }

@@ -52,6 +52,21 @@ namespace HotelMateWeb.Dal
         private GenericRepository<Escort> _escortRepository;
         private GenericRepository<GuestLedger> _guestLedgerRepository;
         private GenericRepository<Payment> _paymentRepository;
+        private GenericRepository<StockItemHotel> _stockItemHotelRepository;
+
+        public GenericRepository<StockItemHotel> StockItemHotelRepository
+        {
+            get
+            {
+                if (this._stockItemHotelRepository == null)
+                {
+                    this._stockItemHotelRepository = new GenericRepository<StockItemHotel>(_context);
+                }
+
+                return _stockItemHotelRepository;
+            }
+        }
+
 
         public GenericRepository<Payment> PaymentRepository
         {

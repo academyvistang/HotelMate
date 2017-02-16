@@ -17,9 +17,13 @@ namespace HotelMateWeb.Dal.DataCore
         public int Id { get; set; }
         public int NumberDamaged { get; set; }
         public int ItemId { get; set; }
-        public int BatchId { get; set; }
+        public Nullable<int> StorePointId { get; set; }
+        public Nullable<int> DistributionPointId { get; set; }
+        public System.DateTime DateReported { get; set; }
+        public string Description { get; set; }
     
+        public virtual DistributionPoint DistributionPoint { get; set; }
+        public virtual StorePoint StorePoint { get; set; }
         public virtual StockItem StockItem { get; set; }
-        public virtual Batch Batch { get; set; }
     }
 }

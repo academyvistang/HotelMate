@@ -180,5 +180,6 @@ namespace HotelMateWebV1.Models
 
          public IEnumerable<SelectListItem> TitleDropDown { get; set; }
         public string FilePath { get; internal set; }
+        public string DownloadFilePath { get; internal set; }
     }
 }

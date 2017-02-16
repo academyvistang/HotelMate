@@ -16,18 +16,19 @@ namespace HotelMateWeb.Dal.DataCore
     {
         public StockItem()
         {
-            this.PurchaseOrderItems = new HashSet<PurchaseOrderItem>();
-            this.StoreItems = new HashSet<StoreItem>();
-            this.DistributionPointItems = new HashSet<DistributionPointItem>();
-            this.POSItems = new HashSet<POSItem>();
+            this.Batches = new HashSet<Batch>();
             this.DamagedBatchItems = new HashSet<DamagedBatchItem>();
-            this.GuestOrderItems = new HashSet<GuestOrderItem>();
-            this.SoldItemsAlls = new HashSet<SoldItemsAll>();
-            this.GuestBillItems = new HashSet<GuestBillItem>();
-            this.GuestRequestItems = new HashSet<GuestRequestItem>();
-            this.TableItems = new HashSet<TableItem>();
+            this.DistributionPointItems = new HashSet<DistributionPointItem>();
             this.FoodMatrices = new HashSet<FoodMatrix>();
             this.FoodMatrices1 = new HashSet<FoodMatrix>();
+            this.GuestBillItems = new HashSet<GuestBillItem>();
+            this.GuestOrderItems = new HashSet<GuestOrderItem>();
+            this.GuestRequestItems = new HashSet<GuestRequestItem>();
+            this.POSItems = new HashSet<POSItem>();
+            this.PurchaseOrderItems = new HashSet<PurchaseOrderItem>();
+            this.SoldItemsAlls = new HashSet<SoldItemsAll>();
+            this.TableItems = new HashSet<TableItem>();
+            this.UsedItemsByHotels = new HashSet<UsedItemsByHotel>();
         }
     
         public int Id { get; set; }
@@ -59,20 +60,21 @@ namespace HotelMateWeb.Dal.DataCore
         public bool StarBuy { get; set; }
         public Nullable<decimal> ClubPrice { get; set; }
     
-        public virtual Hotel Hotel { get; set; }
-        public virtual ICollection<PurchaseOrderItem> PurchaseOrderItems { get; set; }
-        public virtual StockItem StockItem1 { get; set; }
-        public virtual StockItem StockItem2 { get; set; }
-        public virtual ICollection<StoreItem> StoreItems { get; set; }
-        public virtual ICollection<DistributionPointItem> DistributionPointItems { get; set; }
-        public virtual ICollection<POSItem> POSItems { get; set; }
+        public virtual ICollection<Batch> Batches { get; set; }
         public virtual ICollection<DamagedBatchItem> DamagedBatchItems { get; set; }
-        public virtual ICollection<GuestOrderItem> GuestOrderItems { get; set; }
-        public virtual ICollection<SoldItemsAll> SoldItemsAlls { get; set; }
-        public virtual ICollection<GuestBillItem> GuestBillItems { get; set; }
-        public virtual ICollection<GuestRequestItem> GuestRequestItems { get; set; }
-        public virtual ICollection<TableItem> TableItems { get; set; }
+        public virtual ICollection<DistributionPointItem> DistributionPointItems { get; set; }
         public virtual ICollection<FoodMatrix> FoodMatrices { get; set; }
         public virtual ICollection<FoodMatrix> FoodMatrices1 { get; set; }
+        public virtual ICollection<GuestBillItem> GuestBillItems { get; set; }
+        public virtual ICollection<GuestOrderItem> GuestOrderItems { get; set; }
+        public virtual ICollection<GuestRequestItem> GuestRequestItems { get; set; }
+        public virtual Hotel Hotel { get; set; }
+        public virtual ICollection<POSItem> POSItems { get; set; }
+        public virtual ICollection<PurchaseOrderItem> PurchaseOrderItems { get; set; }
+        public virtual ICollection<SoldItemsAll> SoldItemsAlls { get; set; }
+        public virtual StockItem StockItem1 { get; set; }
+        public virtual StockItem StockItem2 { get; set; }
+        public virtual ICollection<TableItem> TableItems { get; set; }
+        public virtual ICollection<UsedItemsByHotel> UsedItemsByHotels { get; set; }
     }
 }

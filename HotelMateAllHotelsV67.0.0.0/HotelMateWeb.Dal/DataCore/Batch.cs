@@ -16,20 +16,20 @@ namespace HotelMateWeb.Dal.DataCore
     {
         public Batch()
         {
-            this.DamagedBatchItems = new HashSet<DamagedBatchItem>();
             this.DistributionPointItems = new HashSet<DistributionPointItem>();
         }
     
         public int Id { get; set; }
         public System.DateTime BatchDate { get; set; }
-        public int DistributionPointId { get; set; }
-        public int PurchaseOrderItemId { get; set; }
+        public Nullable<int> DistributionPointId { get; set; }
         public int QuantityTransferred { get; set; }
-        public int POSItemId { get; set; }
+        public Nullable<int> StorePointId { get; set; }
+        public int ItemId { get; set; }
+        public int PreviousRemaining { get; set; }
     
-        public virtual DistributionPoint DistributionPoint { get; set; }
-        public virtual PurchaseOrderItem PurchaseOrderItem { get; set; }
-        public virtual ICollection<DamagedBatchItem> DamagedBatchItems { get; set; }
+        public virtual StorePoint StorePoint { get; set; }
         public virtual ICollection<DistributionPointItem> DistributionPointItems { get; set; }
+        public virtual DistributionPoint DistributionPoint { get; set; }
+        public virtual StockItem StockItem { get; set; }
     }
 }

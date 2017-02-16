@@ -10,17 +10,15 @@
             <thead>
                 <tr>
                     <th width="20%">Go Back</th>
-                    <th width="20%">Email</th>
-                    <th width="20%">Print</th>
-                    <th width="20%">Export</th>
+                    <th width="40%">Email</th>
+                    <th width="40%">Print</th>
                 </tr>
             </thead>
             <tbody id="CasesTableBody1">
                 <tr>
                     <td class="tth2"><a class="erbEditorDirty buttonDevFirst" href="@Url.Action("Booking", "Home", new { id = Model.GuestId })">Go Back</a></td>
-                    <td class="tth2"><a class="erbEditorDirty buttonDevFirst" href="@Url.Action("EmailGuest", "Booking", new { id = Model.GuestId })">Email</a></td>
-                    <td class="tth2"><a class="erbEditorDirty buttonDevFirst" href="@Url.Action("PrintGuestAccountCheckInFuture", "Printing", new { id = Model.GuestId })">Print</a></td>
-                    <td class="tth2"><a class="erbEditorDirty buttonDevFirst" href="@Url.Action("PrintGuestAccountCheckInFuture", "Printing", new { id = Model.GuestId })">Export</a></td>
+                    <td class="tth2"><a class="erbEditorDirty buttonDevFirst" href="@Url.Action("EmailGuest", "Booking", new { id = Model.GuestId, fileName = Model.FilePath, mode = 0 })">Email</a></td>
+                    <td class="tth2"><a class="erbEditorDirty buttonDevFirst" href="@Url.Action("EmailGuest", "Booking", new { id = Model.GuestId, fileName = Model.FilePath, mode = 1 })">Print</a></td>
                 </tr>
             </tbody>
         </table>

@@ -438,3 +438,4 @@ C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\PdfReportGenerator\bin\Deb
 C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\PdfReportGenerator\bin\Debug\System.Web.WebPages.Deployment.xml
 C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\PdfReportGenerator\obj\Debug\PdfReportGenerator.dll
 C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\PdfReportGenerator\obj\Debug\PdfReportGenerator.pdb
+C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\PdfReportGenerator\obj\Debug\PdfReportGenerator.csprojResolveAssemblyReference.cache

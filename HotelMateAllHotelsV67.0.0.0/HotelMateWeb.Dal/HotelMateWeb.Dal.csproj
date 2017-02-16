@@ -233,10 +233,19 @@
     <Compile Include="DataCore\StockItem.cs">
       <DependentUpon>HotelMateWebData.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataCore\StockItemHotel.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataCore\Store.cs">
       <DependentUpon>HotelMateWebData.tt</DependentUpon>
     </Compile>
     <Compile Include="DataCore\StoreItem.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\StorePoint.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\StorePointItem.cs">
       <DependentUpon>HotelMateWebData.tt</DependentUpon>
     </Compile>
     <Compile Include="DataCore\Supplier.cs">
@@ -249,6 +258,9 @@
       <DependentUpon>HotelMateWebData.tt</DependentUpon>
     </Compile>
     <Compile Include="DataCore\Transaction.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataCore\UsedItemsByHotel.cs">
       <DependentUpon>HotelMateWebData.tt</DependentUpon>
     </Compile>
     <Compile Include="GenericRepository.cs" />

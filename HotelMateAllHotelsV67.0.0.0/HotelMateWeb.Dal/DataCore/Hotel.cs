@@ -19,9 +19,9 @@ namespace HotelMateWeb.Dal.DataCore
             this.Items = new HashSet<Item>();
             this.PersonTypes = new HashSet<PersonType>();
             this.Rooms = new HashSet<Room>();
-            this.StockItems = new HashSet<StockItem>();
             this.Guests = new HashSet<Guest>();
             this.BusinessAccounts = new HashSet<BusinessAccount>();
+            this.StockItems = new HashSet<StockItem>();
             this.People = new HashSet<Person>();
         }
     
@@ -35,9 +35,9 @@ namespace HotelMateWeb.Dal.DataCore
         public virtual ICollection<Item> Items { get; set; }
         public virtual ICollection<PersonType> PersonTypes { get; set; }
         public virtual ICollection<Room> Rooms { get; set; }
-        public virtual ICollection<StockItem> StockItems { get; set; }
         public virtual ICollection<Guest> Guests { get; set; }
         public virtual ICollection<BusinessAccount> BusinessAccounts { get; set; }
+        public virtual ICollection<StockItem> StockItems { get; set; }
         public virtual ICollection<Person> People { get; set; }
     }
 }

@@ -33,7 +33,7 @@ namespace HotelMateWeb.Dal.DataCore
         public bool IsActive { get; set; }
         public bool SentToPrinter { get; set; }
     
-        public virtual StockItem StockItem { get; set; }
         public virtual BarTable BarTable { get; set; }
+        public virtual StockItem StockItem { get; set; }
     }
 }

@@ -16,7 +16,7 @@ namespace HotelMateWeb.Dal.DataCore
     {
         public PurchaseOrderItem()
         {
-            this.Batches = new HashSet<Batch>();
+            this.StorePointItems = new HashSet<StorePointItem>();
         }
     
         public int Id { get; set; }
@@ -28,8 +28,8 @@ namespace HotelMateWeb.Dal.DataCore
         public int Returns { get; set; }
         public decimal ReturnValue { get; set; }
     
-        public virtual StockItem StockItem { get; set; }
         public virtual PurchaseOrder PurchaseOrder { get; set; }
-        public virtual ICollection<Batch> Batches { get; set; }
+        public virtual ICollection<StorePointItem> StorePointItems { get; set; }
+        public virtual StockItem StockItem { get; set; }
     }
 }
