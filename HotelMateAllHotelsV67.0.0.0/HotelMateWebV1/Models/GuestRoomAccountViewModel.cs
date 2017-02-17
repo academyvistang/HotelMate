@@ -8,6 +8,30 @@ using System.Linq;
 
 namespace HotelMateWebV1.Models
 {
+    public class NonAccountViewModel : BaseViewModel
+    {
+        public List<POSItem> ItemList { get; set; }
+
+        [Range(1,int.MaxValue, ErrorMessage = "Please select an Item")]
+        public int ItemId { get; set; }
+
+        public int PaymentTypeId { get; set; }
+
+        [Range(1, int.MaxValue, ErrorMessage = "Please enter a quantity")]
+        public int Quantity { get; set; }
+
+
+        [Required(ErrorMessage = "Please enter a name")]
+        public string GuestName { get; set; }
+
+        public int Tax { get; set; }
+
+
+        public int GuestId { get; set; }
+
+        public List<RoomPaymentType> PaymentTypeList { get; set; }
+        public object PaymentMethodId { get; internal set; }
+    }
     public class GuestRoomAccountViewModel : BaseViewModel
     {
         public GuestRoomAccount GuestRoomAccount { get; set; }

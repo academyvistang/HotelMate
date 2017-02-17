@@ -126,6 +126,20 @@ namespace HotelMateWebV1.Models
             }
         }
 
+        public IEnumerable<SelectListItem> PaymentMethodsFO
+        {
+            get
+            {
+                var numbers = (from p in PaymentMethodList.Where(x => x.Id != 4 && x.Id != 5  && x.Id != 6).ToList()
+                               select new SelectListItem
+                               {
+                                   Text = p.Description.ToString(),
+                                   Value = p.Id.ToString()
+                               });
+                return numbers.ToList();
+            }
+        }
+
         public IEnumerable<SelectListItem> PaymentMethodsTopUpOnly
         {
             get

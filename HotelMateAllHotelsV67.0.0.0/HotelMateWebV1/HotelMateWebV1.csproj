@@ -200,6 +200,7 @@
     <Compile Include="Controllers\CompanyAccountController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\ExpenseController.cs" />
+    <Compile Include="Controllers\FrontOfficeSalesController.cs" />
     <Compile Include="Controllers\GuestController.cs" />
     <Compile Include="Controllers\Home21Controller.cs" />
     <Compile Include="Controllers\HotelAdminController.cs" />
@@ -4917,6 +4918,10 @@
     <Content Include="Views\Stock\Delivery.cshtml" />
     <Content Include="Views\Stock\Usage.cshtml" />
     <Content Include="Views\Stock\Inventory.cshtml" />
+    <Content Include="Views\FrontOfficeSales\Index.cshtml" />
+    <Content Include="Views\Shared\_BarRestauarantFODisplay.cshtml" />
+    <Content Include="Views\Shared\_BarRestaurantFOAccount.cshtml" />
+    <Content Include="Views\Shared\_PaymentMethodSelectorFO.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Admin\html\js\bootstrap\examples\navbar-fixed-top\" />

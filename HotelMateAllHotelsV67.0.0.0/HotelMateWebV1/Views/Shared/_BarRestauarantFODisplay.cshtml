@@ -1,0 +1,41 @@
+﻿@model HotelMateWebV1.Models.NonAccountViewModel
+
+<link href="~/css/CoolTable.css" rel="stylesheet" />
+
+@{ int totalRecordCount = 0;}
+
+
+<div class="eight columns">
+
+    @if (Model.ItemSaved.HasValue && Model.ItemSaved.Value)
+    {
+        @Html.Partial("_EntityUpdated", "Entry has been saved.")
+        <a class="erbEditorOpener buttonDevFirst" href="@Url.Action("PrintGuestPaymentCredit", "Booking", new { id = Model.ItemId })">Print Receipt</a>
+        <br />
+        <br />
+    }
+
+    <h1 class="page-title ci-title" style="margin-bottom:10px;"><span></span></h1>
+
+    <article id="post-16" class="post-16 page type-page status-publish hentry entry group">
+
+        <div class="booking-form-wrap bs bg">
+            @using (Html.BeginForm("Payment", "FrontOfficeSales", FormMethod.Post, new { enctype = "multipart/form-data", @class = "booking-form b-form row" }))
+            {
+                @Html.Partial("_BarRestaurantFOAccount")
+            }
+        </div>
+
+    </article>
+
+
+
+</div>
+
+
+
+
+
+
+
+
