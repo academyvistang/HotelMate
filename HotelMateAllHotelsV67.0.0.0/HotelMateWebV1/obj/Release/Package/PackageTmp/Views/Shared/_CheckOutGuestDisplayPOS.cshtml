@@ -232,7 +232,8 @@
 
                     if (rm.GuestRoomAccounts.Where(x => (x.PaymentMethodId == (int)HotelMateWebV1.Helpers.Enums.PaymentMethodEnum.POSTBILL)).Any())
                     {
-                        <tr><td></td><td></td><td></td><td></td><td></td><td>@rm.Room.RoomNumber Debit</td><td>@rm.GuestRoomAccounts.ExpensesSummation().ToString("N", CultureInfo.InvariantCulture)</td></tr>
+                        <tr><td></td><td></td><td></td><td></td><td></td><td>@rm.Room.RoomNumber Debit</td><td>@rm.GuestRoomAccounts.Where(x => (x.PaymentMethodId ==
+                    (int)HotelMateWebV1.Helpers.Enums.PaymentMethodEnum.POSTBILL)).ExpensesSummation().ToString("N", CultureInfo.InvariantCulture)</td></tr>
                     }
                 }
             </tbody>
@@ -370,7 +371,7 @@
                 <td class="active">Rooms TAX (%)</td>
                 <td class="whiteBg">
 
-                    <input type="text" value="10%" id="TAX" name="TAX" class="total-input TAX" placeholder="N/A" maxlength="5">
+                    <input type="text" value="0%" id="TAX" name="TAX" class="total-input TAX" placeholder="N/A" maxlength="5">
                     <span class="float-right"><b id="taxValue"></b></span>
                 </td>
             </tr>

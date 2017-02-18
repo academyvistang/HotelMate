@@ -418,7 +418,7 @@ namespace HotelMateWebV1.Controllers
         }
 
       
-        public ActionResult AccountRecievable(DateTime? startDate, DateTime? endDate)
+        public ActionResult AccountReceivable(DateTime? startDate, DateTime? endDate)
         {
             ReportViewModel model = new ReportViewModel();
 

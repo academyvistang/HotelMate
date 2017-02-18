@@ -182,10 +182,14 @@
                     @Html.CheckBoxFor(m => m.Guest.IsChild)
                     </div>
 
-                    <div class="four columns">
-                    <label for="comments">BUSINESS/COMPANY GUEST</label>
-                    @Html.CheckBox("CompanyGuest")
-                    </div>
+                    @if (Model.BusinessAccounts.Count() > 1)
+                    {
+                        <div class="four columns">
+                            <label for="comments">BUSINESS/COMPANY GUEST</label>
+                            @Html.CheckBox("CompanyGuest")
+                        </div>
+                    }
+                    
 
                     @{string strDisplay = "display:none;"; if(Model.Guest.CompanyId > 0){strDisplay = string.Empty;}}
 
@@ -196,7 +200,7 @@
                    </div>
                    </div>   
 
-                   @Html.Partial("_PaymentMethodSelector",Model)   
+                   @Html.Partial("_PaymentMethodSelectorRooms",Model)   
 
                     <div style="margin-top:5px; padding-top:5px;">
 

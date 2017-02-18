@@ -47,6 +47,9 @@
     <Reference Include="AutoMapper.Net4">
       <HintPath>..\packages\AutoMapper.3.0.0\lib\net40\AutoMapper.Net4.dll</HintPath>
     </Reference>
+    <Reference Include="ClosedXML">
+      <HintPath>..\..\..\shopandbarrestaurantmanager\BarAndRestaurantMate\bin\ClosedXML.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Entitities\bin\Release\EntityFramework.dll</HintPath>
@@ -4849,7 +4852,7 @@
     <Content Include="Views\CompanyAccount\IndexLedger.cshtml" />
     <Content Include="Views\Shared\_SearchViewLedgers.cshtml" />
     <Content Include="Views\BarReport\AccountPayable.cshtml" />
-    <Content Include="Views\BarReport\AccountRecievable.cshtml" />
+    <Content Include="Views\BarReport\AccountReceivable.cshtml" />
     <Content Include="Views\BarReport\BalanceSheet.cshtml" />
     <Content Include="Views\BarReport\BalanceSheetBar.cshtml" />
     <Content Include="Views\BarReport\CombinedSales.cshtml" />
@@ -4878,9 +4881,9 @@
     <Content Include="Views\BarReport\TotalSalesRoomsOnly.cshtml" />
     <Content Include="Views\Item\TransferPO.cshtml" />
     <Content Include="Views\Shared\_CheckOutWithTaxation.cshtml" />
-    <Content Include="Views\BarReport\AccountRecievableCash.cshtml" />
-    <Content Include="Views\BarReport\AccountRecievablePOS.cshtml" />
-    <Content Include="Views\BarReport\AccountRecievableCheque.cshtml" />
+    <Content Include="Views\BarReport\AccountReceivableCash.cshtml" />
+    <Content Include="Views\BarReport\AccountReceivablePOS.cshtml" />
+    <Content Include="Views\BarReport\AccountReceivableCheque.cshtml" />
     <Content Include="Views\Shared\_GuestBillReceipt.cshtml" />
     <Content Include="Views\_EmailTemplateNewGuest.cshtml" />
     <Content Include="Views\Shared\_EmailTemplateNewGuest.cshtml" />

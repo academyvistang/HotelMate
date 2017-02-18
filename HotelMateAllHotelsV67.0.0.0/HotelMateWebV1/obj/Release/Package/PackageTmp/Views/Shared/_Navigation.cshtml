@@ -35,7 +35,7 @@
             <ul class="sub-menu">
                 <li id="menu-item-345" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-345"><a href="@Url.Action("Booking","Home")">New Booking</a></li>
                 <li id="menu-item-345" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-345"><a href="@Url.Action("GuestCheckin", "Report")">Room Reports</a></li>
-                <li id="menu-item-345" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-345"><a href="@Url.Action("Index", "InventoryPos")">Inventory Manager</a></li>
+                <li id="menu-item-345" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-345"><a href="http://localhost:81/POS/">Shop Sales</a></li>
             </ul>
         </li>
         <li id="menu-item-314" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-314"><a href="@Url.Action("Booking","Home")">Rooms</a>
@@ -45,7 +45,6 @@
                 <li id="menu-item-345" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-345"><a href="@Url.Action("ViewRoomsByStatus", "Booking")">View Rooms By Status</a></li>
                 <li id="menu-item-345" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-345"><a href="@Url.Action("ViewRooms","Home")">View Rooms</a></li>
                 <li id="menu-item-345" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-345"><a href="@Url.Action("MatrixRooms", "Home")">Room Matrix</a></li>
-                <li id="menu-item-378" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-377"><a href="@Url.Action("GuestCredentials","GuestAccount")">Guest Credentials</a></li>
                 
 
                 @if (User.IsInRole("Admin"))
@@ -80,7 +79,6 @@
             <ul class="sub-menu">
                 <li id="menu-item-376" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-376"><a href="@Url.Action("Index","HotelAdmin")">Admin Zone</a></li> 
                 <li id="menu-item-377" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-377"><a href="@Url.Action("AdjustGuestBill","GuestAccount")">Guest BillS</a></li>
-                <li id="menu-item-378" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-377"><a href="@Url.Action("GuestCredentials","GuestAccount")">Guest Credentials</a></li>
                 <li id="menu-item-378" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-377"><a href="@Url.Action("ManageSuppliers","GuestAccount")">Manage Suppliers</a></li>
                 <li id="menu-item-378" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-377"><a href="@Url.Action("Index","CompanyAccount")">Corporate Accounts</a></li>
                 <li id="menu-item-378" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-377"><a href="@Url.Action("IndexLedger","CompanyAccount")">Ledger Accounts</a></li>

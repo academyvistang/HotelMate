@@ -16,14 +16,13 @@
         <table class="striped fixedlayout">
             <thead>
                 <tr>
-                    <th width="15%"></th>
-                    <th width="15%">Room No.</th>
-                    <th width="15%">Room Type</th>
+                    <th width="25%"></th>
+                    <th width="10%">Room</th>
                     <th width="15%">Amount</th>
                     <th width="15%">Status</th>
                     <th width="20%">Type</th>
-                    <th width="15%">Reference</th>
-                    <th width="15%">Date</th>
+                    <th width="10%">Ref</th>
+                    <th width="10%">Date</th>
                 </tr>
             </thead>
             <tbody id="CasesTableBody1">
@@ -35,10 +34,13 @@
                     {
                         <tr id="@ac.Id">
                             <td class="tth2">
-                                <a class="erbEditorOpener buttonDevFirst" href="@Url.Action("EditGuestAccount", "GuestAccount", new { id = ac.Id })">Adjust Bill</a>
+                                <a class="erbEditorOpener buttonDevFirst" href="@Url.Action("EditGuestAccount", "GuestAccount", new { id = ac.Id })">Adjust Bill</a> |
+                                @if (ac.PaymentMethodId == 4)
+                                {
+                                    <a class="erbEditorOpener buttonDevFirst" href="@Url.Action("SwitchGuestAccount", "GuestAccount", new { id = ac.Id })">Switch Bill</a>
+                                }
                             </td>
                             <td class="tth2">@rm.Room.RoomNumber</td>
-                            <td class="tth2">@rm.Room.RoomType1.Name</td>
                             <td class="tth2">@ac.Amount</td>
                             <td class="tth2">@ac.PaymentMethod.Name</td>
                             @*<td class="tth2"></td>*@

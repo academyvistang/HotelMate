@@ -34,9 +34,9 @@ namespace HotelMateWebV1.Models
 
         public HotelMateWeb.Dal.DataCore.Person Person { get; set; }
 
-        public decimal TotalHotelRecievable { get; set; }
+        public decimal TotalHotelReceivable { get; set; }
 
-        public decimal TotalBarRecievable { get; set; }
+        public decimal TotalBarReceivable { get; set; }
 
         public decimal TotalSales { get; set; }
 

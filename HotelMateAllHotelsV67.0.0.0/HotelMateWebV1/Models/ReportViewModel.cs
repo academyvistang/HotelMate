@@ -61,5 +61,9 @@ namespace HotelMateWebV1.Models
         public List<ConciseBalanceSheetModel> ConciseBalanceSheetSheet { get; set; }
 
         public decimal Tax { get; set; }
+        public string ReportName { get; set; }
+        public string FileToDownloadPath { get; set; }
+        public decimal Discount { get; internal set; }
+        public decimal GrandTotal { get; internal set; }
     }
 }

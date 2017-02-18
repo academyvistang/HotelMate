@@ -324,7 +324,7 @@ namespace HotelMateWebV1.Controllers
             pm.Items = list;
             pm.Saved = saved;
 
-            return View("CreateRecievable", pm);
+            return View("CreateReceivable", pm);
         }
 
 
@@ -959,7 +959,7 @@ namespace HotelMateWebV1.Controllers
         }
 
 
-        public ActionResult IndexRecievables(int? id)
+        public ActionResult IndexReceivables(int? id)
         {
             var poItems = new List<PurchaseOrder>();
             ItemIndexModel cim1 = new ItemIndexModel();

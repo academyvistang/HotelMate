@@ -11,13 +11,13 @@ namespace HotelMateWebV1.Helpers
 {
     public static class ExtensionMethods
     {
-        public static decimal GetTotalHotelRecievable(this Person person, DateTime salesDate)
+        public static decimal GetTotalHotelReceivable(this Person person, DateTime salesDate)
         {
             return person.GuestRoomAccounts.Where(x => x.TransactionDate.ToShortDateString().Equals(salesDate.ToShortDateString()) &&
                 (x.PaymentMethodId == (int)HotelMateWebV1.Helpers.Enums.PaymentMethodEnum.Cash)).Sum(x => x.Amount);
         }
 
-        public static decimal GetTotalBarRecievable(this Person person, DateTime salesDate)
+        public static decimal GetTotalBarReceivable(this Person person, DateTime salesDate)
         {
             return person.SoldItemsAlls.Where(x => (x.TillOpen) && (x.PaymentMethodId == (int)HotelMateWebV1.Helpers.Enums.PaymentMethodEnum.Cash)).Sum(x => x.TotalPrice);
         }

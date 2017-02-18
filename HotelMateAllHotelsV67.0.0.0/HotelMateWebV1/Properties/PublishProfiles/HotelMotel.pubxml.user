@@ -6,7 +6,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>C:\Publishing\HotelMateLive10.0.0.0</_PublishTargetUrl>
+    <_PublishTargetUrl>C:\Publishing\HotelMateLive1.0.0.0</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="Admin/css/.DS_Store">
@@ -8137,7 +8137,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/27/2013 17:51:44</publishTime>
     </File>
     <File Include="bin/Agbo21.Dal.dll">
-      <publishTime>12/29/2016 14:44:04</publishTime>
+      <publishTime>02/18/2017 00:00:10</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
       <publishTime>11/27/2013 17:56:28</publishTime>
@@ -8148,8 +8148,20 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="bin/AutoMapper.Net4.dll">
       <publishTime>11/27/2013 17:56:30</publishTime>
     </File>
+    <File Include="bin/de/MigraDoc.DocumentObjectModel.resources.dll">
+      <publishTime>05/16/2013 17:20:52</publishTime>
+    </File>
+    <File Include="bin/de/MigraDoc.Rendering.resources.dll">
+      <publishTime>05/16/2013 17:20:52</publishTime>
+    </File>
+    <File Include="bin/de/PdfSharp.Charting.resources.dll">
+      <publishTime>05/16/2013 17:20:52</publishTime>
+    </File>
+    <File Include="bin/de/PdfSharp.resources.dll">
+      <publishTime>05/16/2013 17:20:52</publishTime>
+    </File>
     <File Include="bin/Entitities.dll">
-      <publishTime>12/29/2016 14:44:01</publishTime>
+      <publishTime>02/18/2017 00:00:09</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>02/20/2013 15:27:10</publishTime>
@@ -8167,16 +8179,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/01/2015 21:45:08</publishTime>
     </File>
     <File Include="bin/HotelMateWeb.Dal.dll">
-      <publishTime>12/29/2016 14:44:01</publishTime>
+      <publishTime>02/18/2017 00:00:10</publishTime>
     </File>
     <File Include="bin/HotelMateWeb.Services.dll">
-      <publishTime>12/29/2016 14:44:04</publishTime>
+      <publishTime>02/18/2017 00:00:11</publishTime>
     </File>
     <File Include="bin/HotelMateWebV1.dll">
-      <publishTime>12/29/2016 14:44:07</publishTime>
+      <publishTime>02/18/2017 00:00:13</publishTime>
     </File>
     <File Include="bin/HTTPSMS.dll">
       <publishTime>08/03/2010 09:54:42</publishTime>
+    </File>
+    <File Include="bin/Invoicer.dll">
+      <publishTime>02/18/2017 00:00:11</publishTime>
     </File>
     <File Include="bin/itextsharp.dll">
       <publishTime>11/27/2013 17:57:00</publishTime>
@@ -8241,6 +8256,12 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="bin/Microsoft.Web.Infrastructure.dll">
       <publishTime>11/27/2013 17:56:56</publishTime>
     </File>
+    <File Include="bin/MigraDoc.DocumentObjectModel.dll">
+      <publishTime>05/16/2013 17:20:52</publishTime>
+    </File>
+    <File Include="bin/MigraDoc.Rendering.dll">
+      <publishTime>05/16/2013 17:20:52</publishTime>
+    </File>
     <File Include="bin/Newtonsoft.Json.dll">
       <publishTime>06/01/2014 02:24:09</publishTime>
     </File>
@@ -8248,16 +8269,22 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/27/2013 17:56:58</publishTime>
     </File>
     <File Include="bin/PdfReportGenerator.dll">
-      <publishTime>12/29/2016 14:44:03</publishTime>
+      <publishTime>02/18/2017 00:00:10</publishTime>
+    </File>
+    <File Include="bin/PdfSharp.Charting.dll">
+      <publishTime>05/16/2013 17:20:52</publishTime>
+    </File>
+    <File Include="bin/PdfSharp.dll">
+      <publishTime>05/16/2013 17:20:52</publishTime>
     </File>
     <File Include="bin/POSData.dll">
       <publishTime>06/01/2014 02:24:07</publishTime>
     </File>
     <File Include="bin/POSService.dll">
-      <publishTime>12/29/2016 14:44:02</publishTime>
+      <publishTime>02/18/2017 00:00:11</publishTime>
     </File>
     <File Include="bin/POSService.Entities.dll">
-      <publishTime>12/29/2016 14:44:01</publishTime>
+      <publishTime>02/18/2017 00:00:09</publishTime>
     </File>
     <File Include="bin/Printer.dll">
       <publishTime>06/01/2014 02:24:06</publishTime>
@@ -9960,6 +9987,12 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="images/bed_sleep_hotel_motel_lodging-24.png">
       <publishTime>11/27/2013 17:52:14</publishTime>
     </File>
+    <File Include="images/berkshire.jpg">
+      <publishTime>02/15/2017 13:54:09</publishTime>
+    </File>
+    <File Include="images/berkshire.png">
+      <publishTime>02/15/2017 12:36:30</publishTime>
+    </File>
     <File Include="images/bg.jpg">
       <publishTime>06/01/2014 15:49:12</publishTime>
     </File>
@@ -10953,6 +10986,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="images/user_anonymous.png">
       <publishTime>06/01/2014 15:49:13</publishTime>
     </File>
+    <File Include="images/vodafone.jpg">
+      <publishTime>02/15/2017 12:53:26</publishTime>
+    </File>
     <File Include="images/wood_pattern.jpg">
       <publishTime>06/01/2014 15:49:13</publishTime>
     </File>
@@ -11050,7 +11086,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/01/2015 12:07:12</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>04/19/2015 13:25:55</publishTime>
+      <publishTime>02/13/2017 14:51:11</publishTime>
     </File>
     <File Include="panel/bootstrap.php">
       <publishTime>11/27/2013 17:55:18</publishTime>
@@ -12937,7 +12973,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/02/2013 11:09:42</publishTime>
     </File>
     <File Include="Views/Booking/NewBooking.cshtml">
-      <publishTime>12/24/2016 21:15:32</publishTime>
+      <publishTime>02/11/2017 22:21:41</publishTime>
     </File>
     <File Include="Views/Booking/NewGroupBooking.cshtml">
       <publishTime>06/01/2015 12:07:13</publishTime>
@@ -13022,6 +13058,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Views/Expense/Index.cshtml">
       <publishTime>05/13/2015 20:42:21</publishTime>
+    </File>
+    <File Include="Views/FrontOfficeSales/Index.cshtml">
+      <publishTime>02/17/2017 00:26:07</publishTime>
     </File>
     <File Include="Views/Guest/AddVideo.cshtml">
       <publishTime>05/27/2015 21:44:35</publishTime>
@@ -13155,6 +13194,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/GuestAccount/CheckOutIndividualGuest.cshtml">
       <publishTime>12/23/2016 13:38:02</publishTime>
     </File>
+    <File Include="Views/GuestAccount/CheckoutNoBill.cshtml">
+      <publishTime>02/12/2017 20:35:41</publishTime>
+    </File>
     <File Include="Views/GuestAccount/EditGuestAccount.cshtml">
       <publishTime>12/05/2013 00:06:14</publishTime>
     </File>
@@ -13182,8 +13224,11 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/GuestAccount/NewSupplier.cshtml">
       <publishTime>06/02/2014 00:56:50</publishTime>
     </File>
+    <File Include="Views/GuestAccount/SwitchGuestAccount.cshtml">
+      <publishTime>02/13/2017 00:16:36</publishTime>
+    </File>
     <File Include="Views/GuestAccount/TopUpAccount.cshtml">
-      <publishTime>12/02/2013 10:17:34</publishTime>
+      <publishTime>02/10/2017 14:38:30</publishTime>
     </File>
     <File Include="Views/GuestAccount/TopUpHalfDay.cshtml">
       <publishTime>06/02/2014 18:45:26</publishTime>
@@ -13506,11 +13551,20 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/Shared/_AccountsDisplay.cshtml">
       <publishTime>06/01/2015 20:13:48</publishTime>
     </File>
+    <File Include="Views/Shared/_AccountsDisplayTopUp.cshtml">
+      <publishTime>02/14/2017 00:36:18</publishTime>
+    </File>
+    <File Include="Views/Shared/_AccountTopUpOnly.cshtml">
+      <publishTime>02/10/2017 14:38:30</publishTime>
+    </File>
     <File Include="Views/Shared/_AdjustBillAccount.cshtml">
       <publishTime>05/27/2015 21:49:01</publishTime>
     </File>
+    <File Include="Views/Shared/_AdjustBillAccountSwitch.cshtml">
+      <publishTime>02/13/2017 00:33:31</publishTime>
+    </File>
     <File Include="Views/Shared/_AdjustBillDisplay.cshtml">
-      <publishTime>06/01/2015 21:18:15</publishTime>
+      <publishTime>02/13/2017 00:57:03</publishTime>
     </File>
     <File Include="Views/Shared/_AdjustBillRoomAccount.cshtml">
       <publishTime>06/01/2015 21:11:27</publishTime>
@@ -13525,13 +13579,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/27/2015 21:49:01</publishTime>
     </File>
     <File Include="Views/Shared/_BarRestauarantDisplay.cshtml">
-      <publishTime>05/27/2015 21:49:01</publishTime>
+      <publishTime>02/15/2017 14:39:58</publishTime>
+    </File>
+    <File Include="Views/Shared/_BarRestauarantFODisplay.cshtml">
+      <publishTime>02/17/2017 10:49:52</publishTime>
     </File>
     <File Include="Views/Shared/_BarRestauarantFullDisplay.cshtml">
       <publishTime>05/27/2015 21:49:01</publishTime>
     </File>
     <File Include="Views/Shared/_BarRestaurantAccount.cshtml">
-      <publishTime>05/27/2015 21:49:01</publishTime>
+      <publishTime>02/10/2017 15:11:31</publishTime>
+    </File>
+    <File Include="Views/Shared/_BarRestaurantFOAccount.cshtml">
+      <publishTime>02/17/2017 00:51:04</publishTime>
     </File>
     <File Include="Views/Shared/_BookedEscort.cshtml">
       <publishTime>05/31/2015 11:48:44</publishTime>
@@ -13591,16 +13651,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/27/2015 21:49:01</publishTime>
     </File>
     <File Include="Views/Shared/_CheckOutGuestDisplayPOS.cshtml">
-      <publishTime>12/24/2016 17:47:46</publishTime>
+      <publishTime>02/14/2017 03:33:13</publishTime>
     </File>
     <File Include="Views/Shared/_CheckOutGuestDisplayPOSCompany.cshtml">
-      <publishTime>12/24/2016 17:47:53</publishTime>
+      <publishTime>02/14/2017 03:33:13</publishTime>
+    </File>
+    <File Include="Views/Shared/_CheckOutGuestDisplayPOSNB.cshtml">
+      <publishTime>02/12/2017 21:27:11</publishTime>
     </File>
     <File Include="Views/Shared/_CheckOutIndividualGuestDisplay.cshtml">
       <publishTime>05/27/2015 21:49:01</publishTime>
     </File>
     <File Include="Views/Shared/_CheckOutIndividualGuestDisplayPOS.cshtml">
-      <publishTime>12/24/2016 17:47:39</publishTime>
+      <publishTime>02/14/2017 03:33:13</publishTime>
     </File>
     <File Include="Views/Shared/_CheckOutWithTaxation.cshtml">
       <publishTime>06/01/2015 15:48:43</publishTime>
@@ -13643,6 +13706,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Views/Shared/_EditGuestAccountDisplay.cshtml">
       <publishTime>05/27/2015 21:49:01</publishTime>
+    </File>
+    <File Include="Views/Shared/_EditGuestAccountDisplaySwitch.cshtml">
+      <publishTime>02/13/2017 00:34:57</publishTime>
     </File>
     <File Include="Views/Shared/_EditGuestRoomAccountDisplay.cshtml">
       <publishTime>06/01/2015 21:11:27</publishTime>
@@ -13765,13 +13831,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/27/2015 21:49:02</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>12/24/2016 19:33:25</publishTime>
+      <publishTime>02/13/2017 01:18:16</publishTime>
     </File>
     <File Include="Views/Shared/_Layout1.cshtml">
       <publishTime>06/01/2015 12:08:08</publishTime>
     </File>
     <File Include="Views/Shared/_LayoutAdmin.cshtml">
-      <publishTime>06/01/2015 22:03:23</publishTime>
+      <publishTime>02/16/2017 21:53:16</publishTime>
     </File>
     <File Include="Views/Shared/_LayoutCombo.cshtml">
       <publishTime>12/24/2016 19:37:37</publishTime>
@@ -13816,10 +13882,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/27/2015 21:49:02</publishTime>
     </File>
     <File Include="Views/Shared/_Navigation.cshtml">
-      <publishTime>06/01/2015 17:16:19</publishTime>
+      <publishTime>02/17/2017 23:45:44</publishTime>
     </File>
     <File Include="Views/Shared/_NavigationMusic.cshtml">
-      <publishTime>06/01/2015 20:02:52</publishTime>
+      <publishTime>02/17/2017 18:55:14</publishTime>
     </File>
     <File Include="Views/Shared/_NewButton.cshtml">
       <publishTime>05/27/2015 21:49:02</publishTime>
@@ -13851,8 +13917,20 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/Shared/_PaymentMethodSelectorAccount.cshtml">
       <publishTime>05/27/2015 21:49:02</publishTime>
     </File>
+    <File Include="Views/Shared/_PaymentMethodSelectorBarRestaurant.cshtml">
+      <publishTime>02/10/2017 15:15:08</publishTime>
+    </File>
+    <File Include="Views/Shared/_PaymentMethodSelectorFO.cshtml">
+      <publishTime>02/17/2017 00:35:54</publishTime>
+    </File>
+    <File Include="Views/Shared/_PaymentMethodSelectorRooms.cshtml">
+      <publishTime>02/10/2017 21:59:56</publishTime>
+    </File>
     <File Include="Views/Shared/_PaymentMethodSelectorTopUp.cshtml">
       <publishTime>05/27/2015 21:49:02</publishTime>
+    </File>
+    <File Include="Views/Shared/_PaymentMethodSelectorTopUpOnly.cshtml">
+      <publishTime>02/10/2017 14:37:10</publishTime>
     </File>
     <File Include="Views/Shared/_Person.cshtml">
       <publishTime>05/27/2015 21:49:02</publishTime>
@@ -13867,13 +13945,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/27/2015 22:34:26</publishTime>
     </File>
     <File Include="Views/Shared/_PrintLandingDisplay.cshtml">
-      <publishTime>12/24/2016 21:27:37</publishTime>
+      <publishTime>02/15/2017 09:06:54</publishTime>
     </File>
     <File Include="Views/Shared/_PrintLandingDisplayChecking.cshtml">
-      <publishTime>12/24/2016 22:58:13</publishTime>
+      <publishTime>02/14/2017 00:05:32</publishTime>
     </File>
     <File Include="Views/Shared/_PrintLandingDisplayCheckingFuture.cshtml">
-      <publishTime>12/24/2016 22:41:58</publishTime>
+      <publishTime>02/15/2017 14:20:52</publishTime>
     </File>
     <File Include="Views/Shared/_Products.cshtml">
       <publishTime>05/27/2015 21:49:02</publishTime>
@@ -13894,13 +13972,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/27/2015 21:49:02</publishTime>
     </File>
     <File Include="Views/Shared/_Room.cshtml">
-      <publishTime>12/24/2016 20:50:59</publishTime>
+      <publishTime>02/12/2017 22:06:54</publishTime>
     </File>
     <File Include="Views/Shared/_RoomAdjustable.cshtml">
-      <publishTime>12/23/2016 13:06:09</publishTime>
+      <publishTime>02/10/2017 22:01:03</publishTime>
     </File>
     <File Include="Views/Shared/_RoomGroup.cshtml">
-      <publishTime>12/23/2016 13:06:23</publishTime>
+      <publishTime>02/10/2017 22:00:52</publishTime>
     </File>
     <File Include="Views/Shared/_RoomMatrix.cshtml">
       <publishTime>05/27/2015 21:49:02</publishTime>
@@ -13912,10 +13990,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/27/2015 21:49:02</publishTime>
     </File>
     <File Include="Views/Shared/_RoomMime.cshtml">
-      <publishTime>12/24/2016 20:40:26</publishTime>
+      <publishTime>02/10/2017 22:01:16</publishTime>
     </File>
     <File Include="Views/Shared/_Rooms.cshtml">
-      <publishTime>12/24/2016 20:15:35</publishTime>
+      <publishTime>02/10/2017 22:01:26</publishTime>
     </File>
     <File Include="Views/Shared/_RoomsBlockList.cshtml">
       <publishTime>05/27/2015 21:49:02</publishTime>
@@ -13933,7 +14011,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/27/2015 21:49:02</publishTime>
     </File>
     <File Include="Views/Shared/_RoomsBookNow.cshtml">
-      <publishTime>05/27/2015 21:49:02</publishTime>
+      <publishTime>02/10/2017 22:02:54</publishTime>
     </File>
     <File Include="Views/Shared/_RoomsDisplay.cshtml">
       <publishTime>06/01/2015 13:18:18</publishTime>
@@ -13984,7 +14062,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/01/2015 16:23:59</publishTime>
     </File>
     <File Include="Views/Shared/_RoomsGroup.cshtml">
-      <publishTime>12/23/2016 13:06:44</publishTime>
+      <publishTime>02/10/2017 22:03:05</publishTime>
     </File>
     <File Include="Views/Shared/_RoomsRefund.cshtml">
       <publishTime>05/27/2015 21:49:02</publishTime>
@@ -14113,7 +14191,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/27/2015 21:49:02</publishTime>
     </File>
     <File Include="Views/Shared/_ViewGuestAccountDisplayPOS.cshtml">
-      <publishTime>12/24/2016 17:47:53</publishTime>
+      <publishTime>02/14/2017 03:30:43</publishTime>
     </File>
     <File Include="Views/Shared/_ViewGuestAccountFeedback.cshtml">
       <publishTime>05/27/2015 21:49:02</publishTime>
@@ -14154,6 +14232,24 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/Shared/_WrapperFrontOffice.cshtml">
       <publishTime>05/27/2015 21:49:02</publishTime>
     </File>
+    <File Include="Views/Stock/Create.cshtml">
+      <publishTime>02/16/2017 14:20:07</publishTime>
+    </File>
+    <File Include="Views/Stock/Delete.cshtml">
+      <publishTime>02/16/2017 13:50:20</publishTime>
+    </File>
+    <File Include="Views/Stock/Delivery.cshtml">
+      <publishTime>02/16/2017 21:15:35</publishTime>
+    </File>
+    <File Include="Views/Stock/Index.cshtml">
+      <publishTime>02/16/2017 14:00:32</publishTime>
+    </File>
+    <File Include="Views/Stock/Inventory.cshtml">
+      <publishTime>02/16/2017 23:29:36</publishTime>
+    </File>
+    <File Include="Views/Stock/Usage.cshtml">
+      <publishTime>02/16/2017 23:33:04</publishTime>
+    </File>
     <File Include="Views/Web.config">
       <publishTime>12/24/2013 09:02:40</publishTime>
     </File>
@@ -14163,8 +14259,11 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/_ViewStart.cshtml">
       <publishTime>11/27/2013 17:55:56</publishTime>
     </File>
+    <File Include="vodafone.jpg">
+      <publishTime>02/15/2017 13:27:11</publishTime>
+    </File>
     <File Include="Web.config">
-      <publishTime>12/29/2016 14:44:12</publishTime>
+      <publishTime>02/18/2017 00:01:01</publishTime>
     </File>
   </ItemGroup>
 </Project>

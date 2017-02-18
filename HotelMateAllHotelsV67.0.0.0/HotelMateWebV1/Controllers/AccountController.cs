@@ -561,9 +561,9 @@ using Agbo21.Dal;
                 if(person != null)
                 {
                  
-                    personModel.TotalHotelRecievable = person.GetTotalHotelRecievable(DateTime.Today);
-                    personModel.TotalBarRecievable = person.GetTotalBarRecievable(DateTime.Today);
-                    personModel.TotalSales = personModel.TotalHotelRecievable + personModel.TotalBarRecievable;
+                    personModel.TotalHotelReceivable = person.GetTotalHotelReceivable(DateTime.Today);
+                    personModel.TotalBarReceivable = person.GetTotalBarReceivable(DateTime.Today);
+                    personModel.TotalSales = personModel.TotalHotelReceivable + personModel.TotalBarReceivable;
                     personModel.UserName = person.Username;
                     personModel.Password = person.Password;
                 }
@@ -571,11 +571,11 @@ using Agbo21.Dal;
                 return View(personModel);
             }
 
-            public ActionResult LogOffCompletely(string userName, string password, decimal? totalHotelRecievable, decimal? totalBarRecievable, decimal? totalSales, string closeShift)
+            public ActionResult LogOffCompletely(string userName, string password, decimal? totalHotelReceivable, decimal? totalBarReceivable, decimal? totalSales, string closeShift)
             {
                 closeShift = closeShift.Trim().ToUpper();
 
-                EndShift(userName, password, totalHotelRecievable.Value, totalBarRecievable.Value, totalSales.Value, closeShift);
+                EndShift(userName, password, totalHotelReceivable.Value, totalBarReceivable.Value, totalSales.Value, closeShift);
 
                 AppSecurity.Logout();
 

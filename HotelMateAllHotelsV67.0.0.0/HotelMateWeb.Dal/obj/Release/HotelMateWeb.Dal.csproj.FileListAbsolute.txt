@@ -587,3 +587,9 @@ C:\NewProjects\HotelMateAllHotelsV67.0.0.0\HotelMateWeb.Dal\bin\Release\HotelMat
 C:\NewProjects\HotelMateAllHotelsV67.0.0.0\HotelMateWeb.Dal\obj\Release\HotelMateWeb.Dal.dll
 C:\NewProjects\HotelMateAllHotelsV67.0.0.0\HotelMateWeb.Dal\obj\Release\HotelMateWeb.Dal.pdb
 C:\NewProjects\HotelMateAllHotelsV67.0.0.0\HotelMateWeb.Dal\obj\Release\HotelMateWeb.Dal.csprojResolveAssemblyReference.cache
+C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\HotelMateWeb.Dal\bin\Release\HotelMateWeb.Dal.dll.config
+C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\HotelMateWeb.Dal\bin\Release\HotelMateWeb.Dal.dll
+C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\HotelMateWeb.Dal\bin\Release\HotelMateWeb.Dal.pdb
+C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\HotelMateWeb.Dal\obj\Release\HotelMateWeb.Dal.csprojResolveAssemblyReference.cache
+C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\HotelMateWeb.Dal\obj\Release\HotelMateWeb.Dal.dll
+C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\HotelMateWeb.Dal\obj\Release\HotelMateWeb.Dal.pdb

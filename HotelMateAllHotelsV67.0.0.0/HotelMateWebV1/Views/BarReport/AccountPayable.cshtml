@@ -24,6 +24,11 @@
                 <div class="header">
                     <h3>Account Payable Reports</h3>
                     @Html.Partial("_DateSelector", "AccountPayable")
+
+                    @if (!string.IsNullOrEmpty(Model.FileToDownloadPath))
+                    {
+                        <span><a class="label label-danger" href="@Url.Action("DownloadStatement", "BarReport", new { id = Model.FileToDownloadPath })"><i class="fa fa-download"></i>To Excel</a></span>
+                    }
                 </div>
                 <div class="content">
                     <div class="table-responsive">

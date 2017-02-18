@@ -14,6 +14,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Net;
 using System.Net.Mail;
+using ClosedXML.Excel;
+using System.IO;
 
 namespace HotelMateWebV1.Controllers
 {
@@ -34,6 +36,9 @@ namespace HotelMateWebV1.Controllers
         private readonly IEmployeeShiftService _employeeShiftService;
         private readonly ISoldItemService _soldItemService;
         private readonly IPurchaseOrderService _purchaseOrderService;
+        private readonly IPaymentService _paymentService;
+
+
 
         private int? _hotelId;
         private int HotelID
@@ -66,7 +71,7 @@ namespace HotelMateWebV1.Controllers
             _soldItemService = new SoldItemService();
             _purchaseOrderService = new PurchaseOrderService();
             _businessCorporateAccountService = new BusinessCorporateAccountService();
-
+            _paymentService = new PaymentService();
         }
 
 
@@ -336,7 +341,7 @@ namespace HotelMateWebV1.Controllers
         }
 
       
-        public ActionResult AccountRecievable(DateTime? startDate, DateTime? endDate)
+        public ActionResult AccountReceivable(DateTime? startDate, DateTime? endDate)
         {
             ReportViewModel model = new ReportViewModel();
 
@@ -368,18 +373,98 @@ namespace HotelMateWebV1.Controllers
 
             var overallTotal = model.Accounts.Sum(x => x.Amount);
 
-            var hotelTax = GetHotelTax();
+            var hotelPayments = _paymentService.GetAllHotel().Where(x => x.Type == 2).ToList();
 
-            if (hotelTax > 0)
-            {
-                model.Tax = hotelTax * overallTotal;
-            }
-          
+            model.Tax = hotelPayments.Where(x => x.PaymentDate >= startDate && x.PaymentDate <= endDate).Sum(x => x.TaxAmount);
+
+            model.Discount = hotelPayments.Where(x => x.PaymentDate >= startDate && x.PaymentDate <= endDate).Sum(x => x.DiscountAmount);
+
+            model.GrandTotal = overallTotal + model.Tax - model.Discount;
+
+            model.ReportName = "AccountReceivable";
+
+            model.FileToDownloadPath = GenerateExcelSheet(model, model.ReportName);
+
             return View(model);
         }
 
+        [ValidateInput(false)]
+        public FileResult DownloadStatement(string id)
+        {
+            //id = "1930_AccountReceivable";
+            var path = Path.Combine(Server.MapPath("~/Products/Receipt/"), id + ".xlsx");
+            var fileName = DateTime.Now.ToShortDateString() + "_" + "Excel.xlsx";
+            return File(path, "application/ms-excel", fileName);
+        }
 
-        public ActionResult AccountRecievableCash(DateTime? startDate, DateTime? endDate)
+        private string GenerateExcelSheet(ReportViewModel model, string reportName)
+        {
+
+            DataTable dt = new DataTable();
+
+           
+
+            dt.Columns.AddRange(new DataColumn[8] {
+                                new DataColumn("Date", typeof(string)),
+                                new DataColumn("Room", typeof(string)),
+                                new DataColumn("Purpose", typeof(string)),
+                                new DataColumn("Guest",typeof(string)),
+                                new DataColumn("Check In",typeof(string)),
+                                new DataColumn("Check Out",typeof(string)),
+                                new DataColumn("Pay Method",typeof(string)),
+                                new DataColumn("Amount (NGN)",typeof(string))
+
+            });
+
+            int p = 1;
+
+            foreach (var ru in model.Accounts)
+            {
+                dt.Rows.Add(ru.TransactionDate, ru.GuestRoom.Room.RoomNumber, ru.RoomPaymentType.Name, ru.GuestRoom.Guest.FullName,
+                            ru.GuestRoom.CheckinDate.ToShortDateString(), ru.GuestRoom.CheckoutDate.ToShortDateString(), ru.PaymentMethod.Description,
+                            ru.Amount);
+                p++;
+            }
+
+            dt.Rows.Add("Total", "", "", "",
+                         "", "", "",
+                         model.Accounts.Sum(x => x.Amount));
+            p++;
+
+            dt.Rows.Add("Tax", "", "", "",
+                           "", "", "",
+                           model.Tax);
+            p++;
+
+            dt.Rows.Add("Discount", "", "", "",
+                          "", "", "",
+                          model.Discount);
+            p++;
+
+           
+
+            dt.Rows.Add("Grand Total", "", "", "",
+                          "", "", "",
+                          model.GrandTotal);
+            p++;
+
+            var fileName = DateTime.Now.ToShortTimeString().Replace(":","") + "_" + reportName;
+
+            var fileNameToUse = fileName + ".xlsx";
+
+            var path = Path.Combine(Server.MapPath("~/Products/Receipt/"), fileNameToUse);
+
+            //Codes for the Closed XML
+            using (XLWorkbook wb = new XLWorkbook())
+            {
+                wb.Worksheets.Add(dt, reportName);
+                wb.SaveAs(path);
+            }
+
+            return fileName;
+        }
+
+        public ActionResult AccountReceivableCash(DateTime? startDate, DateTime? endDate)
         {
             ReportViewModel model = new ReportViewModel();
 
@@ -411,19 +496,24 @@ namespace HotelMateWebV1.Controllers
 
             var overallTotal = model.Accounts.Sum(x => x.Amount);
 
-            var hotelTax = GetHotelTax();
+            var hotelPayments = _paymentService.GetAllHotel().Where(x => x.Type == 2 && x.PaymentMethodId == (int)PaymentMethodEnum.Cash).ToList();
 
-            if (hotelTax > 0)
-            {
-                model.Tax = hotelTax * overallTotal;
-            }
+            model.Tax = hotelPayments.Where(x => x.PaymentDate >= startDate && x.PaymentDate <= endDate).Sum(x => x.TaxAmount);
+
+            model.Discount = hotelPayments.Where(x => x.PaymentDate >= startDate && x.PaymentDate <= endDate).Sum(x => x.DiscountAmount);
+
+            model.GrandTotal = overallTotal + model.Tax - model.Discount;
+
+            model.ReportName = "AccountReceivableCash";
+
+            model.FileToDownloadPath = GenerateExcelSheet(model, model.ReportName);
 
             return View(model);
         }
 
 
 
-        public ActionResult AccountRecievableCheque(DateTime? startDate, DateTime? endDate)
+        public ActionResult AccountReceivableCheque(DateTime? startDate, DateTime? endDate)
         {
             ReportViewModel model = new ReportViewModel();
 
@@ -453,19 +543,25 @@ namespace HotelMateWebV1.Controllers
 
                 ).OrderByDescending(x => x.TransactionDate).ToList();
 
+
             var overallTotal = model.Accounts.Sum(x => x.Amount);
 
-            var hotelTax = GetHotelTax();
+            var hotelPayments = _paymentService.GetAllHotel().Where(x => x.Type == 2 && x.PaymentMethodId == (int)PaymentMethodEnum.Cheque).ToList();
 
-            if (hotelTax > 0)
-            {
-                model.Tax = hotelTax * overallTotal;
-            }
+            model.Tax = hotelPayments.Where(x => x.PaymentDate >= startDate && x.PaymentDate <= endDate).Sum(x => x.TaxAmount);
+
+            model.Discount = hotelPayments.Where(x => x.PaymentDate >= startDate && x.PaymentDate <= endDate).Sum(x => x.DiscountAmount);
+
+            model.GrandTotal = overallTotal + model.Tax - model.Discount;
+
+            model.ReportName = "AccountReceivableCheque";
+
+            model.FileToDownloadPath = GenerateExcelSheet(model, model.ReportName);
 
             return View(model);
         }
 
-        public ActionResult AccountRecievablePOS(DateTime? startDate, DateTime? endDate)
+        public ActionResult AccountReceivablePOS(DateTime? startDate, DateTime? endDate)
         {
             ReportViewModel model = new ReportViewModel();
 
@@ -495,14 +591,20 @@ namespace HotelMateWebV1.Controllers
 
                 ).OrderByDescending(x => x.TransactionDate).ToList();
 
+
             var overallTotal = model.Accounts.Sum(x => x.Amount);
 
-            var hotelTax = GetHotelTax();
+            var hotelPayments = _paymentService.GetAllHotel().Where(x => x.Type == 2 && x.PaymentMethodId == (int)PaymentMethodEnum.CreditCard).ToList();
 
-            if (hotelTax > 0)
-            {
-                model.Tax = hotelTax * overallTotal;
-            }
+            model.Tax = hotelPayments.Where(x => x.PaymentDate >= startDate && x.PaymentDate <= endDate).Sum(x => x.TaxAmount);
+
+            model.Discount = hotelPayments.Where(x => x.PaymentDate >= startDate && x.PaymentDate <= endDate).Sum(x => x.DiscountAmount);
+
+            model.GrandTotal = overallTotal + model.Tax - model.Discount;
+
+            model.ReportName = "AccountReceivableCash";
+
+            model.FileToDownloadPath = GenerateExcelSheet(model, model.ReportName);
 
             return View(model);
         }
@@ -651,7 +753,21 @@ namespace HotelMateWebV1.Controllers
                 endDate = DateTime.Now.AddMonths(1);
 
             model.Accounts = _guestRoomAccountService.GetAll(HotelID).Where(x => x.TransactionDate >= startDate && x.TransactionDate <= endDate && x.PaymentTypeId == (int)RoomPaymentTypeEnum.Refund).OrderByDescending(x => x.TransactionDate).ToList();
-          
+
+            var overallTotal = model.Accounts.Sum(x => x.Amount);
+
+            var hotelPayments = _paymentService.GetAllHotel().Where(x => x.Type == 2 && x.PaymentTypeId == (int)RoomPaymentTypeEnum.Refund).ToList();
+
+            model.Tax = hotelPayments.Where(x => x.PaymentDate >= startDate && x.PaymentDate <= endDate).Sum(x => x.TaxAmount);
+
+            model.Discount = hotelPayments.Where(x => x.PaymentDate >= startDate && x.PaymentDate <= endDate).Sum(x => x.DiscountAmount);
+
+            model.GrandTotal = overallTotal + model.Tax - model.Discount;
+
+            model.ReportName = "AccountPayable";
+
+            model.FileToDownloadPath = GenerateExcelSheet(model, model.ReportName);
+
             return View(model);
         }
 

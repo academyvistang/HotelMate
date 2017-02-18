@@ -2570,3 +2570,6 @@ C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\HotelMateWebV1.Tests\bin\D
 C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\HotelMateWebV1.Tests\bin\Debug\de\PdfSharp.Charting.resources.dll
 C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\HotelMateWebV1.Tests\obj\Debug\HotelMateWebV1.Tests.dll
 C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\HotelMateWebV1.Tests\obj\Debug\HotelMateWebV1.Tests.pdb
+C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\HotelMateWebV1.Tests\bin\Debug\ClosedXML.dll
+C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\HotelMateWebV1.Tests\bin\Debug\DocumentFormat.OpenXml.dll
+C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\HotelMateWebV1.Tests\bin\Debug\ClosedXML.pdb
