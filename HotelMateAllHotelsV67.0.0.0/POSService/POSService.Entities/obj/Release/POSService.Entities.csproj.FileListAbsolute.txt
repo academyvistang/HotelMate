@@ -190,3 +190,7 @@ C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\POSService\POSService.Enti
 C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\POSService\POSService.Entities\bin\Release\POSService.Entities.pdb
 C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\POSService\POSService.Entities\obj\Release\POSService.Entities.dll
 C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\POSService\POSService.Entities\obj\Release\POSService.Entities.pdb
+C:\OtherProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\POSService\POSService.Entities\bin\Release\POSService.Entities.dll
+C:\OtherProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\POSService\POSService.Entities\bin\Release\POSService.Entities.pdb
+C:\OtherProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\POSService\POSService.Entities\obj\Release\POSService.Entities.dll
+C:\OtherProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\POSService\POSService.Entities\obj\Release\POSService.Entities.pdb

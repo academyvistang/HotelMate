@@ -141,6 +141,8 @@ namespace HotelMateWebV1.Controllers
 
             var path1 = Path.Combine(Server.MapPath("~/Products/Receipt/"));
 
+            gravm.ImageUrl = Path.Combine(Server.MapPath("~/images/Receipt"), "ReceiptLogo.jpg");
+
             var filename = PDFReceiptPrinter.PrintInvoiceCheckout(path1, gravm, gravm.ImageUrl);
 
             var path = Path.Combine(Server.MapPath("~/Products/Receipt/"), filename + ".pdf");

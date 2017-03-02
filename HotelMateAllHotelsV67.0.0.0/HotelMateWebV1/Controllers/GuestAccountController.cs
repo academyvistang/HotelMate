@@ -973,7 +973,9 @@ namespace HotelMateWebV1.Controllers
         private void TransferGuestToAnEmptyRoom(Room newRoom, GuestRoom previousGuestRoom, Room previousRoom, Guest guest)
         {
             var veryInitialCheckinDate = previousGuestRoom.CheckinDate;
-            
+            var veryInitialCheckoutDate = previousGuestRoom.CheckoutDate;
+
+
             var previousRoomId = previousRoom.Id;
 
             var todaysDate = DateTime.Now;
@@ -1073,7 +1075,7 @@ namespace HotelMateWebV1.Controllers
 
                 if (guestReservation == null) return;
                 guestReservation.StartDate = updateGuestRoom.CheckinDate;
-                guestReservation.EndDate =   updateGuestRoom.CheckoutDate;
+                guestReservation.EndDate = veryInitialCheckoutDate;
                 guestReservation.IsActive = true;
                 guestReservation.RoomId = newRoom.Id;
                 _guestReservationService.Update(guestReservation);
@@ -1096,7 +1098,7 @@ namespace HotelMateWebV1.Controllers
 
                 if (guestReservation == null) return;
                 guestReservation.StartDate = gr.CheckinDate;
-                guestReservation.EndDate = previousGuestRoom.CheckoutDate;
+                guestReservation.EndDate = veryInitialCheckoutDate;
                 guestReservation.IsActive = true;
                 guestReservation.RoomId = newRoom.Id;
                 _guestReservationService.Update(guestReservation);
@@ -1287,7 +1289,7 @@ namespace HotelMateWebV1.Controllers
             if (!depart.HasValue) depart = mainGuestRoom.CheckoutDate;
             if (!room_select.HasValue) room_select = 0;
 
-            IEnumerable<GuestReservation> gr = _roomService.GetAll(HotelID).SelectMany(x => x.GuestReservations).ToList();
+            IEnumerable<GuestReservation> gr = _roomService.GetAll(HotelID).SelectMany(x => x.GuestReservations).Where(x => x.IsActive).ToList();
             var conflicts = gr.SelectAvailable(arrive.Value, depart.Value, room_select.Value).ToList();
 
             if (conflicts.Count > 0)
@@ -1297,7 +1299,7 @@ namespace HotelMateWebV1.Controllers
                 var bookableRooms = _roomService.GetAll(HotelID).Where(x => (x.StatusId == (int)RoomStatusEnum.Vacant || x.StatusId == (int)RoomStatusEnum.Dirty) && !ids.Contains(x.Id)).ToList();
                 var occupiedRooms = _roomService.GetAll(HotelID).Where(x => x.StatusId == (int)RoomStatusEnum.Occupied && !guestRoomIds.Contains(x.Id)).ToList();
                 bookableRooms.AddRange(occupiedRooms);
-                var model = new RoomBookingViewModel { RoomsList = bookableRooms, GuestId = id.Value, RoomId = roomId.Value };
+                var model = new RoomBookingViewModel { RoomsList = bookableRooms.Where(x => x.StatusId == (int)RoomStatusEnum.Vacant).ToList(), GuestId = id.Value, RoomId = roomId.Value };
                 return View(model);
             }
             else
@@ -2364,7 +2366,9 @@ namespace HotelMateWebV1.Controllers
 
             var path1 = Path.Combine(Server.MapPath("~/Products/Receipt/"));
 
-            gravm.DownloadFilename = PDFReceiptPrinter.PrintInvoiceCheckout(path1, guest);
+            var imagePath = Path.Combine(Server.MapPath("~/images/Receipt"), "ReceiptLogo.jpg");
+
+            gravm.DownloadFilename = PDFReceiptPrinter.PrintInvoiceCheckout(path1, guest, imagePath);
 
             return View("CheckOutGuestPOS",gravm);
         }

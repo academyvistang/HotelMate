@@ -12,8 +12,8 @@
 
 @Html.HiddenFor(model => model.Password)
 @Html.HiddenFor(model => model.UserName)
-@Html.HiddenFor(model => model.TotalBarRecievable)
-@Html.HiddenFor(model => model.TotalHotelRecievable)
+@Html.HiddenFor(model => model.TotalBarReceivable)
+@Html.HiddenFor(model => model.TotalHotelReceivable)
 @Html.HiddenFor(model => model.TotalSales)
 @Html.HiddenFor(model => model.CanCloseTill)
 
@@ -26,12 +26,12 @@
 
 <div class="six columns">
     <label for="email">Bar Total*</label>
-    @Html.TextBoxFor(model => model.TotalBarRecievable, new { @disabled = "disabled" })
+    @Html.TextBoxFor(model => model.TotalBarReceivable, new { @disabled = "disabled" })
 </div>
 
 <div class="six columns">
     <label for="FullName">Front Office Total*</label>
-    @Html.TextBoxFor(model => model.TotalHotelRecievable, new { @disabled = "disabled" })
+    @Html.TextBoxFor(model => model.TotalHotelReceivable, new { @disabled = "disabled" })
 </div>
 
 <div class="twelve columns">

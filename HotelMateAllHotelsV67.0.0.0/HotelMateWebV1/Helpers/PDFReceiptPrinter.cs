@@ -23,7 +23,7 @@ namespace HotelMateWebV1.Helpers
             string filename = new InvoicerApi(SizeOption.A4, OrientationOption.Landscape, currency)
                  .TextColor("#CC0000")
                  .BackColor("#FFD6CC")
-                 .Image(imagePath, 125, 27)
+                 .Image(imagePath, 125, 32)
                  .Reference(reference)
                  .Company(Address.Make("FROM", companyDetails, companyReg, ""))
                  .Client(Address.Make("BILLING TO", clientDetails))
@@ -36,7 +36,7 @@ namespace HotelMateWebV1.Helpers
             return filename;
         }
 
-        public static string PrintInvoicePayment(string path, GuestRoomAccount gra)
+        public static string PrintInvoicePayment(string path, GuestRoomAccount gra, string imagePath)
         {
             string[] splitShopDetails = null;
 
@@ -63,7 +63,7 @@ namespace HotelMateWebV1.Helpers
                 splitShopDetails = new string[] { "AcademyVista Ltd. @ B03 Eleganza, V.G.C, @ Lagos State @ Nigeria @ 08105387515 @ www.academyvista.com @ 6543210" };
             }
 
-            string currency = "NGN", reference = gra.Id.ToString() + "_" + DateTime.Now.ToShortTimeString().Replace(":", ""), imagePath = path, companyReg = splitShopDetails[6];
+            string currency = "NGN ", reference = gra.Id.ToString() + "_" + DateTime.Now.ToShortTimeString().Replace(":", ""), companyReg = splitShopDetails[6];
             string[] companyDetails = splitShopDetails, clientDetails = GetClientInformation(guest);
             List<ItemRow> itemsRows = new List<ItemRow>();
             List<TotalRow> totalRows = new List<TotalRow>();
@@ -74,7 +74,7 @@ namespace HotelMateWebV1.Helpers
 
             var gr = guest.GuestRooms.FirstOrDefault();
             var noOfNights = gr.CheckoutDate.Subtract(gr.CheckinDate).Days;
-            var roomDetails = "Room " + gr.RoomNumber + "-" + gr.Room.RoomType1.Name;
+            var roomDetails = "Room " + gr.RoomNumber + "-" + gr.Room.RoomType1.Name + " Room Price - (NGN " + Decimal.Round(gr.RoomRate,2) + ")";
             var amountPaid = decimal.Zero;
 
             if (initialDeposit != null)
@@ -90,7 +90,7 @@ namespace HotelMateWebV1.Helpers
             string filename = new InvoicerApi(SizeOption.A4, OrientationOption.Landscape, currency)
                  .TextColor("#CC0000")
                  .BackColor("#FFD6CC")
-                 .Image(imagePath, 125, 27)
+                 .Image(imagePath, 125, 32)
                  .Reference(reference)
                  .Company(Address.Make("FROM", companyDetails, companyReg, ""))
                  .Client(Address.Make("BILLING TO", clientDetails))
@@ -113,7 +113,7 @@ namespace HotelMateWebV1.Helpers
             return reference;
         }
 
-        public static string PrintInvoiceChecking(string path, GuestRoomAccount gra)
+        public static string PrintInvoiceChecking(string path, GuestRoomAccount gra, string imagePath)
         {
             string[] splitShopDetails = null;
 
@@ -140,7 +140,7 @@ namespace HotelMateWebV1.Helpers
                 splitShopDetails = new string[] { "AcademyVista Ltd. @ B03 Eleganza, V.G.C, @ Lagos State @ Nigeria @ 08105387515 @ www.academyvista.com @ 6543210" };
             }
 
-            string currency = "NGN", reference = gra.Id.ToString() + "_" + DateTime.Now.ToShortTimeString().Replace(":", ""), imagePath = path, companyReg = splitShopDetails[6];
+            string currency = "NGN ", reference = gra.Id.ToString() + "_" + DateTime.Now.ToShortTimeString().Replace(":", ""), companyReg = splitShopDetails[6];
             string[] companyDetails = splitShopDetails, clientDetails = GetClientInformation(guest);
             List<ItemRow> itemsRows = new List<ItemRow>();
             List<TotalRow> totalRows = new List<TotalRow>();
@@ -151,7 +151,7 @@ namespace HotelMateWebV1.Helpers
 
             var gr = guest.GuestRooms.FirstOrDefault();
             var noOfNights = gr.CheckoutDate.Subtract(gr.CheckinDate).Days;
-            var roomDetails = "Room " + gr.RoomNumber + "-" + gr.Room.RoomType1.Name;
+            var roomDetails = "Room " + gr.RoomNumber + "-" + gr.Room.RoomType1.Name + " Room Price - (NGN " + Decimal.Round(gr.RoomRate,2) + ")";
             var amountPaid = decimal.Zero;
 
             if (initialDeposit != null)
@@ -167,7 +167,7 @@ namespace HotelMateWebV1.Helpers
             string filename = new InvoicerApi(SizeOption.A4, OrientationOption.Landscape, currency)
                  .TextColor("#CC0000")
                  .BackColor("#FFD6CC")
-                 .Image(imagePath, 125, 27)
+                 .Image(imagePath, 125, 32)
                  .Reference(reference)
                  .Company(Address.Make("FROM", companyDetails, companyReg, ""))
                  .Client(Address.Make("BILLING TO", clientDetails))
@@ -190,7 +190,7 @@ namespace HotelMateWebV1.Helpers
             return reference;
         }
 
-        public static string PrintInvoiceCheckout(string path, Guest guest)
+        public static string PrintInvoiceCheckout(string path, Guest guest, string imagePath)
         {
             string[] splitShopDetails = null;
 
@@ -215,7 +215,7 @@ namespace HotelMateWebV1.Helpers
                 splitShopDetails = new string[] { "AcademyVista Ltd. @ B03 Eleganza, V.G.C, @ Lagos State @ Nigeria @ 08105387515 @ www.academyvista.com @ 6543210" };
             }
 
-            string currency = "NGN", reference = guest.Id.ToString() + "_" + DateTime.Now.ToShortTimeString().Replace(":", ""), imagePath = path, companyReg = splitShopDetails[6];
+            string currency = "NGN ", reference = guest.Id.ToString() + "_" + DateTime.Now.ToShortTimeString().Replace(":", ""), companyReg = splitShopDetails[6];
             string[] companyDetails = splitShopDetails, clientDetails = GetClientInformation(guest);
             List<ItemRow> itemsRows = new List<ItemRow>();
             List<TotalRow> totalRows = new List<TotalRow>();
@@ -226,7 +226,7 @@ namespace HotelMateWebV1.Helpers
 
             var gr = guest.GuestRooms.FirstOrDefault();
             var noOfNights = gr.CheckoutDate.Subtract(gr.CheckinDate).Days;
-            var roomDetails = "Room " + gr.RoomNumber + "-" + gr.Room.RoomType1.Name;
+            var roomDetails = "Room " + gr.RoomNumber + "-" + gr.Room.RoomType1.Name + " Room Price - (NGN " + Decimal.Round(gr.RoomRate,2) + ")";
             var amountPaidCredit = decimal.Zero;
             var amountPaidDebit = decimal.Zero;
             var balance = decimal.Zero;
@@ -247,7 +247,7 @@ namespace HotelMateWebV1.Helpers
             string filename = new InvoicerApi(SizeOption.A4, OrientationOption.Landscape, currency)
                  .TextColor("#CC0000")
                  .BackColor("#FFD6CC")
-                 .Image(imagePath, 125, 27)
+                 .Image(imagePath, 125, 32)
                  .Reference(reference)
                  .Company(Address.Make("FROM", companyDetails, companyReg, ""))
                  .Client(Address.Make("BILLING TO", clientDetails))
@@ -305,7 +305,7 @@ namespace HotelMateWebV1.Helpers
                 splitShopDetails = new string[] { "AcademyVista Ltd. @ B03 Eleganza, V.G.C, @ Lagos State @ Nigeria @ 08105387515 @ www.academyvista.com @ 6543210" };
             }
 
-            string currency = "NGN", reference = guest.Id.ToString() + "_" + DateTime.Now.ToShortTimeString().Replace(":", ""), companyReg = splitShopDetails[6];
+            string currency = "NGN ", reference = guest.Id.ToString() + "_" + DateTime.Now.ToShortTimeString().Replace(":", ""), companyReg = splitShopDetails[6];
             string[] companyDetails = splitShopDetails, clientDetails = GetClientInformation(gravm);
             List<ItemRow> itemsRows = new List<ItemRow>();
             List<TotalRow> totalRows = new List<TotalRow>();
@@ -316,7 +316,7 @@ namespace HotelMateWebV1.Helpers
 
             var gr = guest.GuestRooms.FirstOrDefault();
             var noOfNights = gr.CheckoutDate.Subtract(gr.CheckinDate).Days;
-            var roomDetails = "Room " + gr.RoomNumber + "-" + gr.Room.RoomType1.Name;
+            var roomDetails = "Room " + gr.RoomNumber + "-" + gr.Room.RoomType1.Name + " Room Price - (NGN " + Decimal.Round(gr.RoomRate,2) + ")";
             var amountPaidCredit = decimal.Zero;
             var amountPaidDebit = decimal.Zero;
             var balance = decimal.Zero;
@@ -356,7 +356,7 @@ namespace HotelMateWebV1.Helpers
             string filename = new InvoicerApi(SizeOption.A4, OrientationOption.Landscape, currency)
                  .TextColor("#CC0000")
                  .BackColor("#FFD6CC")
-                 .Image(imagePath, 125, 27)
+                 .Image(imagePath, 125, 32)
                  .Reference(reference)
                  .Company(Address.Make("FROM", companyDetails, companyReg, ""))
                  .Client(Address.Make("BILLING TO", clientDetails))
@@ -432,7 +432,7 @@ namespace HotelMateWebV1.Helpers
             return new List<string>();
         }
 
-        public static string PrintInvoiceChecking(string path, Guest guest)
+        public static string PrintInvoiceChecking(string path, Guest guest, string imagePath)
         {
             string[] splitShopDetails = null;
 
@@ -475,7 +475,7 @@ namespace HotelMateWebV1.Helpers
                 splitShopDetails = new string[] { "AcademyVista Ltd. @ B03 Eleganza, V.G.C, @ Lagos State @ Nigeria @ 08105387515 @ www.academyvista.com @ 6543210" };
             }
 
-            string currency = "NGN",  reference = guest.Id.ToString() + "_" + DateTime.Now.ToShortTimeString().Replace(":",""),   companyReg = splitShopDetails[6];
+            string currency = "NGN ",  reference = guest.Id.ToString() + "_" + DateTime.Now.ToShortTimeString().Replace(":",""),   companyReg = splitShopDetails[6];
             string[] companyDetails = splitShopDetails, clientDetails = GetClientInformation(guest);
             List<ItemRow> itemsRows = new List<ItemRow>();
             List<TotalRow> totalRows = new List<TotalRow>();
@@ -486,7 +486,7 @@ namespace HotelMateWebV1.Helpers
 
             var gr = guest.GuestRooms.FirstOrDefault();
             var noOfNights = gr.CheckoutDate.Subtract(gr.CheckinDate).Days;
-            var roomDetails = "Room " + gr.RoomNumber + "-" + gr.Room.RoomType1.Name;
+            var roomDetails = "Room " + gr.RoomNumber + "-" + gr.Room.RoomType1.Name + " Room Price - (NGN " + Decimal.Round(gr.RoomRate,2) + ")";
             var amountPaid = decimal.Zero;
 
             if(initialDeposit != null)
@@ -502,7 +502,7 @@ namespace HotelMateWebV1.Helpers
             string filename = new InvoicerApi(SizeOption.A4, OrientationOption.Landscape, currency)
                  .TextColor("#CC0000")
                  .BackColor("#FFD6CC")
-                 .Image(@"..\..\images\berkshire.jpg", 125, 27)
+                 .Image(imagePath, 125, 32)
                  .Reference(reference)
                  .Company(Address.Make("FROM", companyDetails, companyReg, ""))
                  .Client(Address.Make("BILLING TO", clientDetails))
@@ -522,7 +522,7 @@ namespace HotelMateWebV1.Helpers
             return reference;
         }
 
-        public static string PrintInvoiceCheckingFuture(string path, Guest guest)
+        public static string PrintInvoiceCheckingFuture(string path, Guest guest, string imagePath)
         {
 
             int qty = guest.GuestRooms.Count;
@@ -568,7 +568,7 @@ namespace HotelMateWebV1.Helpers
                 splitShopDetails = new string[] { "AcademyVista Ltd. @ B03 Eleganza, V.G.C, @ Lagos State @ Nigeria @ 08105387515 @ www.academyvista.com @ 6543210" };
             }
 
-            string currency = "NGN", reference = guest.Id.ToString() + "_" + DateTime.Now.ToShortTimeString().Replace(":", ""), companyReg = splitShopDetails[6];
+            string currency = "NGN ", reference = guest.Id.ToString() + "_" + DateTime.Now.ToShortTimeString().Replace(":", ""), companyReg = splitShopDetails[6];
             string[] companyDetails = splitShopDetails, clientDetails = GetClientInformation(guest);
             List<ItemRow> itemsRows = new List<ItemRow>();
             List<TotalRow> totalRows = new List<TotalRow>();
@@ -579,7 +579,7 @@ namespace HotelMateWebV1.Helpers
 
             var gr = guest.GuestRooms.FirstOrDefault();
             var noOfNights = gr.CheckoutDate.Subtract(gr.CheckinDate).Days;
-            var roomDetails = "From " + gr.CheckinDate.ToShortDateString() + " To " + gr.CheckoutDate.ToShortDateString() + " Room Type - " + gr.Room.RoomType1.Name;
+            var roomDetails = "From " + gr.CheckinDate.ToShortDateString() + " To " + gr.CheckoutDate.ToShortDateString() + " Room Type - " + gr.Room.RoomType1.Name + " Room Price - (NGN " + decimal.Round(gr.RoomRate,2) + " )";
             var amountPaid = decimal.Zero;
 
             if (initialDeposit != null)
@@ -595,7 +595,7 @@ namespace HotelMateWebV1.Helpers
             string filename = new InvoicerApi(SizeOption.A4, OrientationOption.Landscape, currency)
                  .TextColor("#CC0000")
                  .BackColor("#FFD6CC")
-                 .Image(@"..\..\images\berkshire.jpg", 125, 27)
+                 .Image(imagePath, 125, 32)
                  .Reference(reference)
                  .Company(Address.Make("FROM", companyDetails, companyReg, ""))
                  .Client(Address.Make("BILLING TO", clientDetails))

@@ -1258,7 +1258,7 @@ namespace HotelMateWebV1.Controllers
                 var checkoutDate = guest.GuestRooms.FirstOrDefault().CheckoutDate;
 
                 const int roomSelect = 0;
-                IEnumerable<GuestReservation> gr = _roomService.GetAll(HotelId).SelectMany(x => x.GuestReservations).ToList();
+                IEnumerable<GuestReservation> gr = _roomService.GetAll(HotelId).SelectMany(x => x.GuestReservations).Where(x => x.IsActive).ToList();
                 var conflicts = gr.SelectAvailable(checkinDate, checkoutDate, roomSelect).ToList();
 
                 if (conflicts.Count > 0)
@@ -1306,7 +1306,7 @@ namespace HotelMateWebV1.Controllers
                 var checkoutDate = guest.GuestRooms.FirstOrDefault().CheckoutDate;
 
                 const int room_select = 0;
-                var gr = _roomService.GetAll(HotelId).SelectMany(x => x.GuestReservations).ToList();
+                var gr = _roomService.GetAll(HotelId).SelectMany(x => x.GuestReservations).Where(x => x.IsActive).ToList();
                 var conflicts = gr.SelectAvailable(checkinDate, checkoutDate, room_select).ToList();
 
                 if (conflicts.Count > 0)
@@ -1334,7 +1334,7 @@ namespace HotelMateWebV1.Controllers
             var checkoutDate = guest.GuestRooms.FirstOrDefault().CheckoutDate;
 
             const int room_select = 0;
-            var gr = _roomService.GetAll(HotelId).SelectMany(x => x.GuestReservations).ToList();
+            var gr = _roomService.GetAll(HotelId).SelectMany(x => x.GuestReservations).Where(x => x.IsActive).ToList();
             var conflicts = gr.SelectAvailable(checkinDate, checkoutDate, room_select).ToList();
 
             if (conflicts.Count > 0)
@@ -1378,7 +1378,7 @@ namespace HotelMateWebV1.Controllers
         public ActionResult RoomFutureBookingFromDialog(DateTime? arrive, DateTime? depart, int? room_select)
         {
             room_select = 0;
-            IEnumerable<GuestReservation> gr = _roomService.GetAll(HotelId).SelectMany(x => x.GuestReservations).ToList();
+            IEnumerable<GuestReservation> gr = _roomService.GetAll(HotelId).SelectMany(x => x.GuestReservations).Where(x => x.IsActive).ToList();
             var conflicts = gr.SelectAvailable(arrive.Value, depart.Value, room_select.Value).ToList();
 
             if (conflicts.Count > 0)
@@ -1401,7 +1401,7 @@ namespace HotelMateWebV1.Controllers
         public ActionResult RoomGroupBookingFromDialog(DateTime? arrive, DateTime? depart, int? room_select)
         {
             room_select = 0;
-            IEnumerable<GuestReservation> gr = _roomService.GetAll(HotelId).SelectMany(x => x.GuestReservations).ToList();
+            IEnumerable<GuestReservation> gr = _roomService.GetAll(HotelId).SelectMany(x => x.GuestReservations).Where(x => x.IsActive).ToList();
             var conflicts = gr.SelectAvailable(arrive.Value, depart.Value, room_select.Value).ToList();
 
             if (conflicts.Count > 0)
@@ -1653,7 +1653,7 @@ namespace HotelMateWebV1.Controllers
         public ActionResult CheckFutureAvailability(DateTime? arrive, DateTime? depart, int? room_select)
         {
             room_select = 0;
-            IEnumerable<GuestReservation> gr = _roomService.GetAll(HotelId).SelectMany(x => x.GuestReservations).ToList();
+            IEnumerable<GuestReservation> gr = _roomService.GetAll(HotelId).SelectMany(x => x.GuestReservations).Where(x => x.IsActive).ToList();
             var conflicts = gr.SelectAvailable(arrive.Value, depart.Value, room_select.Value).ToList();
 
             if (conflicts.Count > 0)
@@ -1676,7 +1676,7 @@ namespace HotelMateWebV1.Controllers
             if (!depart.HasValue) depart = DateTime.Now.AddDays(2);
             if (!room_select.HasValue) room_select = 0;
 
-            IEnumerable<GuestReservation> gr = _roomService.GetAll(HotelId).SelectMany(x => x.GuestReservations).ToList();
+            IEnumerable<GuestReservation> gr = _roomService.GetAll(HotelId).SelectMany(x => x.GuestReservations).Where(x => x.IsActive).ToList();
             var conflicts = gr.SelectAvailable(arrive.Value, depart.Value, room_select.Value).ToList();
 
             if (conflicts.Count > 0)
@@ -3000,7 +3000,9 @@ namespace HotelMateWebV1.Controllers
 
             var path1 = Path.Combine(Server.MapPath("~/Products/Receipt/"));
 
-            var filename = PDFReceiptPrinter.PrintInvoicePayment(path1, guestAccount);
+            var imagePath = Path.Combine(Server.MapPath("~/images/Receipt"), "ReceiptLogo.jpg");
+
+            var filename = PDFReceiptPrinter.PrintInvoicePayment(path1, guestAccount, imagePath);
 
             var path = Path.Combine(Server.MapPath("~/Products/Receipt/"), filename + ".pdf");
 
@@ -3017,7 +3019,9 @@ namespace HotelMateWebV1.Controllers
 
             var path1 = Path.Combine(Server.MapPath("~/Products/Receipt/"));
 
-            var filename = PDFReceiptPrinter.PrintInvoiceChecking(path1, guestAccount);
+            var imagePath = Path.Combine(Server.MapPath("~/images/Receipt"), "ReceiptLogo.jpg");
+
+            var filename = PDFReceiptPrinter.PrintInvoiceChecking(path1, guestAccount, imagePath);
 
             var path = Path.Combine(Server.MapPath("~/Products/Receipt/"), filename + ".pdf");
 
@@ -3342,7 +3346,7 @@ namespace HotelMateWebV1.Controllers
             if (!depart.HasValue) depart = DateTime.Now.AddDays(1);
             if (!room_select.HasValue) room_select = 0;
 
-            IEnumerable<GuestReservation> gr = _roomService.GetAll(HotelId).SelectMany(x => x.GuestReservations).ToList();
+            IEnumerable<GuestReservation> gr = _roomService.GetAll(HotelId).SelectMany(x => x.GuestReservations).Where(x => x.IsActive).ToList();
             var now = DateTime.Today;
 
             var startOfMonth = new DateTime(now.Year, now.Month, 1);

@@ -342,3 +342,11 @@ C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\Agbo21.Dal\bin\Debug\Entit
 C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\Agbo21.Dal\obj\Debug\Agbo21.Dal.csprojResolveAssemblyReference.cache
 C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\Agbo21.Dal\obj\Debug\Agbo21.Dal.dll
 C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\Agbo21.Dal\obj\Debug\Agbo21.Dal.pdb
+C:\OtherProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\Agbo21.Dal\bin\Debug\Agbo21.Dal.dll.config
+C:\OtherProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\Agbo21.Dal\bin\Debug\Agbo21.Dal.dll
+C:\OtherProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\Agbo21.Dal\bin\Debug\Agbo21.Dal.pdb
+C:\OtherProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\Agbo21.Dal\bin\Debug\Entitities.dll
+C:\OtherProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\Agbo21.Dal\bin\Debug\Entitities.pdb
+C:\OtherProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\Agbo21.Dal\obj\Debug\Agbo21.Dal.csprojResolveAssemblyReference.cache
+C:\OtherProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\Agbo21.Dal\obj\Debug\Agbo21.Dal.dll
+C:\OtherProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\Agbo21.Dal\obj\Debug\Agbo21.Dal.pdb

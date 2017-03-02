@@ -117,7 +117,7 @@ namespace HotelMateWebV1.Controllers
         [HttpPost]
         public ActionResult CheckAvailability(DateTime? arrived, DateTime? departed, int? room_select)
         {
-            IEnumerable<GuestReservation> gr = _roomService.GetAll(HotelID).SelectMany(x => x.GuestReservations).ToList();
+            IEnumerable<GuestReservation> gr = _roomService.GetAll(HotelID).SelectMany(x => x.GuestReservations).Where(x => x.IsActive).ToList();
 
             if(!departed.HasValue)
             {
@@ -154,7 +154,7 @@ namespace HotelMateWebV1.Controllers
         [HttpPost]
         public ActionResult CheckAvailabilityFuture(DateTime? arrived, DateTime? departed, int? room_select)
         {
-            IEnumerable<GuestReservation> gr = _roomService.GetAll(HotelID).SelectMany(x => x.GuestReservations).ToList();
+            IEnumerable<GuestReservation> gr = _roomService.GetAll(HotelID).SelectMany(x => x.GuestReservations).Where(x => x.IsActive).ToList();
 
             var conflicts = gr.SelectAvailable(arrived.Value, departed.Value, room_select.Value).ToList();
 
@@ -183,7 +183,7 @@ namespace HotelMateWebV1.Controllers
         [HttpPost]
         public ActionResult CheckAvailabilityGroupBooking(DateTime? arrived, DateTime? departed, int? room_select)
         {
-            IEnumerable<GuestReservation> gr = _roomService.GetAll(HotelID).SelectMany(x => x.GuestReservations).ToList();
+            IEnumerable<GuestReservation> gr = _roomService.GetAll(HotelID).SelectMany(x => x.GuestReservations).Where(x => x.IsActive).ToList();
 
             var conflicts = gr.SelectAvailable(arrived.Value, departed.Value, room_select.Value).ToList();
 
@@ -354,7 +354,7 @@ namespace HotelMateWebV1.Controllers
             new InvoicerApi(SizeOption.A4, OrientationOption.Landscape, "NGN")
                .TextColor("#CC0000")
                .BackColor("#FFD6CC")
-               .Image(@"vodafone.jpg", 125, 27)
+               .Image(@"vodafone.jpg", 125, 32)
                .Company(Address.Make("FROM", new string[] { "Vodafone Limited", "Vodafone House", "The Connection", "Newbury", "Berkshire RG14 2FN" }, "1471587", "569953277"))
                .Client(Address.Make("BILLING TO", new string[] { "Isabella Marsh1", "Overton Circle", "Little Welland", "Worcester", "WR## 2DJ" }))
                .Items(new List<ItemRow> {
@@ -423,7 +423,7 @@ namespace HotelMateWebV1.Controllers
             if (!depart.HasValue) depart = DateTime.Now.AddDays(1);
             if (!room_select.HasValue) room_select = 0;
 
-            IEnumerable<GuestReservation> gr = _roomService.GetAll(HotelID).SelectMany(x => x.GuestReservations).ToList();
+            IEnumerable<GuestReservation> gr = _roomService.GetAll(HotelID).SelectMany(x => x.GuestReservations).Where(x => x.IsActive).ToList();
             var now = DateTime.Today;
 
             var startOfMonth = new DateTime(now.Year, now.Month, 1);
@@ -477,7 +477,8 @@ namespace HotelMateWebV1.Controllers
             var model = new RoomBookingViewModel { GuestId = id.Value };
             var newGuest = _guestService.GetById(id.Value);
             var path = Path.Combine(Server.MapPath("~/Products/Receipt/"));
-            model.FilePath = PDFReceiptPrinter.PrintInvoiceCheckingFuture("path", newGuest);
+            var imagePath = Path.Combine(Server.MapPath("~/images/Receipt"), "ReceiptLogo.jpg");
+            model.FilePath = PDFReceiptPrinter.PrintInvoiceCheckingFuture(path, newGuest, imagePath);
             return View(model);
         }
 
@@ -492,7 +493,9 @@ namespace HotelMateWebV1.Controllers
             //var path = Path.Combine(Server.MapPath("~/Products"));
             var path = Path.Combine(Server.MapPath("~/Products/Receipt/"));
 
-            string filePath = PDFReceiptPrinter.PrintInvoiceChecking(path, guestCreated);
+            var imagePath = Path.Combine(Server.MapPath("~/images/Receipt"), "ReceiptLogo.jpg");
+
+            string filePath = PDFReceiptPrinter.PrintInvoiceChecking(path, guestCreated, imagePath);
 
             model.FilePath = filePath;
 
@@ -508,7 +511,7 @@ namespace HotelMateWebV1.Controllers
             if (!depart.HasValue) depart = DateTime.Now.AddDays(1);
             if (!room_select.HasValue) room_select = 0;
 
-            IEnumerable<GuestReservation> gr = _roomService.GetAll(HotelID).SelectMany(x => x.GuestReservations).ToList();
+            IEnumerable<GuestReservation> gr = _roomService.GetAll(HotelID).SelectMany(x => x.GuestReservations).Where(x => x.IsActive).ToList();
             var conflicts = gr.SelectAvailable(arrive.Value, depart.Value, room_select.Value).ToList();
 
             if (conflicts.Count > 0)
@@ -531,7 +534,7 @@ namespace HotelMateWebV1.Controllers
             if (!depart.HasValue) depart = DateTime.Now.AddDays(1);
             if (!room_select.HasValue) room_select = 0;
 
-            IEnumerable<GuestReservation> gr = _roomService.GetAll(HotelID).SelectMany(x => x.GuestReservations).ToList();
+            IEnumerable<GuestReservation> gr = _roomService.GetAll(HotelID).SelectMany(x => x.GuestReservations).Where(x => x.IsActive).ToList();
             var conflicts = gr.SelectAvailable(arrive.Value, depart.Value, room_select.Value).ToList();
 
             if (conflicts.Count > 0)
@@ -616,7 +619,7 @@ namespace HotelMateWebV1.Controllers
             if (!depart.HasValue) depart = DateTime.Now.AddDays(1);
             if (!room_select.HasValue) room_select = 0;
 
-            IEnumerable<GuestReservation> gr = _roomService.GetAll(HotelID).SelectMany(x => x.GuestReservations).ToList();
+            IEnumerable<GuestReservation> gr = _roomService.GetAll(HotelID).SelectMany(x => x.GuestReservations).Where(x => x.IsActive).ToList();
             
 
             var startOfMonth = new DateTime(now.Year, now.Month, 1);
@@ -651,7 +654,7 @@ namespace HotelMateWebV1.Controllers
             if (!depart.HasValue) depart = DateTime.Now.AddDays(1);
             if (!room_select.HasValue) room_select = 0;
 
-            IEnumerable<GuestReservation> gr = _roomService.GetAll(HotelID).SelectMany(x => x.GuestReservations).ToList();
+            IEnumerable<GuestReservation> gr = _roomService.GetAll(HotelID).SelectMany(x => x.GuestReservations).Where(x => x.IsActive).ToList();
             var now = DateTime.Today;
 
             var startOfMonth = new DateTime(now.Year, now.Month, 1);
@@ -688,7 +691,7 @@ namespace HotelMateWebV1.Controllers
             if (!depart.HasValue) depart = DateTime.Now.AddDays(1);
             if (!room_select.HasValue) room_select = 0;
 
-            IEnumerable<GuestReservation> gr = _roomService.GetAll(HotelID).SelectMany(x => x.GuestReservations).ToList();
+            IEnumerable<GuestReservation> gr = _roomService.GetAll(HotelID).SelectMany(x => x.GuestReservations).Where(x => x.IsActive).ToList();
             var now = DateTime.Today;
 
             var startOfMonth = new DateTime(now.Year, now.Month, 1);
@@ -723,7 +726,7 @@ namespace HotelMateWebV1.Controllers
             if (!depart.HasValue) depart = DateTime.Now.AddDays(1);
             if (!room_select.HasValue) room_select = 0;                      
 
-            IEnumerable<GuestReservation> gr = _roomService.GetAll(HotelID).SelectMany(x => x.GuestReservations).ToList();
+            IEnumerable<GuestReservation> gr = _roomService.GetAll(HotelID).SelectMany(x => x.GuestReservations).Where(x => x.IsActive).ToList();
             var now = DateTime.Today;
 
             var startOfMonth = new DateTime(now.Year, now.Month, 1);
@@ -735,8 +738,9 @@ namespace HotelMateWebV1.Controllers
 
             if (conflicts.Count > 0)
             {
-                var ids = conflicts.Select(x => x.RoomId).ToList();                
-                var model = new RoomBookingViewModel { RoomsList = allRooms.Where(x => !ids.Contains(x.Id)).ToList(), RoomsMatrixList = allRooms.ToList(), StartOfMonth = startOfMonth, EndOfMonth = endOfMonth };
+                var ids = conflicts.Select(x => x.RoomId).ToList();
+                var roomsWithoutConflict = allRooms.Where(x => !ids.Contains(x.Id)).ToList();
+                var model = new RoomBookingViewModel { RoomsList = roomsWithoutConflict, RoomsMatrixList = allRooms.ToList(), StartOfMonth = startOfMonth, EndOfMonth = endOfMonth };
                 model.MonthId = now.Month;
                 model.ThisMonth = now;
                 return View("Booking", model);

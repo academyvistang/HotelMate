@@ -3506,6 +3506,7 @@
     <Content Include="images\prettyPhoto\light_square\default_thumbnail.gif" />
     <Content Include="images\prettyPhoto\light_square\loader.gif" />
     <Content Include="images\prettyPhoto\light_square\sprite.png" />
+    <Content Include="images\Receipt\ReceiptLogo.jpg" />
     <Content Include="images\Reserved_3D-256.png" />
     <Content Include="images\right_arrow.png" />
     <Content Include="images\SidebarImages\AVAILABILITY.jpg" />
@@ -4852,7 +4853,6 @@
     <Content Include="Views\CompanyAccount\IndexLedger.cshtml" />
     <Content Include="Views\Shared\_SearchViewLedgers.cshtml" />
     <Content Include="Views\BarReport\AccountPayable.cshtml" />
-    <Content Include="Views\BarReport\AccountReceivable.cshtml" />
     <Content Include="Views\BarReport\BalanceSheet.cshtml" />
     <Content Include="Views\BarReport\BalanceSheetBar.cshtml" />
     <Content Include="Views\BarReport\CombinedSales.cshtml" />
@@ -4881,9 +4881,6 @@
     <Content Include="Views\BarReport\TotalSalesRoomsOnly.cshtml" />
     <Content Include="Views\Item\TransferPO.cshtml" />
     <Content Include="Views\Shared\_CheckOutWithTaxation.cshtml" />
-    <Content Include="Views\BarReport\AccountReceivableCash.cshtml" />
-    <Content Include="Views\BarReport\AccountReceivablePOS.cshtml" />
-    <Content Include="Views\BarReport\AccountReceivableCheque.cshtml" />
     <Content Include="Views\Shared\_GuestBillReceipt.cshtml" />
     <Content Include="Views\_EmailTemplateNewGuest.cshtml" />
     <Content Include="Views\Shared\_EmailTemplateNewGuest.cshtml" />
