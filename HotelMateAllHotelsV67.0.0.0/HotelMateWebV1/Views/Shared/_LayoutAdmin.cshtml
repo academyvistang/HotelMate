@@ -115,9 +115,10 @@
                 <li><a href="@Url.Action("AccountReceivable","BarReport")"><i class="fa fa-retweet"></i><span>Account Receivables</span></a>
                 <ul class="sub-menu">
                     <li><a href="@Url.Action("AccountReceivable","BarReport")">Account Receivable (All)</a></li>
-                    <li><a href="@Url.Action("AccountReceivableCash", "BarReport")">Account Receivable (Cash)</a></li>
-                    <li><a href="@Url.Action("AccountReceivablePOS","BarReport")">Account Receivable (POS)</a></li>
-                    <li><a href="@Url.Action("AccountReceivableCheque", "BarReport")">Account Receivable (Cheque)</a></li>
+                    <li><a href="@Url.Action("AccountReceivable", "BarReport", new { id = 1})">Account Receivable (Cash)</a></li>
+                    <li><a href="@Url.Action("AccountReceivable", "BarReport", new { id = 2})">Account Receivable (Cheque)</a></li>
+                    <li><a href="@Url.Action("AccountReceivable","BarReport",  new { id = 3})">Account Receivable (POS)</a></li>
+                    <li><a href="@Url.Action("AccountReceivable","BarReport",  new { id = 5})">Account Receivable (Transfers)</a></li>
                 </ul>
               </li>
                   

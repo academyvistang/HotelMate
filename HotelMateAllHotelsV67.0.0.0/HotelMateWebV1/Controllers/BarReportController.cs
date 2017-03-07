@@ -37,6 +37,8 @@ namespace HotelMateWebV1.Controllers
         private readonly ISoldItemService _soldItemService;
         private readonly IPurchaseOrderService _purchaseOrderService;
         private readonly IPaymentService _paymentService;
+        private readonly IPaymentMethodService _paymentMethodService;
+
 
 
 
@@ -72,6 +74,7 @@ namespace HotelMateWebV1.Controllers
             _purchaseOrderService = new PurchaseOrderService();
             _businessCorporateAccountService = new BusinessCorporateAccountService();
             _paymentService = new PaymentService();
+            _paymentMethodService = new PaymentMethodService();
         }
 
 
@@ -341,7 +344,7 @@ namespace HotelMateWebV1.Controllers
         }
 
       
-        public ActionResult AccountReceivable(DateTime? startDate, DateTime? endDate)
+        public ActionResult AccountReceivable(DateTime? startDate, DateTime? endDate, int? id)
         {
             ReportViewModel model = new ReportViewModel();
 
@@ -353,6 +356,21 @@ namespace HotelMateWebV1.Controllers
                     endDate = new DateTime(newDate.Year, newDate.Month, newDate.Day, 0, 0, 1);
                 }
             }
+
+            var ptl = _paymentMethodService.GetAll(1).Where(x => x.Id != 4 && x.Id != 6).ToList();
+
+            ptl.Insert(0, new HotelMateWeb.Dal.DataCore.PaymentMethod { Id = 0, Name ="--All--" });
+
+            IEnumerable<SelectListItem> selectList =
+                from c in ptl
+                select new SelectListItem
+                {
+                    Selected = (c.Id == id),
+                    Text = c.Name,
+                    Value = c.Id.ToString()
+                };
+
+            model.selectList = selectList;
 
             if (!startDate.HasValue)
                 startDate = DateTime.Now.AddMonths(-1);
@@ -371,9 +389,22 @@ namespace HotelMateWebV1.Controllers
 
                 ).OrderByDescending(x => x.TransactionDate).ToList();
 
-            var overallTotal = model.Accounts.Sum(x => x.Amount);
 
+            if(id.HasValue && id.Value > 0)
+            {
+                model.Accounts = model.Accounts.Where(x => x.PaymentMethodId == id.Value).ToList();
+            }
+
+            
             var hotelPayments = _paymentService.GetAllHotel().Where(x => x.Type == 2).ToList();
+
+            if (id.HasValue && id.Value > 0)
+            {
+                model.Accounts = model.Accounts.Where(x => x.PaymentMethodId == id.Value).ToList();
+                hotelPayments = hotelPayments.Where(x => x.PaymentMethodId == id.Value).ToList();
+            }
+
+            var overallTotal = model.Accounts.Sum(x => x.Amount);
 
             model.Tax = hotelPayments.Where(x => x.PaymentDate >= startDate && x.PaymentDate <= endDate).Sum(x => x.TaxAmount);
 

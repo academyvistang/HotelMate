@@ -24,6 +24,7 @@ namespace HotelMateWebV1.Models
 
     public class ReportViewModel : BaseViewModel
     {
+        public IEnumerable<System.Web.Mvc.SelectListItem> selectList { get; set; }
         public IQueryable<HotelMateWeb.Dal.DataCore.Guest> Guests { get; set; }
 
         public List<HotelMateWeb.Dal.DataCore.Room> Rooms { get; set; }
@@ -55,6 +56,9 @@ namespace HotelMateWebV1.Models
         public List<BalanceSheetModel> BalanceSheet { get; set; }
 
         public decimal FullBalance { get; set; }
+
+        public int Id { get; set; }
+
 
         public List<HotelMateWeb.Dal.DataCore.PurchaseOrder> InventoryList { get; set; }
 

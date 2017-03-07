@@ -17,3 +17,4 @@ C:\OtherProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\Invoicer\bin\Release\de\
 C:\OtherProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\Invoicer\bin\Release\de\PdfSharp.Charting.resources.dll
 C:\OtherProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\Invoicer\obj\Release\Invoicer.dll
 C:\OtherProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\Invoicer\obj\Release\Invoicer.pdb
+C:\OtherProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\Invoicer\obj\Release\Invoicer.csprojResolveAssemblyReference.cache

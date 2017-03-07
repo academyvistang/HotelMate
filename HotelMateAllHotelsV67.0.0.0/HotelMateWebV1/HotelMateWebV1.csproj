@@ -4922,6 +4922,9 @@
     <Content Include="Views\Shared\_BarRestauarantFODisplay.cshtml" />
     <Content Include="Views\Shared\_BarRestaurantFOAccount.cshtml" />
     <Content Include="Views\Shared\_PaymentMethodSelectorFO.cshtml" />
+    <Content Include="Views\Shared\_DateSelectorWithPoint.cshtml" />
+    <Content Include="Views\Shared\_DateSelectorWithPointPOS.cshtml" />
+    <Content Include="Views\BarReport\AccountReceivable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Admin\html\js\bootstrap\examples\navbar-fixed-top\" />
