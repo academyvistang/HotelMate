@@ -182,4 +182,3 @@ C:\OtherProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\Entitities\bin\Debug\Ent
 C:\OtherProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\Entitities\bin\Debug\Entitities.pdb
 C:\OtherProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\Entitities\obj\Debug\Entitities.dll
 C:\OtherProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\Entitities\obj\Debug\Entitities.pdb
-C:\OtherProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\Entitities\obj\Debug\Entitities.csprojResolveAssemblyReference.cache

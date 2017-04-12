@@ -640,11 +640,163 @@ namespace HotelMateWebV1.Controllers
             return View(model);
         }
 
+        private string GetOwnersEmail()
+        {
+
+            var ownersTelephone = string.Empty;
+
+            try
+            {
+                ownersTelephone = ConfigurationManager.AppSettings["OwnersEmail"].ToString();
+            }
+            catch
+            {
+                ownersTelephone = "";
+            }
+
+            return ownersTelephone;
+        }
+
+        private string GetOwnersTelephone()
+        {
+
+            var ownersTelephone = string.Empty;
+
+            try
+            {
+                ownersTelephone = ConfigurationManager.AppSettings["OwnersTelephone"].ToString();
+            }
+            catch
+            {
+                ownersTelephone = "";
+            }
+
+            return ownersTelephone;
+        }
+
+        public FileResult DownloadStatementEmailOwner(string filePath)
+        {
+            var path = Path.Combine(Server.MapPath("~/Products/Receipt/"), filePath + ".xlsx");
+            var fileName = DateTime.Now.ToShortDateString() + "_" + "Excel.xlsx";
+
+            var emailTemplate = @"<p style='margin:0px;padding:0px;font-size:12px;font-family:Arial, Helvetica, sans-serif;color:#555;' id='yui_3_16_0_ym19_1_1463261898755_4224'>Warm Greetings,<br>
+                                <br>This is to kindly inform you of your sales records, the sales details are listed below : <br>
+                                <br>Please see attached file for your sales statement<br><br>
+                                </p>";
+
+
+            try
+            {
+
+                var dest = GetOwnersEmail();
+
+                var emails = dest.Split(',').ToList();
+
+                foreach (var email in emails)
+                {
+
+                    MailMessage mail = new MailMessage("academyvistang@gmail.com", email, "Your sales report", emailTemplate);
+                    mail.From = new MailAddress("academyvistang@gmail.com", "BarRestaurantMate");
+                    mail.IsBodyHtml = true; // necessary if you're using html email
+                    NetworkCredential credential = new NetworkCredential("academyvistang@gmail.com", "Lauren280701");
+                    SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+                    smtp.EnableSsl = true;
+                    smtp.UseDefaultCredentials = false;
+                    smtp.Credentials = credential;
+                    if (path != null)
+                        mail.Attachments.Add(new Attachment(path));
+                    smtp.Send(mail);
+                }
+            }
+            catch(Exception)
+            {
+            
+            }
+
+            return File(path, "application/ms-excel", fileName);
+        }
+
 
         [HttpGet]
         public ActionResult SendEmail(bool? saved)
         {
             return View(new ReportViewModel { ItemSaved = saved });
+        }
+        public ActionResult SendEmailSalesReport(DateTime? startDate, DateTime? endDate, int? id)
+        {
+            ReportViewModel model = new ReportViewModel();
+
+            if (startDate.HasValue && endDate.HasValue)
+            {
+                if (startDate.Value == endDate.Value)
+                {
+                    var newDate = startDate.Value.AddDays(1);
+                    endDate = new DateTime(newDate.Year, newDate.Month, newDate.Day, 0, 0, 1);
+                }
+            }
+
+            var ptl = _paymentMethodService.GetAll(1).Where(x => x.Id != 4 && x.Id != 6).ToList();
+
+            ptl.Insert(0, new HotelMateWeb.Dal.DataCore.PaymentMethod { Id = 0, Name = "--All--" });
+
+            IEnumerable<SelectListItem> selectList =
+                from c in ptl
+                select new SelectListItem
+                {
+                    Selected = (c.Id == id),
+                    Text = c.Name,
+                    Value = c.Id.ToString()
+                };
+
+            model.selectList = selectList;
+
+            if (!startDate.HasValue)
+                startDate = DateTime.Now.AddMonths(-1);
+
+            if (!endDate.HasValue)
+                endDate = DateTime.Now.AddMonths(1);
+
+            model.Accounts = _guestRoomAccountService.GetAll(HotelID).Where(x => x.TransactionDate >= startDate && x.TransactionDate <= endDate
+                && ((x.PaymentTypeId == (int)RoomPaymentTypeEnum.CashDeposit)
+                || (x.PaymentTypeId == (int)RoomPaymentTypeEnum.InitialDeposit)
+                || (x.PaymentTypeId == (int)RoomPaymentTypeEnum.HalfDay)
+                || (x.PaymentTypeId == (int)RoomPaymentTypeEnum.Laundry)
+                || (x.PaymentTypeId == (int)RoomPaymentTypeEnum.Miscellenous)
+                || (x.PaymentTypeId == (int)RoomPaymentTypeEnum.ReservationDeposit))
+                && (x.PaymentMethodId != (int)PaymentMethodEnum.POSTBILL)
+
+                ).OrderByDescending(x => x.TransactionDate).ToList();
+
+
+            if (id.HasValue && id.Value > 0)
+            {
+                model.Accounts = model.Accounts.Where(x => x.PaymentMethodId == id.Value).ToList();
+            }
+
+
+            var hotelPayments = _paymentService.GetAllHotel().Where(x => x.Type == 2).ToList();
+
+            if (id.HasValue && id.Value > 0)
+            {
+                model.Accounts = model.Accounts.Where(x => x.PaymentMethodId == id.Value).ToList();
+                hotelPayments = hotelPayments.Where(x => x.PaymentMethodId == id.Value).ToList();
+            }
+
+            var overallTotal = model.Accounts.Sum(x => x.Amount);
+
+            model.Tax = hotelPayments.Where(x => x.PaymentDate >= startDate && x.PaymentDate <= endDate).Sum(x => x.TaxAmount);
+
+            model.Discount = hotelPayments.Where(x => x.PaymentDate >= startDate && x.PaymentDate <= endDate).Sum(x => x.DiscountAmount);
+
+            model.GrandTotal = overallTotal + model.Tax - model.Discount;
+
+            model.ReportName = "SendEmailSalesReport";
+
+            model.FileToDownloadPath = GenerateExcelSheet(model, model.ReportName);
+
+            DownloadStatementEmailOwner(model.FileToDownloadPath);
+
+            return View(model);
         }
 
         [HttpPost]
@@ -718,7 +870,7 @@ namespace HotelMateWebV1.Controllers
             return RedirectToAction("SendEmail", new { saved = true });
         }
 
-        private string GetOwnersTelephone()
+        private string GetOwnersTelephoneOld()
         {
 
             var ownersTelephone = string.Empty;
