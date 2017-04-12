@@ -453,5 +453,6 @@ C:\OtherProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\PdfReportGenerator\bin\D
 C:\OtherProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\PdfReportGenerator\bin\Debug\System.Web.WebPages.xml
 C:\OtherProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\PdfReportGenerator\bin\Debug\Microsoft.Web.Infrastructure.xml
 C:\OtherProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\PdfReportGenerator\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\OtherProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\PdfReportGenerator\obj\Debug\PdfReportGenerator.csprojResolveAssemblyReference.cache
 C:\OtherProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\PdfReportGenerator\obj\Debug\PdfReportGenerator.dll
 C:\OtherProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\PdfReportGenerator\obj\Debug\PdfReportGenerator.pdb

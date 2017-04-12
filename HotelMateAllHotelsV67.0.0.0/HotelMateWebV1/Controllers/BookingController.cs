@@ -2379,7 +2379,7 @@ namespace HotelMateWebV1.Controllers
         }        
 
         [HttpPost]
-        public ActionResult EditFutureBooking(string selectedRoomIds, RoomBookingViewModel model, int? paymentMethodId, string paymentMethodNote)
+        public ActionResult EditFutureBooking(string selectedRoomIds, RoomBookingViewModel model, int? paymentMethodId, string paymentMethodNote, decimal? discountedRate)
         {
             var guestRoomIds = selectedRoomIds.Split(',');
             var existingGuestRooms = _guestRoomService.GetAll(HotelId).Where(x => guestRoomIds.Contains(x.Id.ToString())).ToList();
@@ -2414,6 +2414,11 @@ namespace HotelMateWebV1.Controllers
                         Notes = model.Guest.Notes,
                         GroupBooking = true                    
                     };
+
+                    if(discountedRate.HasValue && discountedRate.Value > 0)
+                    {
+                        newGuestRoom.RoomRate = discountedRate.Value;
+                    }
 
                     var conflicts = grm.Room.RoomAvailability(newGuestRoom.CheckinDate, newGuestRoom.CheckoutDate,model.GuestId,null);
 
@@ -2457,6 +2462,7 @@ namespace HotelMateWebV1.Controllers
                         existingGuestRoom.CheckoutDate = editedGuestRoom.CheckoutDate;
                         existingReservation.StartDate = editedGuestRoom.CheckinDate;
                         existingReservation.EndDate = editedGuestRoom.CheckoutDate;
+                        existingReservation.DiscountedRoomRate = discountedRate.HasValue ? discountedRate.Value : decimal.Zero;
                         _guestReservationService.Update(existingReservation);
                         _guestRoomService.Update(existingGuestRoom);
                     }
@@ -2529,7 +2535,7 @@ namespace HotelMateWebV1.Controllers
 
 
         [HttpPost]
-        public ActionResult FutureReservationNewBooking(string selectedRoomIds, RoomBookingViewModel model, int? paymentMethodId, string paymentMethodNote)
+        public ActionResult FutureReservationNewBooking(string selectedRoomIds, RoomBookingViewModel model, int? paymentMethodId, string paymentMethodNote, decimal? discountedRate)
         {
             var roomIds = selectedRoomIds.Split(',');
 
@@ -2563,10 +2569,14 @@ namespace HotelMateWebV1.Controllers
                         Notes = model.Guest.Notes,
                         GroupBooking = true,
                         GroupBookingMainRoom = groupBookingMainRoom,
-                        RoomNumber = rm.RoomNumber
+                        RoomNumber = rm.RoomNumber,
+                        
                     };
 
-                    
+                    if(discountedRate.HasValue && discountedRate.Value > 0)
+                    {
+                        newGuestRoom.RoomRate = discountedRate.Value;
+                    }
 
                     var conflicts = rm.RoomAvailability(newGuestRoom.CheckinDate, newGuestRoom.CheckoutDate, null);
 
@@ -2620,7 +2630,8 @@ namespace HotelMateWebV1.Controllers
                             EndDate = gr.CheckoutDate,
                             GuestId = gr.GuestId,
                             IsActive = true,
-                            FutureBooking = true
+                            FutureBooking = true,
+                            DiscountedRoomRate = discountedRate.HasValue ? discountedRate.Value : decimal.Zero
                         });
 
                         checkingDateFuture = gr.CheckinDate;
@@ -2644,23 +2655,6 @@ namespace HotelMateWebV1.Controllers
                     guest.HotelId = HotelId;
                     
                     var newGuest = _guestService.Create(guest);
-
-
-                    //try
-                    //{
-
-                    //    eModel.Guest = newGuest;
-
-                    //    var strMsg = "Dear " + newGuest.FullName + ", Thank you for choosing to stay at with us. Your reservation has been confirmed and your check-in date is " + checkingDateFuture.ToShortDateString();
-
-                    //    SendSMS(newGuest.Telephone, strMsg);
-
-                    //    SendEmailToGuestReservation(eModel);
-                    //}
-                    //catch
-                    //{
-
-                    //}
 
                     return RedirectToAction("PrintLandingForGuestCheckinFuture", "Home", new { id = guest.Id });
 

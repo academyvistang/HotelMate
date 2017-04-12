@@ -38,6 +38,7 @@ namespace HotelMateWeb.Dal.DataCore
         public string Status { get; set; }
         public int HotelId { get; set; }
         public bool Debtor { get; set; }
+        public int AccountTypeId { get; set; }
     
         public virtual Hotel Hotel { get; set; }
         public virtual ICollection<BusinessCorporateAccount> BusinessCorporateAccounts { get; set; }

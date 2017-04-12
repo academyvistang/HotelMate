@@ -22,6 +22,7 @@ namespace HotelMateWeb.Dal.DataCore
         public int GuestId { get; set; }
         public bool FutureBooking { get; set; }
         public bool ForDelete { get; set; }
+        public decimal DiscountedRoomRate { get; set; }
     
         public virtual Room Room { get; set; }
         public virtual Guest Guest { get; set; }

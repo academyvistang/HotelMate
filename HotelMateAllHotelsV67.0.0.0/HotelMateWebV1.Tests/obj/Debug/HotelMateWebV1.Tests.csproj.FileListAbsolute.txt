@@ -2573,9 +2573,6 @@ C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\HotelMateWebV1.Tests\obj\D
 C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\HotelMateWebV1.Tests\bin\Debug\ClosedXML.dll
 C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\HotelMateWebV1.Tests\bin\Debug\DocumentFormat.OpenXml.dll
 C:\NewProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\HotelMateWebV1.Tests\bin\Debug\ClosedXML.pdb
-C:\OtherProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\HotelMateWebV1.Tests\obj\Debug\HotelMateWebV1.Tests.csprojResolveAssemblyReference.cache
-C:\OtherProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\HotelMateWebV1.Tests\obj\Debug\HotelMateWebV1.Tests.dll
-C:\OtherProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\HotelMateWebV1.Tests\obj\Debug\HotelMateWebV1.Tests.pdb
 C:\OtherProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\HotelMateWebV1.Tests\bin\Debug\HotelMateWebV1.Tests.dll.config
 C:\OtherProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\HotelMateWebV1.Tests\bin\Debug\HotelMateWebV1.Tests.dll
 C:\OtherProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\HotelMateWebV1.Tests\bin\Debug\HotelMateWebV1.Tests.pdb
@@ -2659,3 +2656,6 @@ C:\OtherProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\HotelMateWebV1.Tests\bin
 C:\OtherProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\HotelMateWebV1.Tests\bin\Debug\de\MigraDoc.Rendering.resources.dll
 C:\OtherProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\HotelMateWebV1.Tests\bin\Debug\de\PdfSharp.resources.dll
 C:\OtherProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\HotelMateWebV1.Tests\bin\Debug\de\PdfSharp.Charting.resources.dll
+C:\OtherProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\HotelMateWebV1.Tests\obj\Debug\HotelMateWebV1.Tests.csprojResolveAssemblyReference.cache
+C:\OtherProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\HotelMateWebV1.Tests\obj\Debug\HotelMateWebV1.Tests.dll
+C:\OtherProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\HotelMateWebV1.Tests\obj\Debug\HotelMateWebV1.Tests.pdb

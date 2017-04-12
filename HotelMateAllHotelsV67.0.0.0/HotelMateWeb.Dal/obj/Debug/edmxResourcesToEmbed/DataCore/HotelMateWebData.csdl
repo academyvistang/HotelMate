@@ -515,6 +515,7 @@
     <NavigationProperty Name="Room" Relationship="HotelMateWebModel.FK_GuestReservation_GuestReservationRoom" FromRole="GuestReservation" ToRole="Room" />
     <Property Name="ForDelete" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="Guest" Relationship="HotelMateWebModel.FK_GuestReservation_GuestReservationGuest" FromRole="GuestReservation" ToRole="Guest" />
+    <Property Name="DiscountedRoomRate" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
   </EntityType>
   <EntityType Name="GuestRoom">
     <Key>
@@ -1697,6 +1698,7 @@
     <NavigationProperty Name="SoldItemsAlls" Relationship="HotelMateWebModel.FK_SoldItemsAll_SoldItemsAllBA" FromRole="BusinessAccount" ToRole="SoldItemsAll" />
     <NavigationProperty Name="GuestRooms" Relationship="HotelMateWebModel.BusinessRoomAccounts" FromRole="BusinessAccount" ToRole="GuestRoom" />
     <NavigationProperty Name="Payments" Relationship="HotelMateWebModel.FK_Payment_PaymentBA" FromRole="BusinessAccount" ToRole="Payment" />
+    <Property Name="AccountTypeId" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="BusinessCorporateAccount">
     <Key>
