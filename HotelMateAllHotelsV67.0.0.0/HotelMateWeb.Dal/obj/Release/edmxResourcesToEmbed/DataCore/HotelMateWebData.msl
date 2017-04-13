@@ -4,6 +4,7 @@
     <EntitySetMapping Name="GuestReservations">
       <EntityTypeMapping TypeName="HotelMateWebModel.GuestReservation">
         <MappingFragment StoreEntitySet="GuestReservation">
+          <ScalarProperty Name="DiscountedRoomRate" ColumnName="DiscountedRoomRate" />
           <ScalarProperty Name="ForDelete" ColumnName="ForDelete" />
           <ScalarProperty Name="FutureBooking" ColumnName="FutureBooking" />
           <ScalarProperty Name="GuestId" ColumnName="GuestId" />
@@ -732,6 +733,7 @@
     <EntitySetMapping Name="BusinessAccounts">
       <EntityTypeMapping TypeName="HotelMateWebModel.BusinessAccount">
         <MappingFragment StoreEntitySet="BusinessAccount">
+          <ScalarProperty Name="AccountTypeId" ColumnName="AccountTypeId" />
           <ScalarProperty Name="Debtor" ColumnName="Debtor" />
           <ScalarProperty Name="HotelId" ColumnName="HotelId" />
           <ScalarProperty Name="Status" ColumnName="Status" />

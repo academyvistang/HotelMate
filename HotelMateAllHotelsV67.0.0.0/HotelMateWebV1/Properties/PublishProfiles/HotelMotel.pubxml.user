@@ -6,7 +6,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>C:\Publishing\HotelMateLive1.0.0.0</_PublishTargetUrl>
+    <_PublishTargetUrl>C:\Publishing\HotelMateLive10.0.0.0</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="Admin/css/.DS_Store">
@@ -8185,13 +8185,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/01/2015 21:45:08</publishTime>
     </File>
     <File Include="bin/HotelMateWeb.Dal.dll">
-      <publishTime>03/07/2017 12:09:22</publishTime>
+      <publishTime>04/12/2017 21:13:41</publishTime>
     </File>
     <File Include="bin/HotelMateWeb.Services.dll">
-      <publishTime>03/07/2017 12:09:23</publishTime>
+      <publishTime>04/12/2017 21:13:41</publishTime>
     </File>
     <File Include="bin/HotelMateWebV1.dll">
-      <publishTime>03/07/2017 12:09:25</publishTime>
+      <publishTime>04/12/2017 21:13:43</publishTime>
     </File>
     <File Include="bin/HTTPSMS.dll">
       <publishTime>03/02/2017 13:50:52</publishTime>
@@ -12915,6 +12915,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/BarReport/SendEmail.cshtml">
       <publishTime>03/02/2017 13:50:52</publishTime>
     </File>
+    <File Include="Views/BarReport/SendEmailSalesReport.cshtml">
+      <publishTime>04/12/2017 15:16:01</publishTime>
+    </File>
     <File Include="Views/BarReport/TotalExpenditure.cshtml">
       <publishTime>03/02/2017 13:50:52</publishTime>
     </File>
@@ -13855,7 +13858,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/02/2017 13:50:52</publishTime>
     </File>
     <File Include="Views/Shared/_LayoutAdmin.cshtml">
-      <publishTime>03/07/2017 12:00:10</publishTime>
+      <publishTime>04/12/2017 15:18:13</publishTime>
     </File>
     <File Include="Views/Shared/_LayoutCombo.cshtml">
       <publishTime>03/02/2017 13:50:52</publishTime>

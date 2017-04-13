@@ -60,6 +60,7 @@
     <Property Name="Status" Type="char" MaxLength="10" Nullable="false" />
     <Property Name="HotelId" Type="int" Nullable="false" />
     <Property Name="Debtor" Type="bit" Nullable="false" />
+    <Property Name="AccountTypeId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="BusinessCorporateAccount">
     <Key>
@@ -382,6 +383,7 @@
     <Property Name="GuestId" Type="int" Nullable="false" />
     <Property Name="FutureBooking" Type="bit" Nullable="false" />
     <Property Name="ForDelete" Type="bit" Nullable="false" />
+    <Property Name="DiscountedRoomRate" Type="decimal" Precision="18" Scale="2" Nullable="false" />
   </EntityType>
   <EntityType Name="GuestRoom">
     <Key>
