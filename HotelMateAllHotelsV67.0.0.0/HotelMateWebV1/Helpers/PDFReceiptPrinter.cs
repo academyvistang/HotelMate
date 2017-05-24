@@ -96,7 +96,7 @@ namespace HotelMateWebV1.Helpers
                  .Client(Address.Make("BILLING TO", clientDetails))
                  .Items(new List<ItemRow>
                  {
-                    ItemRow.Make(initialDeposit.RoomPaymentType.Description, initialDeposit.PaymentMethod.Description , (decimal)1, 0, amountPaid, amountPaid)
+                    ItemRow.Make(GetPaymementNote(initialDeposit), GetPaymementNote(initialDeposit) , (decimal)1, 0, amountPaid, amountPaid)
                  })
                    .Totals(new List<TotalRow> {
                     TotalRow.Make("Sub Total", amountPaid),
@@ -111,6 +111,11 @@ namespace HotelMateWebV1.Helpers
                  .Save(path, 0);
 
             return reference;
+        }
+
+        private static string GetPaymementNote(GuestRoomAccount initialDeposit)
+        {
+           return !string.IsNullOrEmpty(initialDeposit.PaymentMethodNote) ? initialDeposit.PaymentMethodNote : initialDeposit.RoomPaymentType.Name;
         }
 
         public static string PrintInvoiceChecking(string path, GuestRoomAccount gra, string imagePath)
@@ -173,7 +178,7 @@ namespace HotelMateWebV1.Helpers
                  .Client(Address.Make("BILLING TO", clientDetails))
                  .Items(new List<ItemRow>
                  {
-                    ItemRow.Make(initialDeposit.RoomPaymentType.Description, initialDeposit.PaymentMethod.Description , (decimal)1, 0, amountPaid, amountPaid)
+                    ItemRow.Make(GetPaymementNote(initialDeposit), GetPaymementNote(initialDeposit) , (decimal)1, 0, amountPaid, amountPaid)
                  })
                    .Totals(new List<TotalRow> {
                     TotalRow.Make("Sub Total", amountPaid),

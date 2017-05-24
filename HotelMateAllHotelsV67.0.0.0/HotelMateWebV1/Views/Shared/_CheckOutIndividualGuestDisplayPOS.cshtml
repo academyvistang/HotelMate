@@ -119,24 +119,40 @@
         return parseFloat((val2/100) * val1);
     }
 
-    function CalculateTotal(expenses, roomTotal, payments, discount, tax)
-    {
-        var roomTotalTaxPercentage = percentage(roomTotal, tax);
+    function CalculateTotal(expenses, roomTotal, payments, discount, tax) {
+        var newTotal = parseFloat(expenses) + parseFloat(roomTotal);
 
-        var tot = parseFloat(roomTotal) + parseFloat(roomTotalTaxPercentage);
+        var roomTotalDiscountPercentage = percentage(newTotal, discount);
 
-        var roomTotalDiscountPercentage = percentage(roomTotal, discount);
+        var finalTotal = parseFloat(newTotal) - parseFloat(roomTotalDiscountPercentage);
 
-        var dis = parseFloat(roomTotal) +parseFloat(roomTotalDiscountPercentage);
+        var roomTotalTaxPercentage = percentage(finalTotal, tax);
 
-        tot = parseFloat(tot) - parseFloat(dis);
+        var tot = parseFloat(finalTotal) + parseFloat(roomTotalTaxPercentage);
 
-        var allExpenses = parseFloat(roomTotal) + parseFloat(expenses);
-
-        var returnVal = parseFloat(payments - (allExpenses + tot));
+        var returnVal = parseFloat(payments - (tot));
 
         return parseFloat(returnVal);
     }
+
+    //function CalculateTotal(expenses, roomTotal, payments, discount, tax)
+    //{
+    //    var roomTotalTaxPercentage = percentage(roomTotal, tax);
+
+    //    var tot = parseFloat(roomTotal) + parseFloat(roomTotalTaxPercentage);
+
+    //    var roomTotalDiscountPercentage = percentage(roomTotal, discount);
+
+    //    var dis = parseFloat(roomTotal) +parseFloat(roomTotalDiscountPercentage);
+
+    //    tot = parseFloat(tot) - parseFloat(dis);
+
+    //    var allExpenses = parseFloat(roomTotal) + parseFloat(expenses);
+
+    //    var returnVal = parseFloat(payments - (allExpenses + tot));
+
+    //    return parseFloat(returnVal);
+    //}
 
 
 </script>

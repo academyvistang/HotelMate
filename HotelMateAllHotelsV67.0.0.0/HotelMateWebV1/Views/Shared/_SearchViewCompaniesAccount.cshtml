@@ -50,7 +50,7 @@
                 <table class="striped fixedlayout">
                     <thead>
                         <tr>
-                            <th width="15%">Room No.</th>
+                            <th width="20%">Room No.</th>
                             <th width="15%">Room Type</th>
                             <th width="20%">Type</th>
                             <th width="10%">Reference</th>
@@ -65,7 +65,7 @@
                             foreach (var ac in rm.GuestRoomAccounts.Where(x => ((x.PaymentMethodId == (int)HotelMateWebV1.Helpers.Enums.PaymentMethodEnum.POSTBILL) || (x.PaymentTypeId == (int)HotelMateWebV1.Helpers.Enums.RoomPaymentTypeEnum.CashDeposit || x.PaymentTypeId == (int)HotelMateWebV1.Helpers.Enums.RoomPaymentTypeEnum.InitialDeposit || x.PaymentTypeId == (int)HotelMateWebV1.Helpers.Enums.RoomPaymentTypeEnum.ReservationDeposit)) || (x.PaymentTypeId == (int)HotelMateWebV1.Helpers.Enums.RoomPaymentTypeEnum.CashDeposit || x.PaymentTypeId == (int)HotelMateWebV1.Helpers.Enums.RoomPaymentTypeEnum.InitialDeposit)).OrderByDescending(x => x.TransactionDate))
                             {
                                 <tr id="@ac.Id">
-                                    <td class="tth2">@rm.Room.RoomNumber</td>
+                                    <td class="tth2">@rm.Room.RoomNumber (@rm.Guest.FullName)</td>
                                     <td class="tth2">@rm.Room.RoomType1.Name</td>
                                     <td class="tth2">@ac.RoomPaymentType.Name </td>
                                     <td class="tth2">@ac.TransactionId</td>
@@ -94,7 +94,7 @@
                 <table class="striped fixedlayout">
                     <thead>
                         <tr>
-                            <th width="15%">Room No.</th>
+                            <th width="20%">Room No.</th>
                             <th width="20%">Room Type</th>
                             <th width="25%">Checkin</th>
                             <th width="20%">Checkout</th>
@@ -107,7 +107,7 @@
                         @foreach (var rm in Model.Company.GuestRooms)
                         {
                             <tr id="@rm.Id">
-                                <td class="tth2">@rm.Room.RoomNumber</td>
+                                <td class="tth2">@rm.Room.RoomNumber (@rm.Guest.FullName)</td>
                                 <td class="tth2">@rm.Room.RoomType1.Name</td>
                                 <td class="tth2">@rm.CheckinDate.ToShortDateString()</td>
                                 <td class="tth2">@DateTime.Now.ToShortDateString()</td>

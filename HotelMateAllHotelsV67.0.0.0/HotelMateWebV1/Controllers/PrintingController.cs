@@ -212,7 +212,7 @@ namespace HotelMateWebV1.Controllers
                     
                     CheckOutDisplayModel cdm = new CheckOutDisplayModel();
                     cdm.TransactionDate = acc.TransactionDate;
-                    cdm.Detail = acc.RoomPaymentType.Name;
+                    cdm.Detail = !string.IsNullOrEmpty(acc.PaymentMethodNote) ? acc.PaymentMethodNote : acc.RoomPaymentType.Name;
                     cdm.Status = acc.RoomPaymentType.PaymentStatusId;
                     cdm.Amount = acc.Amount;
                     cdm.Type = acc.PaymentMethod.Name;
@@ -230,7 +230,7 @@ namespace HotelMateWebV1.Controllers
                     {
                         CheckOutDisplayModel cdm = new CheckOutDisplayModel();
                         cdm.TransactionDate = acc.TransactionDate;
-                        cdm.Detail = acc.RoomPaymentType.Name;
+                        cdm.Detail = !string.IsNullOrEmpty(acc.PaymentMethodNote) ? acc.PaymentMethodNote : acc.RoomPaymentType.Name;
                         cdm.Status = acc.RoomPaymentType.PaymentStatusId;
                         cdm.Amount = acc.Amount;
                         cdm.Type = acc.PaymentMethod.Name;
