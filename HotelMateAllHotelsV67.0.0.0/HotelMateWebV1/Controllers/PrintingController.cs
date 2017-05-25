@@ -291,7 +291,7 @@ namespace HotelMateWebV1.Controllers
             {
                 var cdmDiscount = new CheckOutDisplayModel();
                 cdmDiscount.TransactionDate = DateTime.Now;
-                cdmDiscount.Detail = "TAX -- " + discountName;
+                cdmDiscount.Detail = "Discount -- " + discountName;
                 cdmDiscount.Status = (int)RoomPaymentStatusEnum.Credit;
                 cdmDiscount.Amount = discount;
                 cdmDiscount.Type = "---";

@@ -1724,6 +1724,13 @@ namespace HotelMateWebV1.Controllers
                      DateTime.Now, distributionPointId, true, receiptNumber, total.Value, subtotal.Value, tax, taxamount.Value, discount, discountamount.Value, resident, residentAmount.Value,
                      serviceChargeString, serviceCharge.Value, paid.Value, outstanding, cashier);
                 }
+                else
+                {
+                    total = decimal.Zero;
+                    POSService.StockItemService.UpdateSales(paymentTypeId, guestId.Value, companyAccountId, cashier, 1, guestRoom.Id, conn, (int)PaymentMethodEnum.Cash, "PAID AT CHECKOUT",
+                    DateTime.Now, distributionPointId, true, receiptNumber, total.Value, subtotal.Value, tax, taxamount.Value, discount, discountamount.Value, resident, residentAmount.Value,
+                    serviceChargeString, serviceCharge.Value, paid.Value, outstanding, cashier);
+                }
             }
 
             guest = _guestService.GetById(guestId.Value);
