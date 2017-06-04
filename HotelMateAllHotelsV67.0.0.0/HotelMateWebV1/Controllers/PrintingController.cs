@@ -248,13 +248,13 @@ namespace HotelMateWebV1.Controllers
             cdm1.Type = "---";
             list.Add(cdm1);
 
-            var tax = gravm.Guest.Payments.Sum(x => x.TaxAmount);
+            var tax = gravm.Guest.Payments.Where(x => x.Type == 2).Sum(x => x.TaxAmount);
 
             string taxName = "TAX";
 
             if(tax > 0)
             {
-                taxName = gravm.Guest.Payments.LastOrDefault().Tax;
+                taxName = gravm.Guest.Payments.Where(x => x.Type == 2).LastOrDefault().Tax;
             }
 
             if(string.IsNullOrEmpty(taxName))
@@ -273,13 +273,13 @@ namespace HotelMateWebV1.Controllers
                 list.Add(cdmtax);
             }
 
-            var discount = gravm.Guest.Payments.Sum(x => x.DiscountAmount);
+            var discount = gravm.Guest.Payments.Where(x => x.Type == 2).Sum(x => x.DiscountAmount);
 
             string discountName = "DISCOUNT";
 
             if (discount > 0)
             {
-                discountName = gravm.Guest.Payments.LastOrDefault().Discount;
+                discountName = gravm.Guest.Payments.Where(x => x.Type == 2).LastOrDefault().Discount;
             }
 
             if (string.IsNullOrEmpty(discountName))

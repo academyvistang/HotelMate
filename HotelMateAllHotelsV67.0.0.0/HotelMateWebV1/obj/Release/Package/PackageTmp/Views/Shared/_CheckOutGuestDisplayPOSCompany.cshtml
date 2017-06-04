@@ -124,7 +124,7 @@
     }
 
     function CalculateTotal(expenses, roomTotal, payments, discount, tax) {
-        var newTotal = parseFloat(expenses) + parseFloat(roomTotal);
+        var newTotal = parseFloat(roomTotal);
 
         var roomTotalDiscountPercentage = percentage(newTotal, discount);
 
@@ -132,7 +132,7 @@
 
         var roomTotalTaxPercentage = percentage(finalTotal, tax);
 
-        var tot = parseFloat(finalTotal) + parseFloat(roomTotalTaxPercentage);
+        var tot = parseFloat(finalTotal) + parseFloat(roomTotalTaxPercentage) + parseFloat(expenses);
 
         var returnVal = parseFloat(payments - (tot));
 

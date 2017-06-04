@@ -194,3 +194,4 @@ C:\OtherProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\POSService\POSService.En
 C:\OtherProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\POSService\POSService.Entities\bin\Release\POSService.Entities.pdb
 C:\OtherProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\POSService\POSService.Entities\obj\Release\POSService.Entities.dll
 C:\OtherProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\POSService\POSService.Entities\obj\Release\POSService.Entities.pdb
+C:\OtherProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\POSService\POSService.Entities\obj\Release\POSService.Entities.csprojResolveAssemblyReference.cache
