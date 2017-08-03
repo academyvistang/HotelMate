@@ -2583,12 +2583,35 @@ namespace HotelMateWebV1.Controllers
                     if (conflicts.Count > 0)
                     {
                         ModelState.AddModelError("_FORM",
-                             "There is a reservation clash with your proposed checkin/checkout date(s) for " + newGuestRoom.RoomNumber);
+                             "There is a reservation clash with your proposed checkin/checkout date(s) for  -- " + newGuestRoom.RoomNumber);
                     
                     }
                     else
                     {
-                        guestRooms.Add(newGuestRoom);
+                        var grs = rm.GuestRooms.ToList();
+
+                        var newConflicts = rm.GuestRooms.Where(x => x.IsActive && DateTime.Now > x.CheckoutDate).ToList();
+
+                        if (newConflicts.Count > 0)
+                        {
+                            ModelState.AddModelError("_FORM",
+                                 "There are guests whose checkout dates has since expired but are still on the system please checkout guests or extend their stays -- " + newGuestRoom.RoomNumber);
+                        }
+                        else
+                        {
+                            newConflicts = rm.GuestRooms.Where(x => x.IsActive && newGuestRoom.CheckinDate.IsBetween(x.CheckinDate, x.CheckoutDate)).ToList();
+
+                            if (newConflicts.Count > 0)
+                            {
+                                ModelState.AddModelError("_FORM",
+                                  "There is a reservation clash an existing guest with your proposed checkin/checkout date(s) for -- " + newGuestRoom.RoomNumber);
+
+                            }
+                            else
+                            {
+                                guestRooms.Add(newGuestRoom);
+                            }
+                        }
                     }
                 }
 
@@ -3889,6 +3912,24 @@ namespace HotelMateWebV1.Controllers
         public ActionResult EditBooking(int? id, bool? itemSaved, bool? guestTransferComplete)
         {
             var model = GetModelForEditBooking(id.Value, itemSaved, guestTransferComplete);
+
+            if(!User.IsInRole("ADMIN"))
+            {
+                if ((itemSaved.HasValue && itemSaved.Value) || (guestTransferComplete.HasValue && guestTransferComplete.Value))
+                {
+                    return View(model);
+                }
+                else
+                {
+                    if (model.GuestRoom.IsActive && DateTime.Now.AddDays(-1) > model.GuestRoom.CheckoutDate)
+                    {
+                        return RedirectToAction("ExtendGuestStayNew", "GuestAccount", new { id = model.Guest.Id, roomId = id.Value });
+                    }
+                }
+            }
+
+            
+            //GuestAccount / ExtendGuestStay / 1816 ? roomId = 3201
             return View(model);
         }
 

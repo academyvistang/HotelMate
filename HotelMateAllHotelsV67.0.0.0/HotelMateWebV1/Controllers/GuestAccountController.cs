@@ -2861,6 +2861,41 @@ namespace HotelMateWebV1.Controllers
             return View(gravm);
         }
 
+        
+        [HttpGet]
+        public ActionResult ExtendGuestStayNew(int? id, int? roomId, bool? itemSaved)
+        {
+            var guest = _guestService.GetById(id.Value);
+
+            GuestRoom mainGuestRoom = null;
+
+            if (roomId.HasValue)
+            {
+                mainGuestRoom = guest.GuestRooms.FirstOrDefault(x => x.RoomId == roomId);
+            }
+
+            if (mainGuestRoom == null)
+            {
+                mainGuestRoom = guest.GuestRooms.FirstOrDefault(x => x.GroupBookingMainRoom) ?? guest.GuestRooms.FirstOrDefault();
+            }
+
+            var gravm = new GuestRoomAccountViewModel
+            {
+                ItemSaved = itemSaved,
+                Guest = guest,
+                RoomId = mainGuestRoom.RoomId,
+                Room = mainGuestRoom.Room,
+                NewCheckOutDate = DateTime.Now,
+                PreviousCheckOutDate = mainGuestRoom.CheckoutDate,
+                GuestRoom = mainGuestRoom,
+                PaymentTypeId = 0,
+                Rooms = GetGuestRooms(guest.GuestRooms.ToList()),
+                GuestRoomAccount = new GuestRoomAccount { Amount = decimal.Zero }
+            };
+
+            return View(gravm);
+        }
+
         [HttpGet]
         //[OutputCache(Duration = 3600, VaryByParam = "id,roomId,itemSaved")]
         public ActionResult ExtendGuestStay(int? id, int? roomId, bool? itemSaved )

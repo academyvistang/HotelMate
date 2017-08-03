@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using HotelMateWeb.Dal.DataCore;
 
 namespace HotelMateWebV1.Models
 {
@@ -40,5 +41,7 @@ namespace HotelMateWebV1.Models
         public IEnumerable<System.Web.Mvc.SelectListItem> RoomStatusList { get; set; }
 
         public string VideoPath { get; set; }
+        public string Message { get; set; }
+        public List<Room> Rooms { get; set; }
     }
 }

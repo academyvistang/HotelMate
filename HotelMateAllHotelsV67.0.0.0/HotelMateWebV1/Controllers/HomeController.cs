@@ -416,6 +416,18 @@ namespace HotelMateWebV1.Controllers
             }
         }
 
+        public ActionResult RemoveReservation(int? id)
+        {
+            var reservation = _guestReservationService.GetById(id.Value);
+
+            if(reservation != null)
+            {
+                reservation.IsActive = false;
+                _guestReservationService.Update(reservation);
+            }
+            return RedirectToAction("FutureBooking");
+        }
+
         //[OutputCache(Duration = 3600, VaryByParam = "arrive,depart,room_select")]
         public ActionResult FutureBooking(DateTime? arrive, DateTime? depart, int? room_select)
         {
@@ -442,6 +454,7 @@ namespace HotelMateWebV1.Controllers
                 var model = new RoomBookingViewModel {GuestList = guestList, RoomsList = allRooms.Where(x => !ids.Contains(x.Id)).ToList(), RoomsMatrixList = allRooms.ToList(), StartOfMonth = startOfMonth, EndOfMonth = endOfMonth };
                 model.MonthId = now.Month;
                 model.ThisMonth = now;
+                model.UnusedReservations = allRooms.Where(x => ids.Contains(x.Id)).ToList();
                 return View(model);  
             }
             else
@@ -514,10 +527,13 @@ namespace HotelMateWebV1.Controllers
             IEnumerable<GuestReservation> gr = _roomService.GetAll(HotelID).SelectMany(x => x.GuestReservations).Where(x => x.IsActive).ToList();
             var conflicts = gr.SelectAvailable(arrive.Value, depart.Value, room_select.Value).ToList();
 
+            var allRooms = _roomService.GetAll(HotelID).ToList();
+
             if (conflicts.Count > 0)
             {
                 var ids = conflicts.Select(x => x.RoomId).ToList();
-                var model = new RoomBookingViewModel { CheckinDate = arrive, CheckoutDate = depart, RoomsList = _roomService.GetAll(HotelID).Where(x => !ids.Contains(x.Id)).ToList() };
+                var model = new RoomBookingViewModel { CheckinDate = arrive, CheckoutDate = depart, RoomsList = allRooms.Where(x => !ids.Contains(x.Id)).ToList() };
+                model.UnusedReservations = allRooms.Where(x => ids.Contains(x.Id)).ToList();
                 return View("NewFutureBooking", model);
             }
             else

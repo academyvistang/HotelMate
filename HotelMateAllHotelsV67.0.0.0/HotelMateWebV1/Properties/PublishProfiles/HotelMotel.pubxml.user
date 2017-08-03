@@ -6,7 +6,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>C:\Publishing\Inagbe\HotelMateLive13.0.0.0</_PublishTargetUrl>
+    <_PublishTargetUrl>C:\Publishing\Inagbe\HotelMateLive14.0.0.0</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="Admin/css/.DS_Store">
@@ -8191,7 +8191,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/04/2017 09:51:15</publishTime>
     </File>
     <File Include="bin/HotelMateWebV1.dll">
-      <publishTime>06/04/2017 09:51:20</publishTime>
+      <publishTime>08/03/2017 21:15:13</publishTime>
     </File>
     <File Include="bin/HTTPSMS.dll">
       <publishTime>03/02/2017 13:50:52</publishTime>
@@ -13221,6 +13221,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/GuestAccount/ExtendGuestStay.cshtml">
       <publishTime>03/02/2017 13:50:52</publishTime>
     </File>
+    <File Include="Views/GuestAccount/ExtendGuestStayNew.cshtml">
+      <publishTime>08/03/2017 20:16:30</publishTime>
+    </File>
     <File Include="Views/GuestAccount/GrantInternetAccess.cshtml">
       <publishTime>03/02/2017 13:50:52</publishTime>
     </File>
@@ -13276,7 +13279,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/02/2017 13:50:52</publishTime>
     </File>
     <File Include="Views/Home/FutureBooking.cshtml">
-      <publishTime>03/02/2017 13:50:52</publishTime>
+      <publishTime>08/03/2017 18:48:38</publishTime>
     </File>
     <File Include="Views/Home/GroupBooking.cshtml">
       <publishTime>03/02/2017 13:50:52</publishTime>
@@ -13297,7 +13300,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/02/2017 13:50:52</publishTime>
     </File>
     <File Include="Views/Home/NewFutureBooking.cshtml">
-      <publishTime>03/02/2017 13:50:52</publishTime>
+      <publishTime>08/03/2017 18:52:37</publishTime>
     </File>
     <File Include="Views/Home/PrintLandingForGuest.cshtml">
       <publishTime>03/02/2017 13:50:52</publishTime>
@@ -13341,6 +13344,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/HotelAdmin/CategoryCreate.cshtml">
       <publishTime>03/02/2017 13:50:52</publishTime>
     </File>
+    <File Include="Views/HotelAdmin/ForceRoomToVacant.cshtml">
+      <publishTime>08/03/2017 21:14:47</publishTime>
+    </File>
     <File Include="Views/HotelAdmin/ForDelete/Index.cshtml">
       <publishTime>03/02/2017 13:50:52</publishTime>
     </File>
@@ -13357,7 +13363,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/02/2017 13:50:52</publishTime>
     </File>
     <File Include="Views/HotelAdmin/NewRoomChangeStatus.cshtml">
-      <publishTime>03/02/2017 13:50:52</publishTime>
+      <publishTime>08/03/2017 20:42:00</publishTime>
     </File>
     <File Include="Views/HotelAdmin/Tables.cshtml">
       <publishTime>03/02/2017 13:50:52</publishTime>
@@ -13758,6 +13764,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Views/Shared/_ExtendGuestStay.cshtml">
       <publishTime>03/02/2017 13:50:52</publishTime>
     </File>
+    <File Include="Views/Shared/_ExtendGuestStayNew.cshtml">
+      <publishTime>08/03/2017 20:17:22</publishTime>
+    </File>
     <File Include="Views/Shared/_FutureBookingDisplay.cshtml">
       <publishTime>03/02/2017 13:50:52</publishTime>
     </File>
@@ -13766,6 +13775,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Views/Shared/_FutureReservationsRoomsDisplay.cshtml">
       <publishTime>03/02/2017 13:50:52</publishTime>
+    </File>
+    <File Include="Views/Shared/_FutureReservationsRoomsDisplayUnused.cshtml">
+      <publishTime>08/03/2017 18:45:47</publishTime>
     </File>
     <File Include="Views/Shared/_GameView.cshtml">
       <publishTime>03/02/2017 13:50:52</publishTime>
@@ -13823,6 +13835,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Views/Shared/_GuestStayDisplay.cshtml">
       <publishTime>03/02/2017 13:50:52</publishTime>
+    </File>
+    <File Include="Views/Shared/_GuestStayDisplayNew.cshtml">
+      <publishTime>08/03/2017 20:05:36</publishTime>
     </File>
     <File Include="Views/Shared/_HalfDayAccount.cshtml">
       <publishTime>03/02/2017 13:50:52</publishTime>
@@ -13903,7 +13918,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/02/2017 13:50:52</publishTime>
     </File>
     <File Include="Views/Shared/_Navigation.cshtml">
-      <publishTime>04/25/2017 15:56:54</publishTime>
+      <publishTime>08/03/2017 21:12:30</publishTime>
     </File>
     <File Include="Views/Shared/_NavigationMusic.cshtml">
       <publishTime>03/02/2017 13:50:52</publishTime>
@@ -14071,7 +14086,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/02/2017 13:50:52</publishTime>
     </File>
     <File Include="Views/Shared/_RoomsDisplayNewFuture.cshtml">
-      <publishTime>03/02/2017 13:50:52</publishTime>
+      <publishTime>08/03/2017 19:01:31</publishTime>
     </File>
     <File Include="Views/Shared/_RoomsDisplayTransferGuest.cshtml">
       <publishTime>03/02/2017 13:50:52</publishTime>
@@ -14284,7 +14299,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/02/2017 13:50:56</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>06/04/2017 09:52:00</publishTime>
+      <publishTime>08/03/2017 21:15:16</publishTime>
     </File>
   </ItemGroup>
 </Project>

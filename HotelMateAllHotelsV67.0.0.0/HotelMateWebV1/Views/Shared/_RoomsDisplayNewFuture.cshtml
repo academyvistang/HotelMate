@@ -46,12 +46,13 @@
                         }
                         else
                         {
-                           if (@rm.RoomStatu.Id == (int)HotelMateWebV1.Helpers.Enums.RoomStatusEnum.Occupied)
+                                if (@rm.RoomStatu.Id == (int)HotelMateWebV1.Helpers.Enums.RoomStatusEnum.Occupied)
                                 {
-                                  <td class="tth2"><a class="erbEditorRepair buttonDevFirst" href="#">@rm.RoomStatu.Name</a></td>                                      
+                                  @*<td class="tth2"><a class="erbEditorRepair buttonDevFirst" href="#">@rm.RoomStatu.Name</a></td>*@
+                                    <td class="tth2" style="background-color:red;"> <a class="erbEditorOpener buttonDevFirst" href="@Url.Action("RoomFutureBookingBookSingle", "Booking", new { id = rm.Id, Model.CheckinDate, Model.CheckoutDate })">Book Room  @rm.RoomNumber</a></td>
                                 }
                                 else
-                                {                                    
+                                {
                                   <td class="tth2"><a class="erbEditorRepair buttonDevFirst" href="@Url.Action("EditRoomChangeStatus", "HotelAdmin", new { id = rm.Id })">@rm.RoomStatu.Name</a></td>                                       
                                 }  
                         }

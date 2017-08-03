@@ -4926,6 +4926,11 @@
     <Content Include="Views\Shared\_DateSelectorWithPointPOS.cshtml" />
     <Content Include="Views\BarReport\AccountReceivable.cshtml" />
     <Content Include="Views\BarReport\SendEmailSalesReport.cshtml" />
+    <Content Include="Views\Shared\_FutureReservationsRoomsDisplayUnused.cshtml" />
+    <Content Include="Views\GuestAccount\ExtendGuestStayNew.cshtml" />
+    <Content Include="Views\Shared\_GuestStayDisplayNew.cshtml" />
+    <Content Include="Views\Shared\_ExtendGuestStayNew.cshtml" />
+    <Content Include="Views\HotelAdmin\ForceRoomToVacant.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Admin\html\js\bootstrap\examples\navbar-fixed-top\" />

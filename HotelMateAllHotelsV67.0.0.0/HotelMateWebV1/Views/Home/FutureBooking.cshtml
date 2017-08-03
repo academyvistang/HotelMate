@@ -6,6 +6,15 @@
 
 @Html.Partial("_FutureReservationsRoomsDisplay")
 
+@if (Model.UnusedReservations != null && Model.UnusedReservations.Any())
+{
+
+    <hr />
+    <br />
+
+    @Html.Partial("_FutureReservationsRoomsDisplayUnused")
+}
+
 @section SideBarBox
 {
     @Html.Partial("_CheckAvailabilityNew")

@@ -292,6 +292,49 @@ namespace HotelMateWebV1.Controllers
             return View("NewRoom", model);
         }
 
+
+        
+        public ActionResult ForceToVacant(int? id)
+        {
+            var room = _roomService.GetById(id.Value);
+
+            if(room != null)
+            {
+                var guestRooms = room.GuestRooms.Where(x => x.IsActive).Select(x => x.Id);
+
+                foreach(var ids in guestRooms)
+                {
+                    var gr = _guestRoomService.GetById(ids);
+
+                    if (gr != null)
+                    {
+                        gr.IsActive = false;
+                        _guestRoomService.Update(gr);
+                    }
+                }
+
+                room.StatusId = (int)RoomStatusEnum.Vacant;
+
+                _roomService.Update(room);
+
+            }
+
+            var rooms = _roomService.GetAll(1).Where(x => x.IsActive && x.StatusId != (int)RoomStatusEnum.Occupied && x.StatusId != (int)RoomStatusEnum.Vacant).ToList();
+            RoomViewModel model = new RoomViewModel();
+            model.Rooms = rooms;
+            return View("ForceRoomToVacant", model);
+        }
+
+
+        [HttpGet]
+        public ActionResult ForceRoomToVacant()
+        {
+            var rooms = _roomService.GetAll(1).Where(x => x.IsActive && x.StatusId != (int)RoomStatusEnum.Occupied && x.StatusId != (int)RoomStatusEnum.Vacant).ToList();
+            RoomViewModel model = new RoomViewModel();
+            model.Rooms = rooms.Where(x => x.GuestRooms.Where(y => y.IsActive).Any()).ToList();
+            return View(model);
+        }
+
         [HttpGet]
         public ActionResult EditRoomChangeStatus(int? id)
         {
@@ -309,6 +352,8 @@ namespace HotelMateWebV1.Controllers
 
             if (activeGuestRooms)
             {
+                model.Message = "There are active guests accounts for this room hence you can not change the status. Contact your manager.";
+
                 model.RoomStatusList = GetRoomStatusOriginal(room.StatusId);
             }
             else
