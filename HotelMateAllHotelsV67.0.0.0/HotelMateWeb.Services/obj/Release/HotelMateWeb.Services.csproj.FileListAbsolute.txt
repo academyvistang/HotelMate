@@ -620,3 +620,11 @@ C:\OtherProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\HotelMateWeb.Services\bi
 C:\OtherProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\HotelMateWeb.Services\obj\Release\HotelMateWeb.Services.csprojResolveAssemblyReference.cache
 C:\OtherProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\HotelMateWeb.Services\obj\Release\HotelMateWeb.Services.dll
 C:\OtherProjects\hotelmotel\HotelMateAllHotelsV67.0.0.0\HotelMateWeb.Services\obj\Release\HotelMateWeb.Services.pdb
+C:\OtherProjects\hotelmotel1.0\HotelMateAllHotelsV67.0.0.0\HotelMateWeb.Services\bin\Release\HotelMateWeb.Services.dll
+C:\OtherProjects\hotelmotel1.0\HotelMateAllHotelsV67.0.0.0\HotelMateWeb.Services\bin\Release\HotelMateWeb.Services.pdb
+C:\OtherProjects\hotelmotel1.0\HotelMateAllHotelsV67.0.0.0\HotelMateWeb.Services\bin\Release\HotelMateWeb.Dal.dll
+C:\OtherProjects\hotelmotel1.0\HotelMateAllHotelsV67.0.0.0\HotelMateWeb.Services\bin\Release\EntityFramework.dll
+C:\OtherProjects\hotelmotel1.0\HotelMateAllHotelsV67.0.0.0\HotelMateWeb.Services\bin\Release\HotelMateWeb.Dal.pdb
+C:\OtherProjects\hotelmotel1.0\HotelMateAllHotelsV67.0.0.0\HotelMateWeb.Services\obj\Release\HotelMateWeb.Services.csprojResolveAssemblyReference.cache
+C:\OtherProjects\hotelmotel1.0\HotelMateAllHotelsV67.0.0.0\HotelMateWeb.Services\obj\Release\HotelMateWeb.Services.dll
+C:\OtherProjects\hotelmotel1.0\HotelMateAllHotelsV67.0.0.0\HotelMateWeb.Services\obj\Release\HotelMateWeb.Services.pdb

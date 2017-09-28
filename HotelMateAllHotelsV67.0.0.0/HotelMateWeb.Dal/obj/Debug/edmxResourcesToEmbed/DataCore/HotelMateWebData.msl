@@ -730,28 +730,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="BusinessAccounts">
-      <EntityTypeMapping TypeName="HotelMateWebModel.BusinessAccount">
-        <MappingFragment StoreEntitySet="BusinessAccount">
-          <ScalarProperty Name="AccountTypeId" ColumnName="AccountTypeId" />
-          <ScalarProperty Name="Debtor" ColumnName="Debtor" />
-          <ScalarProperty Name="HotelId" ColumnName="HotelId" />
-          <ScalarProperty Name="Status" ColumnName="Status" />
-          <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="NatureOfBusiness" ColumnName="NatureOfBusiness" />
-          <ScalarProperty Name="CompanyTelephone" ColumnName="CompanyTelephone" />
-          <ScalarProperty Name="CompanyAddress" ColumnName="CompanyAddress" />
-          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
-          <ScalarProperty Name="Address" ColumnName="Address" />
-          <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
-          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
-          <ScalarProperty Name="Telephone" ColumnName="Telephone" />
-          <ScalarProperty Name="ContactName" ColumnName="ContactName" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="BusinessCorporateAccounts">
       <EntityTypeMapping TypeName="HotelMateWebModel.BusinessCorporateAccount">
         <MappingFragment StoreEntitySet="BusinessCorporateAccount">
@@ -775,14 +753,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="BusinessRoomAccounts" TypeName="HotelMateWebModel.BusinessRoomAccounts" StoreEntitySet="BusinessRoomAccounts">
-      <EndProperty Name="BusinessAccount">
-        <ScalarProperty Name="Id" ColumnName="BusinessAccountId" />
-      </EndProperty>
-      <EndProperty Name="GuestRoom">
-        <ScalarProperty Name="Id" ColumnName="GuestRoomId" />
-      </EndProperty>
-    </AssociationSetMapping>
     <EntitySetMapping Name="Payments">
       <EntityTypeMapping TypeName="HotelMateWebModel.Payment">
         <MappingFragment StoreEntitySet="Payment">
@@ -1079,5 +1049,44 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="BusinessAccounts">
+      <EntityTypeMapping TypeName="HotelMateWebModel.BusinessAccount">
+        <MappingFragment StoreEntitySet="BusinessAccount">
+          <ScalarProperty Name="AccountTypeId" ColumnName="AccountTypeId" />
+          <ScalarProperty Name="Debtor" ColumnName="Debtor" />
+          <ScalarProperty Name="HotelId" ColumnName="HotelId" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="NatureOfBusiness" ColumnName="NatureOfBusiness" />
+          <ScalarProperty Name="CompanyTelephone" ColumnName="CompanyTelephone" />
+          <ScalarProperty Name="CompanyAddress" ColumnName="CompanyAddress" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+          <ScalarProperty Name="ContactName" ColumnName="ContactName" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BusinessAccountTypes">
+      <EntityTypeMapping TypeName="HotelMateWebModel.BusinessAccountType">
+        <MappingFragment StoreEntitySet="BusinessAccountType">
+          <ScalarProperty Name="DiscountPercentage" ColumnName="DiscountPercentage" />
+          <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="BusinessRoomAccounts" TypeName="HotelMateWebModel.BusinessRoomAccounts" StoreEntitySet="BusinessRoomAccounts">
+      <EndProperty Name="BusinessAccount">
+        <ScalarProperty Name="Id" ColumnName="BusinessAccountId" />
+      </EndProperty>
+      <EndProperty Name="GuestRoom">
+        <ScalarProperty Name="Id" ColumnName="GuestRoomId" />
+      </EndProperty>
+    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping>

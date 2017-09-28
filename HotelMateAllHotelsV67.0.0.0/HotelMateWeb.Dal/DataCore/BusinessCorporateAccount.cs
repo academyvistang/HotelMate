@@ -22,8 +22,8 @@ namespace HotelMateWeb.Dal.DataCore
         public string PaymentMethodNote { get; set; }
         public int BusinessAccountId { get; set; }
     
-        public virtual BusinessAccount BusinessAccount { get; set; }
         public virtual PaymentMethod PaymentMethod { get; set; }
         public virtual Person Person { get; set; }
+        public virtual BusinessAccount BusinessAccount { get; set; }
     }
 }

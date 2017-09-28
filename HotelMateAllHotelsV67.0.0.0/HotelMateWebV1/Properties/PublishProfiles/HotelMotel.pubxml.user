@@ -6,7 +6,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>C:\Publishing\Inagbe\HotelMateLive14.0.0.0</_PublishTargetUrl>
+    <_PublishTargetUrl>C:\Publishing\Inagbe\HotelMateLiveGlee1.0</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="Admin/css/.DS_Store">
@@ -8185,13 +8185,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/01/2015 21:45:08</publishTime>
     </File>
     <File Include="bin/HotelMateWeb.Dal.dll">
-      <publishTime>06/04/2017 09:51:15</publishTime>
+      <publishTime>09/15/2017 14:44:36</publishTime>
     </File>
     <File Include="bin/HotelMateWeb.Services.dll">
-      <publishTime>06/04/2017 09:51:15</publishTime>
+      <publishTime>09/15/2017 14:44:37</publishTime>
     </File>
     <File Include="bin/HotelMateWebV1.dll">
-      <publishTime>08/03/2017 21:15:13</publishTime>
+      <publishTime>09/15/2017 14:44:38</publishTime>
     </File>
     <File Include="bin/HTTPSMS.dll">
       <publishTime>03/02/2017 13:50:52</publishTime>
@@ -14299,7 +14299,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/02/2017 13:50:56</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>08/03/2017 21:15:16</publishTime>
+      <publishTime>09/15/2017 14:44:44</publishTime>
     </File>
   </ItemGroup>
 </Project>

@@ -18,9 +18,9 @@ namespace HotelMateWeb.Dal.DataCore
         {
             this.BusinessCorporateAccounts = new HashSet<BusinessCorporateAccount>();
             this.Guests = new HashSet<Guest>();
+            this.Payments = new HashSet<Payment>();
             this.SoldItemsAlls = new HashSet<SoldItemsAll>();
             this.GuestRooms = new HashSet<GuestRoom>();
-            this.Payments = new HashSet<Payment>();
         }
     
         public int Id { get; set; }
@@ -41,10 +41,11 @@ namespace HotelMateWeb.Dal.DataCore
         public int AccountTypeId { get; set; }
     
         public virtual Hotel Hotel { get; set; }
+        public virtual BusinessAccountType BusinessAccountType { get; set; }
         public virtual ICollection<BusinessCorporateAccount> BusinessCorporateAccounts { get; set; }
         public virtual ICollection<Guest> Guests { get; set; }
+        public virtual ICollection<Payment> Payments { get; set; }
         public virtual ICollection<SoldItemsAll> SoldItemsAlls { get; set; }
         public virtual ICollection<GuestRoom> GuestRooms { get; set; }
-        public virtual ICollection<Payment> Payments { get; set; }
     }
 }

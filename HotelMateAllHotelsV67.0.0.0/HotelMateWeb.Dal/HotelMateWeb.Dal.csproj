@@ -59,6 +59,9 @@
     <Compile Include="DataCore\BusinessAccount.cs">
       <DependentUpon>HotelMateWebData.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataCore\BusinessAccountType.cs">
+      <DependentUpon>HotelMateWebData.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataCore\BusinessCorporateAccount.cs">
       <DependentUpon>HotelMateWebData.tt</DependentUpon>
     </Compile>

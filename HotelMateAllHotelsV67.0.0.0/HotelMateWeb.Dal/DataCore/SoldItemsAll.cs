@@ -35,9 +35,9 @@ namespace HotelMateWeb.Dal.DataCore
     
         public virtual Guest Guest { get; set; }
         public virtual PaymentMethod PaymentMethod { get; set; }
-        public virtual BusinessAccount BusinessAccount { get; set; }
         public virtual DistributionPoint DistributionPoint { get; set; }
         public virtual StockItem StockItem { get; set; }
         public virtual Person Person { get; set; }
+        public virtual BusinessAccount BusinessAccount { get; set; }
     }
 }

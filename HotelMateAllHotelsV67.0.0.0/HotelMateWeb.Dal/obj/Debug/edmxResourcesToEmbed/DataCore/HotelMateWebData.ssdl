@@ -62,6 +62,14 @@
     <Property Name="Debtor" Type="bit" Nullable="false" />
     <Property Name="AccountTypeId" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="BusinessAccountType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccountName" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="DiscountPercentage" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+  </EntityType>
   <EntityType Name="BusinessCorporateAccount">
     <Key>
       <PropertyRef Name="Id" />
@@ -1080,6 +1088,18 @@
       </Principal>
       <Dependent Role="BusinessAccount">
         <PropertyRef Name="HotelId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BusinessAccount_BusinessAccountType">
+    <End Role="BusinessAccountType" Type="Self.BusinessAccountType" Multiplicity="1" />
+    <End Role="BusinessAccount" Type="Self.BusinessAccount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BusinessAccountType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BusinessAccount">
+        <PropertyRef Name="AccountTypeId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -2360,6 +2380,7 @@
     <EntitySet Name="BarTable" EntityType="Self.BarTable" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Batch" EntityType="Self.Batch" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BusinessAccount" EntityType="Self.BusinessAccount" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BusinessAccountType" EntityType="Self.BusinessAccountType" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BusinessCorporateAccount" EntityType="Self.BusinessCorporateAccount" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="BusinessRoomAccounts" EntityType="Self.BusinessRoomAccounts" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="DamagedBatchItem" EntityType="Self.DamagedBatchItem" Schema="dbo" store:Type="Tables" />
@@ -2449,6 +2470,10 @@
     </AssociationSet>
     <AssociationSet Name="FK_BusinessAccount_BusinessAccountHotel" Association="Self.FK_BusinessAccount_BusinessAccountHotel">
       <End Role="Hotel" EntitySet="Hotel" />
+      <End Role="BusinessAccount" EntitySet="BusinessAccount" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BusinessAccount_BusinessAccountType" Association="Self.FK_BusinessAccount_BusinessAccountType">
+      <End Role="BusinessAccountType" EntitySet="BusinessAccountType" />
       <End Role="BusinessAccount" EntitySet="BusinessAccount" />
     </AssociationSet>
     <AssociationSet Name="FK_BusinessAccounts_GuestRooms" Association="Self.FK_BusinessAccounts_GuestRooms">

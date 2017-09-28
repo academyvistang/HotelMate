@@ -73,7 +73,6 @@ namespace HotelMateWeb.Dal.DataCore
         public virtual DbSet<SchoolPicture> SchoolPictures { get; set; }
         public virtual DbSet<GuestMessage> GuestMessages { get; set; }
         public virtual DbSet<BarTable> BarTables { get; set; }
-        public virtual DbSet<BusinessAccount> BusinessAccounts { get; set; }
         public virtual DbSet<BusinessCorporateAccount> BusinessCorporateAccounts { get; set; }
         public virtual DbSet<PrinterTable> PrinterTables { get; set; }
         public virtual DbSet<Payment> Payments { get; set; }
@@ -92,5 +91,7 @@ namespace HotelMateWeb.Dal.DataCore
         public virtual DbSet<Store> Stores { get; set; }
         public virtual DbSet<StoreItem> StoreItems { get; set; }
         public virtual DbSet<Person> People { get; set; }
+        public virtual DbSet<BusinessAccount> BusinessAccounts { get; set; }
+        public virtual DbSet<BusinessAccountType> BusinessAccountTypes { get; set; }
     }
 }

@@ -63,6 +63,7 @@ namespace HotelMateWebV1.Controllers
                     company.CompanyAddress = company.CompanyAddress;
                     company.Status = "LIVE";
                     company.Debtor = false;
+                    company.AccountTypeId = 1;
                     _businessAccountService.Create(company);
                 }
                 else

@@ -67,6 +67,14 @@
           <Property Name="Debtor" Type="bit" Nullable="false" />
           <Property Name="AccountTypeId" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="BusinessAccountType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccountName" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="DiscountPercentage" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
         <EntityType Name="BusinessCorporateAccount">
           <Key>
             <PropertyRef Name="Id" />
@@ -1085,6 +1093,18 @@
             </Principal>
             <Dependent Role="BusinessAccount">
               <PropertyRef Name="HotelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BusinessAccount_BusinessAccountType">
+          <End Role="BusinessAccountType" Type="Self.BusinessAccountType" Multiplicity="1" />
+          <End Role="BusinessAccount" Type="Self.BusinessAccount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BusinessAccountType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BusinessAccount">
+              <PropertyRef Name="AccountTypeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2365,6 +2385,7 @@
           <EntitySet Name="BarTable" EntityType="Self.BarTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Batch" EntityType="Self.Batch" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BusinessAccount" EntityType="Self.BusinessAccount" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BusinessAccountType" EntityType="Self.BusinessAccountType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BusinessCorporateAccount" EntityType="Self.BusinessCorporateAccount" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BusinessRoomAccounts" EntityType="Self.BusinessRoomAccounts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DamagedBatchItem" EntityType="Self.DamagedBatchItem" Schema="dbo" store:Type="Tables" />
@@ -2454,6 +2475,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_BusinessAccount_BusinessAccountHotel" Association="Self.FK_BusinessAccount_BusinessAccountHotel">
             <End Role="Hotel" EntitySet="Hotel" />
+            <End Role="BusinessAccount" EntitySet="BusinessAccount" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BusinessAccount_BusinessAccountType" Association="Self.FK_BusinessAccount_BusinessAccountType">
+            <End Role="BusinessAccountType" EntitySet="BusinessAccountType" />
             <End Role="BusinessAccount" EntitySet="BusinessAccount" />
           </AssociationSet>
           <AssociationSet Name="FK_BusinessAccounts_GuestRooms" Association="Self.FK_BusinessAccounts_GuestRooms">
@@ -3074,7 +3099,6 @@
           </AssociationSet>
           <EntitySet Name="GuestMessages" EntityType="HotelMateWebModel.GuestMessage" />
           <EntitySet Name="BarTables" EntityType="HotelMateWebModel.BarTable" />
-          <EntitySet Name="BusinessAccounts" EntityType="HotelMateWebModel.BusinessAccount" />
           <EntitySet Name="BusinessCorporateAccounts" EntityType="HotelMateWebModel.BusinessCorporateAccount" />
           <EntitySet Name="PrinterTables" EntityType="HotelMateWebModel.PrinterTable" />
           <AssociationSet Name="FK_BarTable_BarTableGuest" Association="HotelMateWebModel.FK_BarTable_BarTableGuest">
@@ -3093,36 +3117,12 @@
             <End Role="BarTable" EntitySet="BarTables" />
             <End Role="TableItem" EntitySet="TableItems" />
           </AssociationSet>
-          <AssociationSet Name="FK_BusinessAccount_BusinessAccountHotel" Association="HotelMateWebModel.FK_BusinessAccount_BusinessAccountHotel">
-            <End Role="Hotel" EntitySet="Hotels" />
-            <End Role="BusinessAccount" EntitySet="BusinessAccounts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_BusinessCorporateAccount_BusinessCorporateAccountCompany" Association="HotelMateWebModel.FK_BusinessCorporateAccount_BusinessCorporateAccountCompany">
-            <End Role="BusinessAccount" EntitySet="BusinessAccounts" />
-            <End Role="BusinessCorporateAccount" EntitySet="BusinessCorporateAccounts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Guest_CompanyGuest" Association="HotelMateWebModel.FK_Guest_CompanyGuest">
-            <End Role="BusinessAccount" EntitySet="BusinessAccounts" />
-            <End Role="Guest" EntitySet="Guests" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SoldItemsAll_SoldItemsAllBA" Association="HotelMateWebModel.FK_SoldItemsAll_SoldItemsAllBA">
-            <End Role="BusinessAccount" EntitySet="BusinessAccounts" />
-            <End Role="SoldItemsAll" EntitySet="SoldItemsAlls" />
-          </AssociationSet>
           <AssociationSet Name="FK_BusinessCorporateAccount_BusinessCorporateAccountPaymentMethod" Association="HotelMateWebModel.FK_BusinessCorporateAccount_BusinessCorporateAccountPaymentMethod">
             <End Role="PaymentMethod" EntitySet="PaymentMethods" />
             <End Role="BusinessCorporateAccount" EntitySet="BusinessCorporateAccounts" />
           </AssociationSet>
-          <AssociationSet Name="BusinessRoomAccounts" Association="HotelMateWebModel.BusinessRoomAccounts">
-            <End Role="GuestRoom" EntitySet="GuestRooms" />
-            <End Role="BusinessAccount" EntitySet="BusinessAccounts" />
-          </AssociationSet>
           <EntitySet Name="Payments" EntityType="HotelMateWebModel.Payment" />
           <EntitySet Name="RoomPaymentTypes" EntityType="HotelMateWebModel.RoomPaymentType" />
-          <AssociationSet Name="FK_Payment_PaymentBA" Association="HotelMateWebModel.FK_Payment_PaymentBA">
-            <End Role="BusinessAccount" EntitySet="BusinessAccounts" />
-            <End Role="Payment" EntitySet="Payments" />
-          </AssociationSet>
           <AssociationSet Name="FK_Payment_PaymentGuest" Association="HotelMateWebModel.FK_Payment_PaymentGuest">
             <End Role="Guest" EntitySet="Guests" />
             <End Role="Payment" EntitySet="Payments" />
@@ -3385,6 +3385,36 @@
             <End Role="Person" EntitySet="People" />
             <End Role="UsedItemsByHotel" EntitySet="UsedItemsByHotels" />
           </AssociationSet>
+          <EntitySet Name="BusinessAccounts" EntityType="HotelMateWebModel.BusinessAccount" />
+          <EntitySet Name="BusinessAccountTypes" EntityType="HotelMateWebModel.BusinessAccountType" />
+          <AssociationSet Name="FK_BusinessAccount_BusinessAccountHotel" Association="HotelMateWebModel.FK_BusinessAccount_BusinessAccountHotel">
+            <End Role="Hotel" EntitySet="Hotels" />
+            <End Role="BusinessAccount" EntitySet="BusinessAccounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BusinessAccount_BusinessAccountType" Association="HotelMateWebModel.FK_BusinessAccount_BusinessAccountType">
+            <End Role="BusinessAccountType" EntitySet="BusinessAccountTypes" />
+            <End Role="BusinessAccount" EntitySet="BusinessAccounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BusinessCorporateAccount_BusinessCorporateAccountCompany" Association="HotelMateWebModel.FK_BusinessCorporateAccount_BusinessCorporateAccountCompany">
+            <End Role="BusinessAccount" EntitySet="BusinessAccounts" />
+            <End Role="BusinessCorporateAccount" EntitySet="BusinessCorporateAccounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Guest_CompanyGuest" Association="HotelMateWebModel.FK_Guest_CompanyGuest">
+            <End Role="BusinessAccount" EntitySet="BusinessAccounts" />
+            <End Role="Guest" EntitySet="Guests" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Payment_PaymentBA" Association="HotelMateWebModel.FK_Payment_PaymentBA">
+            <End Role="BusinessAccount" EntitySet="BusinessAccounts" />
+            <End Role="Payment" EntitySet="Payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SoldItemsAll_SoldItemsAllBA" Association="HotelMateWebModel.FK_SoldItemsAll_SoldItemsAllBA">
+            <End Role="BusinessAccount" EntitySet="BusinessAccounts" />
+            <End Role="SoldItemsAll" EntitySet="SoldItemsAlls" />
+          </AssociationSet>
+          <AssociationSet Name="BusinessRoomAccounts" Association="HotelMateWebModel.BusinessRoomAccounts">
+            <End Role="GuestRoom" EntitySet="GuestRooms" />
+            <End Role="BusinessAccount" EntitySet="BusinessAccounts" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="GuestReservation">
           <Key>
@@ -3456,9 +3486,9 @@
           <NavigationProperty Name="PersonTypes" Relationship="HotelMateWebModel.FK_PersonType_PersonTypeHotel" FromRole="Hotel" ToRole="PersonType" />
           <NavigationProperty Name="Rooms" Relationship="HotelMateWebModel.FK_Room_RoomHotel" FromRole="Hotel" ToRole="Room" />
           <NavigationProperty Name="Guests" Relationship="HotelMateWebModel.FK_Guest_GuestHotel" FromRole="Hotel" ToRole="Guest" />
-          <NavigationProperty Name="BusinessAccounts" Relationship="HotelMateWebModel.FK_BusinessAccount_BusinessAccountHotel" FromRole="Hotel" ToRole="BusinessAccount" />
           <NavigationProperty Name="StockItems" Relationship="HotelMateWebModel.FK_StockItem_StockItemHotel" FromRole="Hotel" ToRole="StockItem" />
           <NavigationProperty Name="People" Relationship="HotelMateWebModel.FK_Person_PersonHotel" FromRole="Hotel" ToRole="Person" />
+          <NavigationProperty Name="BusinessAccounts" Relationship="HotelMateWebModel.FK_BusinessAccount_BusinessAccountHotel" FromRole="Hotel" ToRole="BusinessAccount" />
         </EntityType>
         <EntityType Name="Item">
           <Key>
@@ -4083,9 +4113,9 @@
           <NavigationProperty Name="GuestFeedBacks" Relationship="HotelMateWebModel.FK_GuestFeedBack_Guest" FromRole="Guest" ToRole="GuestFeedBack" />
           <NavigationProperty Name="PaymentOrders" Relationship="HotelMateWebModel.FK_PaymentOrder_PaymentOrderGuest" FromRole="Guest" ToRole="PaymentOrder" />
           <NavigationProperty Name="BarTables" Relationship="HotelMateWebModel.FK_BarTable_BarTableGuest" FromRole="Guest" ToRole="BarTable" />
-          <NavigationProperty Name="BusinessAccount" Relationship="HotelMateWebModel.FK_Guest_CompanyGuest" FromRole="Guest" ToRole="BusinessAccount" />
           <NavigationProperty Name="Payments" Relationship="HotelMateWebModel.FK_Payment_PaymentGuest" FromRole="Guest" ToRole="Payment" />
           <NavigationProperty Name="Person" Relationship="HotelMateWebModel.FK_Guest_GuestPerson" FromRole="Guest" ToRole="Person" />
+          <NavigationProperty Name="BusinessAccount" Relationship="HotelMateWebModel.FK_Guest_CompanyGuest" FromRole="Guest" ToRole="BusinessAccount" />
         </EntityType>
         <EntityType Name="SoldItemsAll">
           <Key>
@@ -4111,10 +4141,10 @@
           <Property Name="BusinessAccountId" Type="Int32" />
           <Property Name="RecieptNumber" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="ReasonForVoid" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="BusinessAccount" Relationship="HotelMateWebModel.FK_SoldItemsAll_SoldItemsAllBA" FromRole="SoldItemsAll" ToRole="BusinessAccount" />
           <NavigationProperty Name="DistributionPoint" Relationship="HotelMateWebModel.FK_SoldItemsAll_SoldItemsAllDistributionPoint" FromRole="SoldItemsAll" ToRole="DistributionPoint" />
           <NavigationProperty Name="StockItem" Relationship="HotelMateWebModel.FK_SoldItemsAll_SoldItemsAllItem" FromRole="SoldItemsAll" ToRole="StockItem" />
           <NavigationProperty Name="Person" Relationship="HotelMateWebModel.FK_SoldItemsAll_SoldItemsAllPerson" FromRole="SoldItemsAll" ToRole="Person" />
+          <NavigationProperty Name="BusinessAccount" Relationship="HotelMateWebModel.FK_SoldItemsAll_SoldItemsAllBA" FromRole="SoldItemsAll" ToRole="BusinessAccount" />
         </EntityType>
         <Association Name="FK_Guest_GuestHotel">
           <End Type="HotelMateWebModel.Hotel" Role="Hotel" Multiplicity="1" />
@@ -4558,33 +4588,6 @@
           <NavigationProperty Name="TableItems" Relationship="HotelMateWebModel.FK_TableItem_TableItemBarTable" FromRole="BarTable" ToRole="TableItem" />
           <NavigationProperty Name="Person" Relationship="HotelMateWebModel.FK_BarTable_BarTableStaff" FromRole="BarTable" ToRole="Person" />
         </EntityType>
-        <EntityType Name="BusinessAccount">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ContactName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Telephone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ContactNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Address" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CompanyAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CompanyTelephone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="NatureOfBusiness" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
-          <Property Name="HotelId" Type="Int32" Nullable="false" />
-          <Property Name="Debtor" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Hotel" Relationship="HotelMateWebModel.FK_BusinessAccount_BusinessAccountHotel" FromRole="BusinessAccount" ToRole="Hotel" />
-          <NavigationProperty Name="BusinessCorporateAccounts" Relationship="HotelMateWebModel.FK_BusinessCorporateAccount_BusinessCorporateAccountCompany" FromRole="BusinessAccount" ToRole="BusinessCorporateAccount" />
-          <NavigationProperty Name="Guests" Relationship="HotelMateWebModel.FK_Guest_CompanyGuest" FromRole="BusinessAccount" ToRole="Guest" />
-          <NavigationProperty Name="SoldItemsAlls" Relationship="HotelMateWebModel.FK_SoldItemsAll_SoldItemsAllBA" FromRole="BusinessAccount" ToRole="SoldItemsAll" />
-          <NavigationProperty Name="GuestRooms" Relationship="HotelMateWebModel.BusinessRoomAccounts" FromRole="BusinessAccount" ToRole="GuestRoom" />
-          <NavigationProperty Name="Payments" Relationship="HotelMateWebModel.FK_Payment_PaymentBA" FromRole="BusinessAccount" ToRole="Payment" />
-          <Property Name="AccountTypeId" Type="Int32" Nullable="false" />
-        </EntityType>
         <EntityType Name="BusinessCorporateAccount">
           <Key>
             <PropertyRef Name="Id" />
@@ -4596,9 +4599,9 @@
           <Property Name="PaymentMethodId" Type="Int32" Nullable="false" />
           <Property Name="PaymentMethodNote" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="BusinessAccountId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="BusinessAccount" Relationship="HotelMateWebModel.FK_BusinessCorporateAccount_BusinessCorporateAccountCompany" FromRole="BusinessCorporateAccount" ToRole="BusinessAccount" />
           <NavigationProperty Name="PaymentMethod" Relationship="HotelMateWebModel.FK_BusinessCorporateAccount_BusinessCorporateAccountPaymentMethod" FromRole="BusinessCorporateAccount" ToRole="PaymentMethod" />
           <NavigationProperty Name="Person" Relationship="HotelMateWebModel.FK_BusinessCorporateAccount_BusinessCorporateAccountPerson" FromRole="BusinessCorporateAccount" ToRole="Person" />
+          <NavigationProperty Name="BusinessAccount" Relationship="HotelMateWebModel.FK_BusinessCorporateAccount_BusinessCorporateAccountCompany" FromRole="BusinessCorporateAccount" ToRole="BusinessAccount" />
         </EntityType>
         <EntityType Name="PrinterTable">
           <Key>
@@ -4658,54 +4661,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_BusinessAccount_BusinessAccountHotel">
-          <End Type="HotelMateWebModel.Hotel" Role="Hotel" Multiplicity="1" />
-          <End Type="HotelMateWebModel.BusinessAccount" Role="BusinessAccount" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Hotel">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="BusinessAccount">
-              <PropertyRef Name="HotelId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_BusinessCorporateAccount_BusinessCorporateAccountCompany">
-          <End Type="HotelMateWebModel.BusinessAccount" Role="BusinessAccount" Multiplicity="1" />
-          <End Type="HotelMateWebModel.BusinessCorporateAccount" Role="BusinessCorporateAccount" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BusinessAccount">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="BusinessCorporateAccount">
-              <PropertyRef Name="BusinessAccountId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Guest_CompanyGuest">
-          <End Type="HotelMateWebModel.BusinessAccount" Role="BusinessAccount" Multiplicity="0..1" />
-          <End Type="HotelMateWebModel.Guest" Role="Guest" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BusinessAccount">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Guest">
-              <PropertyRef Name="CompanyId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SoldItemsAll_SoldItemsAllBA">
-          <End Type="HotelMateWebModel.BusinessAccount" Role="BusinessAccount" Multiplicity="0..1" />
-          <End Type="HotelMateWebModel.SoldItemsAll" Role="SoldItemsAll" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BusinessAccount">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="SoldItemsAll">
-              <PropertyRef Name="BusinessAccountId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_BusinessCorporateAccount_BusinessCorporateAccountPaymentMethod">
           <End Type="HotelMateWebModel.PaymentMethod" Role="PaymentMethod" Multiplicity="1" />
           <End Type="HotelMateWebModel.BusinessCorporateAccount" Role="BusinessCorporateAccount" Multiplicity="*" />
@@ -4717,10 +4672,6 @@
               <PropertyRef Name="PaymentMethodId" />
             </Dependent>
           </ReferentialConstraint>
-        </Association>
-        <Association Name="BusinessRoomAccounts">
-          <End Type="HotelMateWebModel.GuestRoom" Role="GuestRoom" Multiplicity="*" />
-          <End Type="HotelMateWebModel.BusinessAccount" Role="BusinessAccount" Multiplicity="*" />
         </Association>
         <EntityType Name="Payment">
           <Key>
@@ -4750,12 +4701,12 @@
           <Property Name="DistributionPointId" Type="Int32" />
           <Property Name="BusinessAccountId" Type="Int32" />
           <Property Name="PaymentTypeId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="BusinessAccount" Relationship="HotelMateWebModel.FK_Payment_PaymentBA" FromRole="Payment" ToRole="BusinessAccount" />
           <NavigationProperty Name="Guest" Relationship="HotelMateWebModel.FK_Payment_PaymentGuest" FromRole="Payment" ToRole="Guest" />
           <NavigationProperty Name="PaymentMethod" Relationship="HotelMateWebModel.FK_Payment_PaymentMethod" FromRole="Payment" ToRole="PaymentMethod" />
           <NavigationProperty Name="RoomPaymentType" Relationship="HotelMateWebModel.FK_Payment_PaymentPaymentType" FromRole="Payment" ToRole="RoomPaymentType" />
           <NavigationProperty Name="DistributionPoint" Relationship="HotelMateWebModel.FK_Payment_PaymentDistributionPoint" FromRole="Payment" ToRole="DistributionPoint" />
           <NavigationProperty Name="Person" Relationship="HotelMateWebModel.FK_Payment_PaymentCashier" FromRole="Payment" ToRole="Person" />
+          <NavigationProperty Name="BusinessAccount" Relationship="HotelMateWebModel.FK_Payment_PaymentBA" FromRole="Payment" ToRole="BusinessAccount" />
         </EntityType>
         <EntityType Name="RoomPaymentType">
           <Key>
@@ -4771,18 +4722,6 @@
           <NavigationProperty Name="Payments" Relationship="HotelMateWebModel.FK_Payment_PaymentPaymentType" FromRole="RoomPaymentType" ToRole="Payment" />
           <NavigationProperty Name="RoomPaymentTypeStatu" Relationship="HotelMateWebModel.FK_RoomPaymentType_RoomPaymentTypeStatus" FromRole="RoomPaymentType" ToRole="RoomPaymentTypeStatu" />
         </EntityType>
-        <Association Name="FK_Payment_PaymentBA">
-          <End Type="HotelMateWebModel.BusinessAccount" Role="BusinessAccount" Multiplicity="0..1" />
-          <End Type="HotelMateWebModel.Payment" Role="Payment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BusinessAccount">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Payment">
-              <PropertyRef Name="BusinessAccountId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Payment_PaymentGuest">
           <End Type="HotelMateWebModel.Guest" Role="Guest" Multiplicity="0..1" />
           <End Type="HotelMateWebModel.Payment" Role="Payment" Multiplicity="*" />
@@ -5845,6 +5784,119 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="BusinessAccount">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ContactName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Telephone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ContactNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyTelephone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NatureOfBusiness" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="HotelId" Type="Int32" Nullable="false" />
+          <Property Name="Debtor" Type="Boolean" Nullable="false" />
+          <Property Name="AccountTypeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Hotel" Relationship="HotelMateWebModel.FK_BusinessAccount_BusinessAccountHotel" FromRole="BusinessAccount" ToRole="Hotel" />
+          <NavigationProperty Name="BusinessAccountType" Relationship="HotelMateWebModel.FK_BusinessAccount_BusinessAccountType" FromRole="BusinessAccount" ToRole="BusinessAccountType" />
+          <NavigationProperty Name="BusinessCorporateAccounts" Relationship="HotelMateWebModel.FK_BusinessCorporateAccount_BusinessCorporateAccountCompany" FromRole="BusinessAccount" ToRole="BusinessCorporateAccount" />
+          <NavigationProperty Name="Guests" Relationship="HotelMateWebModel.FK_Guest_CompanyGuest" FromRole="BusinessAccount" ToRole="Guest" />
+          <NavigationProperty Name="Payments" Relationship="HotelMateWebModel.FK_Payment_PaymentBA" FromRole="BusinessAccount" ToRole="Payment" />
+          <NavigationProperty Name="SoldItemsAlls" Relationship="HotelMateWebModel.FK_SoldItemsAll_SoldItemsAllBA" FromRole="BusinessAccount" ToRole="SoldItemsAll" />
+          <NavigationProperty Name="GuestRooms" Relationship="HotelMateWebModel.BusinessRoomAccounts" FromRole="BusinessAccount" ToRole="GuestRoom" />
+        </EntityType>
+        <EntityType Name="BusinessAccountType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DiscountPercentage" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <NavigationProperty Name="BusinessAccounts" Relationship="HotelMateWebModel.FK_BusinessAccount_BusinessAccountType" FromRole="BusinessAccountType" ToRole="BusinessAccount" />
+        </EntityType>
+        <Association Name="FK_BusinessAccount_BusinessAccountHotel">
+          <End Type="HotelMateWebModel.Hotel" Role="Hotel" Multiplicity="1" />
+          <End Type="HotelMateWebModel.BusinessAccount" Role="BusinessAccount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hotel">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BusinessAccount">
+              <PropertyRef Name="HotelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BusinessAccount_BusinessAccountType">
+          <End Type="HotelMateWebModel.BusinessAccountType" Role="BusinessAccountType" Multiplicity="1" />
+          <End Type="HotelMateWebModel.BusinessAccount" Role="BusinessAccount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BusinessAccountType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BusinessAccount">
+              <PropertyRef Name="AccountTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BusinessCorporateAccount_BusinessCorporateAccountCompany">
+          <End Type="HotelMateWebModel.BusinessAccount" Role="BusinessAccount" Multiplicity="1" />
+          <End Type="HotelMateWebModel.BusinessCorporateAccount" Role="BusinessCorporateAccount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BusinessAccount">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BusinessCorporateAccount">
+              <PropertyRef Name="BusinessAccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Guest_CompanyGuest">
+          <End Type="HotelMateWebModel.BusinessAccount" Role="BusinessAccount" Multiplicity="0..1" />
+          <End Type="HotelMateWebModel.Guest" Role="Guest" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BusinessAccount">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Guest">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Payment_PaymentBA">
+          <End Type="HotelMateWebModel.BusinessAccount" Role="BusinessAccount" Multiplicity="0..1" />
+          <End Type="HotelMateWebModel.Payment" Role="Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BusinessAccount">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="BusinessAccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SoldItemsAll_SoldItemsAllBA">
+          <End Type="HotelMateWebModel.BusinessAccount" Role="BusinessAccount" Multiplicity="0..1" />
+          <End Type="HotelMateWebModel.SoldItemsAll" Role="SoldItemsAll" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BusinessAccount">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SoldItemsAll">
+              <PropertyRef Name="BusinessAccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BusinessRoomAccounts">
+          <End Type="HotelMateWebModel.GuestRoom" Role="GuestRoom" Multiplicity="*" />
+          <End Type="HotelMateWebModel.BusinessAccount" Role="BusinessAccount" Multiplicity="*" />
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -6580,28 +6632,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="BusinessAccounts">
-            <EntityTypeMapping TypeName="HotelMateWebModel.BusinessAccount">
-              <MappingFragment StoreEntitySet="BusinessAccount">
-                <ScalarProperty Name="AccountTypeId" ColumnName="AccountTypeId" />
-                <ScalarProperty Name="Debtor" ColumnName="Debtor" />
-                <ScalarProperty Name="HotelId" ColumnName="HotelId" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="NatureOfBusiness" ColumnName="NatureOfBusiness" />
-                <ScalarProperty Name="CompanyTelephone" ColumnName="CompanyTelephone" />
-                <ScalarProperty Name="CompanyAddress" ColumnName="CompanyAddress" />
-                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
-                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
-                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
-                <ScalarProperty Name="ContactName" ColumnName="ContactName" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="BusinessCorporateAccounts">
             <EntityTypeMapping TypeName="HotelMateWebModel.BusinessCorporateAccount">
               <MappingFragment StoreEntitySet="BusinessCorporateAccount">
@@ -6625,14 +6655,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="BusinessRoomAccounts" TypeName="HotelMateWebModel.BusinessRoomAccounts" StoreEntitySet="BusinessRoomAccounts">
-            <EndProperty Name="BusinessAccount">
-              <ScalarProperty Name="Id" ColumnName="BusinessAccountId" />
-            </EndProperty>
-            <EndProperty Name="GuestRoom">
-              <ScalarProperty Name="Id" ColumnName="GuestRoomId" />
-            </EndProperty>
-          </AssociationSetMapping>
           <EntitySetMapping Name="Payments">
             <EntityTypeMapping TypeName="HotelMateWebModel.Payment">
               <MappingFragment StoreEntitySet="Payment">
@@ -6929,6 +6951,45 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="BusinessAccounts">
+            <EntityTypeMapping TypeName="HotelMateWebModel.BusinessAccount">
+              <MappingFragment StoreEntitySet="BusinessAccount">
+                <ScalarProperty Name="AccountTypeId" ColumnName="AccountTypeId" />
+                <ScalarProperty Name="Debtor" ColumnName="Debtor" />
+                <ScalarProperty Name="HotelId" ColumnName="HotelId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="NatureOfBusiness" ColumnName="NatureOfBusiness" />
+                <ScalarProperty Name="CompanyTelephone" ColumnName="CompanyTelephone" />
+                <ScalarProperty Name="CompanyAddress" ColumnName="CompanyAddress" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="ContactName" ColumnName="ContactName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BusinessAccountTypes">
+            <EntityTypeMapping TypeName="HotelMateWebModel.BusinessAccountType">
+              <MappingFragment StoreEntitySet="BusinessAccountType">
+                <ScalarProperty Name="DiscountPercentage" ColumnName="DiscountPercentage" />
+                <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="BusinessRoomAccounts" TypeName="HotelMateWebModel.BusinessRoomAccounts" StoreEntitySet="BusinessRoomAccounts">
+            <EndProperty Name="BusinessAccount">
+              <ScalarProperty Name="Id" ColumnName="BusinessAccountId" />
+            </EndProperty>
+            <EndProperty Name="GuestRoom">
+              <ScalarProperty Name="Id" ColumnName="GuestRoomId" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
